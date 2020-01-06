@@ -13,4 +13,4 @@
 *_debug*
 *playbook*/
 
-config.yaml
+./config.yaml

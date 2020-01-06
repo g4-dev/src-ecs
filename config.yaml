@@ -1,15 +1,15 @@
 ---
 conf:
-    os: "10.2"                      # Choose your debian (change requires: vagrant destroy & vagrant up)
+    os: "10.2"                      # Choose your debian (8,9,10) (change requires: vagrant destroy & vagrant up)
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
-    servername: ecoservice.dev      # Servername and domain for your projects
+    servername: ecoservice.coom     # Servername and domain for your projects
     org: g4-dev                     # Organisation hosting repo
     projectname: ecs                # repo name : src-{{projectname}}
-    debug_playbook: true            # use to Reprovision VM with the local test playbook
+    debug_playbook: false           # use to Reprovision VM with the local test playbook
     testing_mode: 0                 # test service
     web_path: www                   # use your own folder
     app_env: dev                    # prod or dev (prod is faster)
-    ssl: true                      # disable if you can't install a certificate
+    ssl: false                      # disable if you can't install a certificate (not working yet)
 
 vm:  
     name: ecoservice                # VM name for Virtualbox (string)

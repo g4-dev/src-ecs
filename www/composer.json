@@ -61,7 +61,7 @@
         },
         "post-install-cmd": [
             "@auto-scripts",
-            "yarn && yarn prod"
+            "yarn"
         ],
         "post-update-cmd": [
             "@auto-scripts"

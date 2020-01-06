@@ -12,7 +12,6 @@
 - Lancer la VM avec `vagrant up`
 
 > Un script assez long va se charger d'installer tous les outils et de configurer l'environment du projet<br>
-> Pour en savoir plus : [Doc Ansible](https://docs.ansible.com/)
 
 - Après `vagrant ssh` | Consulter la liste des commandes shells : [Ici](5Tips)
 - [localhost:81](http://localhost:81)
@@ -37,19 +36,27 @@ Cette base de donnée est hébergée à distance afin que l'on puisse travailler
 ### [**lien vers Phpmyadmin**](https://remotemysql.com/phpmyadmin/index.php) 
 
 # NFS
-Le NFS est un système de partage de fichier haute performance compatible avec Linux et Mac et à peu près Windows<br>
-
-#### Pour activer sur Windows :
-- Activer `client NFS` > `Activer fonctionnalités Windows`
-- Allouer plus de CPU et passer la variable winNFS à true dans [config.yml](../config.yaml)
+Le NFS est un système de partage de fichier haute performance compatible avec Linux et Mac<br>
 
 #### Sur mac
 - Donner l'accès complès au disque pour le terminal dans `sécurité & confidentialité`
-
 Petite amélioration de performance avec : `git config core.preloadindex true`
 
+#### Sur linux (debian/ubuntu)
+`apt install nfs-kernel-server nfs-common`
+
 ### Erreurs connues
-Le certificat n'est toujours pas bon, pour récupérer le bon éxecuter à la racine du projet: 
+
+- Le **nfs** ne marche pas sur mac os catalina : [solution à suivre](https://stackoverflow.com/a/58547588 )
+
+- Le **certificat** n'est toujours pas bon, pour récupérer le bon éxecuter à la racine du projet: 
 > `scp -P 22 root@ecoservice.dev:/etc/ssl/ecoservice.dev/pkcs12.pfx docs/cert/` (mdp: vagrant)
+
+- lorsque on reprovisionne la vm avec le NFS activé: <br>
+    **Exécuter** : 
+    ```
+    rm .vagrant/machines/default/action_provision && vagrant reload --provision
+    ```
+
 ---
 ### <center>[Retour au sommaire &#8617;](docs/0Sommaire.md)</center>
