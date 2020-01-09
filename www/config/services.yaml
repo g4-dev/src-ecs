@@ -1,39 +1,54 @@
+imports:
+    - { resource: 'config_dev.yaml' }
+
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'fr'
-    # This parameter defines the codes of the locales (languages) enabled in the application
-    app_locales: en|es
-    app.notifications.email_sender: 69loloro10@gmail.com
+    locale: 'en'
 
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-            
-    # makes classes in ecs/Security available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
-#    Ecs\:
-#        resource: '../ecs/*'
-#        exclude: '../ecs/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
-    # add more service definitions when explicit configuration is needed
-    # # please note that last definitions always *replace* previous ones
-    # Apps\Exception\HTTPExceptionListener:
-    #     tags:
-    #         - { name: kernel.event_listener, event: kernel.exception }
+        bind:
+            $emailFrom: '%env(MAILER_URL)%'
+            $emailName: 'Ecoservice'
 
-    # app.security.hash.password.listener:
-    #     class: App\Security\HashPasswordListener
-    #     tags:
-    #         - { name: doctrine.event_subscriber }
+    Core\:
+        resource: '../src/Core/*'
+        #exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
-    # Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
-    #     arguments:
-    #         - !service { class: PDO, factory: 'database_connection:getWrappedConnection' }
-    #         # If you get transaction issues (e.g. after login) uncomment the line below
-    #         - { lock_mode: 1 }
+    Fixtures\DataFixtures\:
+        resource: '../fixtures/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
+    Admin\Controller\:
+      resource: '../src/Admin/Controller'
+      tags: ['controller.service_arguments']
+
+    Portal\Controller\:
+        resource: '../src/Portal/Controller'
+        tags: ['controller.service_arguments']
+
+    core.admin:
+        class: Core\Service\AdminService
+        public: true
+
+    core.mailer:
+        class: Core\Service\MailerService
+        public: true
+
+    core.user:
+        class: Core\Service\UserService
+        public: true
+
+    admin.security.login_form_guard:
+        class: 'Admin\Security\LoginFormGuard'
+
+    portal.security.login_form_guard:
+        class: 'Portal\Security\LoginFormGuard'

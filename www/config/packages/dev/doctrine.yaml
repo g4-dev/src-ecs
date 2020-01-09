@@ -1,0 +1,7 @@
+#doctrine:
+    #dbal:
+        #dbname:               '%db_name%'
+        #host:                 '%host%'
+        #port:                 '%port%'
+        #user:                 '%user%'
+        #password:             '%password%'

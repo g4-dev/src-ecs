@@ -1,13 +1,3 @@
-# 2 main routes | config others in the dedicated space
-fo:
-   resource: ../ecs/Apps/FrontOffice/config/
-   type: directory
-   name_prefix: 'fo_'
-   prefix: /
-
-bo:
-   resource: ../ecs/Apps/BackOffice/config/
-   name_prefix: 'bo_'
-   type: directory
-   prefix: /wp-admin
-   trailing_slash_on_root: false
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index

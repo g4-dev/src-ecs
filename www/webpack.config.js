@@ -9,7 +9,7 @@ Encore
     
     .setPublicPath('/build')
 
-    .addEntry('entry', './assets/entry.js')
+    .addEntry('app', './assets/app.js')
 
     .disableSingleRuntimeChunk()
 
@@ -21,23 +21,24 @@ Encore
 
     .enableVersioning(Encore.isProduction())
 
-    .enableTypeScriptLoader()
+    //.enableTypeScriptLoader()
 
     .enableSassLoader()
 
-    .addPlugin(new GoogleFontsPlugin(fontsConf))
-
+    //.addPlugin(new GoogleFontsPlugin(fontsConf))
+    
+    .autoProvidejQuery()
 ;
 let config = Encore.getWebpackConfig();
-config.resolve.alias = {
-    ...config.resolve.alias, ...{
-        '@': path.resolve(__dirname, 'assets/ts'),
-        '#': path.resolve(__dirname, 'assets/scss'),
-    },
-    ...config.resolve.extensions.push('.scss')
-};
+// config.resolve.alias = {
+//     ...config.resolve.alias, ...{
+//         '@': path.resolve(__dirname, 'assets/ts'),
+//         '#': path.resolve(__dirname, 'assets/scss'),
+//     },
+//     ...config.resolve.extensions.push('.scss')
+// };
 
-config.watchOptions.poll = true;
+// config.watchOptions.poll = true;
 
 module.exports = config;
 

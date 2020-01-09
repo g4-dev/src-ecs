@@ -1,3 +1,0 @@
-home:
-  path: /
-  controller: Ecs\Apps\FrontOffice\Controller\DefaultController:index

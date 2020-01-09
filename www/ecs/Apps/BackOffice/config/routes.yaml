@@ -1,7 +1,0 @@
-home:
-   path: ''
-   controller: Ecs\Apps\BackOffice\Controller\DefaultController:index
-
-categories:
-   path: /categories
-   controller: Ecs\Apps\FrontOffice\Controller\CategoriesController:index

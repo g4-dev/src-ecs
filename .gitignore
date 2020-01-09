@@ -14,3 +14,14 @@
 *playbook*/
 
 ./config.yaml
+
+###< IDE specific ###
+.idea/*
+!webServers.xml
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/sftp.json
+!.vscode/extensions.json
+*.code-workspace
+.vs/
