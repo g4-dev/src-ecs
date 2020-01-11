@@ -1,21 +1,20 @@
 ---
 conf:
-    os: "10.2"                      # Choose your debian (8,9,10) (change requires: vagrant destroy & vagrant up)
+    os: "10.2"                      # Choose your debian according to bento boxes (need vagrant destroy & vagrant up)
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
     servername: ecoservice.coom     # Servername and domain for your projects
     org: g4-dev                     # Organisation hosting repo
     projectname: ecs                # repo name : src-{{projectname}}
-    debug_playbook: false           # use to Reprovision VM with the local test playbook
-    testing_mode: 0                 # test service
+    debug_playbook: false            # used to Reprovision VM with the local test playbook
+    testing_mode: 0                 # test services
     web_path: www                   # use your own folder
     app_env: dev                    # prod or dev (prod is faster)
     ssl: false                      # disable if you can't install a certificate (not working yet)
-
 vm:  
     name: ecoservice                # VM name for Virtualbox (string)
     memory: 3072                    # binary friendly value (int)
     cpus: 2                         # logical cores of vm (int)
     cpuexecutioncap: 80             # virtual cpu, use high value with nfs (int | max: 100)
-    natdnshostresolver1: "on"       # perf + (string on/off)
-    natdnsproxy1: "on"              # perf + (string on/off)
-    ioapic: "on"                    # perf + (string on/off)
+    natdnshostresolver1: "on"       # perf + (string | on/off)
+    natdnsproxy1: "on"              # perf + (string | on/off)
+    ioapic: "on"                    # perf + (string | on/off)

@@ -18,7 +18,7 @@ debug            = conf['debug_playbook']
 folder           = debug ? '/vagrant' : '/tmp'
 # nfs config
 conf['nfs'] = Vagrant::Util::Platform.darwin? || Vagrant::Util::Platform.linux?
-NFS = conf['nfs'] && !debug && ARGV[1] != '--provision' && (File.exist? File.dirname(__FILE__) + "/.vagrant/machines/default/virtualbox/action_provision")
+NFS = conf['nfs'] && ARGV[1] != '--provision' && (File.exist? File.dirname(__FILE__) + "/.vagrant/machines/default/virtualbox/action_provision")
 # ssl config
 hosts            = ""
 
@@ -82,13 +82,27 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.extra_vars = conf
   end
 
-  # reload nfs / shared folder after provision
-  #puts File.exist?(".vagrant/machines/default/virtualbox/action_provision")
+
   if NFS
-      # NFS FOR LINUX & MAC (faster)
-      config.vm.synced_folder "./www", "/data/ecs/www", type: "nfs", #after: :provision,
-      nfs_version: 4, nfs_udp: false, mount_options: ['rw', 'sync', 'fsid=0', 'fsc', 'nolock']
-  else
+    # NFS config / bind vagrant user to nfs mount
+    if Vagrant::Util::Platform.darwin? 
+      if Vagrant.has_plugin?('vagrant-bindfs')
+        puts "vagrant-bindfs missing, please install the plugin with this command:\nvagrant plugin install vagrant-bindfs"
+        exit
+      else
+        #config.nfs.map_uid = Process.uid
+        #config.nfs.map_gid = Process.gid
+        #config.bindfs.bind_folder "./www", "/data/ecs/www"
+        #config.vm.synced_folder "./www", "/data/ecs/www", type: "nfs", nfs_version: 3, 
+        #nfs_udp: true, mount_options: ['rw', 'fsc','all_squash','actimeo=2']
+        puts "nfs not working yet"
+      end
+    else
+      # linux nfs 4 server
+      config.vm.synced_folder "./www", "/data/ecs/www", type: "nfs", nfs_version: 4, nfs_udp: false, mount_options: ['rw','noac','actimeo=2']
+    end
+  else  
+    # reload nfs / shared folder after provision
     config.trigger.after [:provision] do |t|
       t.name = "Reboot after provisioning"
       t.run = { :inline => "vagrant reload" }

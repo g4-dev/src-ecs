@@ -24,4 +24,7 @@
 !.vscode/sftp.json
 !.vscode/extensions.json
 *.code-workspace
+
 .vs/
+
+symfony-boilerplate/
