@@ -7,6 +7,13 @@ use Core\Service\AdminService;
 
 trait AdminTrait
 {
+    public AdminService $adminService;
+    
+    public function __construct(AdminService $adminService)
+    {
+        $this->adminService = $adminService;
+    }
+    
     protected function createNewAdminEntity()
     {
         return $this->getAdminService()->create('', '');
@@ -31,6 +38,11 @@ trait AdminTrait
 
     protected function getAdminService(): AdminService
     {
-        return $this->get('core.admin');
+        return $this->adminService;
+    }
+    
+    protected function setAdminService(AdminService $adminService)
+    {
+        return $this->adminService = $adminService;
     }
 }

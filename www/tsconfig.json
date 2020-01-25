@@ -14,8 +14,12 @@
       "target": "es5"
     },
     "types": ["jest"],
-    "compileOnSave": false,
-    "include": ["./assets/**/*.ts"],
+    "compileOnSave": true,
+    "include": [
+      "./assets/easyadmin/*.ts",
+      "./assets/front_office/*.ts",
+      "./assets/core/*.ts"
+    ],
     "exclude": [
       "**/build/", 
       "node_modules", 

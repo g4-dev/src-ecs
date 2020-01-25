@@ -23,26 +23,24 @@ Un simple clic droit sur `www/` donnera des options de synchro (`deployment > do
 
 ## Base de donnée
 
-### On a deux bases de données :
-
-> utilisée par défaut (base distante partagée)
-- mysql_host: `remotemysql.com`
-- mysql_user: `EmwnLitSLR`
-- mysql_pw: `Gk0qCm6hFI`
-- mysql_db: `eEmwnLitSLR`
-
 Base *locale* pour travailler seul 
 > non utilisée par défaut
 - host : localhost ou 127.0.0.1
-- port : 3366 sur votre machine (3306 sur la VM)
+- port : 3366
 - user : ecs_user
 - pw: ecommerce
 - db: ecommerce
 
 #### Pas de phpmyadmin, utilisez plutôt l'outil `base de donnée` phpstorm
 
+> base distante pour se partager les donnée entre nous
+- mysql_host: `remotemysql.com`
+- mysql_user: `EmwnLitSLR`
+- mysql_pw: `Gk0qCm6hFI`
+- mysql_db: `eEmwnLitSLR`
+
 Pour partager et récupérer les données il existe des scripts simples dans le `Makefile`
-> Par exemple pour récupérer la base distante on fait *dans la VM* `cd ../ && make db_update_local`
+> Par exemple pour ajouter nos données à la base distante on fait *dans la VM* `cd ../ && make db_update_remote`
 
 ## L'application globale
 
@@ -52,25 +50,13 @@ Pour partager et récupérer les données il existe des scripts simples dans le 
   - `bootstrap.php` récupère les variables d'environnement côté serveur
   - `security.yml` Gestion du système de connection et rôles
   - `framework.yaml` définit des paramètres pour le mailer, la gesion des assets, le cache ...
-  - `doctrine.yaml` définit l'utilisation de la base de donnée. On mapper des entité avec des alias pour les réutilisé dans les autres espaces de l'appli.
+  - `doctrine.yaml` définit l'utilisation de la base de donnée. On mappe des entité avec des alias pour les réutiliser dans les autres espaces de l'appli.
   - `twig.yaml` Mettre en place des skins préféfinis de formulaires et injecter des variables dans les vues
-  - Le fichier `paramters.yaml` uniqument dans la VM donne des variables utiles
+  - Le fichier `paramters.yaml` uniqument dans la VM donne des variables de configurations (url base de donnée, mail...)
 
 - `fixtures`
   - Générées avec faker elle nous permettent de créer des données facilement
-
-#### Trois espaces :
-  1. **Core** (à ne pas trop toucher)
-
-Le coeur correspond à des services back-end réutilisés dans toutes l'application. On a par exemple :
-- Plein de code back end à réutiliser
-
-  2. **FrontOffice** (FrontOffice) 
-- à nous de créer la logique et l'interface de cet espace
-
-  3. **Admin** BackOffice &rarr; Bundle easy admin qui simplifie la génération des CREATE, READ, UPDATE, DELETE
-- Il faudra bien lire la documentationdu bundle pour personnaliser le design et ajouter tous les modules nécéssaires (produits, catégories...)
-
+  
 ## **Stack Front-end** : 
 
 La team front travaille dans les répertoire `assets` et `templates`.
@@ -99,7 +85,7 @@ Voici l'organisation du projet par espaces:
         |-- product.js # chaque page a son entrée (on importe ici nos ressource ts et app.scss
         |-- categories.js
             ...
-  |-- admin (easyadmin) --> à vider et remplacer par notre propre code
+  |-- admin (easyadmin) --> à revérifier et remplacer par notre propre code
   ... cherchez dans la doc
 ```
 
@@ -112,6 +98,7 @@ Pour changer l'interface du back-office: [doc easyadmin](https://symfony.com/doc
       |-- . liste des pages
           .
           .
+      |-- Votre organisation est la bienvenue
   |-- bundles
       |-- EasyAdminBundle
           |-- default
@@ -132,23 +119,23 @@ Pour retrouver les pages que vous cherchez : `sf debug:router`
 
 ## **Stack Back-end** : 
 
-##### Typer les variables/paramètres de fonction au maximum
+##### Typer les variables/paramètres de fonction au maximum grâce à php 7.4
 
 Dans le dossier `src`:
 1. **Core** (à ne pas trop toucher)
 - Mailer
 - Des helpers comme le générateur d'id aléatoire
 - Des Events, des types a réutiliser comme les collections
-- Des `traits` très pratiques comme [celui de l'id](../www/src/Core/Entity/IdTrait.php) à implémenter dans une entité
+- Des `traits` très pratiques comme [celui de l'id](../www/src/Core/Entity/IdTrait.php) pour éviter de répéter le code des entités
 - Des validateurs personnalisés
 
 2. **FrontOffice** (FrontOffice) 
-- Pas grand chose à faire à par créer des routes, des pages et vérifier les API
+- Pas grand chose à faire à par créer des routes, des pages et s'assurer que les actions API sont disponibles (exemple ajouter un produit au panier : `/product/{id}/add`)
 
 3. **Admin** (BackOffice), Configuration easyadmin : `config/packages/easyadmin.yaml`
-- Configurer et ajouter des fonctionnalités à easyadmin
+- Easyadmin nous permet de facilement créer des CRUD et des entités
 
-Suivez les règles automatiques de `phpcbf` et `phpcs` (pas encore installé mais ça vient)
+<!-- Suivez les règles automatiques de `phpcbf` et `phpcs` (pas encore installé mais ça vient) -->
 
 ---
 ### <center>[Retour au sommaire &#8617;](docs/0Sommaire.md)</center>

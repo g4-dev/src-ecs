@@ -18,6 +18,7 @@ easy_admin:
           - name
           - { property: 'email', type: 'email' }
           - { property: 'is_active', type: 'toggle', label: 'Active?' }
+          - { property: 'roles', type: 'json_array' }
           - createdAt
         actions: ['show', 'edit', 'delete']
         dql_filter: 'entity.isDeleted = false'
@@ -25,6 +26,7 @@ easy_admin:
         fields:
           - id
           - name
+          - { property: 'roles', type: 'json_array' }
           - { property: 'email', type: 'email' }
           - { property: 'is_active', type: 'toggle', label: 'Active?' }
           - createdAt
@@ -36,6 +38,8 @@ easy_admin:
           - name
           - { property: 'email', type: 'email' }
           - { property: 'passwordHash', type: 'password', label: 'Password' }
+          - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: "%security.role_hierarchy.roles.ROLE_FULL_USER%" } }
+
 
     Admin:
       class: Core\Entity\Admin
