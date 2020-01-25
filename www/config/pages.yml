@@ -3,7 +3,7 @@
   pages:
     - products
     - homepage
-    - adminLogin
+    - accounting
   ext: ts
 
 - name: easyadmin

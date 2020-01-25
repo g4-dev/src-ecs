@@ -1,5 +1,9 @@
 {% extends 'front_office/layout.html.twig' %}
 
+{% block links %}
+  {{ encore_entry_link_tags('accounting', null, 'front_office') }}
+{% endblock %}
+
 {% block main %}
 
   <div class="container">
@@ -14,4 +18,8 @@
   <div class="app-call" data-method="initRegistrationForm">
   </div>
 
+{% endblock %}
+
+{% block scripts %}
+  {{ encore_entry_script_tags('accounting', null, 'front_office') }}
 {% endblock %}

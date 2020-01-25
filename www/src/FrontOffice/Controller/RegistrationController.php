@@ -33,7 +33,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('fo_homepage');
         }
 
-        return $this->render('front_office/registration.html.twig', [
+        return $this->render('front_office/accounting/registration.html.twig', [
             'form' => $form->createView()
         ]);
     }

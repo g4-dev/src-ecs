@@ -43,7 +43,7 @@ class PasswordResetController extends AbstractController
             }
         }
 
-        return $this->render('front_office/password-reminder.html.twig', [
+        return $this->render('front_office/accounting/password-reminder.html.twig', [
             'form' => $form->createView()
         ])->setStatusCode($statusCode);
     }
@@ -81,7 +81,7 @@ class PasswordResetController extends AbstractController
             }
         }
 
-        return $this->render('front_office/password-reset.html.twig', [
+        return $this->render('front_office/accounting/password-reset.html.twig', [
             'user' => $user,
             'form' => $form->createView()
         ])->setStatusCode($statusCode);
