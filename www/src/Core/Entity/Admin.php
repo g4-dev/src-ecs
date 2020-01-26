@@ -11,6 +11,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class Admin extends AbstractUser implements UserInterface
 {
+    const DEFAULT_ROLE = 'ROLE_ADMIN';
+    
+    /**
+     * @var array
+     * @ORM\Column(name="roles", type="array", nullable=false)
+     */
+    private array $roles = [self::DEFAULT_ROLE];
+    
+    use RolesTrait;
+    
     public function getUsername()
     {
         return $this->getEmail();
@@ -24,11 +34,6 @@ class Admin extends AbstractUser implements UserInterface
     public function getSalt()
     {
         // Do nothing.
-    }
-
-    public function getRoles(): array
-    {
-        return ['ROLE_ADMIN'];
     }
 
     public function eraseCredentials()

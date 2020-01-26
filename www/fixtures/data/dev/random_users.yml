@@ -2,6 +2,7 @@ Core\Entity\User:
   user{1..50}:
     name: '<name()>'
     uniqueId (unique): '<userUniqueId()>'
-    email (unique): '<email()>'
     password_hash: '<(substr(md5(uniqid(rand(), true)), 0, 16))>'
+    email (unique): '<email()>'
+    roles: ['ROLE_USER']
     createdAt: '<dateTimeBetween("-100 days", "now")>'

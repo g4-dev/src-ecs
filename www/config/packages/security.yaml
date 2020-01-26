@@ -14,10 +14,10 @@ security:
 
     role_hierarchy:
         ROLE_PRO: [ROLE_USER]
-        ROLE_FULL_USER: [ROLE_USER, ROLE_PRO, ROLE_FULL_USER]
         ROLE_MARKETING: [ROLE_ADMIN]
         ROLE_EMPLOYEE: [ROLE_ADMIN]
-        ROLE_FULL_ADMIN: [ROLE_ADMIN, ROLE_EMPLOYEE, ROLE_MARKETING, ROLE_FULL_ADMIN]
+        ROLE_SUBADMIN: [ROLE_ADMIN]
+        ROLE_SUPERADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     # bcrypt use unique_id of user to encrypt password in db
     encoders:

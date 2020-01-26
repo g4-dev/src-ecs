@@ -4,4 +4,5 @@ Core\Entity\User:
     uniqueId (unique): '<userUniqueId()>'
     email (unique): 'test@test.tld'
     password_hash: '<userPasswordEncoder("test")>'
+    roles: ['ROLE_USER']
     createdAt: '<dateTimeBetween("now", "now")>'

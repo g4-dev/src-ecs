@@ -18,7 +18,7 @@ easy_admin:
           - name
           - { property: 'email', type: 'email' }
           - { property: 'is_active', type: 'toggle', label: 'Active?' }
-          - { property: 'roles', type: 'json_array' }
+          - { property: 'roles', type: 'array' }
           - createdAt
         actions: ['show', 'edit', 'delete']
         dql_filter: 'entity.isDeleted = false'
@@ -26,9 +26,9 @@ easy_admin:
         fields:
           - id
           - name
-          - { property: 'roles', type: 'json_array' }
           - { property: 'email', type: 'email' }
           - { property: 'is_active', type: 'toggle', label: 'Active?' }
+          - { property: 'roles', type: 'array' }
           - createdAt
           - lastLoginAt
           - lastLoginIp
@@ -36,10 +36,11 @@ easy_admin:
       form:
         fields:
           - name
-          - { property: 'email', type: 'email' }
           - { property: 'passwordHash', type: 'password', label: 'Password' }
-          - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: "%security.role_hierarchy.roles.ROLE_FULL_USER%" } }
-
+          - { property: 'email', type: 'email' }
+          - { property: 'roles', type: 'choice', type_options: { multiple: true,
+                choices: { ROLE_PRO: 'ROLE_PRO', ROLE_USER: 'ROLE_USER'}
+          }}
 
     Admin:
       class: Core\Entity\Admin
@@ -51,6 +52,7 @@ easy_admin:
           - name
           - { property: 'email', type: 'email' }
           - { property: 'is_active', type: 'toggle', label: 'Active?' }
+          - { property: 'roles', type: 'array' }
           - createdAt
         actions: ['show', 'edit', 'delete']
         dql_filter: 'entity.isDeleted = false'
@@ -60,6 +62,7 @@ easy_admin:
           - name
           - { property: 'email', type: 'email' }
           - { property: 'is_active', type: 'toggle', label: 'Active?' }
+          - { property: 'roles', type: 'array' }
           - createdAt
           - lastLoginAt
           - lastLoginIp
@@ -67,5 +70,11 @@ easy_admin:
       form:
         fields:
           - name
-          - { property: 'email', type: 'email' }
           - { property: 'passwordHash', type: 'password', label: 'Password' }
+          - { property: 'email', type: 'email' }
+          - { property: 'roles', type: 'choice', type_options: { multiple: true,
+               choices: { ROLE_MARKETING: 'ROLE_MARKETING',
+                          ROLE_EMPLOYEE: 'ROLE_EMPLOYEE',
+                          ROLE_SUB_ADMIN: 'ROLE_SUBADMIN',
+                          ROLE_SUPERADMIN: 'ROLE_SUPERADMIN' }
+          }}

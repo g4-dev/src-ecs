@@ -6,7 +6,7 @@ doctrine_migrations:
 
 doctrine:
     dbal:
-        default_connection: remote
+        default_connection: default
         connections:
             default:
                 # configure these for your database server
