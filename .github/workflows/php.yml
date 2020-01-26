@@ -1,14 +1,18 @@
-name: PHP Composer
-
 on: [pull_request]
 
+name: Run composer testsuite
 jobs:
-  build:
-
+  composer:
     runs-on: ubuntu-latest
 
-    - name: Install dependencies
-      run: composer install -d www/ --no-progress --no-suggest --no-interaction
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Install composer dependencies
+        run: |
+          composer install --prefer-dist --no-scripts -q -o;
 
     # if the clear cache fail it's because a lockfile/ json isn't updated
 
