@@ -47,9 +47,14 @@ framework:
         default_path: '%kernel.project_dir%/translations'
         fallbacks:
             - '%locale%'
+
     # google smtp url
     mailer:
         dsn: '%env(MAILER_DSN)%'
 
     validation:
         email_validation_mode: html5
+
+sensio_framework_extra:
+    router:
+        annotations: false

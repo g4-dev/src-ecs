@@ -4,12 +4,12 @@
 
 ## Introduction
 Les objectifs de ce flux de travail:
- - Pouvoir travailler à 7
+ - Pouvoir se répartir le travail à plusieurs
  - Identifiers des objectifs grâce aux releases prévues 
  - Centraliser la gestion des revues et la qualité du code
  - Eviter des bugs
 
-# Table of contents
+## Index
 0. [Mise en place des remotes](#remotes)
 1. [Branches](#branches)
 2. [Environnement](#environments)
@@ -95,11 +95,12 @@ Voici un exemple de Pull request détaillé :
   ![pr-step-1](res/pr-step1.png)
   
   Ensuite je choisis l'option `compare across forks` et sélectionne les bonnes branches avant de faire la PR:
-  Ici je veux merge la branche de mon ticket `34jeq3`
-  ##### `g4-dev/develop` << `<mon-pseudo-github>/<mon-ticket>` 
+  Ici je veux merge la branche de mon ticket `#34jeq3`
+  ##### `g4-dev/develop` << `<mon-pseudo-github>/#<id-mon-ticket>` 
   
   5. Vous ouvrez la PR et changer le titre avec l'id de votre ticket puis vous vous laissez guider par les consigne dans le template de pull request qui s'affiche.
-
+  
+  &rarr; **Attention à ne pas oublier le `#` devant le numéro pour que la PR s'affiche sur clickup**
 
 ### Supporting readings
 
@@ -107,3 +108,4 @@ Voici un exemple de Pull request détaillé :
 2. [Git cheat sheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)
 3. [Github help: user collaborating](https://help.github.com/categories/collaborating/)
 
+### <center>[Retour au sommaire &#8617;](0Sommaire.md)</center>

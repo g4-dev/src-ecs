@@ -30,4 +30,4 @@ Erreurs lors de l'installation
 rm .vagrant/machines/default/action_provision && vagrant reload --provision
 ```
 ---
-### <center>[Retour au sommaire &#8617;](docs/0Sommaire.md)</center>
+### <center>[Retour au sommaire &#8617;](0Sommaire.md)</center>

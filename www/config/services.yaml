@@ -46,8 +46,8 @@ services:
     Admin\Controller\:
       resource: '../src/Admin/Controller'
       tags: ['controller.service_arguments']
-      arguments:
-          - '@core.admin' # need to wire manually because we use EasyAdmin controller
+      #arguments:
+          #- '@core.admin' # need to wire manually because we use EasyAdmin controller
 
     FrontOffice\Controller\:
         resource: '../src/FrontOffice/Controller'

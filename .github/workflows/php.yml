@@ -9,7 +9,9 @@ jobs:
 
     - name: Install dependencies
       run: composer install -d www/ --no-progress --no-suggest --no-interaction
-    
+
+    # if the clear cache fail it's because a lockfile/ json isn't updated
+
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
