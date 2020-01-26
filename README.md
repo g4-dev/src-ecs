@@ -2,18 +2,20 @@
 
 ## [Lire la documentation !](docs/0Sommaire.md)
 
-### Sur votre navigateur : 
+### Sur votre navigateur :
+
 - [ecoservice.coom](http://ecoservice.coom)
 - [localhost:8080](http://localhost:8080)
-- Le serveur api : [api.ecoservice.coom](http://api.ecoservice.coom)
 
 ## Environement
 
 - Projet sur `/data/ecs/www`
 
-- Automatique sur phpStorm
+- Synchro des fichiers automatique sur phpStorm
 
-- Sur VSCode il faut installer l'extension `SFTP` de lixmomo 
+- N'utilisez pas VScode
+
+- N'oublier pas de mettre à jour le schema quand vous modifiez des entités
 
 ## Le flux de travail
 
@@ -22,7 +24,9 @@
 - Je download `composer.json` et `package.json`, les `.lock` aussi
 - Je met à jour ma branche : [Mettre a jour sa branche](docs/3GitFlow.md#majbranche)
 - Je créer une PR [Faire une PR](docs/3GitFlow.md#environments)
+- J'envoie le lien de ma PR sur `#conversation`
 - Je me fait review par les autres membres de l'équipe
+- On merge
 
 ## Règles d'or
 - Le code est la meilleure documentation.
@@ -32,6 +36,7 @@
 ## Conventions
 
 - Suivre l'architecture :
+
 ```
 - Core (code utilisé dans tout les espaces comme les mails/ connexion...)
 - FrontOffice : Interface utilisateur et récupération des donnée avec API
