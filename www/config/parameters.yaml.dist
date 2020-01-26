@@ -4,5 +4,3 @@ parameters:
     env(MAILER_DSN): gmail+smtp://andregope999@gmail.com:ecoserviceDev69@gmail
     env(LOCAL_DATABASE_URL): mysql://ecs_user:ecommerce@localhost/ecommerce
     env(REMOTE_DATABASE_URL): mysql://EmwnLitSLR:Gk0qCm6hFI@remotemysql.com/EmwnLitSLR
-
-
