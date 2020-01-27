@@ -1,13 +1,11 @@
 # Add pages for the differents spaces here (correspond to webpack entries)
 - name: front_office
   pages:
-    - products
-    - homepage
+    - { entry: products, ext: ts }
+    - homepage # pas obliger de préciser l'extenstion de l'entrée (si on a une valeur par défault)
     - accounting
     - company
-  ext: ts
 
 - name: easyadmin
   pages:
     - js/app
-  ext: js

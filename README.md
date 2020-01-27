@@ -11,11 +11,9 @@
 
 - Projet sur `/data/ecs/www`
 
-- Synchro des fichiers automatique sur phpStorm
+- Synchro des fichiers automatique sur phpStorm : [Installation](docs/1Installation.md#sources)
 
-- N'utilisez pas VScode
-
-- N'oublier pas de mettre à jour le schema quand vous modifiez des entités
+- VSCode est déconseillé
 
 ## Le flux de travail
 
@@ -48,4 +46,6 @@
 Pour se connecter sur le back office [/admin](ecoservice.coom/admin) avec les ids
 `admin@domain.tld` / `s3cr3t`
 
-Pour les utilisateurs front office créer le votre avec un faux mail
+Pour les utilisateurs front office: `aroberts@luettgen.com` `Azerty69`
+
+##### Complétez la liste [Liste des utilisateurs de tests](docs/4Tests.md#comptes-utilisateurs)

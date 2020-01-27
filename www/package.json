@@ -5,16 +5,18 @@
   "license": "proprietary",
   "private": true,
   "scripts": {
-    "test": "jest --runInBand --no-cache",
-    "test -w": "run test --watch",
     "dev": "encore dev",
     "fo": "encore dev --config-name front_office",
-    "fo -w": "encore watch --config-name front_office",
-    "admin": "encore dev --config-name admin",
-    "admin -w": "encore watch --config-name admin",
+    "fow": "encore dev --watch --config-name front_office",
+    "fos": "yarn fo --env.entry $1",
+    "admin": "encore dev --config-name easyadmin",
+    "adminw": "yarn admin --watch",
+    "admins": "yarn admin --env.entry $1",
     "lint": "eslint --ext .js,.ts --fix --cache=true assets/* ",
     "watch": "encore dev --watch",
-    "prod": "lint && encore production"
+    "prod": "lint && encore production",
+    "test": "jest --runInBand --no-cache",
+    "test -w": "run test --watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",

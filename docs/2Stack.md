@@ -10,23 +10,7 @@
 1. [Base(s) de données](#base-de-données)
 2. [Front end](#stack-front-end)
 3. [Stack Back-end](#stack-back-end)
-
-### Attention 
-
-Les commandes de `composer` et `yarn`, doivent être éxecutées ***SEULEMENT DANS LA VM***.
-
-> !! **On n'utilise pas `npm`** sinon on risque de créer des bugs et conflits avec `yarn`
-
-#### `+` Verifiez bien la synchronisation des fichiers avec votre VM :
-#### Les fichiers à vérifier:
-- le `package.json` de la VM pour les module js (yarn)
-- le `composer.json` pour les modules php composer
-- les fichiers `composer.lock` et `yarn.lock
-
-![sources](res/upload_sources.png)
-
-Après un changement de branche il faut upload vos sources : <br> 
-Un simple clic droit sur `www/` donnera des options de synchro (`deployment > download` sur php-storm)
+4. [Api](#api-rest)
 
 ## Base de données
 
@@ -52,7 +36,7 @@ Base *locale* pour travailler seul
 - mysql_pw: `Gk0qCm6hFI`
 - mysql_db: `eEmwnLitSLR`
 
-#### [**lien vers Phpmyadmin**](https://remotemysql.com/phpmyadmin/index.php)
+#### [**lien vers Phpmyadmin**](https://remotemysql.com/phpmyadmin/index.php?db=EmwnLitSLR)
 
 Pour partager et récupérer les données il existe des scripts simples dans le `Makefile`
 > Par exemple pour ajouter nos données à la base distante on fait *dans la VM* `cd ../ && make db_update_remote`
@@ -121,8 +105,8 @@ Pour changer l'interface du back-office: [doc easyadmin](https://symfony.com/doc
              --> Réorganiser les templates à votre façon mais bien garder les noms de fichiers
 ```
 
-Pour ajouter une entrée (page) à l'index des assets `css` et `ts` ça se passe dans
-`config/pages.yaml`. Vérifier bien que les noms soient bien les mêmes que ceux des fichiers d'entrée dans `assets/<espace>/<page>.ts`.
+Pour ajouter une entrée (page) à l'index des assets `css`, `ts` ou `js` ça se passe dans
+`config/pages.yaml`. Vérifier bien que les noms soient bien les mêmes que ceux des fichiers d'entrée dans `assets/<espace>/<page>[.ts|js]`.
 
 Pour la convention de code javascript, suivre [**cette page**](https://github.com/ryanmcdermott/clean-code-javascript#introduction)
 
@@ -151,6 +135,15 @@ Dans le dossier `src`:
 - Easyadmin nous permet de facilement créer des CRUD et des entités
 
 <!-- Suivez les règles automatiques de `phpcbf` et `phpcs` (pas encore installé mais ça vient) -->
+
+## API Rest
+
+Voici un [tutoriel](https://medium.com/q-software/symfony-5-the-rest-the-crud-and-the-swag-7430cb84cd5
+) pour créer des API afin de gérer les données côté front office, par exemple :
+
+- Ajout d'un commentaire 
+- Ajout d'un produit au panier
+- Affichage des produits
 
 ---
 ### <center>[Retour au sommaire &#8617;](0Sommaire.md)</center>

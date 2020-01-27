@@ -1,6 +1,6 @@
 ## Objet de la pull request
 
-<!-- [https://app.clickup.com/t/<identifiant-ticket>](identifiant-ticket) -->
+<!-- [<identifiant-ticket>](https://app.clickup.com/t/identifiant-ticket) -->
 
 ## Développement fait
 
@@ -8,7 +8,7 @@
 
 ## Mes bonnes pratiques
 
-[ ] Le titre de ma PR contient bien l'id de mon ticket<br>
+[ ] Le titre de ma PR contient bien l' `#id` de mon ticket<br>
 [ ] Mon historique est correcte <br>
 [ ] Je merge sur la branche demandée par mon ticket <br>
 [ ] J'ai mis à jour ma branche avec la remote `g4-dev`<br>

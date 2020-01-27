@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="ecoservice" createEmptyFolders="true" traceLevel="BRIEF" exclude=".svn;.cvs;.idea;.DS_Store;.git;.hg;*.hprof;*.pyc,**/node_modules/**,**/vendor/**" autoUploadExternalChanges="true" showAutoUploadSettingsWarning="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="ecs" deleteMissingItems="true" traceLevel="BRIEF" exclude=".svn;.cvs;.idea;.DS_Store;.git;.hg;*.hprof;*.pyc,**/node_modules/**,**/vendor/**,*.lock,www/config/parameters.yaml" autoUploadExternalChanges="true" showAutoUploadSettingsWarning="false">
     <serverData>
-      <paths name="ecoservice">
+      <paths name="ecs">
         <serverdata>
           <mappings>
             <mapping deploy="/data/ecs/" local="$PROJECT_DIR$/" web="/" />
           </mappings>
-          <excludedPaths>
-            <excludedPath local="true" path="$PROJECT_DIR$/src-ecs/www/node_modules" />
-            <excludedPath local="true" path="$PROJECT_DIR$/src-ecs/www/vendor" />
-            <excludedPath local="true" path="$PROJECT_DIR$/src-ecs/.git/" />
-            <excludedPath local="true" path="$PROJECT_DIR$/src-ecs/www/composer.lock" />
-            <excludedPath local="true" path="$PROJECT_DIR$/src-ecs/www/package.lock" />
-            <excludedPath local="true" path="$PROJECT_DIR$/src-ecs/www/yarn.lock" />
-          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
