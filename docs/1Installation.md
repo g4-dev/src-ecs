@@ -7,6 +7,16 @@
 - VirtualBox 6.0.8
 - git bash ou [celui là](5Tips#ConseildeShell)
 
+>Selon votre config la VM peut être très gourmande, on peut donc ajuster cette [config](../vm_config.yaml) avec :
+
+```
+vm:
+    name: ecoservice                
+    memory: 2048                    
+    cpus: 2                         
+    cpuexecutioncap: 80               
+```
+
 ## Index
 
 0. [VM](#installation-et-lancement-de-la-vm)
@@ -50,6 +60,9 @@ Allez dans `paramètres` > `Deployment` > serveur `ecs`
 - Utilisateur: `vagrant`
 - Mot de passe :`vagrant`
 
+### Une fois l'IDE bien configuré on fait:
+- `git update-index --skip-worktree .idea`
+
 ## Sources
 > Pour mettre à jours les sources local sur la VM <br>
 > *(Ne concerne pas ceux qui ont le NFS activé)*
@@ -62,7 +75,7 @@ Notre machine virtuelle est automatiquement mise à jour dans un seul sens soit 
 Hôte (votre machine) ----> VM
 ```
 
-Un simple clic droit sur un dossier comme `www/` donnera des options de synchronisation des fichiers (`deployment > download` sur php-storm)
+Un simple clic droit sur un dossier ou fichier, comme par exemple `www/` donnera des options de synchronisation des fichiers (`deployment > download` sur php-storm)
 
 ![sources](res/upload_sources.png)
 
@@ -102,7 +115,7 @@ Petite amélioration de performance avec : `git config core.preloadindex true`
 `apt install nfs-kernel-server nfs-common`
 
 ## SSL
-On prévoit par la suite mettre en place un certificat autosigné
+On prévoit par la suite mettre en place un certificat autosigné (pour le cadenas)
 
 `./vm_config.yaml` &rarr; `ssl: yes`
 
@@ -110,4 +123,4 @@ On prévoit par la suite mettre en place un certificat autosigné
 > `scp -P 22 root@ecoservice.dev:/etc/ssl/ecoservice.dev/pkcs12.pfx docs/cert/` (mdp: vagrant)
 
 ---
-### <center>[Retour au sommaire &#8617;](0Sommaire.md)</center>
+[&larr; retour au **Sommaire**](0Sommaire.md) &nbsp;&nbsp;| &nbsp;&nbsp;[**Stacks et bonnes pratiques** &rarr;](2Stack.md)

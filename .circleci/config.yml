@@ -55,11 +55,11 @@ jobs:
                     paths:
                         - ./www/node_modules
 
-            - run: yarn --cwd ./www/ lint || export WARNING="yarn lint error --> bad code style"
-              
-            - run: test -n "$WARNING" && false
+            -   run: yarn --cwd ./www/ lint || export WARNING="yarn lint error --> bad code style"
 
-            - run: yarn --cwd ./www/ dev
+            -   run: test -n "$WARNING" && false
+
+            -   run: yarn --cwd ./www/ dev
 
 
             # - run: make db_update_local

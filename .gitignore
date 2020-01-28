@@ -12,7 +12,7 @@
 
 #vagrant
 /.vagrant/
-/vm_config.yaml
+vm_config.yaml
 
 ###< IDE specific ###
 .idea/*

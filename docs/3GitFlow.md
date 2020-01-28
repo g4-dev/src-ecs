@@ -55,18 +55,18 @@ On merge seulement dessus des Pull requests correspondant à une branche de tick
 Avant de travailler sur un projet/ ou de merge une branche sur une des principales on se met à jour avec:
 
 ```
-git fetch upstream
-git rebase upstream <nom-remote>/<nom-de-la-branche-qui-a-la-maj>
+git fetch g4-dev
+git rebase g4-dev <nom-remote>/<nom-de-la-branche-qui-a-la-maj>
 
 # Exemple de mise à jour de develop
-git fetch upstream develop
+git fetch g4-dev develop
 
 # Façon commune de se mettre à jour
-git rebase upstream/develop
+git rebase g4-dev/develop
 
 # technique danger mais efficace si vous commencer un nouveau taff
 # Si l'on a pas de modifs (par ex : on commence un nouveau projet à partir d'une branche locale)
-git reset --hard upstream/develop
+git reset --hard g4-dev/develop
 ```
 
 Ensuite je dois push cette branche sur mon fork (origin) :
@@ -96,7 +96,7 @@ Voici un exemple de Pull request détaillé :
 2. Je créer une branche à partir de la dernière version de `develop` ou de la release` proche` (vérifier sur le ticket)
 
 ```
-git fetch upstream develop:34jeq3-doc
+git fetch g4-dev develop:34jeq3-doc
 git checkout 34jeq3-doc
 ```
 
@@ -112,11 +112,13 @@ Ici je veux merge la branche de mon ticket `34jeq3`
 
 5. Vous ouvrez la PR et changer le titre avec `#34jeq3`
 
- - Laissez vous guider par les consigne dans le template de pull request qui s'affiche.
+- Laissez vous guider par les consigne dans le template de pull request qui s'affiche.
 
 &rarr; **Attention à ne pas oublier le `#` devant le numéro pour que la PR s'affiche sur clickup**
 
 6. **Envoyer le lien de votre PR sur discord**
+
+7. Toujours un peu de mal: regarder cette [PR](https://github.com/g4-dev/src-ecs/pull/5/)
 
 ### En savoir plus
 
@@ -124,4 +126,4 @@ Ici je veux merge la branche de mon ticket `34jeq3`
 2. [Git cheat sheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)
 3. [Github help: user collaborating](https://help.github.com/categories/collaborating/)
 
-### <center>[Retour au sommaire &#8617;](0Sommaire.md)</center>
+[**&larr; retour à la Stack**](2Stack.md) &nbsp;&nbsp; | &nbsp;&nbsp; [**Tests** &rarr;](4Tests.md)

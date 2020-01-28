@@ -33,4 +33,4 @@ Cela permet d'éviter des erreurs comme :
 - Des typos qui cassent le projet 
 
 ---
-### <center>[Retour au sommaire &#8617;](0Sommaire.md)</center>
+[&larr; retour au **Git flow**](3GitFlow.md) &nbsp;&nbsp; | &nbsp;&nbsp; [**Astuces** &rarr;](5Tips.md)

@@ -58,6 +58,8 @@ Pour partager et récupérer les données il existe des scripts simples dans le 
   
 ## Stack Front-end
 
+[MAQUETTES](https://xd.adobe.com/view/357d342a-d937-4075-650b-0f456122b3b6-434c/)
+
 La team front travaille dans les répertoire `assets` et `templates`.
 
 On utilise *Typescript* à la place de javascript et sass
@@ -153,4 +155,4 @@ Voici un [tutoriel](https://medium.com/q-software/symfony-5-the-rest-the-crud-an
 - Affichage des produits
 
 ---
-### <center>[Retour au sommaire &#8617;](0Sommaire.md)</center>
+[&larr; retour à **l'installation**](1Installation.md) &nbsp;&nbsp; | &nbsp;&nbsp; [**GitFlow** &rarr;](3GitFlow.md)

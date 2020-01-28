@@ -2,6 +2,9 @@
 
 <span style="text-align:left;">[&larr; retour au **README**](../README.md)</span>
 
+## Note
+> Le Readme contient des infos générales sur toutes les documentations
+
 ## [1 - Installation](1Installation.md)
 
 - [VM](1Installation.md#installation-et-lancement-de-la-vm)
@@ -15,7 +18,7 @@
 - [Base(s) de données](2Stack.md#base-de-données)
 - [Front end](2Stack.md#stack-front-end)
 - [Stack Back-end](2Stack.md#stack-back-end)
-- [**Api REST**](#api-rest)
+- [**Api REST**](2Stack.md#api-rest)
 
 ## [3 - Git Flow](3GitFlow.md)
 
