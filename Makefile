@@ -13,11 +13,14 @@ clean_vagrant:
 # Mettre à jour notre base de donnée locale avec celles de l'externe
 db_update_local:
 	$(console) doctrine:migrations:generate --db=remote -n
+	$(console) doctrine:schema:drop --db=default --full-database
 	$(console) doctrine:migrations:migrate --db=default -n
+	$(console) doctrine:migrations:version -n "$(shell $(console) doctrine:migrations:latest)" --delete || true
 	rm -rf migrations/Version/*
 
 # Mettre à jour la base de donnée externe avec nos datas
 db_update_remote:
 	$(console) doctrine:migrations:generate --db=default -n
 	$(console) doctrine:migrations:migrate --db=remote -n
+	$(console) doctrine:migrations:version -n "$(shell $(console) doctrine:migrations:latest)" --delete || true
 	rm -rf migrations/Version/*
