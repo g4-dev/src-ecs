@@ -67,6 +67,12 @@ On utilise *Typescript* à la place de javascript et sass
 - `yarn fo` : Build le front-office
 - `yarn admin` : Build de l'espace admin
 
+**Commandes avancés :**
+
+- `fo-watch`: watch l'espace front 
+- `fo-single <nom-de-page>`: build seulement une page
+- `fo-single-w <nom-de-page>`: watch une page
+
 Voici l'organisation du projet par espaces:
 
 - css / ts
@@ -129,7 +135,8 @@ Dans le dossier `src`:
 - Des validateurs personnalisés
 
 2. **FrontOffice** (FrontOffice) 
-- Pas grand chose à faire à par créer des routes, des pages et s'assurer que les actions API sont disponibles (exemple ajouter un produit au panier : `/product/{id}/add`)
+- Pas grand chose à faire à par créer des routes, des pages et créer des actions API
+sont disponibles (exemple ajouter un produit au panier : `/product/{id}/add`)
 
 3. **Admin** (BackOffice), Configuration easyadmin : `config/packages/easyadmin.yaml`
 - Easyadmin nous permet de facilement créer des CRUD et des entités

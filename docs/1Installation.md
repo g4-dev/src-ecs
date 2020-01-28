@@ -41,7 +41,14 @@ git remote add g4-dev git@github.com:g4-dev/src-ecs.git
 > Une bonne partie de la configuration est automatique mais il faut toutefois vérifier la connection
 en sftp avec la VM
 
+Allez dans `paramètres` > `Deployment` > serveur `ecs`
 
+![Déploiement](res/deployment.png)
+
+- Hôte : `localhost`
+- Port : `2222`
+- Utilisateur: `vagrant`
+- Mot de passe :`vagrant`
 
 ## Sources
 > Pour mettre à jours les sources local sur la VM <br>

@@ -6,7 +6,7 @@ const CONFIGS = yml.safeLoad(fsr("./config/pages.yml"), yml.JSON_SCHEMA)
 const EXCLUDE = "/node_modules/"
 
 // set an config object used in all workspace (front-office / admin)
-const aliases = (config) => {
+const aliases = function aliases (config) {
 	let configAliases = {}
 	let name = config.name,
 		aliasName = name.slice(0, 2)
@@ -25,18 +25,22 @@ const aliases = (config) => {
 	}
 }
 
-function getWorkspaces({ entry }) {
+const getWorkspaces = function getWorkspaces(entry = null) {
 
 	let workspaces = []
+
+	entry ? console.info(`Building single entry : ${entry}`) : null;
 
 	CONFIGS.forEach(function({ name, pages, default_ext }) {
 
 		let typescriptEnable = default_ext === "ts"
-		console.info(`---------\nWorkspace : ${name}\n`)
 
-		if (entry) {
-			Encore.addEntry(entry, path.resolve(__dirname, `assets/${name}/${entry}`))
+		if (typeof entry === 'string' ) {
+				Encore.addEntry(entry, path.resolve(__dirname, `assets/${name}/${entry}`))
 		} else {
+			console.info(`---------\nWorkspace : ${name}\n`)
+
+			Encore.cleanupOutputBeforeBuild()
 
 			pages.forEach(function(page) {
 				if (typeof page === "string") {
@@ -58,8 +62,6 @@ function getWorkspaces({ entry }) {
 
 		Encore
 
-			.cleanupOutputBeforeBuild()
-
 			.setOutputPath(`public/build/${name}`)
 
 			.setPublicPath(`/build/${name}`)
@@ -76,14 +78,13 @@ function getWorkspaces({ entry }) {
 
 			.enablePostCssLoader()
 
-
 		if (typescriptEnable) {
 			Encore.enableTypeScriptLoader()
 		}
 
 		let config = Encore.getWebpackConfig()
 
-// fix build with nfs enable
+		// fix build with nfs enable
 		config.watchOptions = { poll: true, ignored: EXCLUDE }
 		config.name = name
 		config.resolve.alias = aliases(config)
@@ -97,6 +98,6 @@ function getWorkspaces({ entry }) {
 }
 
 module.exports = function(env) {
-	return getWorkspaces(env)
+	return getWorkspaces(env && typeof env.entry !== undefined ? env.entry : null);
 }
 

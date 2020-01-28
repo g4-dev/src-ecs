@@ -17,6 +17,9 @@ Les objectifs de ce flux de travail:
 3. [Pull requests](#pull-requests)
 
 ## Remotes
+> Les remotes sont des dossier git distants,<br> 
+On a un repo parent `g4-dev` et un projet fork `origin` dont vous avez une copie en local (faites avec le `git clone`)
+et sur votre VM
 
 **!! Avant tout !!** il faut bien vérifier qu'on a les bonnes remotes `origin` et `g4-dev`
 
@@ -32,11 +35,6 @@ On a donc deux repository ou remotes distantes :
 - `origin` : notre fork là où l'on peut push
 - `g4-dev` : notre repository parent où l'on fusionne le travail de chacun (**interdit de push**)
 
-#### Trois espaces possibles :
-  - **Core** (à ne pas trop toucher) &rarr; ***`core`***
-  - **Portal** (FrontOffice) &rarr; ***`fo`***
-  - **Admin** (BackOffice) &rarr; ***`bo`***
-
 &rarr; exemple `bo_features/products`
 
 - `release/version` - branches for release(production) version;
@@ -49,8 +47,7 @@ On merge seulement dessus des Pull requests correspondant à une branche de tick
 
 - `master` - always **stable** and **release ready** branch; (production)
 - `develop` - default branch, contains latest **features** and **fixes**, on which developers should orient;
-- `<nom-espace>_features/<nom-feature>` - branches feature development and dependencies update;
-On utise des prefixes pour identifier un espace concerné.
+- `release/numéro` - branches feature development and dependencies update;
 
 ## MAJ Branche
 > Super important de mettre régulièrement à jour sa branche
@@ -64,14 +61,15 @@ git rebase upstream <nom-remote>/<nom-de-la-branche-qui-a-la-maj>
 # Exemple de mise à jour de develop
 git fetch upstream develop
 
-# Si on a des modifications en cours (historique différente)
+# Façon commune de se mettre à jour
 git rebase upstream/develop
 
+# technique danger mais efficace si vous commencer un nouveau taff
 # Si l'on a pas de modifs (par ex : on commence un nouveau projet à partir d'une branche locale)
 git reset --hard upstream/develop
 ```
 
-Dans le cas d'une PR je dois push cette branche sur mon fork (origin) :
+Ensuite je dois push cette branche sur mon fork (origin) :
 
 `git push -u origin <nom-branche>`
 
@@ -79,9 +77,10 @@ N'essayer pas de push sur `g4-dev` directement (c'est bloqué de toute façon)
 
 ## Pull requests
 
-On fonctionne avec deux interface principales :
+On fonctionne avec trois interfaces principales :
 - `github`
 - `clickup`
+- `circle-ci`
 
 Sur Clickup on récupère les tâches à faire et ensuite on les éxecute sur github.
 >  Les PR/ commits se retrouveront sur clickup si on suit bien la 
@@ -97,8 +96,8 @@ Voici un exemple de Pull request détaillé :
 2. Je créer une branche à partir de la dernière version de `develop` ou de la release` proche` (vérifier sur le ticket)
 
 ```
-git fetch upstream develop:34jeq3
-git checkout 34jeq3
+git fetch upstream develop:34jeq3-doc
+git checkout 34jeq3-doc
 ```
 
 3. Je code ma feature
