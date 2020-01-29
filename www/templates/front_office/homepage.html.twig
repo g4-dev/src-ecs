@@ -5,21 +5,106 @@
 {% endblock %}
 
 {% block main %}
+    <section class="centerBetween fullWidth" id="entreprise">
+        <article class="midWidth">
+            <h2>Entreprise</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
+            <button>En savoir plus</button>
+        </article>
+        <div class="midWidth">
+            <img src="img/entreprise.jpg" alt="entreprise">
+        </div>
+    </section>
 
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        {% include 'front_office/partials/flash-messages.html.twig' %}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h1>Oh... ah... yeah <span class="fa fa-heart">!</span></h1>
-        <p>Template here</p>
-      </div>
-    </div>
-  </div>
+    <section class="centerBetween fullWidth" id="zerodechet">
+        <article class="midWidth">
+            <h2>Zéro déchets</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
+            <button>En savoir plus</button>
+        </article>
+        <div class="midWidth">
+            <img src="img/dechet.jpg" alt="dechet">
+        </div>
+    </section>
 
+    <section id="produit">
+        <div>
+            <p>Produits</p>
+        </div>
+        <div class="fullCenter">
+            <div class="produit_space">
+                <div class="itemsList">
+                    <article class="fullCenter">
+                        <img src="img/produit.jpg" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+
+                    <article class="fullCenter">
+                        <img src="img/produit.jpg" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+                </div>
+                <div class="itemsList">
+                    <article class="fullCenter">
+                        <img src="img/produit.jpg" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+
+                    <article class="fullCenter">
+                        <img src="img/produit.jpg" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <button>Voir plus</button>
+        </div>
+    </section>
+
+    <section class="fullWidth" id="pro_parti">
+        <article class="midWidth fullCenter" id='pro'>
+            <h4>Professionnel</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button>Lorem</button>
+        </article>
+        <article class="midWidth fullCenter" id='parti'>
+            <h4>Particulier</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button>Lorem</button>
+        </article>
+    </section>
+
+    <section class="" id="recette">
+        <div>
+            <p>Dernières recettes</p>
+        </div>
+        <div class="fullCenter">
+            <div class="produit_space">
+                <div class="itemsList">
+                    <article class="fullCenter">
+                        <img src="img/recette.jpg" alt="recette"/>
+                    </article>
+
+                    <article class="fullCenter">
+                        <img src="img/recette.jpg" alt="recette"/>
+                    </article>
+                </div>
+                <div class="itemsList">
+                    <article class="fullCenter">
+                        <img src="img/recette.jpg" alt="recette"/>
+                    </article>
+
+                    <article class="fullCenter">
+                        <img src="img/recette.jpg" alt="recette"/>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <button>Voir plus</button>
+        </div>
+    </section>
 {% endblock %}
 
 {% block scripts %}

@@ -1,0 +1,41 @@
+@import '_mixins.scss';
+
+.center{
+  @include center;
+}
+
+.centerBetween{
+  @include centerBetween;
+}
+
+.centerAround{
+  @include centerAround;
+}
+
+.fullCenter{
+  @include fullCenter;
+}
+
+.flexStart{
+  @include flexStart;
+}
+
+.flexEnd{
+  @include flexEnd;
+}
+
+.alignInit{
+  @include alignInit;
+}
+
+.fullWidth{
+  @include fullWidth;
+}
+
+.midWidth{
+  @include midWidth;
+}
+
+.thirdWidth{
+  @include thirdWidth;
+}

@@ -1,0 +1,184 @@
+@import 'app.scss';
+
+.headerDesk{
+  width: 100%;
+  .headerBackground{
+    background: $lightgrey;
+  }
+
+  .UpperHeader{
+    padding: 8px $basicPadding/2;
+
+    a{
+      padding: 0 $basicPadding/2;
+    }
+
+    svg{
+      padding: 0 $basicPadding/2;
+      width: 2rem;
+      path{
+        cursor: pointer;
+        fill: $darkgray;
+      }
+    }
+  }
+
+  nav{
+    font-size: 1.1rem;
+    h1{
+      color: $green;
+      padding: 32px 0;
+      font-size: 3.5rem;
+      line-height: 3rem;
+    }
+
+    .LowerHeader{
+      padding: 0 $basicPadding;
+
+      a{
+        padding: 0 $basicPadding/2;
+      }
+
+      svg{
+        width: 2rem;
+        padding-left: $basicPadding/2;
+        path{
+          fill: $darkgray;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .LowerHeaderRight{
+      margin-top: 64px;
+    }
+
+    /* Desktop */
+    @media screen and (max-width: 1400px) {
+      .LowerHeaderLeft{
+        width: 20%;
+      }
+      .LowerHeaderRight{
+        max-width: 100%;
+        padding-left: 0;
+      }
+    }
+    /* Fin Desktop */
+  }
+}
+
+.headerMob{
+  display: none;
+  h1{
+    padding: 16px 0;
+    color: $green;
+    font-size: 3rem;
+    line-height: 2.5rem;
+  }
+  svg{
+    width: 14%;
+    path{
+      fill: $darkgray;
+    }
+  }
+  .burger{
+    cursor: pointer;
+    .bar1, .bar2, .bar3{
+      width: 35px;
+      height: 5px;
+      background: black;
+      margin: 6px 0;
+      //transition: .4s;
+    }
+  }
+  .icoPlaceMobLeft, .icoPlaceMobRight{
+    @include center;
+  }
+
+  @media screen and (max-width: 700px) {
+    .icoPlaceMobLeft{
+      @include flexStart;
+    }
+    .icoPlaceMobRight{
+      @include flexEnd;
+    }
+    .icoPlaceMobLeft, .icoPlaceMobRight{
+      padding: 0 $basicPadding;
+    }
+    svg{
+      width: 24%;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    svg{
+      width: 40px;
+    }
+  }
+
+}
+
+@media screen and (max-width: 1024px) {
+  .headerDesk{
+    display: none;
+  }
+  .headerMob{
+    display: flex;
+  }
+}
+
+footer{
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  background: $lightgrey;
+  @include centerAround;
+  ul{
+    list-style: none;
+    margin: 0;
+    li{
+      padding: 12px 0;
+    }
+  }
+  h1{
+    color: $green;
+    padding: 48px 0;
+    font-size: 2.5rem;
+    margin: 0;
+    line-height: 2.5rem;
+  }
+
+  @media screen and (max-width: 1024px) {
+    ul{
+      li{
+        padding: 6px 0;
+      }
+    }
+    h1{
+      padding: 32px 0;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    @include fullCenter;
+    div{
+      width: 100% !important;
+    }
+
+    .footer_logo{
+      order: -1;
+    }
+
+    ul{
+      text-align: center;
+      padding: 0;
+      li{
+        padding: 12px 0;
+      }
+    }
+
+    div:last-child {
+      padding-bottom:32px ;
+    }
+    font-size: 1.2rem;
+  }
+}

@@ -1,1 +1,54 @@
 // mixins https://sass-lang.com/documentation/at-rules/mixin
+
+@mixin fullCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexStart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin flexEnd {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@mixin centerBetween{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin centerAround{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin alignInit{
+  align-items: initial;
+}
+
+@mixin fullWidth{
+  width: 100%;
+}
+
+@mixin midWidth{
+  max-width: 50%;
+}
+
+@mixin thirdWidth{
+  width: 33.3333%;
+}

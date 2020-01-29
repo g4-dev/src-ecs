@@ -1,0 +1,278 @@
+@import 'app.scss';
+
+.retour_button{
+  margin-left: 64px;
+}
+@media screen and (max-width: 1400px) {
+  .retour_button{
+    margin-left: 32px;
+  }
+}
+#recette_main{
+  @include centerAround;
+  @include alignInit;
+  .recette_img_container{
+    padding: 0 128px 0 128px;
+  }
+
+  .textAndCarac{
+    @include centerBetween;
+  }
+
+  .title_mob{
+    display: none;
+  }
+
+  h2{
+    color: $green;
+    font-size: 3rem;
+    padding: 0 0 32px 0;
+  }
+
+  .description p{
+    font-size: 2.5rem;
+    line-height: 4rem;
+  }
+
+  .description{
+    @include midWidth;
+  }
+
+  .caracteristique{
+    padding-right: 128px;
+    font-size: 2rem;
+    @include midWidth;
+    .ingredient{
+      padding: 64px 0;
+    }
+  }
+
+  .deca{
+    padding: 16px 0 16px 32px;
+  }
+
+  @media screen and (max-width: 1700px) {
+    .description{
+      max-width: 65%;
+    }
+    .recette_img_container{
+      padding: 0 64px 0 64px;
+    }
+    .caracteristique{
+      padding-right: 64px;
+      max-width: 35%;
+    }
+  }
+
+  @media screen and (max-width: 1400px) {
+    .description{
+      max-width: 75%;
+    }
+    .recette_img_container{
+      padding: 0 64px 0 32px;
+    }
+    .caracteristique{
+      padding-right: 32px;
+      max-width: 25%;
+    }
+  }
+
+  @media screen and (max-width: 1250px) {
+    .description{
+      max-width: 65%;
+    }
+    .description p{
+      font-size: 1.5rem;;
+    }
+    .recette_img_container{
+      padding: 0 32px 0 16px;
+    }
+    .caracteristique{
+      padding-right: 32px;
+      max-width: 20%;
+    }
+  }
+
+  @media screen and (max-width: 1150px) {
+    .caracteristique{
+      max-width: 25%;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .recette_img_container{
+      @include fullCenter;
+      padding: 0 16px 64px 16px;
+    }
+    .recette_img_container img{
+      width: 100%;
+    }
+    .textAndCarac{
+      @include fullCenter;
+    }
+    .caracteristique{
+      max-width: 100%;
+      width: 100%;
+      @include fullCenter;
+      padding: 64px 0;
+    }
+    .description{
+      max-width: 100%;
+    }
+    .description p{
+      padding: 0 64px;
+    }
+    .title_mob{
+      display: block;
+      width: 100%;
+    }
+    .title_desk{
+      display: none;
+    }
+    .deca{
+      padding: 0;
+      text-align: center;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .description p{
+      padding: 0 32px;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .description p{
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #recette_main{
+    @include fullCenter;
+  }
+}
+
+#recette{
+  padding: 32px 128px 32px 128px;
+
+  h3{
+    font-size: 2.5rem;
+    padding: 0px 0px 32px 0px;
+  }
+
+  p{
+    font-size: 2rem;
+    padding-left: 48px;
+  }
+
+  .recette_container{
+    @include centerBetween;
+  }
+
+  .recette_container div{
+    width: 50%;
+  }
+
+  @media screen and (max-width: 1200px) {
+    p{
+      font-size: 1.8rem;
+      padding-left: 0px;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    padding: 32px 64px 32px 64px;
+
+    .recette_container{
+      @include fullCenter;
+    }
+
+    .recette_container div{
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .recette_container p{
+      font-size: 2rem;
+      margin-bottom: 32px;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    padding: 32px 32px 32px 32px;
+    .recette_container p{
+      padding-left: 0;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .recette_container p{
+      font-size: 1.5rem;
+    }
+  }
+}
+
+#produit{
+  $align: 80%;
+
+  margin-top: 2rem;
+  article{
+    img{
+      width: $align;
+    }
+    h3{
+      font-size: 2rem;
+      text-align: left;
+      width: $align;
+    }
+  }
+  .produit_space{
+    width: 80%;
+    @include center;
+    .itemsList{
+      @include center;
+      article{
+        padding: 32px 0;
+      }
+    }
+  }
+  p{
+    font-size: 2.5rem;
+    padding: 0 0 0 64px;
+  }
+  button{
+    margin-top: 64px;
+    padding: 16px 48px;
+    font-size: 1.2rem;
+    border: solid 4px $green;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .produit_space{
+      @include center;
+      .itemsList{
+        @include fullCenter;
+      }
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    $align: 60%;
+    .produit_space{
+      @include fullCenter;
+      .itemsList{
+        @include fullCenter;
+      }
+    }
+    p{
+      padding: 0 0 0 32px;
+    }
+    article{
+      img{
+        width: $align;
+      }
+      h3{
+        width: $align;
+      }
+    }
+  }
+}
