@@ -7,15 +7,12 @@
 - VirtualBox 6.0.8
 - git bash ou [celui là](5Tips#ConseildeShell)
 
->Selon votre config la VM peut être très gourmande, on peut donc ajuster cette [config](../vm_config.yaml) avec :
+>Selon votre config la VM peut être très gourmande, on peut donc ajuster cette [config](../vm_config.yaml)
 
-```
-vm:
-    name: ecoservice                
-    memory: 2048                    
-    cpus: 2                         
-    cpuexecutioncap: 80               
-```
+#### Ignorez manuellement ces fichiers
+- `git update-index --skip-worktree .idea`
+- `git update-index --skip-worktree .vscode`
+- `git update-index --skip-worktree vm_config.yaml`
 
 ## Index
 
@@ -59,9 +56,6 @@ Allez dans `paramètres` > `Deployment` > serveur `ecs`
 - Port : `2222`
 - Utilisateur: `vagrant`
 - Mot de passe :`vagrant`
-
-### Une fois l'IDE bien configuré on fait:
-- `git update-index --skip-worktree .idea`
 
 ## Sources
 > Pour mettre à jours les sources local sur la VM <br>
