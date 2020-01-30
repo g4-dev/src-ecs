@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 projectname = ecs
 D = /data
-CRON_DIR = $(D)/.cr_wk
+ScriptsDir = $(D)/$(projectname)
 www = $(D)/$(projectname)/www
 console = php $(www)/bin/console
 migration_dir = $(www)/migrations
@@ -10,17 +10,20 @@ migration_dir = $(www)/migrations
 clean_vagrant:
 	/bin/bash /tmp/cleaner.sh
 
+# DATABASES OPERATIONS
+local_script = $(D)/$(projectname)/$(projectname).sql
+remote_script = $(D)/$(projectname)/remote_.sql
+
 # Mettre à jour notre base de donnée locale avec celles de l'externe
 db_update_local:
-	$(console) doctrine:migrations:generate --db=remote -n
-	$(console) doctrine:schema:drop --db=default --full-database
-	$(console) doctrine:migrations:migrate --db=default -n
-	$(console) doctrine:migrations:version -n "$(shell $(console) doctrine:migrations:latest)" --delete || true
-	rm -rf migrations/Version/*
+	rm -rf $(local_script) || true
+	mysqldump -t --single-transaction --insert-ignore -u EmwnLitSLR -pGk0qCm6hFI  -h remotemysql.com EmwnLitSLR > $(remote_script)
+	$(console) doctrine:schema:update --force
+	$(console) doctrine:database:import $(remote_script)
 
 # Mettre à jour la base de donnée externe avec nos datas
 db_update_remote:
-	$(console) doctrine:migrations:generate --db=default -n
-	$(console) doctrine:migrations:migrate --db=remote -n
-	$(console) doctrine:migrations:version -n "$(shell $(console) doctrine:migrations:latest)" --delete || true
-	rm -rf migrations/Version/*
+	rm -rf $(local_script) || true
+	$(console) doctrine:schema:update --force
+	mysqldump -t --insert-ignore --skip-opt -u ecs_user  -pecommerce  -h 127.0.0.1 ecommerce > $(local_script)
+	$(console) doctrine:database:import --connection=remote $(remote_script)

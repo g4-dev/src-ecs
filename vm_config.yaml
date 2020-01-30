@@ -5,13 +5,18 @@ conf:
     servername: ecoservice.cum      # Servername and domain for your projects
     org: g4-dev                     # Organisation hosting repo
     projectname: ecs                # repo name with pattern src-{{projectname}}
-    debug_playbook: true            # !!THIS OPTION ENABLE SHARED FOLDERS!! used to debug playbook
+    debug_playbook: false           # !!THIS OPTION ENABLE SHARED FOLDERS!! used to debug playbook
     testing_mode: 0                 # test services
     web_path: www                   # change web server if name != local_name
     app_env: dev                    # prod or dev
     ssl: false                      # disable if you can't install a certificate (not working yet)
-    update: yes                      # Update symfony and db
-    nfs_force_disable: yes           # don't wan't nfs enabled because it's slow
+    nfs_force_disable: yes          # don't wan't nfs enabled because it's slow
+    composer_install: yes           # update symfony project
+    # ROLES UPDATES
+    update_php: no
+    update_nginx: no
+    update_aliases: no
+
 vm:
     name: ecoservice                # VM name for Virtualbox (string)
     memory: 2048                    # binary friendly value (int)
