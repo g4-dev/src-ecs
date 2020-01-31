@@ -1,11 +1,18 @@
 # Add pages for the differents spaces here (correspond to webpack entries)
 - name: front_office
   pages:
-    - { entry: products, ext: ts }
-    - homepage # pas obliger de préciser l'extenstion de l'entrée (si on a une valeur par défault)
+    - products
+    - homepage
     - accounting
     - company
+  default_ext: ts
 
 - name: easyadmin
   pages:
     - js/app
+
+## Options of page entry setter
+# - name (config_name)
+#   pages:
+#      - entry 1 (split assets in different pages)
+#   default_ext (by default it's js but typescript is a choice)

@@ -6,24 +6,25 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "easycorp/easyadmin-bundle": "2.3.5",
-        "sensio/framework-extra-bundle": "5.5.3",
-        "symfony/console": "5.0.3",
+        "sensio/framework-extra-bundle": "5.5.*",
+        "symfony/console": "^5.0",
         "symfony/flex": "^1.6",
-        "symfony/form": "5.0.3",
-        "symfony/framework-bundle": "5.0.3",
-        "symfony/google-mailer": "5.0.3",
-        "symfony/mailer": "5.0.3",
+        "symfony/form": "^5.0",
+        "symfony/framework-bundle": "^5.0",
+        "symfony/google-mailer": "^5.0",
+        "symfony/mailer": "^5.0",
         "symfony/orm-pack": "1.0.7",
-        "symfony/security-bundle": "5.0.3",
+        "symfony/security-bundle": "^5.0",
         "symfony/twig-pack": "^1.0",
         "symfony/webpack-encore-bundle": "1.7.2",
-        "symfony/yaml": "5.0.3"
+        "symfony/yaml": "^5.0"
     },
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "apcu-autoloader": true
     },
     "autoload": {
         "psr-4": {
@@ -66,7 +67,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.0.3"
+            "require": "^5.0"
         }
     },
     "require-dev": {
@@ -74,9 +75,9 @@
         "brianium/paratest": "3.1.*",
         "doctrine/doctrine-fixtures-bundle": "3.3.0",
         "nelmio/alice": "^3.5",
-        "symfony/browser-kit": "5.0.3",
-        "symfony/css-selector": "5.0.3",
-        "symfony/phpunit-bridge": "5.0.3",
+        "symfony/browser-kit": "^5.0",
+        "symfony/css-selector": "^5.0",
+        "symfony/phpunit-bridge": "^5.0",
         "symfony/profiler-pack": "^1.0"
     }
 }

@@ -68,7 +68,7 @@ Vagrant.configure(2) do |config|
     $init = <<-SCRIPT
     sudo apt -y install git
     rm -rf /tmp/#{playbook_name} || true
-    git clone #{playbook} /tmp/#{playbook_name}
+    git clone #{playbook} /tmp/#{playbook_name} && cd /tmp/#{playbook_name} && git reset --hard #{playbook_version}
     SCRIPT
 
     config.vm.provision "shell", inline: $init, privileged: false

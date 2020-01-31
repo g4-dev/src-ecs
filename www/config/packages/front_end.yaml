@@ -5,4 +5,3 @@ twig:
     # TODO: mettre en place les form_themes https://symfony.com/doc/current/form/form_themes.html
     globals:
         website_name: "%website_name%"
-        imports: - ../pages.yaml

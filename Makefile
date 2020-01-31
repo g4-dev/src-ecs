@@ -18,12 +18,16 @@ remote_script = $(D)/$(projectname)/remote_.sql
 db_update_local:
 	rm -rf $(local_script) || true
 	mysqldump -t --single-transaction --insert-ignore -u EmwnLitSLR -pGk0qCm6hFI  -h remotemysql.com EmwnLitSLR > $(remote_script)
-	$(console) doctrine:schema:update --force
+	$(console) doctrine:schema:update --connection=default --force
 	$(console) doctrine:database:import $(remote_script)
 
 # Mettre à jour la base de donnée externe avec nos datas
 db_update_remote:
+	$(console) doctrine:migrations:generate --db=default -n
+	$(console) doctrine:migrations:migrate --db=remote -n
+	$(console) doctrine:migrations:version "$(shell doctrine:migrations:latest)" --delete
+	rm -rf $(migration_dir)/*
 	rm -rf $(local_script) || true
-	$(console) doctrine:schema:update --force
+	$(console) doctrine:schema:update --connection=remote --force
 	mysqldump -t --insert-ignore --skip-opt -u ecs_user  -pecommerce  -h 127.0.0.1 ecommerce > $(local_script)
 	$(console) doctrine:database:import --connection=remote $(remote_script)
