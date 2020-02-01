@@ -1,14 +1,6 @@
-require('./scss/partials/layout.scss');
-
-
-/*function openNav() {
-    document.getElementById("burger_nav").style.width = "100%"
-}
-*/
-
 let burger_nav = document.getElementById("burger_nav");
 let burgerIco = document.getElementById("rotation");
-let nav_children = document.getElementById("a_list");
+let nav_children = document.getElementById("a_list").getElementsByTagName("a");
 
 let isClose = true;
 
@@ -27,20 +19,28 @@ function rotate() {
 
 function burger() {
     if(burger_nav !== null) {
-        isClose ? (burger_nav.style.width = "100%", isClose = false) : (burger_nav.style.width = "0%", isClose = true)
+        if(isClose){
+            burger_nav.style.width = "100%";
+            isClose = false;
+        }else{
+            burger_nav.style.width = "0%";
+            isClose = true;
+        }
     }
 }
 
 if(nav_children !==null){
-    nav_children.addEventListener('click', function () {
-        burger();
-        rotate();
-    });
+    for(let i = 0; i < nav_children.length; i++) {
+        nav_children[i].addEventListener('click', function () {
+            closeNav();
+            rotate();
+        });
+    }
 }
 
 if(burgerIco !==null) {
     burgerIco.addEventListener('click', function () {
-        closeNav();
+        burger();
         rotate();
     });
 }
