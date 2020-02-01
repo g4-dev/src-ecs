@@ -23,11 +23,11 @@ db_update_local:
 
 # Mettre à jour la base de donnée externe avec nos datas
 db_update_remote:
+	$(console) doctrine:database:drop --connection=remote --force
+	$(console) doctrine:database:create --connection=remote -n
 	$(console) doctrine:migrations:generate --db=default -n
 	$(console) doctrine:migrations:migrate --db=remote -n
-	$(console) doctrine:migrations:version "$(shell doctrine:migrations:latest)" --delete
 	rm -rf $(migration_dir)/*
 	rm -rf $(local_script) || true
-	$(console) doctrine:schema:update --connection=remote --force
 	mysqldump -t --insert-ignore --skip-opt -u ecs_user  -pecommerce  -h 127.0.0.1 ecommerce > $(local_script)
-	$(console) doctrine:database:import --connection=remote $(remote_script)
+	$(console) doctrine:database:import --connection=remote $(local_script)

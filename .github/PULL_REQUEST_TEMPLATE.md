@@ -4,10 +4,14 @@
 
 ## Développement fait
 
+## Vue
+
 ## Comment tester
 
 ## Mes bonnes pratiques
 
+
+- [ ] J'ai mis une capture d'écran de ce que j'ai fait si besoin<br>
 - [ ] Le titre de ma PR contient bien l' `#id` de mon ticket<br>
 - [ ] Mon historique est correcte <br>
 - [ ] Je merge sur la branche demandée par mon ticket <br>
