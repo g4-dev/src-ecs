@@ -2,7 +2,9 @@
 
 namespace FrontOffice\Entity;
 
+use Core\Entity\IdTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Admin\Entity\Product;
 
 /**
  * ShipmentDetails
@@ -12,14 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ShipmentDetails
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+    use IdTrait;
 
     /**
      * @var string
@@ -43,9 +38,9 @@ class ShipmentDetails
     private $price;
 
     /**
-     * @var \Product
+     * @var Product
      *
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Product")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * })
@@ -53,7 +48,7 @@ class ShipmentDetails
     private $product;
 
     /**
-     * @var \Shipment
+     * @var Shipment
      *
      * @ORM\ManyToOne(targetEntity="Shipment")
      * @ORM\JoinColumns({
@@ -61,6 +56,66 @@ class ShipmentDetails
      * })
      */
     private $shipment;
+
+    public function getQuanitity(): ?string
+    {
+        return $this->quanitity;
+    }
+
+    public function setQuanitity(string $quanitity): self
+    {
+        $this->quanitity = $quanitity;
+
+        return $this;
+    }
+
+    public function getPricePerUnit(): ?string
+    {
+        return $this->pricePerUnit;
+    }
+
+    public function setPricePerUnit(string $pricePerUnit): self
+    {
+        $this->pricePerUnit = $pricePerUnit;
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): self
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    public function getShipment(): ?Shipment
+    {
+        return $this->shipment;
+    }
+
+    public function setShipment(?Shipment $shipment): self
+    {
+        $this->shipment = $shipment;
+
+        return $this;
+    }
 
 
 }

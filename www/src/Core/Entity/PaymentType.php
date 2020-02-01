@@ -1,6 +1,6 @@
 <?php
 
-namespace FrontOffice\Entity;
+namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,6 +27,23 @@ class PaymentType
      * @ORM\Column(name="type_name", type="string", length=64, nullable=false)
      */
     private $typeName;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTypeName(): ?string
+    {
+        return $this->typeName;
+    }
+
+    public function setTypeName(string $typeName): self
+    {
+        $this->typeName = $typeName;
+
+        return $this;
+    }
 
 
 }

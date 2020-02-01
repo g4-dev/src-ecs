@@ -2,6 +2,8 @@
 
 # Notre git flow
 
+![schema](res/git-schema.png)
+
 ## Introduction
 Les objectifs de ce flux de travail:
 

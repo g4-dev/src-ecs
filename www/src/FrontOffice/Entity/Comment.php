@@ -2,7 +2,10 @@
 
 namespace FrontOffice\Entity;
 
+use Core\Entity\IdTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Admin\Entity\Product;
+use Core\Entity\User;
 
 /**
  * Comment
@@ -12,14 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Comment
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+    use IdTrait;
 
     /**
      * @var string
@@ -29,9 +25,9 @@ class Comment
     private $comment;
 
     /**
-     * @var \Product
+     * @var Product
      *
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Product")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * })
@@ -39,14 +35,50 @@ class Comment
     private $product;
 
     /**
-     * @var \User
+     * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Core\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
     private $user;
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(string $comment): self
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): self
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 
 
 }
