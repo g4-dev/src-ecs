@@ -1,26 +1,27 @@
 {% extends 'front_office/layout.html.twig' %}
 
 {% block links %}
-  {{ encore_entry_link_tags('homepage', null, 'front_office') }}
+    {{ encore_entry_link_tags('homepage', null, 'front_office') }}
 {% endblock %}
 
 {% block main %}
-    <section class="centerBetween fullWidth" id="entreprise">
+    <section class="centerBetween fullWidth alignInit" id="entreprise">
         <article class="midWidth">
-            <h2>Entreprise</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
-            <button>En savoir plus</button>
+            <h2 class="gel-sBold">Entreprise</h2>
+            <p class="pop">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt
+                facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
+            <button class="pop">En savoir plus</button>
         </article>
         <div class="midWidth">
             <img src="{{ asset('images/entreprise.jpg') }}" alt="entreprise">
         </div>
     </section>
 
-    <section class="centerBetween fullWidth" id="zerodechet">
+    <section class="centerBetween fullWidth alignInit" id="zerodechet">
         <article class="midWidth">
-            <h2>Zéro déchets</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
-            <button>En savoir plus</button>
+            <h2 class="gel-bold">Zéro déchets</h2>
+            <p class="pop">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
+            <button class="pop">En savoir plus</button>
         </article>
         <div class="midWidth">
             <img src="{{ asset('images/dechet.jpg') }}" alt="dechet">
@@ -29,55 +30,55 @@
 
     <section id="produit">
         <div>
-            <p>Produits</p>
+            <p class="gel-sBold">Produits</p>
         </div>
         <div class="fullCenter">
             <div class="produit_space">
                 <div class="itemsList">
                     <article class="fullCenter">
                         <img src="{{ asset('images/produit.jpg') }}" alt="produit"/>
-                        <h3>Lorem</h3>
+                        <h3 class="gel-sBold">Lorem</h3>
                     </article>
 
                     <article class="fullCenter">
                         <img src="{{ asset('images/produit.jpg') }}" alt="produit"/>
-                        <h3>Lorem</h3>
+                        <h3 class="gel-sBold">Lorem</h3>
                     </article>
                 </div>
                 <div class="itemsList">
                     <article class="fullCenter">
                         <img src="{{ asset('images/produit.jpg') }}" alt="produit"/>
-                        <h3>Lorem</h3>
+                        <h3 class="gel-sBold">Lorem</h3>
                     </article>
 
                     <article class="fullCenter">
                         <img src="{{ asset('images/produit.jpg') }}" alt="produit"/>
-                        <h3>Lorem</h3>
+                        <h3 class="gel-sBold">Lorem</h3>
                     </article>
                 </div>
             </div>
         </div>
         <div class="center">
-            <button>Voir plus</button>
+            <button class="pop">Voir plus</button>
         </div>
     </section>
 
     <section class="fullWidth" id="pro_parti">
         <article class="midWidth fullCenter" id='pro'>
-            <h4>Professionnel</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button>Lorem</button>
+            <h4 class="pop-sBold">Professionnel</h4>
+            <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="pop">Lorem</button>
         </article>
         <article class="midWidth fullCenter" id='parti'>
-            <h4>Particulier</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button>Lorem</button>
+            <h4 class="pop-sBold">Particulier</h4>
+            <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="pop">Lorem</button>
         </article>
     </section>
 
     <section class="" id="recette">
         <div>
-            <p>Dernières recettes</p>
+            <p class="gel-sBold">Dernières recettes</p>
         </div>
         <div class="fullCenter">
             <div class="produit_space">
@@ -102,11 +103,11 @@
             </div>
         </div>
         <div class="center">
-            <button>Voir plus</button>
+            <button class="pop">Voir plus</button>
         </div>
     </section>
 {% endblock %}
 
 {% block scripts %}
-  {{ encore_entry_script_tags('homepage', null, 'front_office') }}
+    {{ encore_entry_script_tags('homepage', null, 'front_office') }}
 {% endblock %}
