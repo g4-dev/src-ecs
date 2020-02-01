@@ -1,0 +1,19 @@
+Admin\Entity\ProductType:
+  product_type{1..15}:
+    type_name: '<word()>'
+
+Admin\Entity\Product:
+  product{1..70}:
+    product_name: '<word()>'
+    product_description: '<sentence()>'
+    unit: '<numberBetween(1,16)>'
+    price_per_unit: '<randomFloat(2,0,2)>'
+    product_short_desc: '<sentence()>'
+    promo: '<numberBetween(1,100)>'
+    product_type: '@product_type<numberBetween(1, 15)>'
+
+Admin\Entity\Stock:
+  stock{1..70}:
+    in_stock: 'randomFloat(2,0,2)'
+    product: '@product<current()>'
+    #last_update_time: 'dateTime()'

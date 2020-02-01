@@ -14,6 +14,7 @@ class YamlFixtures extends AbstractFixture
 
         $files = [
             __DIR__ . '/../../data/dev/random_admins.yml',
+            __DIR__ . '/../../data/dev/random_products.yml',
             __DIR__ . '/../../data/dev/random_users.yml',
             __DIR__ . '/../../data/dev/test_user.yml',
         ];

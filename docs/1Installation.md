@@ -34,6 +34,8 @@
 git remote add g4-dev git@github.com:g4-dev/src-ecs.git
 ```
 
+- Mettez à jour votre branche `git fetch g4-dev && git reset --hard g4-dev/develop`
+- Dupliquer `config.yaml.dist` et renommez le en `vm_config.yaml`
 - Lancer la VM avec `vagrant up` Soyez patient
 - `vagrant ssh` et dans la *vm* `www`
 - Après `vagrant ssh` | Consulter la liste des commandes shells utiles : [Ici](5Tips.md)
@@ -58,7 +60,13 @@ Pour télécharger les fichiers générés sur la VM il vous faut quand même ce
 Le serveur `ecs` ne doit pas être mis par default si vous utiliser `vagrant rsync-auto`
 
 Puis reproduire ces paramètres
+
 ![Déploiement](res/deployement2.png)
+
+Sans oublier les mappings:
+ 
+![Déploiement](res/mapping.png)
+
 
 ## Sources
 > Pour mettre à jours les sources local sur la VM <br>
