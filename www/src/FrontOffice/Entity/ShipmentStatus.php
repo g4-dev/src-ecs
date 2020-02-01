@@ -2,6 +2,7 @@
 
 namespace FrontOffice\Entity;
 
+use Core\Entity\IdTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,14 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ShipmentStatus
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+    use IdTrait;
 
     /**
      * @var \DateTime
@@ -36,7 +30,7 @@ class ShipmentStatus
     private $notes;
 
     /**
-     * @var \Shipment
+     * @var Shipment
      *
      * @ORM\ManyToOne(targetEntity="Shipment")
      * @ORM\JoinColumns({
@@ -46,7 +40,7 @@ class ShipmentStatus
     private $shipment;
 
     /**
-     * @var \StatusCatalog
+     * @var StatusCatalog
      *
      * @ORM\ManyToOne(targetEntity="StatusCatalog")
      * @ORM\JoinColumns({
@@ -54,6 +48,54 @@ class ShipmentStatus
      * })
      */
     private $statusCatalog;
+
+    public function getStatusTime(): ?\DateTimeInterface
+    {
+        return $this->statusTime;
+    }
+
+    public function setStatusTime(\DateTimeInterface $statusTime): self
+    {
+        $this->statusTime = $statusTime;
+
+        return $this;
+    }
+
+    public function getNotes(): ?string
+    {
+        return $this->notes;
+    }
+
+    public function setNotes(?string $notes): self
+    {
+        $this->notes = $notes;
+
+        return $this;
+    }
+
+    public function getShipment(): ?Shipment
+    {
+        return $this->shipment;
+    }
+
+    public function setShipment(?Shipment $shipment): self
+    {
+        $this->shipment = $shipment;
+
+        return $this;
+    }
+
+    public function getStatusCatalog(): ?StatusCatalog
+    {
+        return $this->statusCatalog;
+    }
+
+    public function setStatusCatalog(?StatusCatalog $statusCatalog): self
+    {
+        $this->statusCatalog = $statusCatalog;
+
+        return $this;
+    }
 
 
 }

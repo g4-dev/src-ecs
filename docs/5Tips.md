@@ -3,6 +3,7 @@
 # Trucs et astuces
 
 ### Sur le terminal de la VM
+
 Le shell est un `bash` classique qui est toutefois un peu tuné.
 
 ## Voici une liste de commandes shell
@@ -15,21 +16,32 @@ Le shell est un `bash` classique qui est toutefois un peu tuné.
 ### projet :
 `www` &rarr; pour directement aller au projet<br>
 `sf` équivaut à `php bin/console`<br>
+`doctrine` pour les commandes base <br>
 `sfcache` pour clear le cache Symfony <br>
-`dschema` = `sf doctrine:schema:update`
 
 ### Composer :
-`cr` &rarr; `composer require`<br>
-`crd` &rarr; `composer require-dev` <br>
-`ci` &rarr; `composer install` <br>
+
+`compda` &rarr; `composer dump-autoload`(cherchez ce que ça fait c'est intéressants)
+`compi` &rarr; `composer install`
+`compr` &rarr; `composer require`
+`comprd` &rarr; `composer require-dev`
 
 ### Node :
+
 `yw` &rarr; `yarn watch` <br>
 `yd` &rarr; `yarn dev`<br>
 `yi` &rarr; `yarn add` <br>
 `yt` &rarr; `yarn test` <br>
 
 ### Conseil de Shell
+
+**Solution 1.** Sous système Linux (après avoir fait ses mises à jour windows)
+- [Tuto](https://blog.ikoula.com/fr/windows-terminal-preview-et-windows-subsystem-for-linux-2-ensemble)
+- [Télécharger l'image Debian](https://www.microsoft.com/fr-fr/p/debian/9msvkqc78pk6?activetab=pivot:overviewtab)
+- [Télécharger le terminal windows](https://www.microsoft.com/fr-fr/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab)
+
+**Solution 2**. Sous système Cygwin (plus simple)
+
 - [Installer Cygwin](https://www.cygwin.com/) pour windows
 - Lors du processus d'installation selectionnez les packages `wget` &nbsp; `curl` &nbsp; `lynx` &nbsp; `git` &nbsp; `vim` &nbsp; `fish`
 > Attention à celui que vous prenez (nom exactes ci dessus)
@@ -50,4 +62,4 @@ fish
 fisher add hauleth/agnoster
 ```
 ---
-### <center>[Retour au sommaire &#8617;](0Sommaire.md)</center>
+[&larr; retour aux **tests**](4Tests.md) &nbsp;&nbsp; | &nbsp;&nbsp; [**Erreurs connues** &rarr;](6KnowedErrors.md)

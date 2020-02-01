@@ -11,12 +11,12 @@ class ListContainer implements PopulateInterface, ToArrayInterface
     /**
      * @var Collection
      */
-    protected $items;
+    protected Collection $items;
 
     /**
      * @var integer
      */
-    protected $total;
+    protected int $total;
 
     public function __construct($items = [], $total = 0)
     {

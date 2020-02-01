@@ -5,9 +5,14 @@
     - homepage
     - accounting
     - company
-  ext: ts
+  default_ext: ts
 
 - name: easyadmin
   pages:
     - js/app
-  ext: js
+
+## Options of page entry setter
+# - name (config_name)
+#   pages:
+#      - entry 1 (split assets in different pages)
+#   default_ext (by default it's js but typescript is a choice)

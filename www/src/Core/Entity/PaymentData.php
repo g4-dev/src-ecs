@@ -1,6 +1,6 @@
 <?php
 
-namespace FrontOffice\Entity;
+namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,14 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PaymentData
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+    use IdTrait;
 
     /**
      * @var string
@@ -36,7 +29,7 @@ class PaymentData
     private $dataType;
 
     /**
-     * @var \PaymentType
+     * @var PaymentType
      *
      * @ORM\ManyToOne(targetEntity="PaymentType")
      * @ORM\JoinColumns({
@@ -44,6 +37,42 @@ class PaymentData
      * })
      */
     private $paymentType;
+
+    public function getDataName(): ?string
+    {
+        return $this->dataName;
+    }
+
+    public function setDataName(string $dataName): self
+    {
+        $this->dataName = $dataName;
+
+        return $this;
+    }
+
+    public function getDataType(): ?string
+    {
+        return $this->dataType;
+    }
+
+    public function setDataType(string $dataType): self
+    {
+        $this->dataType = $dataType;
+
+        return $this;
+    }
+
+    public function getPaymentType(): ?PaymentType
+    {
+        return $this->paymentType;
+    }
+
+    public function setPaymentType(?PaymentType $paymentType): self
+    {
+        $this->paymentType = $paymentType;
+
+        return $this;
+    }
 
 
 }

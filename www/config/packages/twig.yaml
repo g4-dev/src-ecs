@@ -1,7 +1,0 @@
-twig:
-    default_path: '%kernel.project_dir%/templates'
-    debug: '%kernel.debug%'
-    strict_variables: '%kernel.debug%'
-    # TODO: mettre en place les form_themes https://symfony.com/doc/current/form/form_themes.html
-    globals:
-        website_name: "%website_name%"

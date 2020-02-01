@@ -2,8 +2,10 @@
 
 namespace FrontOffice\Entity;
 
+use Core\Entity\IdTrait;
+use Core\Entity\User;
+use Core\Entity\PaymentType;
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Shipment
  *
@@ -12,14 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Shipment
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+    use IdTrait;
 
     /**
      * @var \DateTime
@@ -71,9 +66,9 @@ class Shipment
     private $finalPrice;
 
     /**
-     * @var \User
+     * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Core\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      * })
@@ -81,9 +76,9 @@ class Shipment
     private $client;
 
     /**
-     * @var \PaymentType
+     * @var PaymentType
      *
-     * @ORM\ManyToOne(targetEntity="PaymentType")
+     * @ORM\ManyToOne(targetEntity="Core\Entity\PaymentType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="payment_type_id", referencedColumnName="id")
      * })
@@ -91,7 +86,7 @@ class Shipment
     private $paymentType;
 
     /**
-     * @var \ShipmentType
+     * @var ShipmentType
      *
      * @ORM\ManyToOne(targetEntity="ShipmentType")
      * @ORM\JoinColumns({
@@ -99,6 +94,126 @@ class Shipment
      * })
      */
     private $shipmentType;
+    
+    public function getTimeCreated(): ?\DateTimeInterface
+    {
+        return $this->timeCreated;
+    }
+
+    public function setTimeCreated(\DateTimeInterface $timeCreated): self
+    {
+        $this->timeCreated = $timeCreated;
+
+        return $this;
+    }
+
+    public function getShippingAddress(): ?string
+    {
+        return $this->shippingAddress;
+    }
+
+    public function setShippingAddress(string $shippingAddress): self
+    {
+        $this->shippingAddress = $shippingAddress;
+
+        return $this;
+    }
+
+    public function getBillingAddress(): ?string
+    {
+        return $this->billingAddress;
+    }
+
+    public function setBillingAddress(string $billingAddress): self
+    {
+        $this->billingAddress = $billingAddress;
+
+        return $this;
+    }
+
+    public function getProductsPrice(): ?string
+    {
+        return $this->productsPrice;
+    }
+
+    public function setProductsPrice(string $productsPrice): self
+    {
+        $this->productsPrice = $productsPrice;
+
+        return $this;
+    }
+
+    public function getDeliveryCost(): ?string
+    {
+        return $this->deliveryCost;
+    }
+
+    public function setDeliveryCost(string $deliveryCost): self
+    {
+        $this->deliveryCost = $deliveryCost;
+
+        return $this;
+    }
+
+    public function getDiscount(): ?string
+    {
+        return $this->discount;
+    }
+
+    public function setDiscount(string $discount): self
+    {
+        $this->discount = $discount;
+
+        return $this;
+    }
+
+    public function getFinalPrice(): ?string
+    {
+        return $this->finalPrice;
+    }
+
+    public function setFinalPrice(string $finalPrice): self
+    {
+        $this->finalPrice = $finalPrice;
+
+        return $this;
+    }
+
+    public function getClient(): ?User
+    {
+        return $this->client;
+    }
+
+    public function setClient(?User $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getPaymentType(): ?PaymentType
+    {
+        return $this->paymentType;
+    }
+
+    public function setPaymentType(?PaymentType $paymentType): self
+    {
+        $this->paymentType = $paymentType;
+
+        return $this;
+    }
+
+    public function getShipmentType(): ?ShipmentType
+    {
+        return $this->shipmentType;
+    }
+
+    public function setShipmentType(?ShipmentType $shipmentType): self
+    {
+        $this->shipmentType = $shipmentType;
+
+        return $this;
+    }
 
 
 }

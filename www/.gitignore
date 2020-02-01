@@ -12,17 +12,6 @@
 .web-server-pid
 ###< symfony/web-server-bundle ###
 
-###< IDE specific ###
-.idea/*
-!webServers.xml
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/sftp.json
-!.vscode/extensions.json
-*.code-workspace
-.vs/
-
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php

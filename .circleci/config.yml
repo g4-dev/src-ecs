@@ -37,6 +37,8 @@ jobs:
 
             -   run: composer install -d ./www -n --prefer-dist --no-scripts
 
+            # -   run: php ./www/bin/console doctrine:schema:validate
+
             -   save_cache:
                     key: v1-dependencies-{{ checksum "./www/composer.lock" }}
                     paths:
@@ -52,7 +54,13 @@ jobs:
                     key: node-v1-{{ checksum "./www/yarn.lock" }}
                     paths:
                         - ./www/node_modules
-            - run: yarn --cwd ./www/ dev
+
+            #-   run: yarn --cwd ./www/ lint || export WARNING="yarn lint error --> bad code style"
+
+            #-   run: test -n "$WARNING" && false
+
+            -   run: yarn --cwd ./www/ dev
+
 
             # - run: make db_update_local
             # - run: ./vendor/bin/phpunit

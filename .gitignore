@@ -1,27 +1,36 @@
-# Apple env files
+###< OS env files ###
 *.DS_Store
 .AppleDouble
 .LSOverride
-
-# Windows shortcuts
 *.lnk
 
-# ecs specific
+###< ecs specific ###
 *_debug*
 *playbook*/
+vm_config.yaml
 
-#vagrant
+###<vagrant ###
 /.vagrant/
-/vm_config.yaml
 
 ###< IDE specific ###
-.idea/*
-!.idea/webServers.xml
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/extensions.json
-*.code-workspace
-
+.vscode/
+!.vscode/sftp.json
 .vs/
+
 symfony-boilerplate/
+
+# jetbrain
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff:
+.idea/
+
+# CMake
+cmake-build-debug/
+
+# Mongo Explorer plugin:
+.idea/**/mongoSettings.xml
+
+## File-based project format:
+*.iws

@@ -7,6 +7,13 @@
 - VirtualBox 6.0.8
 - git bash ou [celui là](5Tips#ConseildeShell)
 
+>Selon votre config la VM peut être très gourmande, on peut donc ajuster cette [config](../vm_config.yaml)
+
+#### Ignorez manuellement ces fichiers
+- `git update-index --skip-worktree .idea`
+- `git update-index --skip-worktree .vscode`
+- `git update-index --skip-worktree vm_config.yaml`
+
 ## Index
 
 0. [VM](#installation-et-lancement-de-la-vm)
@@ -37,24 +44,50 @@ git remote add g4-dev git@github.com:g4-dev/src-ecs.git
 - Après `vagrant ssh` | Consulter la liste des commandes shells utiles : [Ici](5Tips.md)
 - [ecoservice.coom](http://ecoservice.coom)
 
+## IDE
+> Une bonne partie de la configuration est automatique mais il faut toutefois vérifier la connection
+en sftp avec la VM
+
+Allez dans `paramètres` > `Deployment` > serveur `ecs`
+
+![Déploiement](res/deployment.png)
+
+- Hôte : `localhost`
+- Port : `2222`
+- Utilisateur: `vagrant`
+- Mot de passe :`vagrant`
+
 ## Sources
 > Pour mettre à jours les sources local sur la VM <br>
 > *(Ne concerne pas ceux qui ont le NFS activé)*
 
-Notre machine virtuelle est automatiquement mise à jour dans un seul sens soit 
+Après un changement de branche il faut upload vos sources sur la VM qui n'est pas mise à jour automatiquement : <br> 
+
+Notre machine virtuelle est automatiquement mise à jour dans un seul sens soit :
+
 ```
 Hôte (votre machine) ----> VM
 ```
-Nous devons donc manuellement récupérer:
-- Des dossier comme `vendor/` ou `node_modules/`
-- Les fichiers comme `composer.json` et `package.json` pour bien mettre à jour les nouveaux modules que l'on ajoute
-- Dans le cas où on utilise `symfony/flex` on récupère le fichir `symfony.lock`
 
-> #### Pour cela clic droit sur `www/` ou le fichier voulu et `deployment` > `download`
+Un simple clic droit sur un dossier ou fichier, comme par exemple `www/` donnera des options de synchronisation des fichiers (`deployment > download` sur php-storm)
 
-### Si ça Ne marche pas encore
+![sources](res/upload_sources.png)
 
-Consultez la liste des erreurs connues [Erreurs Installation](6KnowedErrors.md#installation)
+#### Il faut donc bien vérifiez la synchronisation des fichiers avec votre VM :
+> Certains fichiers propres à la gestion des dépendances (php et javascript) sont modifiés seulement dans la VM lors de l'ajout ou la mise à jour de plugins...
+#### Voici les fichiers à vérifier:
+
+- le `package.json` de la VM pour les module js (yarn)
+- le `composer.json` pour les modules php composer
+- les fichiers `composer.lock` et `yarn.lock
+
+### Attention 
+
+Les commandes de `composer` et `yarn`, doivent être éxecutées ***SEULEMENT DANS LA VM***.
+
+> !! **On n'utilise pas `npm`** sinon on risque de créer des bugs et conflits avec `yarn`
+
+Si ça Ne marche pas, RPZ la gestion des risques &rarr; [Erreurs Installation](6KnowedErrors.md#installation)
 
 ## NFS
 
@@ -76,7 +109,7 @@ Petite amélioration de performance avec : `git config core.preloadindex true`
 `apt install nfs-kernel-server nfs-common`
 
 ## SSL
-On prévoit par la suite mettre en place un certificat autosigné
+On prévoit par la suite mettre en place un certificat autosigné (pour le cadenas)
 
 `./vm_config.yaml` &rarr; `ssl: yes`
 
@@ -84,4 +117,4 @@ On prévoit par la suite mettre en place un certificat autosigné
 > `scp -P 22 root@ecoservice.dev:/etc/ssl/ecoservice.dev/pkcs12.pfx docs/cert/` (mdp: vagrant)
 
 ---
-### <center>[Retour au sommaire &#8617;](0Sommaire.md)</center>
+[&larr; retour au **Sommaire**](0Sommaire.md) &nbsp;&nbsp;| &nbsp;&nbsp;[**Stacks et bonnes pratiques** &rarr;](2Stack.md)

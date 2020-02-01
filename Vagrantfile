@@ -7,6 +7,7 @@ current_dir      = File.dirname(File.expand_path(__FILE__))
 yml              = YAML.load_file("#{current_dir}/vm_config.yaml")
 conf, vm         =  yml['conf'], yml['vm']
 # If you're on a new build of Windows 10 you can try to use NFS
+# os, box_version  = conf['os'], conf['box_version']
 os               = "bento/debian-" + conf['os']
 # book repo
 playbook_name    = "playbook-#{conf['projectname']}"
@@ -28,12 +29,12 @@ if !Vagrant.has_plugin?('vagrant-hostmanager')
   exit
 end
 hosts << conf['servername'] << " "
-hosts << "api." << conf['servername'] << " "
 
 Vagrant.require_version ">= 2.2.2"
 
 Vagrant.configure(2) do |config|
   config.vm.box = os
+  #config.vm.box_version = "10.0.0"
 
   id_rsa_path        = File.join(Dir.home, ".ssh", "id_rsa")
   id_rsa_ssh_key     = File.read(id_rsa_path)
@@ -67,7 +68,7 @@ Vagrant.configure(2) do |config|
     $init = <<-SCRIPT
     sudo apt -y install git
     rm -rf /tmp/#{playbook_name} || true
-    git clone #{playbook} /tmp/#{playbook_name}
+    git clone #{playbook} /tmp/#{playbook_name} && cd /tmp/#{playbook_name} && git reset --hard origin/#{conf['playbook_version']}
     SCRIPT
 
     config.vm.provision "shell", inline: $init, privileged: false

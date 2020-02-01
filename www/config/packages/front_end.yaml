@@ -1,18 +1,22 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    # TODO: mettre en place les form_themes https://symfony.com/doc/current/form/form_themes.html
+    globals:
+        website_name: "%website_name%"
+
 webpack_encore:
+    # The path where Encore is building the assets.
+    # This should match Encore.setOutputPath() in webpack.config.js.
     output_path: false
     builds:
         front_office: '%kernel.project_dir%/public/build/front_office'
         admin: '%kernel.project_dir%/public/build/admin'
-
-        # The path where Encore is building the assets.
-        # This should match Encore.setOutputPath() in webpack.config.js.
-        #output_path: '%kernel.project_dir%/public/build'
-        # If multiple builds are defined (as shown below), you can disable the default build:
-        # output_path: false
 
         # if using Encore.enableIntegrityHashes() specify the crossorigin attribute value (default: false, or use 'anonymous' or 'use-credentials')
         # crossorigin: 'anonymous'
 
         # Cache the entrypoints.json (rebuild Symfony's cache when entrypoints.json changes)
         # Available in version 1.2
-        #cache: '%kernel.debug%'
+        cache: '%kernel.debug%'

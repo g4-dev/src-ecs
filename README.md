@@ -11,22 +11,19 @@
 
 - Projet sur `/data/ecs/www`
 
-- Synchro des fichiers automatique sur phpStorm
+- Synchro des fichiers automatique sur phpStorm : [Installation](docs/1Installation.md#sources)
 
-- N'utilisez pas VScode
-
-- N'oublier pas de mettre à jour le schema quand vous modifiez des entités
+- VSCode est déconseillé
 
 ## Le flux de travail
 
-- Je créer une branche à partir de celle demandée par mon ticket ou je demande
-- Je code une feature `front` / `back` / `fullstack`
-- Je download `composer.json` et `package.json`, les `.lock` aussi
-- Je met à jour ma branche : [Mettre a jour sa branche](docs/3GitFlow.md#majbranche)
-- Je créer une PR [Faire une PR](docs/3GitFlow.md#environments)
+- Je créer une branche à partir de develop identifiée par le numéro de mon ticket
+- Je code ma feature
+- Je met à jour ma branche pour éviter les conflits : [Mettre a jour sa branche](docs/3GitFlow.md#majbranche)
+- Je créer la PR [Faire une PR](docs/3GitFlow.md#environments)
+- Si je travaille encore dessus je met en premier dans le titre de ma PR `[ci skip]`
 - J'envoie le lien de ma PR sur `#conversation`
-- Je me fait review par les autres membres de l'équipe
-- On merge
+- Je me fait review par les autres membres de l'équipe et la CI avant de merge
 
 ## Règles d'or
 - Le code est la meilleure documentation.
@@ -48,4 +45,6 @@
 Pour se connecter sur le back office [/admin](ecoservice.coom/admin) avec les ids
 `admin@domain.tld` / `s3cr3t`
 
-Pour les utilisateurs front office créer le votre avec un faux mail
+Pour les utilisateurs front office: `aroberts@luettgen.com` `Azerty69`
+
+##### Complétez la liste [Liste des utilisateurs de tests](docs/4Tests.md#comptes-utilisateurs)
