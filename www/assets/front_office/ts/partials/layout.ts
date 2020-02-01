@@ -1,6 +1,12 @@
 let burger_nav = document.getElementById("burger_nav");
 let burgerIco = document.getElementById("rotation");
-let nav_children = document.getElementById("a_list").getElementsByTagName("a");
+
+let nav = document.getElementById("a_list");
+
+let nav_children = null;
+if(nav !== null){
+    nav_children = nav.getElementsByTagName("a");
+}
 
 let isClose = true;
 
