@@ -15,7 +15,7 @@
 
 - VSCode est déconseillé
 
-- **Bien penser à ignorer les fichiers de config** [**CETTE COMMANDE**](docs/1Installation.md#Ignorez-les-fichiers-de-config)
+- **Bien penser à ignorer les fichiers de config** [**CETTE COMMANDE**](docs/1Installation.md#ignorez-les-fichiers-de-config)
 
 ## Le flux de travail
 

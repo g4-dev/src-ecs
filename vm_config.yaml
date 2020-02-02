@@ -5,8 +5,8 @@ conf:
     servername: ecoservice.cum      # Servername and domain for your projects
     org: g4-dev                     # Organisation hosting repo
     projectname: ecs                # repo name with pattern src-{{projectname}}
-    debug_playbook: false            # first need vagrant reload !! ENABLE SHARED FOLDERS !! used to debug playbook
-    playbook_version: versions/beta # master = stable | versions/beta
+    debug_playbook: false           # first need vagrant reload !! ENABLE SHARED FOLDERS !! used to debug playbook
+    playbook_version: master        # master = stable | versions/beta
     testing_mode: 0                 # test services
     web_path: www                   # change web server if name != local_name
     app_env: dev                    # prod or dev
