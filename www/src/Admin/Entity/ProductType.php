@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ProductType
 {
     use IdTrait;
-
+    
     /**
      * @var string
      *

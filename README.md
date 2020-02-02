@@ -15,7 +15,7 @@
 
 - VSCode est déconseillé
 
-- **Bien penser à ignorer les fichiers de config** [**CETTE COMMANDE**](docs/1Installation.md#ignorez-les-fichiers-de-config)
+- Renommez config.yaml.dist` en `vm_config.yaml`
 
 ## Le flux de travail
 

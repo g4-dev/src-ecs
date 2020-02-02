@@ -2,7 +2,6 @@
 
 namespace Admin\Entity;
 
-use Core\Entity\IdTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -17,16 +16,16 @@ class Stock
     /**
      * @var string
      *
-     * @ORM\Column(name="in_stock", type="decimal", precision=8, scale=2, nullable=false)
+     * @ORM\Column(name="in_stock", type="integer", nullable=false)
      */
     private $inStock;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="last_update_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="last_update_time", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $lastUpdateTime = 'CURRENT_TIMESTAMP';
+    private $lastUpdateTime;
 
     /**
      * @var Product
@@ -59,7 +58,7 @@ class Stock
 
     public function setLastUpdateTime(\DateTimeInterface $lastUpdateTime): self
     {
-        $this->lastUpdateTime = $lastUpdateTime;
+        $this->lastUpdateTime = $lastUpdateTime || new \DateTime();
 
         return $this;
     }
@@ -75,6 +74,4 @@ class Stock
 
         return $this;
     }
-
-
 }

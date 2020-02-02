@@ -20,4 +20,4 @@ vm:
     cpuexecutioncap: 80             # virtual cpu, use high value with nfs (int | max: 100)
     natdnshostresolver1: "on"       # perf + (string | on/off)
     natdnsproxy1: "on"              # perf + (string | on/off)
-    ioapic: "on"                    # perf + (string | on/off)
+    ioapic: "on"
