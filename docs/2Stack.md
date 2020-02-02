@@ -52,6 +52,7 @@ Pour partager et récupérer les données il existe des scripts simples dans le 
   - `doctrine.yaml` définit l'utilisation de la base de donnée. On mappe des entité avec des alias pour les réutiliser dans les autres espaces de l'appli.
   - `twig.yaml` Mettre en place des skins préféfinis de formulaires et injecter des variables dans les vues
   - Le fichier `parameters.yaml` uniqument dans la VM donne des variables de configurations (url base de donnée, mail...)
+  - `bundles.php` Instancier des bundles dans notre projet
 
 - `fixtures`
   - Générées avec faker elle nous permettent de créer des données facilement
