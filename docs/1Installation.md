@@ -11,13 +11,7 @@
 
 #### Ignorez les fichiers de config
 ```
-git update-index --assume-unchanged .idea/;
-git update-index --assume-unchanged .vscode/;
 git update-index --assume-unchanged vm_config.yaml;
-
-git update-index --skip-worktree .idea;
-git update-index --skip-worktree .vscode;
-git update-index --skip-worktree vm_config.yaml;
 ```
 
 ## Index
@@ -62,6 +56,10 @@ Allez dans `paramètres` > `Deployment` > serveur `ecs`
 - Port : `2222`
 - Utilisateur: `vagrant`
 - Mot de passe :`vagrant`
+- root path : `/data/ecs/`
+
+Puis reproduire ces paramètres
+![Déploiement](res/deployement2.png)
 
 ## Sources
 > Pour mettre à jours les sources local sur la VM <br>

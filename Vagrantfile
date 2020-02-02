@@ -90,7 +90,7 @@ Vagrant.configure(2) do |config|
   if NFS_ENABLED
     # NFS config / bind vagrant user to nfs mount
     if Vagrant::Util::Platform.darwin?
-        config.vm.synced_folder "./www", web_dir, nfs: true, mount_options: ['rw','tcp','fsc','nolock','noacl','actimeo=2'],
+        config.vm.synced_folder "./www", web_dir, nfs: true, mount_options: ['rw','tcp','fsc','async','noatime','rsize=8192','wsize=8192','noacl','actimeo=2'],
         linux__nfs_options: ['rw','no_subtree_check','all_squash','async']
         config.bindfs.bind_folder web_dir, web_dir
     else

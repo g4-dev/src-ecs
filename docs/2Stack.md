@@ -16,6 +16,7 @@
 
 Base *locale* pour travailler seul 
 > utilisée par défaut
+- type de base : `mariadb(mysql8)`
 - host : localhost ou 127.0.0.1
 - port : 3366
 - user : ecs_user
@@ -31,6 +32,7 @@ Base *locale* pour travailler seul
 ---
 
 > base distante pour se partager les donnée entre nous
+- type de base : `mysql8`
 - mysql_host: `remotemysql.com`
 - mysql_user: `EmwnLitSLR`
 - mysql_pw: `Gk0qCm6hFI`
@@ -69,12 +71,14 @@ On utilise *Typescript* à la place de javascript et sass
 - `yarn dev` : Build tout le projet
 - `yarn fo` : Build le front-office
 - `yarn admin` : Build de l'espace admin
+- Ajoutez `--watch` pour écouter les nouvelles modifs
 
-**Commandes avancés :**
+**Avancé :**
 
 - `fo-watch`: watch l'espace front 
-- `fo-single <nom-de-page>`: build seulement une page
-- `fo-single-w <nom-de-page>`: watch une page
+- `require('@fr/')` &rarr; alias pour `front_office/ts`
+- `require('#fr/')` &rarr; alias pour `front_office/scss`
+- `require('#ea/')` &rarr; alias pour `easyadmin/scss`
 
 Voici l'organisation du projet par espaces:
 
@@ -138,8 +142,9 @@ Dans le dossier `src`:
 - Des validateurs personnalisés
 
 2. **FrontOffice** (FrontOffice) 
-- Pas grand chose à faire à par créer des routes, des pages et créer des actions API
-sont disponibles (exemple ajouter un produit au panier : `/product/{id}/add`)
+- Créer des routes, controlleurs, des pages et créer des actions 
+[Api](#api-rest) à utilisez en front<br>
+Par exemple ajouter un produit au panier : `/product/{id}/add`
 
 3. **Admin** (BackOffice), Configuration easyadmin : `config/packages/easyadmin.yaml`
 - Easyadmin nous permet de facilement créer des CRUD et des entités
@@ -153,7 +158,8 @@ Voici un [tutoriel](https://medium.com/q-software/symfony-5-the-rest-the-crud-an
 
 - Ajout d'un commentaire 
 - Ajout d'un produit au panier
-- Affichage des produits
+- Affichage des produits<br>
+...
 
 ---
 [&larr; retour à **l'installation**](1Installation.md) &nbsp;&nbsp; | &nbsp;&nbsp; [**GitFlow** &rarr;](3GitFlow.md)

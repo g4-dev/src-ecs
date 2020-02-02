@@ -17,8 +17,8 @@ const aliases = function aliases(config) {
 		aliasName = name.slice(0, 2)
 
 	try {
-		configAliases[`@${aliasName}`] = `assets/${name}/ts`
-		configAliases[`#${aliasName}`] = `assets/${name}/scss`
+		configAliases[`@${aliasName}`] = path.resolve(__dirname,`assets/${name}/ts`)
+		configAliases[`#${aliasName}`] =  path.resolve(__dirname, `assets/${name}/scss`)
 	} catch (e) {
 		throw new Error("Pages name are probably too similar, verify your config/pages.yaml : \n" + e)
 	}
@@ -32,11 +32,9 @@ const aliases = function aliases(config) {
 
 const getWorkspaces = function getWorkspaces(entry = null) {
 
+
 	let workspaces = []
 	isSingleEntry = isSingleEntry || Boolean(entry)
-	console.log(isSingleEntry)
-
-	entry ? console.info(`Building single entry : ${entry}`) : null
 
 	CONFIGS.forEach(function({ name, pages, default_ext = "js" }) {
 
@@ -98,7 +96,6 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 	return workspaces
 }
 
-module.exports = function(env) {
-	return getWorkspaces(env && typeof env.entry !== undefined ? env.entry : null)
-}
+module.exports = getWorkspaces();
+
 
