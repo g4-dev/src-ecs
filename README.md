@@ -15,6 +15,8 @@
 
 - VSCode est déconseillé
 
+- **Bien penser à ignorer les fichiers de config** [**CETTE COMMANDE**](docs/1Installation.md#Ignorez-les-fichiers-de-config)
+
 ## Le flux de travail
 
 - Je créer une branche à partir de develop identifiée par le numéro de mon ticket
