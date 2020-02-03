@@ -3,11 +3,18 @@
 # Erreurs connues
 > *Liste d'erreurs possibles avant de demander de l'aide:* 
 
+### Deployment
+
+- Classes non retrouvées `deployment` > `options` > Enlever `**/vendor/**` et download www/
+- Vérifier les mappings dans `deployment` > `ecs` > `onglet mappings`
+- Vérifier `deployment` > `options` > `always` sur `Upload changed files every...`
+
 ### Lors du provision
 
 #### `Device or resource busy: '/data/ecs/www'` : 
-- fermez PHPStorm 
-- relancez avec `vagrant --provision`
+
+- Fermer PHPStorm 
+- Relancez avec `vagrant --provision`
 - Réouvrir PHPStorm *une fois le provision fini*
 
 **Il est possible que cette erreur soit due au NFS: Suivez cette [étape](#Erreurssystemedefichier)**
@@ -16,7 +23,23 @@
 
 ## Installation
 
-Erreurs lors de l'installation
+> Erreurs lors de l'installation
+
+### SSH errors
+
+```
+SSH authentication failed! This is typically caused by the public/private
+keypair for the SSH user not being properly set on the guest VM. Please
+verify that the guest VM is setup with the proper public key, and that
+the private key path for Vagrant is setup properly as well.
+```
+
+- Executer cette commande : `ssh-keygen -m PEM -t rsa -b 4096 -C "votre-adresse@mail.com"`
+- Sur votre machine `cat ~/.ssh/id_rsa.pub`  
+- Ensuite `vagrant ssh` pour entrer dans la VM
+- `rm ~/.ssh/authorized_keys` et `vi ~/.ssh/authorized_keys` puis copier le contenu de votre nouvelle clé obtenue avec la commande précédente.
+
+##### Le protocole utilisé par ssh n'utilise
 
 #### Le **nfs** ne marche pas sur mac os catalina : [solution à suivre](https://stackoverflow.com/a/58547588 )
 
