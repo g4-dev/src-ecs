@@ -12,7 +12,7 @@ class ProductController extends AbstractController
      */
     public function index()
     {
-        return $this->render('front_office/product/index.html.twig');
+        return $this->render('front_office/product_simple.html.twig');
     }
     /**
      * @Route("/product/1", name="fo_product_show")

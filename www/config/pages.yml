@@ -5,6 +5,7 @@
     - homepage
     - accounting
     - company
+    - product_simple
   default_ext: ts
 
 - name: easyadmin
