@@ -24,3 +24,38 @@ button{
   width: auto;
   background: transparent;
 }
+
+.cont{
+  padding:0 70px;
+  position: relative;
+}
+
+.sep-header{
+  width:80%;
+  height: .5px;
+  background: $darkGreen;
+  margin-left: 10%;
+  margin-bottom:35px;
+}
+
+.btn-back{
+  color:$dark;
+  position: relative;
+  display: inline-block;
+
+  &::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height:2px;
+    width:0;
+    background: $darkGreen;
+    transition:width .5s ease-in-out;
+  }
+
+  &:hover::after{
+    transition:width .5s ease-in-out;
+    width:100%;
+  }
+}

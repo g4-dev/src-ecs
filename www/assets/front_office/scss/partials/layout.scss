@@ -35,6 +35,25 @@
 
       a{
         padding: 0 $basicPadding/2;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 5px;
+
+        &::after{
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 12%;
+          height:2px;
+          width:0;
+          background: $darkGreen;
+          transition:width .5s ease-in-out;
+        }
+
+        &:hover::after{
+          transition:width .5s ease-in-out;
+          width:76%;
+        }
       }
 
       svg{
