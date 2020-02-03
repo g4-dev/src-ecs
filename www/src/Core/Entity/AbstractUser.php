@@ -4,14 +4,15 @@ namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Core\Generics\Entity\Entity;
+use Core\Entity\Traits;
 
 abstract class AbstractUser extends Entity
 {
-    use IdTrait;
-    use NameTrait;
-    use IsActiveTrait;
-    use IsDeletedTrait;
-    use CreatedAtTrait;
+    use Traits\Id;
+    use Traits\Name;
+    use Traits\IsActive;
+    use Traits\IsDeleted;
+    use Traits\CreatedAt;
 
     /**
      * @var string

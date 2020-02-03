@@ -40,14 +40,14 @@ doctrine:
                 prefix: 'Core\Entity'
                 alias: Core
             FrontOffice:
-                    is_bundle: false
-                    type: annotation
-                    dir: '%kernel.project_dir%/src/FrontOffice/Entity'
-                    prefix: 'FrontOffice\Entity'
-                    alias: FrontOffice
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/FrontOffice/Entity'
+                prefix: 'FrontOffice\Entity'
+                alias: FrontOffice
             Admin:
-                    is_bundle: false
-                    type: annotation
-                    dir: '%kernel.project_dir%/src/Admin/Entity'
-                    prefix: 'Admin\Entity'
-                    alias: Admin
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Admin/Entity'
+                prefix: 'Admin\Entity'
+                alias: Admin

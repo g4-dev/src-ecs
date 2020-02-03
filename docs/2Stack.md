@@ -138,7 +138,7 @@ Dans le dossier `src`:
 - MailerService (sert à envoyé des mail facilement en rensignant un template twig)
 - Des helpers comme le générateur d'id aléatoire
 - Des Events, des types a réutiliser comme les collections
-- Des `traits` très pratiques comme [celui de l'id](../www/src/Core/Entity/IdTrait.php) pour éviter de répéter le code des entités
+- Des `traits` très pratiques comme [celui de l'id](../www/src/Core/Entity/Traits/IdTrait.php) pour éviter de répéter le code des entités
 - Des validateurs personnalisés
 
 2. **FrontOffice** (FrontOffice) 

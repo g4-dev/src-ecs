@@ -3,7 +3,7 @@
 namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FrontOffice\Entity\Shipment;
+use FrontOffice\Entity\Purchase;
 /**
  * PaymentDetails
  *
@@ -12,7 +12,7 @@ use FrontOffice\Entity\Shipment;
  */
 class PaymentDetails
 {
-    use IdTrait;
+    use Traits\Id;
     /**
      * @var string
      *
@@ -31,9 +31,9 @@ class PaymentDetails
     private $paymentData;
 
     /**
-     * @var Shipment
+     * @var Purchase
      *
-     * @ORM\ManyToOne(targetEntity="FrontOffice\Entity\Shipment")
+     * @ORM\ManyToOne(targetEntity="FrontOffice\Entity\Purchase")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="shipment_id", referencedColumnName="id")
      * })
@@ -64,12 +64,12 @@ class PaymentDetails
         return $this;
     }
 
-    public function getShipment(): ?Shipment
+    public function getPurchase(): ?Purchase
     {
         return $this->shipment;
     }
 
-    public function setShipment(?Shipment $shipment): self
+    public function setPurchase(?Purchase $shipment): self
     {
         $this->shipment = $shipment;
 

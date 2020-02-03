@@ -5,19 +5,20 @@
         "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "easycorp/easyadmin-bundle": "2.3.5",
-        "sensio/framework-extra-bundle": "5.5.3",
+        "easycorp/easyadmin-bundle": "^2.3",
+        "sensio/framework-extra-bundle": "^5.5",
         "symfony/console": "^5.0",
         "symfony/flex": "^1.6",
         "symfony/form": "^5.0",
         "symfony/framework-bundle": "^5.0",
         "symfony/google-mailer": "^5.0",
         "symfony/mailer": "^5.0",
-        "symfony/orm-pack": "1.0.7",
+        "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "^5.0",
         "symfony/twig-pack": "^1.0",
-        "symfony/webpack-encore-bundle": "1.7.2",
-        "symfony/yaml": "^5.0"
+        "symfony/webpack-encore-bundle": "^1.7",
+        "symfony/yaml": "^5.0",
+        "vich/uploader-bundle": "^1.13"
     },
     "config": {
         "preferred-install": {
@@ -53,7 +54,8 @@
         },
         "post-install-cmd": [
             "@auto-scripts",
-            "yarn"
+            "yarn install",
+            "yarn dev"
         ],
         "post-update-cmd": [
             "@auto-scripts"
@@ -64,14 +66,14 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": true,
             "require": "^5.0"
         }
     },
     "require-dev": {
         "brianium/habitat": "^1.0",
-        "brianium/paratest": "3.1.*",
-        "doctrine/doctrine-fixtures-bundle": "3.3.0",
+        "brianium/paratest": "^3.1",
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "fzaninotto/faker": "^1.9",
         "nelmio/alice": "^3.5",
         "symfony/browser-kit": "^5.0",

@@ -2,7 +2,7 @@
 
 namespace FrontOffice\Entity;
 
-use Core\Entity\IdTrait;
+use Core\Entity\Traits;
 use Doctrine\ORM\Mapping as ORM;
 use Admin\Entity\Product;
 use Core\Entity\User;
@@ -15,7 +15,7 @@ use Core\Entity\User;
  */
 class Comment
 {
-    use IdTrait;
+    use Traits\Id;
 
     /**
      * @var string

@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\Entity;
+namespace Core\Entity\Traits;
 
-trait RolesTrait
+trait Roles
 {
     public function getRoles(): array
     {

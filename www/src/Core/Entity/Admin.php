@@ -19,7 +19,8 @@ class Admin extends AbstractUser implements UserInterface
      */
     private array $roles = [self::DEFAULT_ROLE];
     
-    use RolesTrait;
+    use Traits\Roles;
+    use Traits\CreatedAt;
     
     public function getUsername()
     {

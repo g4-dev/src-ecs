@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PaymentData
 {
-    use IdTrait;
+    use Traits\Id;
 
     /**
      * @var string

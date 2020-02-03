@@ -60,7 +60,7 @@ class UserService
                 throw new \RuntimeException("Missing value for key: " . $key);
             }
         }
-        dump($data);
+        
         $this->logger->debug(sprintf('%s: Registering user account, email=%s',
             __METHOD__, $data['email']));
 
@@ -70,7 +70,6 @@ class UserService
             ->setToken(RandomStringGenerator::generate(32))
             ->populate($data)
             ;
-        dump($user);
         $this->save($user);
 
         $this->userEvent($user, UserAccountEvent::REGISTERED );

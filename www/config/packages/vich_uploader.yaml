@@ -1,0 +1,14 @@
+vich_uploader:
+    db_driver: orm # or mongodb or phpcr
+
+    mappings:
+        product_images:
+            uri_prefix: '%app.path.product_images%'
+            upload_destination: '%kernel.project_dir%/../public/uploads/images/products'
+        user_contracts:
+            uri_prefix: '%app.path.user_contracts%'
+            upload_destination: '%kernel.project_dir%/../public/uploads/files/user/contracts'
+
+        blog_covers:
+            uri_prefix: '%app.path.blog_covers%'
+            upload_destination: '%kernel.project_dir%/../public/uploads/images/blog'

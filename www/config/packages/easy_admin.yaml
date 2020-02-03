@@ -1,157 +1,19 @@
-easy_admin:
-  site_name: 'Ecoservice - Back Office'
-
-  formats:
-    date: 'Y-m-d'
-    time: 'H:i:s'
-    datetime: 'Y-m-d H:i:s'
-
-  entities:
-    Product:
-      class: Admin\Entity\Product
-      label: 'Products'
-      list:
-        title: 'Product'
-        fields:
-          - id
-          - product_name
-          - unit
-          - price_per_unit
-          - promo
-        actions: ['show', 'edit', 'delete']
-
-      show:
-        fields:
-          - id
-          - product_name
-          - product_description
-          - unit
-          - price_per_unit
-          - product_short_desc
-          - promo
-      form:
-        fields:
-          - id
-          - product_name
-          - product_description
-          - unit
-          - price_per_unit
-          - product_short_desc
-          - promo
-          - product_type_id
-
-    Shipment:
-      class: FrontOffice\Entity\Shipment
-      label: 'Commandes'
-      list:
-        title: 'Commandes'
-        fields:
-          - id
-          #- time_created
-          - shipping_address
-          - billing_address
-          - products_price
-          - delivery_cost
-          - discount
-          - final_price
-          - client
-          - payment_type
-        actions: ['show', 'edit', 'delete']
-
-      show:
-        fields:
-          - id
-          - time_created
-          - shipping_address
-          - billing_address
-          - products_price
-          - delivery_cost
-          - discount
-          - final_price
-          - client
-          - payment_type
-          - shipment_type
-      form:
-        fields:
-          - id
-          - time_created
-          - shipping_address
-          - billing_address
-          - products_price
-          - delivery_cost
-          - discount
-          - final_price
-          - client
-          - { property: 'payment_type_id', type_options: { expanded: true, multiple: true } }
-          - { property: 'shipment_type_id', type_options: { expanded: true, multiple: true } }
-
-    User:
-      class: Core\Entity\User
-      label: 'Users'
-      list:
-        title: 'Users'
-        fields:
-          - id
-          - name
-          - { property: 'email', type: 'email' }
-          - { property: 'is_active', type: 'toggle', label: 'Active?' }
-          - { property: 'roles', type: 'array' }
-          - createdAt
-        actions: ['show', 'edit', 'delete']
-        dql_filter: 'entity.isDeleted = false'
-      show:
-        fields:
-          - id
-          - name
-          - { property: 'email', type: 'email' }
-          - { property: 'is_active', type: 'toggle', label: 'Active?' }
-          - { property: 'roles', type: 'array' }
-          - createdAt
-          - lastLoginAt
-          - lastLoginIp
-          - lastUserAgent
-      form:
-        fields:
-          - name
-          - { property: 'passwordHash', type: 'password', label: 'Password' }
-          - { property: 'email', type: 'email' }
-          - { property: 'roles', type: 'choice', type_options: { multiple: true,
-                choices: { ROLE_PRO: 'ROLE_PRO', ROLE_USER: 'ROLE_USER'}
-          }}
-
-    Admin:
-      class: Core\Entity\Admin
-      label: 'Admins'
-      list:
-        title: 'Admins'
-        fields:
-          - id
-          - name
-          - { property: 'email', type: 'email' }
-          - { property: 'is_active', type: 'toggle', label: 'Active?' }
-          - { property: 'roles', type: 'array' }
-          - createdAt
-        actions: ['show', 'edit', 'delete']
-        dql_filter: 'entity.isDeleted = false'
-      show:
-        fields:
-          - id
-          - name
-          - { property: 'email', type: 'email' }
-          - { property: 'is_active', type: 'toggle', label: 'Active?' }
-          - { property: 'roles', type: 'array' }
-          - createdAt
-          - lastLoginAt
-          - lastLoginIp
-          - lastUserAgent
-      form:
-        fields:
-          - name
-          - { property: 'passwordHash', type: 'password', label: 'Password' }
-          - { property: 'email', type: 'email' }
-          - { property: 'roles', type: 'choice', type_options: { multiple: true,
-               choices: { ROLE_MARKETING: 'ROLE_MARKETING',
-                          ROLE_EMPLOYEE: 'ROLE_EMPLOYEE',
-                          ROLE_SUB_ADMIN: 'ROLE_SUBADMIN',
-                          ROLE_SUPERADMIN: 'ROLE_SUPERADMIN' }
-          }}
+# If you just need a quick backend for your Symfony application, this is the
+# only configuration you must define in this file:
+#
+# easy_admin:
+#     entities:
+#         - AppBundle\Entity\Category
+#         - AppBundle\Entity\Product
+#         - AppBundle\Entity\Purchase
+#         - AppBundle\Entity\PurchaseItem
+#         - AppBundle\Entity\User
+#
+# In this demo application, the configuration is split into several small files
+# to show an alternative way to define the configuration for complex backends.
+#
+# The configuration options are explained in detail in the bundle documentation,
+# which is published at https://symfony.com/doc/current/bundles/EasyAdminBundle/index.html
+#
+imports:
+    - { resource: easy_admin/ }

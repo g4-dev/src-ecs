@@ -1,6 +1,5 @@
 imports:
     - { resource: parameters.yaml }
-    #- { resource: pages.yml }
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
@@ -13,6 +12,11 @@ parameters:
 
     # perf
     container.dumper.inline_factories: true
+
+    # image mappings
+    app.path.product_images: /uploads/images/products
+    app.path.user_contracts: /uploads/files/user/contracts
+    app.path.blog_covers: /uploads/images/blog
 
 services:
     # default configuration for services in *this* file
@@ -40,6 +44,10 @@ services:
         class: Core\Service\UserService
         public: true
 
+    core.helper.upload_namer:
+        class: 'Core\Helper\UploadNamer'
+        public: true
+
     Fixtures\DataFixtures\:
         resource: '../fixtures/DataFixtures'
         tags: ['doctrine.fixture.orm']
@@ -47,8 +55,6 @@ services:
     Admin\Controller\:
       resource: '../src/Admin/Controller'
       tags: ['controller.service_arguments']
-      #arguments:
-          #- '@core.admin' # need to wire manually because we use EasyAdmin controller
 
     FrontOffice\Controller\:
         resource: '../src/FrontOffice/Controller'
@@ -59,3 +65,4 @@ services:
 
     front_office.security.login_form_guard:
         class: 'FrontOffice\Security\LoginFormGuard'
+

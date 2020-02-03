@@ -2,8 +2,11 @@
 
 namespace Core\Entity;
 
+use FrontOffice\Entity\Purchase;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
@@ -13,7 +16,7 @@ class User extends AbstractUser implements UserInterface
 {
     const DEFAULT_ROLE = 'ROLE_USER';
     
-    use UniqueIdTrait;
+    use Traits\UniqueId;
     
     /**
      * @var string
@@ -26,6 +29,8 @@ class User extends AbstractUser implements UserInterface
      * @ORM\Column(name="roles", type="array", nullable=false)
      */
     private array $roles = [self::DEFAULT_ROLE];
+    
+    use Traits\Roles;
 
     /**
      * @var string
@@ -50,8 +55,33 @@ class User extends AbstractUser implements UserInterface
      * @ORM\Column(name="phone_number", type="string", length=10, nullable=true, unique=false)
      */
     private string $phoneNumber;
-
-    use RolesTrait;
+    
+    /**
+     * @var Purchase[]
+     *
+     * @ORM\OneToMany(targetEntity="FrontOffice\Entity\Purchase", mappedBy="buyer", cascade={"remove"})
+     */
+    private $purchases;
+    
+    /**
+     * It only stores the name of the file which stores the contract subscribed
+     * by the user.
+     *
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $contract;
+    
+    /**
+     * This unmapped property stores the binary contents of the file which stores
+     * the contract subscribed by the user.
+     *
+     * @Vich\UploadableField(mapping="user_contracts", fileNameProperty="contract")
+     *
+     * @var File
+     */
+    private $contractFile;
     
     public function setToken(string $token)
     {
@@ -131,5 +161,53 @@ class User extends AbstractUser implements UserInterface
         $this->phoneNumber = $phoneNumber;
 
         return $this;
+    }
+    
+    /**
+     * @param \FrontOffice\Entity\Purchase[] $purchases
+     */
+    public function setPurchases($purchases)
+    {
+        $this->purchases = $purchases;
+    }
+    
+    /**
+     * @return Purchase[]
+     */
+    public function getPurchases()
+    {
+        return $this->purchases;
+    }
+    
+    /**
+     * @param File $contract
+     */
+    public function setContractFile(File $contract = null)
+    {
+        $this->contractFile = $contract;
+    }
+    
+    /**
+     * @return File
+     */
+    public function getContractFile()
+    {
+        return $this->contractFile;
+    }
+    
+    /**
+     * @param string $contract
+     */
+    public function setContract($contract)
+    {
+        $this->contract = $contract;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getContract()
+    {
+        return $this->contract;
     }
 }
