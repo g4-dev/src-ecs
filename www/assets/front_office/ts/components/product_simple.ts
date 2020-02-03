@@ -1,0 +1,1 @@
+require('../../scss/components/product_simple.scss');
