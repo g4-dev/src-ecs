@@ -6,6 +6,7 @@
     - accounting
     - company
     - product_simple
+    - recetteDIY
   default_ext: ts
 
 - name: easyadmin

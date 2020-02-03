@@ -1,1 +1,89 @@
-<h1>TEST SHOW DIY</h1>
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('recetteDIY', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    <button class="retour_button">Retour</button>
+    <article id="recette_main">
+        <div class="recette_img_container">
+            <h2 class="title_mob">Titre diy</h2>
+            <div class="center">
+                <img src="https://fakeimg.pl/450x600/">
+            </div>
+        </div>
+        <div>
+            <h2 class="title_desk">Titre diy</h2>
+            <div class="textAndCarac alignInit">
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, voluptatibus. Reprehenderit rem incidunt veniam, nulla dolores, laudantium optio voluptatum itaque, iste atque alias quidem consequatur earum nemo voluptas beatae ad.Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, voluptatibus. Reprehenderit rem incidunt veniam, nulla dolores, laudantium optio voluptatum itaque, iste atque alias quidem consequatur earum nemo voluptas beatae ad.</p>
+                </div>
+                <div class="midWidth caracteristique">
+                    <div>
+                        <p>Temps de préparation</p>
+                        <div class="deca">
+                            <h3>10 min</h3>
+                        </div>
+                    </div>
+                    <div class="ingredient">
+                        <p>Ingrédients</p>
+                        <div class="deca">
+                            <h3>list yes</h3>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Difficulté</p>
+                        <div class="deca">
+                            <h3>bar yes</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <article id="recette">
+        <h3>Recette</h3>
+        <div class="recette_container">
+            <div class="midWidth">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, quisquam veritatis dignissimos voluptates velit adipisci facilis quasi odio tenetur omnis, asperiores temporibus animi a reprehenderit eos impedit praesentium cum delectus?</p>
+            </div>
+            <div class="midWidth center">
+                <img src="https://fakeimg.pl/300x150/">
+            </div>
+        </div>
+    </article>
+    <section id="produit">
+        <p>Nous proposons</p>
+        <div class="fullCenter">
+            <div class="produit_space">
+                <div class="itemsList">
+                    <article class="fullCenter">
+                        <img src="{{ asset('images/produit.jpg') }}" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+
+                    <article class="fullCenter">
+                        <img src="{{ asset('images/produit.jpg') }}" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+                </div>
+                <div class="itemsList">
+                    <article class="fullCenter">
+                        <img src="{{ asset('images/produit.jpg') }}" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+
+                    <article class="fullCenter">
+                        <img src="{{ asset('images/produit.jpg') }}" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('recetteDIY', null, 'front_office') }}
+{% endblock %}
