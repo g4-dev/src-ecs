@@ -11,6 +11,12 @@ trait CreatedAtTrait
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     protected $createdAt;
+    
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
 
     public function setCreatedAt($datetime)
     {
@@ -25,5 +31,15 @@ trait CreatedAtTrait
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+    
+    public function setUpdated()
+    {
+        $this->updated = new \DateTime("now");
+    }
+    
+    public function getUpdated(): \DateTimeInterface
+    {
+        return $this->updated;
     }
 }

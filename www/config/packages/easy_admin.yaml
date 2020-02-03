@@ -150,8 +150,16 @@ easy_admin:
           - { property: 'passwordHash', type: 'password', label: 'Password' }
           - { property: 'email', type: 'email' }
           - { property: 'roles', type: 'choice', type_options: { multiple: true,
-               choices: { ROLE_MARKETING: 'ROLE_MARKETING',
+               choices: { Role\ Marketing: 'ROLE_MARKETING',
                           ROLE_EMPLOYEE: 'ROLE_EMPLOYEE',
                           ROLE_SUB_ADMIN: 'ROLE_SUBADMIN',
                           ROLE_SUPERADMIN: 'ROLE_SUPERADMIN' }
           }}
+
+    Article:
+      class: Admin\Entity\Article
+      new:
+        fields:
+          - 'title'
+          - 'body'
+          - {property: 'image', type: 'file'}
