@@ -1,1 +1,16 @@
-<h1>TEST SHOW PRODUCT</h1>
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('product', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    <hr class="sep-header">
+    <div class="cont">
+        <a class="btn-back pop" href="#">Retour</a>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('product', null, 'front_office') }}
+{% endblock %}
