@@ -1,16 +1,8 @@
+@import "./partials/reset.scss";
 @import "./partials/_variables.scss";
 @import "./partials/_font.scss";
 @import "./partials/common.scss";
 @import "./partials/layout.scss";
-
-body{
-  margin: 0;
-  padding: 0;
-}
-
-h1, h2, h3, h4, h5, p{
-  margin: 0;
-}
 
 a{
   text-decoration: none;
@@ -34,8 +26,7 @@ button{
   width:80%;
   height: .5px;
   background: $darkGreen;
-  margin-left: 10%;
-  margin-bottom:35px;
+  margin: 32px 0 32px 10%;
 }
 
 .btn-back{

@@ -8,11 +8,24 @@
     margin-left: 32px;
   }
 }
+.btn-back{
+  margin: 0 0 32px 64px;
+  font-size: 1.5rem;
+
+  @media screen and (max-width: 1430px) {
+    margin-left: 32px;
+  }
+  @media screen and (max-width: 1250px) {
+    margin-left: 16px;
+  }
+}
+
 #recette_main{
   @include centerAround;
   @include alignInit;
+  color: $darkGreen;
   .recette_img_container{
-    padding: 0 128px 0 128px;
+    padding: 0 64px;
   }
 
   .textAndCarac{
@@ -24,26 +37,57 @@
   }
 
   h2{
-    color: $darkGreen;
     font-size: 3rem;
     padding: 0 0 32px 0;
   }
 
   .description p{
-    font-size: 2.5rem;
-    line-height: 4rem;
+    font-size: 1.5rem;
+    line-height: 3.5rem;
   }
 
   .description{
-    @include midWidth;
+    max-width: 60%;
   }
 
   .caracteristique{
-    padding-right: 128px;
-    font-size: 2rem;
+    padding-right: 64px;
+    font-size: 1.5rem;
     @include midWidth;
     .ingredient{
       padding: 64px 0;
+    }
+    .minute{
+      font-size: 3rem;
+    }
+    ul{
+      column-count: 2;
+    }
+    .difficulty_bar{
+      width: 90%;
+      height: 30px;
+      @include center;
+      div{
+        width: 25%;
+        height:100%;
+        border-top: solid 2px black;
+        border-bottom: solid 2px black;
+      }
+      &__firstDiv{
+        border-left: solid 2px black;
+        border-right: solid 2px black;
+        border-top-left-radius: 40px;
+        border-bottom-left-radius: 40px;
+      }
+      &__secondDiv{
+        border-right: solid 2px black;
+      }
+      &__lastDiv{
+        border-left: solid 2px black;
+        border-right: solid 2px black;
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 40px;
+      }
     }
   }
 
@@ -51,7 +95,7 @@
     padding: 16px 0 16px 32px;
   }
 
-  @media screen and (max-width: 1700px) {
+  @media screen and (max-width: 1720px) {
     .description{
       max-width: 65%;
     }
@@ -64,16 +108,26 @@
     }
   }
 
-  @media screen and (max-width: 1400px) {
-    .description{
-      max-width: 75%;
+  @media screen and (max-width: 1560px) {
+    .description p{
+      font-size: 1rem;
     }
+    .description{
+      max-width: 60%;
+    }
+  }
+
+  @media screen and (max-width: 1430px) {
+
     .recette_img_container{
       padding: 0 64px 0 32px;
     }
     .caracteristique{
       padding-right: 32px;
-      max-width: 25%;
+      font-size: 1rem;
+      .minute{
+        font-size: 2.5rem;
+      }
     }
   }
 
@@ -81,25 +135,16 @@
     .description{
       max-width: 65%;
     }
-    .description p{
-      font-size: 1.5rem;;
-    }
     .recette_img_container{
       padding: 0 32px 0 16px;
     }
     .caracteristique{
       padding-right: 32px;
-      max-width: 20%;
+      max-width: 50%;
     }
   }
 
-  @media screen and (max-width: 1150px) {
-    .caracteristique{
-      max-width: 25%;
-    }
-  }
-
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1200px) {
     .recette_img_container{
       @include fullCenter;
       padding: 0 16px 64px 16px;
@@ -115,6 +160,10 @@
       width: 100%;
       @include fullCenter;
       padding: 64px 0;
+      font-size: 1.5rem;
+      .minute{
+        font-size: 3rem;
+      }
     }
     .description{
       max-width: 100%;
@@ -130,70 +179,93 @@
       display: none;
     }
     .deca{
-      padding: 0;
+      padding: 16px 0;
       text-align: center;
     }
+    .ingredient p{
+      text-align: center;
+    }
+    .difficulty_barWidth{
+      text-align: center;
+      width: 50%;
+      .deca{
+        @include fullCenter;
+      }
+    }
   }
+
+  @media screen and (max-width: 600px) {
+    .difficulty_barWidth{
+      width: 75%;
+    }
+  }
+
   @media screen and (max-width: 500px) {
     .description p{
       padding: 0 32px;
     }
+    .difficulty_barWidth{
+      width: 70%;
+    }
   }
+
   @media screen and (max-width: 400px) {
     .description p{
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
   #recette_main{
     @include fullCenter;
   }
 }
 
 #recette{
-  padding: 32px 128px 32px 128px;
-
+  padding: 32px 64px;
+  color: $dark;
   h3{
     font-size: 2.5rem;
     padding: 0px 0px 32px 0px;
   }
 
   p{
-    font-size: 2rem;
-    padding-left: 48px;
+    font-size: 1.5rem;
+    line-height: 3.5rem;
+    padding-left: 32px;
   }
 
   .recette_container{
     @include centerBetween;
   }
 
-  .recette_container div{
-    width: 50%;
+  .recette_container .recette_left{
+    width: 60%;
+  }
+  .recette_container .recette_right{
+    width: 40%;
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1560px) {
     p{
-      font-size: 1.8rem;
-      padding-left: 0px;
+      font-size: 1rem;
+      padding-left: 0;
     }
   }
 
   @media screen and (max-width: 1024px) {
-    padding: 32px 64px 32px 64px;
 
     .recette_container{
       @include fullCenter;
     }
 
     .recette_container div{
-      width: 100%;
-      max-width: 100%;
+      width: 100% !important;
+      max-width: 100% !important;
     }
 
     .recette_container p{
-      font-size: 2rem;
       margin-bottom: 32px;
     }
   }
@@ -206,8 +278,20 @@
   }
   @media screen and (max-width: 400px) {
     .recette_container p{
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
+  }
+}
+
+@media screen and (max-width: 1200px){
+  #recette{
+    padding: 32px 64px 32px 64px;
+  }
+}
+
+@media screen and (max-width: 700px){
+  #recette{
+    padding: 32px;
   }
 }
 
@@ -223,6 +307,7 @@
       font-size: 2rem;
       text-align: left;
       width: $align;
+      color: $darkGreen;
     }
   }
   .produit_space{
@@ -236,6 +321,7 @@
     }
   }
   p{
+    color: $dark;
     font-size: 2.5rem;
     padding: 0 0 0 64px;
   }
