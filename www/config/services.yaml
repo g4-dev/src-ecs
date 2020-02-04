@@ -48,6 +48,10 @@ services:
         class: 'Core\Helper\UploadNamer'
         public: true
 
+    admin.sitemap:
+        class: Admin\Service\SiteMapService
+        public: true
+
     Fixtures\DataFixtures\:
         resource: '../fixtures/DataFixtures'
         tags: ['doctrine.fixture.orm']
@@ -65,4 +69,3 @@ services:
 
     front_office.security.login_form_guard:
         class: 'FrontOffice\Security\LoginFormGuard'
-
