@@ -100,3 +100,35 @@
     }
   }
 }
+
+@media screen and (max-width:769px){
+  .top-category{
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+
+    .green-top-page{
+      width:100% !important;
+      margin-bottom: 25px;
+
+      p{
+        font-size:25px
+      }
+    }
+
+    .products-list-top{
+      //display: none;
+      width: 100% !important;
+    }
+  }
+
+  .products-list{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .product-minia{
+      width:80% !important;
+    }
+  }
+}
