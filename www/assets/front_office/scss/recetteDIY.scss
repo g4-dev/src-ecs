@@ -179,15 +179,36 @@
       display: none;
     }
     .deca{
-      padding: 0;
+      padding: 16px 0;
       text-align: center;
     }
+    .ingredient p{
+      text-align: center;
+    }
+    .difficulty_barWidth{
+      text-align: center;
+      width: 50%;
+      .deca{
+        @include fullCenter;
+      }
+    }
   }
+
+  @media screen and (max-width: 600px) {
+    .difficulty_barWidth{
+      width: 75%;
+    }
+  }
+
   @media screen and (max-width: 500px) {
     .description p{
       padding: 0 32px;
     }
+    .difficulty_barWidth{
+      width: 70%;
+    }
   }
+
   @media screen and (max-width: 400px) {
     .description p{
       font-size: 1rem;
