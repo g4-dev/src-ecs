@@ -2,7 +2,7 @@
 
 namespace FrontOffice\Entity;
 
-use Core\Entity\IdTrait;
+use Core\Entity\Traits;
 use Doctrine\ORM\Mapping as ORM;
 use Admin\Entity\Product;
 
@@ -14,7 +14,7 @@ use Admin\Entity\Product;
  */
 class ShipmentDetails
 {
-    use IdTrait;
+    use Traits\Id;
 
     /**
      * @var string

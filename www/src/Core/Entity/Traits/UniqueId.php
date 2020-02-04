@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\Entity;
+namespace Core\Entity\Traits;
 
-trait UniqueIdTrait
+trait UniqueId
 {
     /**
      * @var string

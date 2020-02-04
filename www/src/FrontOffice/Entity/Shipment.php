@@ -2,7 +2,7 @@
 
 namespace FrontOffice\Entity;
 
-use Core\Entity\IdTrait;
+use Core\Entity\Traits;
 use Core\Entity\User;
 use Core\Entity\PaymentType;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Shipment
 {
-    use IdTrait;
+    use Traits\Id;
 
     /**
      * @var \DateTime

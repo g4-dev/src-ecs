@@ -3,8 +3,7 @@
 
 namespace Admin\Entity;
 
-use Core\Entity\CreatedAtTrait;
-use Core\Entity\IdTrait;
+use Core\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -14,72 +13,64 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="article", indexes={@ORM\Index(name="article_article_id", columns={"id"})})
  * @ORM\Entity
  */
-class Article
+class Article extends Entity\AbstractFile implements Entity\FileInterface
 {
-    use IdTrait;
-    use CreatedAtTrait;
+    use Entity\Traits\Id;
     
     /**
      * @ORM\Column(type="string")
      */
-    private string $title;
+    private $title;
     
     /**
      * @ORM\Column(type="text")
      */
-    private string $body;
+    private $body;
     
     /**
-     * @ORM\Column(type="string")
+     * @var Entity\Admin
+     *
+     * @ORM\ManyToOne(targetEntity="Core\Entity\Admin")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="admin_id", referencedColumnName="id")
+     * })
      */
-    private string $image;
+    private $author;
     
-    /**
-     * @return mixed
-     */
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
     
-    /**
-     * @param string $title
-     */
-    public function setTitle(string $title): void
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+        
+        return $this;
     }
     
-    /**
-     * @return string
-     */
-    public function getBody()
+    public function getBody(): ?string
     {
         return $this->body;
     }
     
-    /**
-     * @param  string $body
-     */
-    public function setBody(string $body): void
+    public function setBody(string $body): self
     {
         $this->body = $body;
+        return $this;
     }
     
-    /**
-     * @return mixed
-     */
-    public function getImage()
+    public function getAuthor(): ?Entity\Admin
     {
-        return $this->image;
+        return $this->author;
     }
     
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image): void
+    public function setAuthor(?Entity\Admin $author): self
     {
-        $this->image = $image;
+        $this->author = $author;
+        
+        return $this;
     }
-
+    
+    use Entity\Traits\CreatedAt;
 }

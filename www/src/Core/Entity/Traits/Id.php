@@ -1,10 +1,10 @@
 <?php
 
-namespace  Core\Entity;
+namespace Core\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 
-trait IdTrait
+trait Id
 {
     /**
      * @var int

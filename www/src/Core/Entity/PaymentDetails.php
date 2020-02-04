@@ -12,7 +12,7 @@ use FrontOffice\Entity\Shipment;
  */
 class PaymentDetails
 {
-    use IdTrait;
+    use Traits\Id;
     /**
      * @var string
      *

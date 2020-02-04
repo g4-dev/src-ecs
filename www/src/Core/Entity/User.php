@@ -13,7 +13,7 @@ class User extends AbstractUser implements UserInterface
 {
     const DEFAULT_ROLE = 'ROLE_USER';
     
-    use UniqueIdTrait;
+    use Traits\UniqueId;
     
     /**
      * @var string
@@ -26,6 +26,8 @@ class User extends AbstractUser implements UserInterface
      * @ORM\Column(name="roles", type="array", nullable=false)
      */
     private array $roles = [self::DEFAULT_ROLE];
+    
+    use Traits\Roles;
 
     /**
      * @var string
@@ -50,8 +52,6 @@ class User extends AbstractUser implements UserInterface
      * @ORM\Column(name="phone_number", type="string", length=10, nullable=true, unique=false)
      */
     private string $phoneNumber;
-
-    use RolesTrait;
     
     public function setToken(string $token)
     {

@@ -2,22 +2,12 @@ vich_uploader:
     db_driver: orm # or mongodb or phpcr
 
     mappings:
-        product_image:
-            uri_prefix: /images/products
-            upload_destination: '%kernel.project_dir%/public/images/products'
+        files:
+            upload_destination: '%kernel.project_dir%/public/uploads/'
+            directory_namer: 'core.helper.upload_namer'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
-        user_image:
-            uri_prefix: /images/user
-            upload_destination: '%kernel.project_dir%/public/images/products'
-            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
-
-        blog_image:
-            uri_prefix: /images/user
-            upload_destination: '%kernel.project_dir%/public/images/blog'
-            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
-
-        diy_image:
-            uri_prefix: /images/diy
-            upload_destination: '%kernel.project_dir%/public/images/diy'
-            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            #chibron

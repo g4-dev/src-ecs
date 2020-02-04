@@ -32,6 +32,8 @@ doctrine:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        resolve_target_entities:
+            Core\Entity\Upload\EcsFileInterface: Admin\Entity\Article
         mappings:
             Core:
                 is_bundle: false
@@ -40,14 +42,14 @@ doctrine:
                 prefix: 'Core\Entity'
                 alias: Core
             FrontOffice:
-                    is_bundle: false
-                    type: annotation
-                    dir: '%kernel.project_dir%/src/FrontOffice/Entity'
-                    prefix: 'FrontOffice\Entity'
-                    alias: FrontOffice
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/FrontOffice/Entity'
+                prefix: 'FrontOffice\Entity'
+                alias: FrontOffice
             Admin:
-                    is_bundle: false
-                    type: annotation
-                    dir: '%kernel.project_dir%/src/Admin/Entity'
-                    prefix: 'Admin\Entity'
-                    alias: Admin
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Admin/Entity'
+                prefix: 'Admin\Entity'
+                alias: Admin

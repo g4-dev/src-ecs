@@ -40,6 +40,10 @@ services:
         class: Core\Service\UserService
         public: true
 
+    core.helper.upload_namer:
+        class: 'Core\Helper\UploadNamer'
+        public: true
+
     Fixtures\DataFixtures\:
         resource: '../fixtures/DataFixtures'
         tags: ['doctrine.fixture.orm']
@@ -47,8 +51,6 @@ services:
     Admin\Controller\:
       resource: '../src/Admin/Controller'
       tags: ['controller.service_arguments']
-      #arguments:
-          #- '@core.admin' # need to wire manually because we use EasyAdmin controller
 
     FrontOffice\Controller\:
         resource: '../src/FrontOffice/Controller'
@@ -59,3 +61,4 @@ services:
 
     front_office.security.login_form_guard:
         class: 'FrontOffice\Security\LoginFormGuard'
+

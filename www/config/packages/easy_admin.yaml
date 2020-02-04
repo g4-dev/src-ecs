@@ -150,16 +150,27 @@ easy_admin:
           - { property: 'passwordHash', type: 'password', label: 'Password' }
           - { property: 'email', type: 'email' }
           - { property: 'roles', type: 'choice', type_options: { multiple: true,
-               choices: { Role\ Marketing: 'ROLE_MARKETING',
-                          ROLE_EMPLOYEE: 'ROLE_EMPLOYEE',
-                          ROLE_SUB_ADMIN: 'ROLE_SUBADMIN',
-                          ROLE_SUPERADMIN: 'ROLE_SUPERADMIN' }
+               choices: { 'Chargé de Marketing': 'ROLE_MARKETING',
+                          'Employé': 'ROLE_EMPLOYEE',
+                          'Admin': 'ROLE_SUBADMIN',
+                          'Super Admin': 'ROLE_SUPERADMIN' }
           }}
 
     Article:
       class: Admin\Entity\Article
-      new:
+      list:
+        title: 'Articles'
+        fields:
+          - title
+          - body
+          - { property: 'file', label: 'Cover', type: 'image' }
+      show:
+        fields:
+          - title
+          - body
+          - { property: 'file', label: 'Cover', type: 'image' }
+      form:
         fields:
           - 'title'
-          - 'body'
-          - {property: 'image', type: 'file'}
+          - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
+          - { property: 'file', label: 'Cover', type: 'vich_image' }

@@ -2,7 +2,7 @@
 
 namespace Admin\Entity;
 
-use Core\Entity\IdTrait;
+use Core\Entity\Traits;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
-    use IdTrait;
+    use Traits\Id;
 
     /**
      * @var string
