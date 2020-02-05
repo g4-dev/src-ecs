@@ -1,0 +1,29 @@
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('accounting', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+
+    {% include 'bundles/EasyAdminBundle/default/flash_messages.html.twig' %}
+
+    Nom : {{ account.name }}
+    <br>
+    Prenom : {{ account.firstName }}
+    <br>
+    Téléphone : {{ account.phoneNumber }}
+    <br>
+    Adresse : {{ account.address }}
+    <br>
+    Email : {{ account.Username }}
+    <br>
+    Entreprise : {{ account.companyName }}
+    <br>
+    <a href="/account_user/update"><button type="submit" class="btn btn-lg btn-success btn-submit">Edit</button></a>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('accounting', null, 'front_office') }}
+{% endblock %}

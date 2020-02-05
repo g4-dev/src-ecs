@@ -19,6 +19,41 @@ class RegistrationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name', TextType::class, [
+                'required' => true,
+                'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
+                'constraints' => [
+                    new NotBlank(),
+                ]
+            ])
+            ->add('firstName', TextType::class, [
+                'required' => true,
+                'attr' => ['placeholder' => 'Prenom', 'class' => 'form-control-lg'],
+                'constraints' => [
+                    new NotBlank(),
+                ]
+            ])
+            ->add('phoneNumber', TextType::class, [
+                'required' => true,
+                'attr' => ['placeholder' => 'Téléphone', 'class' => 'form-control-lg'],
+                'constraints' => [
+                    new NotBlank(),
+                ]
+            ])
+            ->add('address', TextType::class, [
+                'required' => true,
+                'attr' => ['placeholder' => 'Adresse', 'class' => 'form-control-lg'],
+                'constraints' => [
+                    new NotBlank(),
+                ]
+            ])
+            ->add('companyName', TextType::class, [
+                'required' => true,
+                'attr' => ['placeholder' => 'Entreprise', 'class' => 'form-control-lg'],
+                'constraints' => [
+                    new NotBlank(),
+                ]
+            ])
             ->add('email', EmailType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Your email address', 'class' => 'form-control-lg'],
@@ -30,13 +65,6 @@ class RegistrationForm extends AbstractType
                         'field' => 'email',
                         'message' => 'Email {{ value }} has already been taken!'
                     ])
-                ]
-            ])
-            ->add('name', TextType::class, [
-                'required' => true,
-                'attr' => ['placeholder' => 'Your name', 'class' => 'form-control-lg'],
-                'constraints' => [
-                    new NotBlank(),
                 ]
             ])
             ->add('password', RepeatedType::class, [

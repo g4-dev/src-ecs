@@ -55,8 +55,11 @@ security:
     # Note: Only the *first* access control that matches will be used
     # these aren't real roles (just defaults symfony session flag)
     access_control:
-        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/account_user/update, role: ROLE_USER }
+        - { path: ^/account_user, role: ROLE_USER }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/pro, role: ROLE_PRO}
+        - { path: ^/pro/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - {path: ^/pro, role: ROLE_PRO}
-        - {path: ^/pro/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

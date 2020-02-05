@@ -2,8 +2,13 @@
 
 namespace FrontOffice\Controller;
 
+use Core\Entity\User;
 use Core\Service\UserService;
+use FrontOffice\Form\AccountUpdateForm;
 use FrontOffice\Form\RegistrationForm;
+use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +18,7 @@ class RegistrationController extends AbstractController
     /**
      * @var UserService
      */
-    protected $userService;
+    protected UserService $userService;
 
     public function __construct(UserService $userService)
     {
@@ -21,7 +26,8 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/sign-up", name="fo_registration")
+     * @Route("/sign-up",
+     *     name="fo_registration")
      */
     public function register(Request $request)
     {
@@ -48,8 +54,51 @@ class RegistrationController extends AbstractController
         $user = $this->userService->fetchByUniqueId($uniqueId);
         if ($user->getToken() == $token) {
             $this->userService->activate($user);
+
+            $this->addFlash('success', 'User successfully created');
             return $this->redirectToRoute('fo_homepage');
         }
         return new Response('error');
+    }
+
+    /**
+     * @Route("/account_user/",
+     *     name="fo_account")
+     * @param Request $request
+     * @return Response
+     */
+    public function showAccount(Request $request)
+    {
+        $user = $this->getUser();
+
+        return $this->render('front_office/accounting/show-account.html.twig', [
+            'controller_name' => 'RegistrationController',
+            'account' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/account_user/update",
+     *     name="fo_account_update")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
+     */
+    public function editAccount(Request $request, EntityManagerInterface $em)
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(AccountUpdateForm::class, $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->userService->update($user, $form->getData()->toArray());
+
+            $this->addFlash('success', 'User successfully updated');
+            return $this->redirectToRoute('fo_account');
+        }
+
+        return $this->render('front_office/accounting/account-update.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

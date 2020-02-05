@@ -1,8 +1,12 @@
 Core\Entity\User:
   user_test:
     name: 'Test User'
+    first_name: 'Test'
+    phone_number: '0123456789'
     uniqueId (unique): '<userUniqueId()>'
     email (unique): 'test@test.tld'
     password_hash: '<userPasswordEncoder("test")>'
     roles: ['ROLE_USER']
     createdAt: '<dateTimeBetween("now", "now")>'
+    address: 'Lyon test 69007'
+    company_name: 'Company Test'

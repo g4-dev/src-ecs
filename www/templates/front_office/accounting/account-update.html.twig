@@ -1,0 +1,25 @@
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+  {{ encore_entry_link_tags('accounting', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="border-bottom">Edit</h1>
+        {% include 'front_office/forms/account-update-form.html.twig' %}
+        <a href="/account_user"><button class="btn btn-lg btn-success btn-submit">Retour</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="app-call" data-method="initAccountUpdateForm">
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  {{ encore_entry_script_tags('accounting', null, 'front_office') }}
+{% endblock %}

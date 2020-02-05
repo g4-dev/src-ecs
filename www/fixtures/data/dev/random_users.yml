@@ -1,11 +1,15 @@
 Core\Entity\User:
   user{1..50}:
     name: '<name()>'
+    first_name: '<firstName()>'
+    phone_number: '0<numberBetween(000000000, 999999999)>'
     uniqueId (unique): '<userUniqueId()>'
     password_hash: '<(substr(md5(uniqid(rand(), true)), 0, 16))>'
     email (unique): '<email()>'
     roles: ['ROLE_USER']
     createdAt: '<dateTimeBetween("-100 days", "now")>'
+    address: '<address()>'
+    company_name: '<company()>'
 
 Admin\Entity\ProductType:
   product_type{1..15}:
