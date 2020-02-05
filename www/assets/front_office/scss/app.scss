@@ -1,16 +1,8 @@
+@import "./partials/reset.scss";
 @import "./partials/_variables.scss";
 @import "./partials/_font.scss";
 @import "./partials/common.scss";
 @import "./partials/layout.scss";
-
-body{
-  margin: 0;
-  padding: 0;
-}
-
-h1, h2, h3, h4, h5, p{
-  margin: 0;
-}
 
 a{
   text-decoration: none;
@@ -23,4 +15,38 @@ button{
   padding: 0;
   width: auto;
   background: transparent;
+}
+
+.cont{
+  padding:0 70px;
+  position: relative;
+}
+
+.sep-header{
+  width:80%;
+  height: .5px;
+  background: $darkGreen;
+  margin: 32px 0 32px 10%;
+}
+
+.btn-back{
+  color:$dark;
+  position: relative;
+  display: inline-block;
+
+  &::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height:2px;
+    width:0;
+    background: $darkGreen;
+    transition:width .5s ease-in-out;
+  }
+
+  &:hover::after{
+    transition:width .5s ease-in-out;
+    width:100%;
+  }
 }

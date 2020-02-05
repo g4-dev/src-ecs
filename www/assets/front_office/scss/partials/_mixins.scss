@@ -38,7 +38,7 @@
 }
 
 @mixin alignInit{
-  align-items: initial;
+  align-items: initial !important;
 }
 
 @mixin fullWidth{
