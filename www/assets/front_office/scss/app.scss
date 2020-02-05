@@ -17,6 +17,10 @@ button{
   background: transparent;
 }
 
+.headerMob{
+  z-index:1000;
+}
+
 .cont{
   padding:0 70px;
   position: relative;
@@ -48,5 +52,26 @@ button{
   &:hover::after{
     transition:width .5s ease-in-out;
     width:100%;
+  }
+}
+
+.green-top-page{
+  width:30%;
+  height: 100%;
+  background:$lightGreen;
+  padding: 70px;
+
+  h1{
+    color:$darkGreen;
+    font-size:$f77;
+    padding-bottom: 10px;
+    border-bottom:solid 2px;
+    margin-bottom: 15px;
+  }
+
+  p{
+    font-size: $f40;
+    line-height: $inter80;
+    color:$darkGreen;
   }
 }
