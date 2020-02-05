@@ -4,7 +4,7 @@
     - homepage
     - accounting
     - company
-    - category
+    - product_category
     - product
     - recetteDIY
   default_ext: ts
