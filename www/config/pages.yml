@@ -1,12 +1,12 @@
 # Add pages for the differents spaces here (correspond to webpack entries)
 - name: front_office
   pages:
-    - products
     - homepage
     - accounting
     - company
-    - product_simple
     - recetteDIY
+    - product_category
+    - product
   default_ext: ts
 
 - name: easyadmin
