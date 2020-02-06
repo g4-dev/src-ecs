@@ -8,8 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class PurchaseItem.
  *
- * @author MacFJA
- *
  * @ORM\Table(name="purchase_item")
  * @ORM\Entity
  */
@@ -44,20 +42,20 @@ class PurchaseItem
     /**
      * The ordered product.
      *
-     * @var Admin\Entity\Product
+     * @var \Admin\Entity\Product
      * @ORM\ManyToOne(targetEntity="Admin\Entity\Product", inversedBy="purchasedItems")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     protected $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Purchase", inversedBy="purchasedItems")
+     * @ORM\ManyToOne(targetEntity="Purchase", inversedBy="purchasedItems", cascade={"persist"})
      * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id")
      */
     protected $purchase;
 
     /**
-     * @param Admin\Entity\Product $product
+     * @param \Admin\Entity\Product $product
      */
     public function setProduct($product)
     {
@@ -65,7 +63,7 @@ class PurchaseItem
     }
 
     /**
-     * @return Admin\Entity\Product
+     * @return \Admin\Entity\Product
      */
     public function getProduct()
     {

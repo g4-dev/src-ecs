@@ -10,8 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Purchase.
  *
- * @author MacFJA
- *
  * @ORM\Table(name="purchase")
  * @ORM\Entity
  */
@@ -77,7 +75,7 @@ class Purchase
     /**
      * The user who made the purchase.
      *
-     * @var Core\Entity\User
+     * @var \Core\Entity\User
      * @ORM\ManyToOne(targetEntity="Core\Entity\User", inversedBy="purchases")
      */
     protected $buyer;
@@ -86,7 +84,7 @@ class Purchase
      * Items that have been purchased.
      *
      * @var PurchaseItem[]
-     * @ORM\OneToMany(targetEntity="PurchaseItem", mappedBy="purchase")
+     * @ORM\OneToMany(targetEntity="PurchaseItem", mappedBy="purchase", cascade={"persist"})
      */
     protected $purchasedItems;
 
@@ -130,7 +128,7 @@ class Purchase
     }
 
     /**
-     * @return Core\Entity\User
+     * @return \Core\Entity\User
      */
     public function getBuyer()
     {

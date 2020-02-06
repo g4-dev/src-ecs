@@ -23,7 +23,7 @@ easy_admin:
               children:
                   - { entity: 'Article', icon: 'th-list', label: 'menu.product.list', params: { sortField: 'createdAt' }, default: true }
             - { label: 'menu.customer', entity: 'User', icon: 'users' }
-            - { label: 'menu.customer', entity: 'Admin', icon: 'users' }
+            - { label: 'menu.admin', entity: 'Admin', icon: 'users' }
             - { label: 'menu.purchase', entity: 'Purchase', icon: 'credit-card', params: { sortField: 'deliveryDate' } }
             - { label: 'menu.about' }
 

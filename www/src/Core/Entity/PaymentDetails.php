@@ -64,12 +64,12 @@ class PaymentDetails
         return $this;
     }
 
-    public function getShipment(): ?Purchase
+    public function getPurchase(): ?Purchase
     {
         return $this->shipment;
     }
 
-    public function setShipment(?Purchase $shipment): self
+    public function setPurchase(?Purchase $shipment): self
     {
         $this->shipment = $shipment;
 

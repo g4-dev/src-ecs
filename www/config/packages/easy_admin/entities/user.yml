@@ -23,7 +23,7 @@ easy_admin:
                 - 'purchases'
                 - { property: 'is_active', type: 'toggle', label: 'Active?' }
                 - { property: 'roles', type: 'array' }
-                - { property: 'contract', template: 'easy_admin/User/contract.html.twig', base_path: '%app.path.user_contracts%' }
+                - { property: 'contract', template: 'bundles/EasyAdminBundle/customs/contract.html.twig', base_path: '%app.path.user_contracts%' }
                 - lastLoginAt
                 - lastLoginIp
                 - lastUserAgent

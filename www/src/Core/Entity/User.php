@@ -162,4 +162,52 @@ class User extends AbstractUser implements UserInterface
 
         return $this;
     }
+    
+    /**
+     * @param \FrontOffice\Entity\Purchase[] $purchases
+     */
+    public function setPurchases($purchases)
+    {
+        $this->purchases = $purchases;
+    }
+    
+    /**
+     * @return Purchase[]
+     */
+    public function getPurchases()
+    {
+        return $this->purchases;
+    }
+    
+    /**
+     * @param File $contract
+     */
+    public function setContractFile(File $contract = null)
+    {
+        $this->contractFile = $contract;
+    }
+    
+    /**
+     * @return File
+     */
+    public function getContractFile()
+    {
+        return $this->contractFile;
+    }
+    
+    /**
+     * @param string $contract
+     */
+    public function setContract($contract)
+    {
+        $this->contract = $contract;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getContract()
+    {
+        return $this->contract;
+    }
 }

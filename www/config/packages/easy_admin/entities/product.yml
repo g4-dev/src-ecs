@@ -43,7 +43,7 @@ easy_admin:
                 fields:
                     - { type: 'group', css_class: 'col-sm-8', label: 'Basic information', icon: 'pencil' }
                     - { property: 'name', css_class: 'large' }
-                    - { property: 'description', type: 'fos_ckeditor' }
+                    - { property: 'description', type: 'text' }
                     - { type: 'divider' }
                     - { property: 'categories', type: 'easyadmin_autocomplete' }
                     - { type: 'group', css_class: 'col-sm-4', label: 'Product Details', icon: 'cube' }
