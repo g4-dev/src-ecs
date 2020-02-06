@@ -2,20 +2,13 @@ vich_uploader:
     db_driver: orm # or mongodb or phpcr
 
     mappings:
-        files:
-            uri_prefix: '/uploads'
-            upload_destination: '%kernel.project_dir%/public/uploads'
-            directory_namer: Vich\UploaderBundle\Naming\SubdirDirectoryNamer
-            inject_on_load: false
-            delete_on_update: true
-            delete_on_remove: true
-            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        product_images:
+            uri_prefix: '%app.path.product_images%'
+            upload_destination: '%kernel.project_dir%/../public/uploads/images/products'
+        user_contracts:
+            uri_prefix: '%app.path.user_contracts%'
+            upload_destination: '%kernel.project_dir%/../public/uploads/files/user/contracts'
 
-#Admin\Entity\Article:
- #   coverFile:
-  #      mapping: files        # required
-   #     filename_property: coverName  # required
-    #    size: coverSize
-     #   mime_type: coverMimeType
-      #  original_name: coverOriginalName
-       # dimensions: coverDimensions
+        blog_covers:
+            uri_prefix: '%app.path.blog_covers%'
+            upload_destination: '%kernel.project_dir%/../public/uploads/images/blog'

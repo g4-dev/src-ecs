@@ -5,6 +5,8 @@ namespace Admin\Entity;
 
 use Core\Entity as CoreEn;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 /**
@@ -13,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="article", indexes={@ORM\Index(name="article_article_id", columns={"id"})})
  * @ORM\Entity
  */
-class Article implements CoreEn\FileInterface
+class Article
 {
     use CoreEn\Traits\Id;
     
@@ -38,14 +40,23 @@ class Article implements CoreEn\FileInterface
     private $author;
     
     /**
-     * @var CoreEn\Admin
+     * It only stores the name of the image associated with the product.
      *
-     * @ORM\ManyToOne(targetEntity="Core\Entity\File")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="admin_id", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
-    private $file;
+    private $image;
+    
+    /**
+     * This unmapped property stores the binary contents of the image file
+     * associated with the product.
+     *
+     * @Vich\UploadableField(mapping="blog_covers", fileNameProperty="image")
+     *
+     * @var File
+     */
+    private $imageFile;
     
     public function getTitle(): ?string
     {
@@ -70,17 +81,17 @@ class Article implements CoreEn\FileInterface
         return $this;
     }
     
-    public function getAuthor(): ?Entity\Admin
+    public function getAuthor(): ?CoreEn\Admin
     {
         return $this->author;
     }
     
-    public function setAuthor(?Entity\Admin $author): self
+    public function setAuthor(?CoreEn\Admin $author): self
     {
         $this->author = $author;
         
         return $this;
     }
     
-    use Entity\Traits\CreatedAt;
+    use CoreEn\Traits\CreatedAt;
 }

@@ -14,7 +14,9 @@ parameters:
     container.dumper.inline_factories: true
 
     # image mappings
-    ecs.admin.files: /uploads/images/admin
+    app.path.product_images: /uploads/images/products
+    app.path.user_contracts: /uploads/files/user/contracts
+    app.path.blog_covers: /uploads/images/blog
 
 services:
     # default configuration for services in *this* file

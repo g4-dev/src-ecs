@@ -2,8 +2,11 @@
 
 namespace Core\Entity;
 
+use FrontOffice\Entity\Purchase;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
@@ -52,6 +55,33 @@ class User extends AbstractUser implements UserInterface
      * @ORM\Column(name="phone_number", type="string", length=10, nullable=true, unique=false)
      */
     private string $phoneNumber;
+    
+    /**
+     * @var Purchase[]
+     *
+     * @ORM\OneToMany(targetEntity="FrontOffice\Entity\Purchase", mappedBy="buyer", cascade={"remove"})
+     */
+    private $purchases;
+    
+    /**
+     * It only stores the name of the file which stores the contract subscribed
+     * by the user.
+     *
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $contract;
+    
+    /**
+     * This unmapped property stores the binary contents of the file which stores
+     * the contract subscribed by the user.
+     *
+     * @Vich\UploadableField(mapping="user_contracts", fileNameProperty="contract")
+     *
+     * @var File
+     */
+    private $contractFile;
     
     public function setToken(string $token)
     {

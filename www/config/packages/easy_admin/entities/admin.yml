@@ -1,0 +1,38 @@
+easy_admin:
+    entities:
+        Admin:
+            class: Core\Entity\Admin
+            label: 'Admins'
+            list:
+                title: 'Admins'
+                fields:
+                    - id
+                    - name
+                    - { property: 'email', type: 'email' }
+                    - { property: 'is_active', type: 'toggle', label: 'Active?' }
+                    - { property: 'roles', type: 'array' }
+                    - createdAt
+                actions: ['show', 'edit', 'delete']
+                dql_filter: 'entity.isDeleted = false'
+            show:
+                fields:
+                    - id
+                    - name
+                    - { property: 'email', type: 'email' }
+                    - { property: 'is_active', type: 'toggle', label: 'Active?' }
+                    - { property: 'roles', type: 'array' }
+                    - createdAt
+                    - lastLoginAt
+                    - lastLoginIp
+                    - lastUserAgent
+            form:
+                fields:
+                    - name
+                    - { property: 'passwordHash', type: 'password', label: 'Password' }
+                    - { property: 'email', type: 'email' }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true,
+                                                                           choices: { 'Chargé de Marketing': 'ROLE_MARKETING',
+                                                                                      'Employé': 'ROLE_EMPLOYEE',
+                                                                                      'Admin': 'ROLE_SUBADMIN',
+                                                                                      'Super Admin': 'ROLE_SUPERADMIN' }
+                    }}
