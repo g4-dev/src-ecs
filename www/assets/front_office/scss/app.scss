@@ -103,6 +103,18 @@ button{
   .top-page{
     flex-direction: column;
 
+    .green-top-page {
+      padding: 70px 0;
+
+      h1{
+        border-bottom: none !important;
+        padding:0 30px;
+      }
+
+      p{
+        padding:0 30px;
+      }
+    }
     div{
       width:100% !important;
     }
