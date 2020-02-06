@@ -1,5 +1,6 @@
 // Ici ce composant peut être réutilisé dans plusieurs pages
 @import 'app';
+$widthProduct:330px;
 
 .top-category{
   display: flex;
@@ -22,7 +23,7 @@
 
   .product-minia{
     height:615px;
-    width: 330px;
+    width: $widthProduct;
 
     div:first-child{
       width: 100%;
@@ -101,12 +102,12 @@
   }
 }
 
-@media screen and (max-width:1025px){
+@media screen and (max-width:1400px){
   .top-category{
     flex-direction: column;
 
     .green-top-page{
-      width: 100%;
+      width: 100% !important;
       padding:70px 0 !important;
       margin-bottom: 75px;
 
@@ -119,16 +120,27 @@
         padding:0 30px !important;
       }
     }
+  }
+  .products-list{
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 
-    .products-list{
-      width: 100%;
-      flex-direction: column;
+    .product-minia{
+      width:40%;
     }
   }
+}
 
+@media screen and (max-width:769px){
   .products-list{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    .product-minia{
+      width:$widthProduct;
+    }
   }
 }
