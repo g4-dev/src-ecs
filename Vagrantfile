@@ -6,7 +6,7 @@ require 'yaml'
 current_dir      = File.dirname(File.expand_path(__FILE__))
 
 if(!File.exist?("#{current_dir}/vm_config.yaml"))
-  puts "You need a file named vm_config.yaml, don't delete vm_config.dist.yaml"
+  puts "You need a file named vm_config.yaml, run cp vm_config.dist.yaml vm_config.yaml"
   exit
 end
 
@@ -17,7 +17,7 @@ conf, vm         =  yml['conf'], yml['vm']
 os               = "bento/debian-" + conf['os']
 # book repo
 playbook_name    = "playbook-#{conf['projectname']}"
-playbook         = "https://github.com/#{conf['org']}/#{playbook_name}.git" 
+playbook         = "https://github.com/#{conf['org']}/#{playbook_name}.git"
 
 ### work path variable to change in debug mode
 # Be aware of shared folders when deleting things
@@ -89,15 +89,21 @@ Vagrant.configure(2) do |config|
       ansible.extra_vars = conf
   end
 
-    if NFS_ENABLED && Vagrant::Util::Platform.darwin? && !Vagrant.has_plugin?('vagrant-bindfs')
-        puts "please run : vagrant plugin install vagrant-bindfs"
-        exit
-    end
+  if !NFS_ENABLED
+    config.vm.synced_folder "./", "/data/ecs/", type: "rsync",
+    rsync__args: ["--verbose", "--archive", "--delete", "--no-owner", "--no-group"],
+    rsync__exclude: ['/**/node_modules/**','/**/vendor/**', '.git', '.vagrant', '.idea/', '.vscode/','www/config/paramters.yaml']
+  end
+
+  if NFS_ENABLED && Vagrant::Util::Platform.darwin? && !Vagrant.has_plugin?('vagrant-bindfs')
+     puts "please run : vagrant plugin install vagrant-bindfs"
+     exit
+  end
 
   if NFS_ENABLED
     # NFS config / bind vagrant user to nfs mount
     if Vagrant::Util::Platform.darwin?
-        config.vm.synced_folder "./www", web_dir, nfs: true, mount_options: ['rw','tcp','fsc','async','noatime','rsize=8192','wsize=8192','noacl','actimeo=2'],
+        config.vm.synced_folder "./", "/data/ecs", nfs: true, mount_options: ['rw','tcp','fsc','async','noatime','rsize=8192','wsize=8192','noacl','actimeo=2'],
         linux__nfs_options: ['rw','no_subtree_check','all_squash','async']
         config.bindfs.bind_folder web_dir, web_dir
     else
