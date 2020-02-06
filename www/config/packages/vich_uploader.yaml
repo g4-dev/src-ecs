@@ -3,11 +3,19 @@ vich_uploader:
 
     mappings:
         files:
-            upload_destination: '%kernel.project_dir%/public/uploads/'
-            directory_namer: 'core.helper.upload_namer'
+            uri_prefix: '/uploads'
+            upload_destination: '%kernel.project_dir%/public/uploads'
+            directory_namer: Vich\UploaderBundle\Naming\SubdirDirectoryNamer
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
-            #chibron
+#Admin\Entity\Article:
+ #   coverFile:
+  #      mapping: files        # required
+   #     filename_property: coverName  # required
+    #    size: coverSize
+     #   mime_type: coverMimeType
+      #  original_name: coverOriginalName
+       # dimensions: coverDimensions

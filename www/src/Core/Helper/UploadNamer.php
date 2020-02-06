@@ -6,7 +6,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Vich\UploaderBundle\Mapping\PropertyMapping;
 use Vich\UploaderBundle\Naming\DirectoryNamerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Vich\UploaderBundle\Util\Transliterator;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class UploadNamer implements DirectoryNamerInterface
 {
@@ -21,20 +21,29 @@ class UploadNamer implements DirectoryNamerInterface
     private $user;
     
     /**
+     * @var $user|null
+     */
+    private $session;
+    
+    /**
      * @param ManagerRegistry $doctrine
      */
-    public function __construct(ManagerRegistry $doctrine, TokenStorageInterface $tokenStorage)
+    public function __construct(ManagerRegistry $doctrine, TokenStorageInterface $tokenStorage, SessionInterface $session)
     {
         $this->doctrine = $doctrine;
         $this->user = $tokenStorage->getToken()->getUser();
+        $this->session = $session;
+    
     }
     
     public function directoryName($object, PropertyMapping $mapping): string
     {
-        $userDirId = explode("@", $this->user->getEmail())[0] . RandomIdGenerator::generate();
-        dump($userDirId);
-        return sprintf('%s/%s/%s',
-            $userDirId, $this->getShortClassName($object), $this->getIdentifier($object));
+        $userDirId = explode("@", $this->user->getEmail())[0];
+        $directoryName = sprintf('%s/%s', $userDirId, $this->getShortClassName($object));
+        dump($directoryName);
+        //$this->session->set('full_temp_path', $directoryName);
+        
+        return $directoryName;
     }
     
     /**
@@ -50,25 +59,7 @@ class UploadNamer implements DirectoryNamerInterface
     {
         $fqcn = get_class($object);
         $classParts = explode('\\', $fqcn);
-        
-        return Transliterator::transliterate(array_pop($classParts));
-    }
-    
-    /**
-     * Get identifier given object.
-     * Use Doctrine metadata as a generic method.
-     *
-     * @param object $object
-     *
-     * @return string
-     */
-    private function getIdentifier($object): string
-    {
-        $fqcn = get_class($object);
-        $identifiers = $this->doctrine->getManagerForClass($fqcn)
-           ->getClassMetadata($fqcn)
-           ->getIdentifierValues($object);
-        
-        return Transliterator::transliterate(reset($identifiers));
+        //array_pop($classParts);
+        return (string) strtolower(end($classParts));
     }
 }

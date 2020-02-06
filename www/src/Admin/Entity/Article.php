@@ -3,7 +3,7 @@
 
 namespace Admin\Entity;
 
-use Core\Entity;
+use Core\Entity as CoreEn;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="article", indexes={@ORM\Index(name="article_article_id", columns={"id"})})
  * @ORM\Entity
  */
-class Article extends Entity\AbstractFile implements Entity\FileInterface
+class Article implements CoreEn\FileInterface
 {
-    use Entity\Traits\Id;
+    use CoreEn\Traits\Id;
     
     /**
      * @ORM\Column(type="string")
@@ -28,7 +28,7 @@ class Article extends Entity\AbstractFile implements Entity\FileInterface
     private $body;
     
     /**
-     * @var Entity\Admin
+     * @var CoreEn\Admin
      *
      * @ORM\ManyToOne(targetEntity="Core\Entity\Admin")
      * @ORM\JoinColumns({
@@ -36,6 +36,16 @@ class Article extends Entity\AbstractFile implements Entity\FileInterface
      * })
      */
     private $author;
+    
+    /**
+     * @var CoreEn\Admin
+     *
+     * @ORM\ManyToOne(targetEntity="Core\Entity\File")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="admin_id", referencedColumnName="id")
+     * })
+     */
+    private $file;
     
     public function getTitle(): ?string
     {

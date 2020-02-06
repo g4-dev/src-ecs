@@ -1,6 +1,5 @@
 imports:
     - { resource: parameters.yaml }
-    #- { resource: pages.yml }
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
@@ -13,6 +12,9 @@ parameters:
 
     # perf
     container.dumper.inline_factories: true
+
+    # image mappings
+    ecs.admin.files: /uploads/images/admin
 
 services:
     # default configuration for services in *this* file

@@ -38,7 +38,7 @@ easy_admin:
           - price_per_unit
           - product_short_desc
           - promo
-          - product_type_id
+          - product_type
 
     Shipment:
       class: FrontOffice\Entity\Shipment
@@ -158,16 +158,17 @@ easy_admin:
 
     Article:
       class: Admin\Entity\Article
+      image_base_path: '%kernel.project_dir%/public/uploads/'
       list:
         title: 'Articles'
         fields:
           - title
-          - body
-          - { property: 'file', label: 'Cover', type: 'image' }
+          - { property: 'file', label: 'Cover', type: 'image', template: 'bundles/EasyAdminBundle/customs/field_vich_image.html.twig' }
+        actions: ['edit', 'delete']
       show:
         fields:
           - title
-          - body
+          - { property: body, label: Contenu, type: html }
           - { property: 'file', label: 'Cover', type: 'image' }
       form:
         fields:
