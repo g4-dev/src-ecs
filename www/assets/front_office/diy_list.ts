@@ -5,7 +5,6 @@ var btnSearch = $('.input-diy');
 var search = $('.diy-bar');
 
 search.click(function () {
-    console.log('a');
     btnSearch.addClass('showBtn');
 });
 
