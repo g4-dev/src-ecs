@@ -92,7 +92,7 @@ Vagrant.configure(2) do |config|
   if !NFS_ENABLED
     config.vm.synced_folder "./", "/data/ecs/", type: "rsync",
     rsync__args: ["--verbose", "--archive", "--delete", "--no-owner", "--no-group"],
-    rsync__exclude: ['/**/node_modules/**','/**/vendor/**', '.git', '.vagrant', '.idea/', '.vscode/','www/config/paramters.yaml']
+    rsync__exclude: ['/**/.DS_Store','/**/node_modules/**','/**/vendor/**', '.git', '.vagrant', '.idea/', '.vscode/','www/config/paramters.yaml']
   end
 
   if NFS_ENABLED && Vagrant::Util::Platform.darwin? && !Vagrant.has_plugin?('vagrant-bindfs')

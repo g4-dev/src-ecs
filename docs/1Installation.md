@@ -9,11 +9,6 @@
 
 >Selon votre config la VM peut être très gourmande, on peut donc ajuster cette [config](../vm_config.yaml)
 
-#### Ignorez les fichiers de config
-```
-git update-index --assume-unchanged vm_config.yaml;
-```
-
 ## Index
 
 0. [VM](#installation-et-lancement-de-la-vm)
@@ -45,12 +40,14 @@ git remote add g4-dev git@github.com:g4-dev/src-ecs.git
 - [ecoservice.coom](http://ecoservice.coom)
 
 ## IDE
-> Une bonne partie de la configuration est automatique mais il faut toutefois vérifier la connection
+> Vous avez besoin de vérifier la connection
 en sftp avec la VM
 
 Allez dans `paramètres` > `Deployment` > serveur `ecs`
 
-![Déploiement](res/deployment.png)
+![Download](res/deployment.png)
+
+Pour télécharger les fichiers générés sur la VM il vous faut quand même cette config
 
 - Hôte : `localhost`
 - Port : `2222`
@@ -58,12 +55,16 @@ Allez dans `paramètres` > `Deployment` > serveur `ecs`
 - Mot de passe :`vagrant`
 - root path : `/data/ecs/`
 
+Le serveur `ecs` ne doit pas être mis par default si vous utiliser `vagrant rsync-auto`
+
 Puis reproduire ces paramètres
 ![Déploiement](res/deployement2.png)
 
 ## Sources
 > Pour mettre à jours les sources local sur la VM <br>
 > *(Ne concerne pas ceux qui ont le NFS activé)*
+
+`vagrant rsync-auto` pour upload sur la vm
 
 Après un changement de branche il faut upload vos sources sur la VM qui n'est pas mise à jour automatiquement : <br> 
 

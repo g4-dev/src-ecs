@@ -15,7 +15,7 @@
 
 - VSCode est déconseillé
 
-- Renommez config.yaml.dist` en `vm_config.yaml`
+- Renommez `config.yaml.dist` en `vm_config.yaml`
 
 ## Le flux de travail
 
