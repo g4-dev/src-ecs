@@ -4,15 +4,23 @@
 @import "./partials/common.scss";
 @import "./partials/layout.scss";
 
-main{
+
+main {
   position: relative;
   width: 100%;
   height: 100%;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 a{
   text-decoration: none;
   color: $darkGrey;
+  cursor: pointer;
 }
 
 button{
@@ -21,6 +29,7 @@ button{
   padding: 0;
   width: auto;
   background: transparent;
+  cursor: pointer;
 }
 
 .headerMob{
@@ -36,7 +45,7 @@ button{
   width:80%;
   height: .5px;
   background: $darkGreen;
-  margin: 32px 0 32px 10%;
+  margin: 16px auto 32px auto;
 }
 
 .btn-back{

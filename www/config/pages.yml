@@ -8,6 +8,7 @@
     - diy_list
     - product_category
     - product
+    - professional
   default_ext: ts
 
 - name: easyadmin

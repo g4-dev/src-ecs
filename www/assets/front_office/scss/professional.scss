@@ -1,0 +1,179 @@
+@import 'app.scss';
+
+.pro_title{
+  margin-left: 32px;
+  font-size: 2.5rem;
+  color: $darkGrey;
+}
+
+.devis{
+  padding: 8px 24px;
+  border: 2px solid $darkGrey;
+  color: $darkGrey;
+  font-size: 1.8rem;
+  display: block;
+  margin: 32px 0 0 128px;
+}
+
+.devis:hover{
+  background: #525E36;
+  color: white;
+  border: 2px $darkGrey solid;
+  transition: .4s ease;
+}
+
+.listServicePro{
+  color: $darkGrey;
+  padding: 0 128px;
+}
+
+.service{
+  @include centerAround;
+}
+
+@media screen and (max-width: 1400px) {
+  .listServicePro{
+    padding: 0 64px;
+  }
+  .devis{
+    margin: 32px 0 0 64px;
+  }
+}
+
+.pro_informations{
+  height: 200px;
+  justify-content: space-around;
+}
+
+.listServicePro img{
+  padding: 16px 0;
+}
+
+.listServicePro article{
+  border: 2px solid $darkGrey;
+  font-size: 1.5rem;
+}
+
+.listServicePro .refPro h4{
+  padding-left: 8px;
+}
+
+.iconePro:before{
+  content: ">";
+}
+
+.iconePro{
+  color: $darkGrey;
+  font-size: 5rem;
+  margin-top: -16px;
+  transition: .5s;
+}
+
+.pro_informations-header{
+  width: 100%;
+  font-size: 2rem;
+  @include centerBetween;
+}
+
+.container_article{
+  cursor: pointer;
+  transition:.6s;
+  height: 100%;
+  overflow: hidden;
+  margin-top: 32px;
+  .hiddenText{
+    font-size: 1.25rem;
+    padding : 16px 128px 16px 128px;
+
+  }
+  .text_container{
+    transition:height .5s ease-out;
+    height:0;
+    overflow:hidden;
+    width: 90%;
+    background: $lightGreen;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .pro_informations-header{
+    width: 100%;
+    font-size: 1.5rem;
+  }
+  .miniDescription{
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .pro_informations-header{
+    @include fullCenter;
+    h3{
+      padding: 16px 0;
+    }
+    .refPro{
+      @include center;
+      padding: 16px 0;
+    }
+  }
+
+  .container_article {
+    .hiddenText {
+      padding: 16px 64px 16px 64px;
+    }
+  }
+  .miniDescription{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .pro_informations-header{
+    font-size: 1rem;
+  }
+  .listServicePro article{
+    font-size: 1rem;
+  }
+  .iconePro{
+    font-size: 2.5rem;
+    margin-top: -8px;
+  }
+
+}
+
+@media screen and (max-width: 550px) {
+  .devis{
+    font-size: 1.4rem;
+    margin: 32px auto 0 auto;
+  }
+  .service{
+    @include fullCenter;
+  }
+  .pro_informations{
+    height: 100%;
+  }
+  .iconePro{
+    order: 4;
+    transform: rotate(90deg);
+    padding: 16px 0;
+  }
+  .iconePro:before{
+    content: '>';
+  }
+  .container_article {
+    .hiddenText {
+      padding: 16px 32px 16px 32px;
+    }
+  }
+  .pro_informations-header{
+    .refPro{
+      @include fullCenter;
+      h4{
+        padding: 4px 0;
+      }
+
+    }
+  }
+}
+

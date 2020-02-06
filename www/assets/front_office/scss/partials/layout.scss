@@ -207,6 +207,8 @@ footer{
   font-size: 1.1rem;
   margin-top: 2rem;
   background: $lightGrey;
+  width: 100%;
+  margin-bottom: 0px;
   @include centerAround;
   ul{
     list-style: none;
