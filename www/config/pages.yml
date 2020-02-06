@@ -5,6 +5,7 @@
     - accounting
     - company
     - recetteDIY
+    - diy_list
     - product_category
     - product
   default_ext: ts

@@ -1,0 +1,152 @@
+@import 'app.scss';
+
+.top-page{
+  margin-bottom:75px !important;
+
+  h1{
+    padding-right: 60px;
+  }
+}
+
+.search-diy{
+  padding-left: 40px;
+  margin-bottom: 40px;
+
+  input[type=submit] {
+    opacity: 0;
+    color:$darkGreen;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    transition: all .5s linear;
+    margin-left: -55px;
+  }
+
+  input[type=text]{
+    border: none;
+    border-bottom: solid 1px $dark !important;
+    width: 350px;
+    transition: width .5s linear;
+    color: $dark;
+
+    &::placeholder {
+      color: $dark;
+    }
+
+    &:focus {
+      outline-color: transparent !important;
+      transition: width .5s linear;
+      width: 450px;
+    }
+  }
+}
+
+.cont-diy{
+  width:100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 200px;
+
+  div{
+    height:360px;
+    width:280px;
+
+    .cont-diy-img{
+      width: 280px;
+      height: 280px;
+      overflow: hidden;
+
+      a{
+        height:100%;
+        width:100%;
+        margin-bottom: 20px;
+
+        img{
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+          transform: scale(1);
+          transition: all .5s ease-in-out;
+        }
+
+        &:hover{
+          img{
+            transform: scale(1.2);
+            transition: all .5s ease-in-out;
+          }
+        }
+      }
+    }
+
+    p{
+      margin-top: 15px;
+      font-size: 25px;
+      z-index:100;
+      color: $darkGrey;
+    }
+  }
+}
+
+.btn-voir-plus{
+  border: solid 1px $darkGreen;
+  width: 200px;
+  color:$darkGreen;
+  font-size:20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding:15px 0;
+  margin-top: -120px;
+  transition: all .35s linear;
+
+  &:hover{
+    background: $darkGreen;
+    color:$white;
+    transition: all .35s linear;
+  }
+}
+
+.showBtn{
+  opacity: 1 !important;
+  transition: all .5s linear;
+}
+
+@media screen and (max-width:1025px){
+  .top-page{
+
+    .green-top-page{
+      padding:70px 0;
+
+      h1{
+        border-bottom: none !important;
+        padding:0 30px;
+      }
+
+      p{
+        padding:0 30px;
+      }
+    }
+
+    .cont-diy-img{
+      margin-bottom: 30px;
+    }
+  }
+
+}
+
+@media screen and(max-width: 425px){
+  .search-diy{
+
+    input[type=text]{
+      width: 200px;
+
+      &:focus{
+        width: 250px;
+      }
+    }
+  }
+}

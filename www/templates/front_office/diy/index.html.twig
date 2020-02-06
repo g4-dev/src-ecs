@@ -1,1 +1,52 @@
-<h1>TEST INDEX DIY</h1>
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('diy_list', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    <div class="top-page">
+        <div class="green-top-page">
+            <h1 class="gel-bold">Do It Yourself</h1>
+            <p class="gel">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.</p>
+        </div>
+        <div>
+            <img src="{{ asset('images/diy.png') }}">
+        </div>
+    </div>
+    <form class="search-diy">
+        <input type="text" class="diy-bar" placeholder="Recherche">
+        <input type="submit" class="input-diy pop-bold">
+    </form>
+    <div class="cont-diy">
+        <div>
+            <div class="cont-diy-img">
+                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
+        </div>
+        <div>
+            <div class="cont-diy-img">
+                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
+        </div>
+        <div>
+            <div class="cont-diy-img">
+                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
+        </div>
+        <div>
+            <div class="cont-diy-img">
+                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
+        </div>
+    </div>
+    <a href="#" class="btn-voir-plus pop">Voir plus</a>
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('diy_list', null, 'front_office') }}
+{% endblock %}
