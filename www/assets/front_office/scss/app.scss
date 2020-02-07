@@ -89,7 +89,6 @@ button{
 
 .green-top-page{
   width:30%;
-  height: 100%;
   background:$lightGreen;
   padding: 70px;
 
@@ -105,6 +104,17 @@ button{
     font-size: $f40;
     line-height: $inter80;
     color:$darkGreen;
+  }
+}
+
+@media screen and (max-width:1500px){
+  .green-top-page{
+    h1{
+      font-size:3.5rem;
+    }
+    p{
+      font-size: 30px;
+    }
   }
 }
 
