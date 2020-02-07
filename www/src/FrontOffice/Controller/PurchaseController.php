@@ -12,7 +12,6 @@ class PurchaseController extends EasyAdminController
     /**
      * This method overrides the default query builder used to search for this
      * entity. This allows to make a more complex search joining related entities.
-     *
      * @{inheritDoc}
      */
     protected function createSearchQueryBuilder($entityClass, $searchQuery, array $searchableFields, $sortField = null, $sortDirection = null, $dqlFilter = null)
