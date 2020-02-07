@@ -13,7 +13,7 @@ Mettez toujours des utilisateurs avec le mdp `Azerty69`
 pour que tout le monde puissent les utiliser
 
 Liste (à compléter avec vos users):
-- `aroberts@luettgen.com` `Azerty69`
+- `test-ecs@yopmail.com` `Azerty69`
 
 ##### Pourquoi pas générer des fixtures avec `faker` et `doctrine fixtures`
 

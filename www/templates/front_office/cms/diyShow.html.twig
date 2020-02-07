@@ -1,0 +1,104 @@
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('diyShow', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    <hr class="sep-header">
+    <a class="btn-back pop" href="#">Retour</a>
+    <article id="recette_main">
+        <div class="recette_img_container">
+            <h2 class="title_mob gel-bold">Titre diy</h2>
+            <div class="center">
+                <img src="https://fakeimg.pl/450x600/">
+            </div>
+        </div>
+        <div>
+            <h2 class="title_desk gel-bold">Titre diy</h2>
+            <div class="textAndCarac alignInit">
+                <div class="description pop">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, voluptatibus. Reprehenderit rem incidunt veniam, nulla dolores, laudantium optio voluptatum itaque, iste atque alias quidem consequatur earum nemo voluptas beatae ad.Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, voluptatibus. Reprehenderit rem incidunt veniam, nulla dolores, laudantium optio voluptatum itaque, iste atque alias quidem consequatur earum nemo voluptas beatae ad.</p>
+                </div>
+                <div class="midWidth caracteristique pop">
+                    <div>
+                        <p>Temps de préparation</p>
+                        <div class="deca">
+                            <h3 class="serge"><span class="serge-bold minute">10</span> min</h3>
+                        </div>
+                    </div>
+                    <div class="ingredient">
+                        <p>Ingrédients</p>
+                        <div class="deca">
+                            <ul>
+                                <li>Lorem</li>
+                                <li>Lorem</li>
+                                <li>Lorem</li>
+                                <li>Lorem</li>
+                                <li>Lorem</li>
+                                <li>Lorem</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="difficulty_barWidth">
+                        <p>Difficulté</p>
+                        <div class="deca">
+                            <div class="difficulty_bar" id="difficultyBlock" data-difficulty="3">
+                                <div class="difficulty_bar__firstDiv listDifficulty"></div>
+                                <div class="difficulty_bar__secondDiv listDifficulty"></div>
+                                <div class="difficulty_bar__thirdDiv listDifficulty"></div>
+                                <div class="difficulty_bar__lastDiv listDifficulty"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <article id="recette">
+        <h3 class="gel-bold">Recette</h3>
+        <div class="recette_container">
+            <div class="recette_left">
+                <p class="pop">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, quisquam veritatis
+                    dignissimos
+                    voluptates velit adipisci facilis quasi odio tenetur omnis, asperiores temporibus animi a reprehenderit eos impedit praesentium cum delectus?</p>
+            </div>
+            <div class="recette_right center">
+                <img src="https://fakeimg.pl/300x150/">
+            </div>
+        </div>
+    </article>
+    <section id="produit">
+        <p class="gel-bold">Nous proposons</p>
+        <div class="fullCenter">
+            <div class="produit_space">
+                <div class="itemsList">
+                    <article class="fullCenter">
+                        <img src="{{ asset('images/recette.jpg') }}" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+
+                    <article class="fullCenter">
+                        <img src="{{ asset('images/recette.jpg') }}" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+                </div>
+                <div class="itemsList">
+                    <article class="fullCenter">
+                        <img src="{{ asset('images/recette.jpg') }}" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+
+                    <article class="fullCenter">
+                        <img src="{{ asset('images/recette.jpg') }}" alt="produit"/>
+                        <h3>Lorem</h3>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('diyShow', null, 'front_office') }}
+{% endblock %}

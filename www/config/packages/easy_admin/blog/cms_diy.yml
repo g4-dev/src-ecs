@@ -1,0 +1,25 @@
+easy_admin:
+    entities:
+        Diy:
+            # TODO: traductions
+            class: Admin\Entity\Diy
+            image_base_path: '%kernel.project_dir%/public/uploads/'
+            list:
+                title: 'diy.title'
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
+                    - tags
+                filters: ['tags']
+                actions: ['edit', 'delete']
+            show:
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: body, label: Contenu, type: html }
+                    - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
+            form:
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
+                    - { property: 'tags', type_options: { required: true } }
+                    - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }

@@ -11,6 +11,7 @@
 easy_admin:
     design:
         menu:
+            - { label: 'Dashboard', icon: 'home', route: 'admin_dashboard', default: true }
             - label: 'menu.product'
               icon: 'shopping-basket'
               children:
@@ -18,12 +19,26 @@ easy_admin:
                   - { entity: 'Category', icon: 'tags', label: 'menu.category' }
                   - { entity: 'Product', icon: 'plus-circle', label: 'menu.product.add', params: { action: 'new' } }
 
-            - label: 'menu.blog'
-              icon: 'shopping-basket'
+            - label: 'menu.proservice'
+              icon: 'building'
               children:
-                  - { entity: 'Article', icon: 'th-list', label: 'menu.product.list', params: { sortField: 'createdAt' }, default: true }
-            - { label: 'menu.customer', entity: 'User', icon: 'users' }
-            - { label: 'menu.admin', entity: 'Admin', icon: 'users' }
-            - { label: 'menu.purchase', entity: 'Purchase', icon: 'credit-card', params: { sortField: 'deliveryDate' } }
-            - { label: 'menu.about' }
+                  - { entity: 'ProService', icon: 'th-list', label: 'menu.proservice.list' }
+                  - { entity: 'ProService', icon: 'plus-circle', label: 'menu.proservice.add', params: { action: 'new' } }
 
+            - label: 'menu.blog'
+              icon: 'newspaper'
+              children:
+                  - { entity: 'CmsPage', icon: 'th-list', label: 'menu.articles.list', params: { sortField: 'createdAt' }, default: true }
+                  - { entity: 'CmsCategory', icon: 'tags', label: 'menu.articles.category' }
+                  - { entity: 'Diy', icon: 'recycle', label: 'menu.diy' }
+
+            - { label: 'menu.customer', entity: 'User', icon: 'users' }
+
+            - { label: 'menu.purchase', entity: 'Purchase', icon: 'credit-card', params: { sortField: 'deliveryDate' } }
+
+            - label: 'menu.settings'
+              icon: 'cogs'
+              children:
+                  - { icon: 'grip-horizontal', label: 'menu.settings.homepage', entity: 'Settings', params: { action: 'edit', id: 1 } }
+                  - { icon: 'bars', label: 'menu.settings.nav', entity: 'Nav',  params: { sortField: 'position' } }
+                  - { icon: 'users', label: 'menu.admin', entity: 'Admin' }

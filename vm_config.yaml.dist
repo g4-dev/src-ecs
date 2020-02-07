@@ -1,11 +1,11 @@
 ---
 conf:
-    os: "10.2"                      # Choose your debian according to bento boxes (need vagrant destroy & vagrant up)
+    box: "bento/debian-10.2"        # loic-roux-404/deb-g4 (new update | optional)
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
-    servername: ecoservice.cum      # Servername and domain for your projects
+    servername: ecoservice.com      # Servername and domain for your projects
     org: g4-dev                     # Organisation hosting repo
     projectname: ecs                # repo name with pattern src-{{projectname}}
-    debug_playbook: false           # first need vagrant reload !! ENABLE SHARED FOLDERS !! used to debug playbook
+    debug_playbook: false           # need reload + sftp auto upload playbook_ecs/
     playbook_version: master        # master = stable | versions/beta
     testing_mode: 0                 # test services
     web_path: www                   # change web server if name != local_name
@@ -21,3 +21,19 @@ vm:
     natdnshostresolver1: "on"       # perf + (string | on/off)
     natdnsproxy1: "on"              # perf + (string | on/off)
     ioapic: "on"
+
+rsync_exclude:
+    - '/**/.DS_Store'
+    - '*.lock'
+    - '/**/node_modules/**'
+    - '/**/vendor/**'
+    - '.git'
+    - '.vagrant'
+    - '.idea/'
+    - '.vscode/'
+    - 'www/config/parameters.yaml'
+    - 'www/phpunit.xml'
+    - 'www/public/**'
+    - 'www/var/cache/**'
+    - 'docs/**'
+    - '.vscode/**'

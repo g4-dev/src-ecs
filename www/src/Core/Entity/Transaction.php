@@ -3,6 +3,7 @@
 namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FrontOffice\Entity\Purchase;
 
 /**
  * @ORM\Entity(repositoryClass="Core\Repository\TransactionRepository")
@@ -28,10 +29,10 @@ class Transaction
     private $total;
 
     /**
-     * @ORM\OneToOne(targetEntity="FrontOffice\Entity\Order", inversedBy="transaction", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=false)
+     * @ORM\OneToOne(targetEntity="FrontOffice\Entity\Purchase", inversedBy="transaction", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=false)
      */
-    private $order;
+    private $purchase;
 
     /**
      * @ORM\Column(type="datetime")
@@ -74,14 +75,14 @@ class Transaction
         return $this;
     }
 
-    public function getOrder(): ?Order
+    public function getPurchase(): ?Purchase
     {
-        return $this->order;
+        return $this->purchase;
     }
 
-    public function setOrder(Order $order): self
+    public function setPurchase(Purchase $purchase): self
     {
-        $this->order = $order;
+        $this->purchase = $purchase;
 
         return $this;
     }

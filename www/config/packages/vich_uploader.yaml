@@ -3,12 +3,11 @@ vich_uploader:
 
     mappings:
         product_images:
-            uri_prefix: '%app.path.product_images%'
-            upload_destination: '%kernel.project_dir%/../public/uploads/images/products'
+            uri_prefix: '%ecs.path.product_images%'
+            upload_destination: '%kernel.project_dir%/public/uploads/images/products'
         user_contracts:
-            uri_prefix: '%app.path.user_contracts%'
-            upload_destination: '%kernel.project_dir%/../public/uploads/files/user/contracts'
-
+            uri_prefix: '%ecs.path.user_contracts%'
+            upload_destination: '%kernel.project_dir%/public/uploads/files/user/contracts'
         blog_covers:
-            uri_prefix: '%app.path.blog_covers%'
-            upload_destination: '%kernel.project_dir%/../public/uploads/images/blog'
+            uri_prefix: '%ecs.path.blog_covers%'
+            upload_destination: '%kernel.project_dir%/public/uploads/images/blog'

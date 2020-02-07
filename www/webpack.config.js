@@ -2,7 +2,7 @@ var Encore = require("@symfony/webpack-encore")
 const path = require("path")
 const fsr = require("fs").readFileSync
 const yml = require("js-yaml")
-let CONFIGS = yml.safeLoad(fsr("./config/pages.yml"), yml.JSON_SCHEMA)
+const { configs, poll } = yml.safeLoad(fsr("./config/pages.yml"), yml.JSON_SCHEMA)
 const EXCLUDE = "/node_modules/"
 let isSingleEntry = false;
 
@@ -13,7 +13,7 @@ console.info("Don't forget to add entries in config/pages.yaml\n")
 // set an config object used in all workspace (front-office / admin)
 const aliases = function aliases(config) {
 	let configAliases = {}
-	let name = config.name,
+		const name = config.name,
 		aliasName = name.slice(0, 2)
 
 	try {
@@ -36,7 +36,7 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 	let workspaces = []
 	isSingleEntry = isSingleEntry || Boolean(entry)
 
-	CONFIGS.forEach(function({ name, pages, default_ext = "js" }) {
+	configs.forEach(function({ name, pages, default_ext = "js" }) {
 
 		let typescriptEnable = default_ext === "ts"
 
@@ -79,12 +79,22 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 
 		if (typescriptEnable) {
 			Encore.enableTypeScriptLoader()
+
+			Encore.configureBabel(config => {
+				config.presets = [];
+			})
+		} else {
+			Encore.configureBabel(config => {
+				config.presets = [["@babel/preset-env", {
+					"useBuiltIns": false
+				}]];
+			})
 		}
 
 		let config = Encore.getWebpackConfig()
 
 		// fix build with nfs enable
-		config.watchOptions = { poll: true, ignored: EXCLUDE }
+		config.watchOptions = { poll: poll, ignored: EXCLUDE }
 		config.name = name
 		config.resolve.alias = aliases(config)
 

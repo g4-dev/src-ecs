@@ -47,6 +47,6 @@
 Pour se connecter sur le back office [/admin](ecoservice.coom/admin) avec les ids
 `admin@domain.tld` / `s3cr3t`
 
-Pour les utilisateurs front office: `aroberts@luettgen.com` `Azerty69`
+Pour les utilisateurs front office: `test@yopmail.com` `Azerty69`
 
 ##### Complétez la liste [Liste des utilisateurs de tests](docs/4Tests.md#comptes-utilisateurs)

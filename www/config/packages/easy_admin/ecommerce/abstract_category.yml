@@ -1,0 +1,10 @@
+easy_admin:
+    entities:
+        AbstractCategory:
+            class: Admin\Entity\AbstractCategory
+            disabled_actions: ['show','new','delete','edit']
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'name', label: 'Label' }
+                    - { property: 'parent', label: 'Parent category' }

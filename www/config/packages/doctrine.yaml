@@ -32,6 +32,8 @@ doctrine:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        resolve_target_entities:
+            Core\Entity\Model\Sluggable: Admin\Entity\AbstractCategory
         mappings:
             Core:
                 is_bundle: false

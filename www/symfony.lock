@@ -1,4 +1,7 @@
 {
+    "alterphp/easyadmin-extension-bundle": {
+        "version": "v3.0.0"
+    },
     "brianium/habitat": {
         "version": "v1.0.0"
     },
@@ -133,6 +136,24 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.1"
     },
+    "league/uri-components": {
+        "version": "1.8.2"
+    },
+    "league/uri-hostname-parser": {
+        "version": "1.1.1"
+    },
+    "league/uri-interfaces": {
+        "version": "1.1.1"
+    },
+    "league/uri-manipulations": {
+        "version": "1.5.0"
+    },
+    "league/uri-parser": {
+        "version": "1.4.1"
+    },
+    "league/uri-schemes": {
+        "version": "1.2.1"
+    },
     "myclabs/deep-copy": {
         "version": "1.9.5"
     },
@@ -224,8 +245,14 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/log": {
         "version": "1.1.2"
+    },
+    "psr/simple-cache": {
+        "version": "1.0.1"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"
@@ -305,6 +332,18 @@
     },
     "symfony/css-selector": {
         "version": "v5.0.3"
+    },
+    "symfony/debug-bundle": {
+        "version": "4.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.1",
+            "ref": "f8863cbad2f2e58c4b65fa1eac892ab189971bea"
+        },
+        "files": [
+            "config/packages/dev/debug.yaml"
+        ]
     },
     "symfony/dependency-injection": {
         "version": "v5.0.3"

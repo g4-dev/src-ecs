@@ -1,20 +1,35 @@
-# Add pages for the differents spaces here (correspond to webpack entries)
-- name: front_office
-  pages:
-    - homepage
-    - accounting
-    - compAndDechet
-    - recetteDIY
-    - diy_list
-    - product_category
-    - product
-    - professional
-  default_ext: ts
+# enable with nfs/ disable with rsync
+#(false | true)
+poll: false
+configs:
+  # Add pages for the differents spaces here (correspond to webpack entries)
+  - name: front_office
+    pages:
+      - homepage
+      - accounting
+      - shopping
+      - proServiceList
+      - cmsShow # anciennement compAndDechet (supprimer ce commentaire)
+      - cmsList
+      - diyShow
+      - diyList
+      - productList # List == category
+      - productShow
+    default_ext: ts
 
-- name: easyadmin
-  pages:
-    - js/app
+  - name: easyadmin
+    pages:
+      - js/app
 
+## README
+# Suivre arborescense des fichiers assets
+# La convention de nommage : sujetTypePage Attention le sujet != nom de dossier dans les assets
+# Majuscule dans le nom de fichier = /
+# =======================
+# Liste des types de page
+# List | Show | Update ...
+# On peut garder des entrées génériques comme accounting
+# =======================
 ## Options of page entry setter
 # - name (config_name)
 #   pages:

@@ -1,12 +1,5 @@
 <?php
 
-/*
- * This file is part of the Doctrine-TestSet project created by
- * https://github.com/MacFJA
- *
- * For the full copyright and license information, please view the LICENSE
- * at https://github.com/MacFJA/Doctrine-TestSet
- */
 
 namespace FrontOffice\Model;
 
@@ -14,7 +7,6 @@ namespace FrontOffice\Model;
  * Class Shipment.
  * Define a simple PHP class.
  *
- * @author MacFJA
  */
 class Shipment
 {

@@ -1,0 +1,64 @@
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('proServiceList', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    <hr class="sep-header">
+    <h2 class="pop-sBold pro_title" href="#">Services</h2>
+    <button class="devis pop">Demander un devis</button>
+    <div class="listServicePro">
+        <div class="container_article fullCenter alignInit">
+            <article class="pop service">
+                <p class="iconePro serge"></p>
+                <img src="https://fakeimg.pl/100x200/">
+                <div class="pro_informations fullCenter">
+                    <div class="centerBetween pro_informations-header">
+                        <h3>Poubelle bleu</h3>
+                        <div class="refPro center">
+                            <p>Référence :</p>
+                            <h4>#hjh6554</h4>
+                        </div>
+                    </div>
+                    <p class="miniDescription">Cette poubelle bleu permet de recycler les produits en plastiques</p>
+                </div>
+                <p>200 €</p>
+            </article>
+            <div class="text_container">
+                <p class="hiddenText">Nous mettons à disposition des poubelles bleus pour le recyclage des produits en cartons.<br/>
+                    Toutes les semaines une personnes est chargée de venir vider les poubelles.<br/>
+                    Le prix de ce service est de 180 € par mois.
+                </p>
+            </div>
+        </div>
+        <div class="container_article fullCenter alignInit">
+            <article class="pop service">
+                <p class="iconePro serge"></p>
+                <img src="https://fakeimg.pl/100x200/">
+                <div class="pro_informations fullCenter">
+                    <div class="centerBetween pro_informations-header">
+                        <h3>Poubelle jaune</h3>
+                        <div class="refPro center">
+                            <p>Référence :</p>
+                            <h4>#18390</h4>
+                        </div>
+                    </div>
+                    <p class="miniDescription">Cette poubelle jaune permet de recycler les produits en plastiques</p>
+                </div>
+                <p>200 €</p>
+            </article>
+            <div class="text_container">
+                <p class="hiddenText">Nous mettons à disposition des poubelles jaunes pour le recyclage des produits en
+                    cartons.<br/>
+                    Toutes les semaines une personnes est chargée de venir vider les poubelles.<br/>
+                    Le prix de ce service est de 180 € par mois.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('proServiceList', null, 'front_office') }}
+{% endblock %}

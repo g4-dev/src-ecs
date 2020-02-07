@@ -1,0 +1,38 @@
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('shop', null, 'front_office') }}
+{% endblock %}
+
+{% block title %}Adresse{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumbs">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">Identification</li>
+            <li class="breadcrumb-item active" aria-current="page">Adresse</li>
+            <li class="breadcrumb-item">Livraison</li>
+            <li class="breadcrumb-item">Récapitulatif</li>
+            <li class="breadcrumb-item">Paiement</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock breadcrumb %}
+
+{% block shop_content %}
+<header class="mb-4">
+    <h1>Adresse de livraison</h1>
+</header>
+
+{{ form_start(address_form, { 'attr': { 'id': 'address-form' }}) }}
+    {% include "front_office/accounting/address_form.html.twig" with {'address_form': address_form} %}
+{{ form_end(address_form) }}
+<input type="submit" form="address-form" value="Suivant" class="btn btn-primary">
+
+{% endblock %}
+{% block scripts %}
+    {{ encore_entry_script_tags('shop', null, 'front_office') }}
+{% endblock %}

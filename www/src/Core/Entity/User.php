@@ -2,6 +2,8 @@
 
 namespace Core\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FrontOffice\Entity\Purchase;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -10,9 +12,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user")
+ * @ORM\Table(
+ *     name="user",
+ *     options={"row_format":"DYNAMIC"},
+ * )
+ * @Vich\Uploadable()
  */
-class User extends AbstractUser implements UserInterface
+class User extends Model\AbstractUser implements UserInterface
 {
     const DEFAULT_ROLE = 'ROLE_USER';
     
@@ -37,24 +43,18 @@ class User extends AbstractUser implements UserInterface
      * @ORM\Column(name="first_name", type="string", length=32, nullable=false, unique=false)
      */
     private string $firstName;
-
-    /**
-     * @var string
-     * @ORM\Column(name="address", type="string", length=255, nullable=false, unique=false)
-     */
-    private string $address;
-
+    
     /**
      * @var string
      * @ORM\Column(name="company_name", type="string", length=50, nullable=true, unique=false)
      */
-    private string $companyName;
+    private $companyName;
 
     /**
      * @var string
-     * @ORM\Column(name="phone_number", type="string", length=10, nullable=true, unique=false)
+     * @ORM\Column(name="phone_number", type="string", length=10, nullable=true, unique=true)
      */
-    private string $phoneNumber;
+    private $phoneNumber;
     
     /**
      * @var Purchase[]
@@ -64,10 +64,16 @@ class User extends AbstractUser implements UserInterface
     private $purchases;
     
     /**
+     * @var Address[]
+     * @ORM\OneToMany(targetEntity="Core\Entity\Address", mappedBy="user", orphanRemoval=true, cascade={"remove"})
+     */
+    private $addresses;
+    
+    /**
      * It only stores the name of the file which stores the contract subscribed
      * by the user.
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
@@ -82,6 +88,14 @@ class User extends AbstractUser implements UserInterface
      * @var File
      */
     private $contractFile;
+    
+    public function __construct()
+    {
+        if (method_exists($this, '_init')) {
+            $this->_init();
+        }
+        $this->addresses = new ArrayCollection();
+    }
     
     public function setToken(string $token)
     {
@@ -127,24 +141,12 @@ class User extends AbstractUser implements UserInterface
         return $this;
     }
 
-    public function getAddress(): ?Address
-    {
-        return $this->address;
-    }
-
-    public function setAddress(?Address $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
 
-    public function setCompanyName(string $companyName): self
+    public function setCompanyName(?string $companyName): self
     {
         $this->companyName = $companyName;
 
@@ -166,8 +168,8 @@ class User extends AbstractUser implements UserInterface
     public function addPurchase(Purchase $purchase): self
     {
         if (!$this->purchases->contains($purchase)) {
-            $this->orders[] = $purchase;
-            $purchase->setUser($this);
+            $this->purchases[] = $purchase;
+            $purchase->setBuyer($this);
         }
 
         return $this;
@@ -187,6 +189,37 @@ class User extends AbstractUser implements UserInterface
     public function getPurchases()
     {
         return $this->purchases;
+    }
+    
+    /**
+     * @return Collection|Address[]
+     */
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+    
+    public function addAddress(Address $address): self
+    {
+        if (!$this->addresses->contains($address)) {
+            $this->addresses[] = $address;
+            $address->setUser($this);
+        }
+        
+        return $this;
+    }
+    
+    public function removeAddress(Address $address): self
+    {
+        if ($this->addresses->contains($address)) {
+            $this->addresses->removeElement($address);
+            // set the owning side to null (unless already changed)
+            if ($address->getUser() === $this) {
+                $address->setUser(null);
+            }
+        }
+        
+        return $this;
     }
     
     /**

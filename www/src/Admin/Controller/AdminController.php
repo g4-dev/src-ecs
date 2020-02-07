@@ -2,9 +2,12 @@
 
 namespace Admin\Controller;
 
+use Admin\Entity\Diy;
+use Admin\Entity\Product;
+use FrontOffice\Entity\Purchase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
+use AlterPHP\EasyAdminExtensionBundle\Controller\EasyAdminController;
 
 class AdminController extends EasyAdminController
 {
@@ -31,5 +34,24 @@ class AdminController extends EasyAdminController
             $entity->setIsDeleted(true);
         }
         $this->updateEntity($entity);
+    }
+    
+    /**
+     * @Route("/dashboard", name="admin_dashboard")
+     */
+    public function dashboardAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $productRepo = $em->getRepository(Product::class);
+        $diyRepo = $em->getRepository(Diy::class);
+        $puchaseRepo = $em->getRepository(Purchase::class);
+        
+        // TODO: add list of 5-6 data to loop in in template
+        return $this->render('@admin/dashboard.html.twig', [
+           'Products' => $productRepo->find(1),
+           'lastDiy' => $diyRepo->find(1),
+           'lastPurchases' => $puchaseRepo ->find(1)
+        ]);
     }
 }

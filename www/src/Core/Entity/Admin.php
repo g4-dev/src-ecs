@@ -7,9 +7,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="Core\Repository\AdminRepository")
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="admin")
  */
-class Admin extends AbstractUser implements UserInterface
+class Admin extends Model\AbstractUser implements UserInterface
 {
     const DEFAULT_ROLE = 'ROLE_ADMIN';
     
@@ -20,7 +21,14 @@ class Admin extends AbstractUser implements UserInterface
     private array $roles = [self::DEFAULT_ROLE];
     
     use Traits\Roles;
-    use Traits\CreatedAt;
+    use Traits\DatesAt;
+    
+    public function __construct()
+    {
+        if (method_exists($this, '_init')) {
+            $this->_init();
+        }
+    }
     
     public function getUsername()
     {

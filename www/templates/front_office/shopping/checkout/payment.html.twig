@@ -1,0 +1,41 @@
+{% extends 'front_office/layout.html.twig' %}
+{% block title %}Paiement{% endblock %}
+
+{% block links %}
+    {{ encore_entry_link_tags('shopping', null, 'front_office') }}
+{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumbs">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">Identification</li>
+            <li class="breadcrumb-item">Adresse</li>
+            <li class="breadcrumb-item">Livraison</li>
+            <li class="breadcrumb-item">Récapitulatif</li>
+            <li class="breadcrumb-item active" aria-current="page">Paiement</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock breadcrumb %}
+
+{% block main %}
+<header class="mb-4">
+    <h1>Paiement</h1>
+</header>
+
+<div class="row">
+
+    <div class="col-md mt-4 mt-md-0">
+        <h4>Avec paypal</h4>
+        <a href="{{ path('checkoutPayment') }}" class="basket-checkout__order btn btn-primary">Payer avec paypal</a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('shopping', null, 'front_office') }}
+{% endblock %}

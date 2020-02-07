@@ -3,44 +3,35 @@
 
 namespace Admin\Entity;
 
-use FrontOffice\Entity\Image;
+use Core\Entity\Model\Sluggable;
+use Core\Entity\Traits;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Class Product.
  *
- * @author MacFJA
- *
  * @ORM\Entity
+ * @ORM\Table(name="product")
+ * @ORM\Entity(repositoryClass="Admin\Repository\ProductRepository")
+ * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
  */
-class Product
+class Product implements Sluggable
 {
-    /**
-     * The identifier of the product.
-     *
-     * @var int
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id = null;
-
-    /**
-     * The creation date of the product.
-     *
-     * @var \DateTime
-     * @ORM\Column(type="datetime", name="created_at")
-     */
-    private $createdAt = null;
-
+    use Traits\Id;
+    use Traits\Name;
+    use Traits\DatesAt;
+    use Traits\Slug;
+    use Traits\IsActive;
+    
     /**
      * List of tags associated to the product.
      *
      * @var string[]
-     * @ORM\Column(type="simple_array")
+     * @ORM\Column(type="simple_array", nullable=true)
      */
     private $tags = array();
 
@@ -51,14 +42,6 @@ class Product
      * @ORM\Column(type="bigint")
      */
     private $ean;
-
-    /**
-     * Indicate if the product is enabled (available in store).
-     *
-     * @var bool
-     * @ORM\Column(type="boolean")
-     */
-    private $enabled = false;
 
     /**
      * It only stores the name of the image associated with the product.
@@ -101,14 +84,6 @@ class Product
     private $price = 0.0;
 
     /**
-     * The name of the product.
-     *
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    private $name;
-
-    /**
      * The description of the product.
      *
      * @var string
@@ -120,47 +95,57 @@ class Product
      * List of categories where the products is
      * (Owning side).
      *
-     * @var Category[]
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="products")
-     * @ORM\JoinTable(name="product_category")
+     * @var ProductCategory[]
+     * @ORM\ManyToMany(targetEntity="ProductCategory", inversedBy="products")
+     * @ORM\JoinTable(name="product_categories")
      */
-    private $categories;
-
+    private $productCategories;
+    
     /**
-     * @var FrontOffice\Entity\PurchaseItem[]
+     * @ORM\Column(type="integer")
+     */
+    private $stock;
+    
+    /**
+     * @var \FrontOffice\Entity\PurchaseItem[]
      * @ORM\OneToMany(targetEntity="FrontOffice\Entity\PurchaseItem", mappedBy="product", cascade={"remove"})
      */
     private $purchasedItems;
-
+    
     /**
      * @var string
-     */
-    private $slug;
-
-    /**
-     * @var string
+     * @ORM\Column(type="array")
      */
     private $images;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeDiys")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $settings;
 
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
-        $this->createdAt = new \DateTime();
+        $this->productCategories = new ArrayCollection();
+        
+        if (method_exists($this, '_init')) {
+            $this->_init();
+        }
     }
 
     /**
      * Add a category in the product association.
      * (Owning side).
      *
-     * @param $category Category the category to associate
+     * @param $category ProductCategory the category to associate
      */
     public function addCategory($category)
     {
-        if ($this->categories->contains($category)) {
+        if ($this->productCategories->contains($category)) {
             return;
         }
 
-        $this->categories->add($category);
+        $this->productCategories->add($category);
         $category->addProduct($this);
     }
 
@@ -168,15 +153,15 @@ class Product
      * Remove a category in the product association.
      * (Owning side).
      *
-     * @param $category Category the category to associate
+     * @param $category ProductCategory the category to associate
      */
     public function removeCategory($category)
     {
-        if (!$this->categories->contains($category)) {
+        if (!$this->productCategories->contains($category)) {
             return;
         }
 
-        $this->categories->removeElement($category);
+        $this->productCategories->removeElement($category);
         $category->removeProduct($this);
     }
 
@@ -218,36 +203,6 @@ class Product
     public function getEan()
     {
         return $this->ean;
-    }
-
-    /**
-     * Set if the product is enable.
-     *
-     * @param bool $enabled
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-    }
-
-    /**
-     * Is the product enabled?
-     *
-     * @return bool
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
-    }
-
-    /**
-     * Alias of getEnabled.
-     *
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        return $this->getEnabled();
     }
 
     /**
@@ -304,26 +259,6 @@ class Product
     }
 
     /**
-     * Set the product name.
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Retrieve the name of the product.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * Set the price.
      *
      * @param float $price
@@ -366,53 +301,39 @@ class Product
     /**
      * Get all associated categories.
      *
-     * @return Category[]
+     * @return ProductCategory[]
      */
-    public function getCategories()
+    public function getProductCategories()
     {
-        return $this->categories;
+        return $this->productCategories;
     }
 
     /**
      * Set all categories of the product.
      *
-     * @param Category[] $categories
+     * @param ProductCategory[] $productCategories
      */
-    public function setCategories($categories)
+    public function setProductCategories($productCategories)
     {
         // This is the owning side, we have to call remove and add to have change in the category side too.
-        foreach ($this->getCategories() as $category) {
+        foreach ($this->getProductCategories() as $category) {
             $this->removeCategory($category);
         }
-        foreach ($categories as $category) {
+        foreach ($productCategories as $category) {
             $this->addCategory($category);
         }
     }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt()
+    
+    public function getStock(): ?int
     {
-        return $this->createdAt;
+        return $this->stock;
     }
-
-    /**
-     * @return \DateTime
-     */
-    public function setCreatedAt(\DateTime $createdAt)
+    
+    public function setStock(int $stock): self
     {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * Get the id of the product.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
+        $this->stock = $stock;
+        
+        return $this;
     }
 
     /**
@@ -424,7 +345,7 @@ class Product
     }
 
     /**
-     * @param PurchaseItem[] $purchasedItems
+     * @param \FrontOffice\Entity\PurchaseItem[] $purchasedItems
      */
     public function setPurchasedItems($purchasedItems)
     {
@@ -432,29 +353,23 @@ class Product
     }
 
     /**
-     * @return FrontOffice\Entity\PurchaseItem[]
+     * @return \FrontOffice\Entity\PurchaseItem[]
      */
     public function getPurchasedItems()
     {
         return $this->purchasedItems;
     }
-
-    public function addImage(Image $image)
+    
+    
+    public function getSettings(): ?Settings
     {
-        $image->setProduct($this);
-
-        $this->images->add($image);
+        return $this->settings;
     }
-
-    public function getSlug(): ?string
+    
+    public function setSettings(?Settings $settings): self
     {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
+        $this->settings = $settings;
+        
         return $this;
     }
 }

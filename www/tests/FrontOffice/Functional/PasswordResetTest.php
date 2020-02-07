@@ -52,7 +52,7 @@ class PasswordResetTest extends FunctionalTestCase
 
         /** @var RouterInterface $router */
         $router = $this->get('router');
-        $resetPath = $router->generate('fo_password_reset', [
+        $resetPath = $router->generate('password_reset', [
             'uniqueId' => $user->getUniqueId(),
             'token' => $user->getToken()
         ]);
@@ -116,7 +116,7 @@ class PasswordResetTest extends FunctionalTestCase
 
         /** @var RouterInterface $router */
         $router = $this->get('router');
-        $resetPath = $router->generate('fo_password_reset', [
+        $resetPath = $router->generate('passwordReset', [
             'uniqueId' => $user->getUniqueId(),
             'token' => $invalidToken
         ]);
@@ -134,7 +134,7 @@ class PasswordResetTest extends FunctionalTestCase
 
         /** @var RouterInterface $router */
         $router = $this->get('router');
-        $resetPath = $router->generate('fo_password_reset', [
+        $resetPath = $router->generate('passwordReset', [
             'uniqueId' => $user->getUniqueId(),
             'token' => $user->getToken()
         ]);

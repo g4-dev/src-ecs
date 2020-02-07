@@ -5,7 +5,7 @@ namespace FrontOffice\Security;
 use Core\Entity\User;
 use Core\Event\UserAccountEvent;
 use Core\Service\UserService;
-use FrontOffice\Form\LoginForm;
+use FrontOffice\Form\Accounting\LoginForm;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -61,7 +61,7 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
 
     public function supports(Request $request)
     {
-        return $request->attributes->get('_route') === 'fo_login' && $request->isMethod('POST');
+        return $request->attributes->get('_route') === 'login' && $request->isMethod('POST');
     }
 
     public function getCredentials(Request $request)
@@ -86,7 +86,7 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
 
     public function getLoginUrl()
     {
-        return $this->router->generate('fo_login');
+        return $this->router->generate('login');
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
@@ -105,6 +105,6 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
 
         $this->eventDispatcher->dispatch(new UserAccountEvent($user),UserAccountEvent::LOGIN);
 
-        return new RedirectResponse($this->router->generate('fo_homepage'));
+        return new RedirectResponse($this->router->generate('homepage'));
     }
 }

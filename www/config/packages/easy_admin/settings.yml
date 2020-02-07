@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        Settings:
+            class: Admin\Entity\Settings
+            controller: Admin\Controller\SettingsController
+            label: 'Settings'
+            disabled_actions: ['show','list','new','delete']
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-6' }
+                    - { property: 'HeadlineCmsPages', type: 'easyadmin_autocomplete', label: 'settings.cmsPages', dql_filter: 'entity.isActive = true' }
+                    - { type: 'group', css_class: 'col-sm-6' }
+                    - { property: 'homeProducts', type: 'easyadmin_autocomplete', label: 'settings.products', dql_filter: 'entity.isActive = true' }
+                    - { property: 'homeDiys', type: 'easyadmin_autocomplete', label: 'settings.diy', dql_filter: 'entity.isActive = true' }
+                    # if you want to add products when creating categories, add the 'by_reference' option
+                    # - { property: 'products', type_options: { by_reference: false } }

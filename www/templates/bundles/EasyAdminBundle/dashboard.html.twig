@@ -1,0 +1,78 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{# TODO: Ici ajouter des bloc correspondants aux dernier produit/commandes et clients #}
+{# Ceci est un fichier d'exemple il faut s'inspirer de ça en reproduisant les maquettes #}
+
+{% set _content_title = 'Admin dashboard' %}
+{% block page_title -%}
+    {{ _content_title }}
+{%- endblock %}
+{% block content_header %}
+    <h1 class="title">{{ _content_title }}</h1>
+{% endblock %}
+{% block main %}
+    <div class="row">
+{#        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Stats</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group" style="margin-left: 0;">
+                        <li class="list-group-item">
+                            <span class="badge">Show product</span>
+                            {{ dump(Products) }}
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge"></span>
+                            product
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>#}
+        {% if Products|default(false) %}
+            {% dump Products.name %}
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> Tile for Shipment
+                            (example) </h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <img src="{{ asset('images/produit.png') }}"/>
+                        </p>
+                        {# TODO probably loop an array of last purchases#}
+                        <p>{{ lastPurchases }}</p>
+                        <a href="{{ path('easyadmin', {entity: 'Product', action: 'show', id: Products.id}) }}"
+                           class="btn btn-primary">
+                            Show details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if lastPurchases|default(false) %}
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> Tile for Shipment (example) </h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <img src="{{ asset('images/produit.png') }}"/>
+                    </p>
+                    {# TODO probably loop an array of last purchases #}
+                    <p>{{ dump(lastPurchases) }}</p>
+                    <a href="{{ path('easyadmin', {entity: 'Purchase', action: 'show', id: lastPurchases.id}) }}"
+                       class="btn btn-primary">
+                        Show details
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

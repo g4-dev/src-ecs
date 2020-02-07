@@ -1,7 +1,6 @@
 framework:
     secret: '%env(APP_SECRET)%'
-    #default_locale: en
-    #csrf_protection: true
+    csrf_protection: ~
     #http_method_override: true
 
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
@@ -9,12 +8,12 @@ framework:
     session:
         # enables the support of sessions in the app
         enabled: true
+        handler_id: ~
         # improves the security of the cookies used for sessions
         cookie_secure: 'auto'
-        cookie_samesite: 'lax'
+        cookie_lifetime: 48000
 
-        handler_id: 'session.handler.native_file'
-        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+        gc_maxlifetime: 48000
 
     router:
         strict_requirements: ~

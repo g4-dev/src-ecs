@@ -1,6 +1,6 @@
 {% extends 'mail/base.html.twig' %}
 
-{% set activation_url = url('fo_registration_activate', {'uniqueId': user.uniqueId, 'token': user.token}) %}
+{% set activation_url = url('registrationActivate', {'uniqueId': user.uniqueId, 'token': user.token}) %}
 
 {% block body %}
 

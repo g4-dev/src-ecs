@@ -63,7 +63,7 @@ class RegistrationTest extends FunctionalTestCase
 
         /** @var RouterInterface $router */
         $router = $this->get('router');
-        $activationPath = $router->generate('fo_registration_activate', [
+        $activationPath = $router->generate('registration_activate', [
             'uniqueId' => $user->getUniqueId(),
             'token' => $user->getToken()
         ]);

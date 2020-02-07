@@ -5,9 +5,14 @@
         "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "alterphp/easyadmin-extension-bundle": "^3.0",
         "easycorp/easyadmin-bundle": "^2.3",
+        "paypal/rest-api-sdk-php": "^1.14",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/console": "^5.0",
+        "symfony/debug-bundle": "^5.0",
         "symfony/flex": "^1.6",
         "symfony/form": "^5.0",
         "symfony/framework-bundle": "^5.0",
@@ -18,10 +23,7 @@
         "symfony/twig-pack": "^1.0",
         "symfony/webpack-encore-bundle": "1.7.2",
         "symfony/yaml": "^5.0",
-        "paypal/rest-api-sdk-php": "^1.14",
-        "ext-json": "*",
-        "vich/uploader-bundle": "^1.13",
-        "ext-intl": "*"
+        "vich/uploader-bundle": "^1.13"
     },
     "config": {
         "preferred-install": {
@@ -83,6 +85,7 @@
         "symfony/css-selector": "^5.0",
         "symfony/maker-bundle": "^1.14",
         "symfony/phpunit-bridge": "^5.0",
-        "symfony/profiler-pack": "^1.0"
+        "symfony/profiler-pack": "^1.0",
+        "symfony/var-dumper": "^5.0"
     }
 }

@@ -5,6 +5,9 @@ twig:
     # TODO: mettre en place les form_themes https://symfony.com/doc/current/form/form_themes.html
     globals:
         website_name: "%website_name%"
+    paths:
+        'templates/bundles/EasyAdminBundle': 'admin'
+        'templates/front_office': 'fo'
 
 webpack_encore:
     # The path where Encore is building the assets.

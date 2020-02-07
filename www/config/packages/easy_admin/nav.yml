@@ -1,0 +1,17 @@
+easy_admin:
+    entities:
+        Nav:
+            class: Admin\Entity\Nav
+            controller: Admin\Controller\NavController
+            label: 'Nav'
+            list:
+                - position
+                - name
+                - { property: page.slug, template: '@admin/custom-fields/page-link.html.twig', label: 'links.page_cms' }
+            form:
+                fields:
+                    - { property: 'name', label: 'Name'}
+                    - { property: 'position', label: 'Position' }
+                    - { property: 'page', type: 'easyadmin_autocomplete', label: 'settings.nav.page', dql_filter: 'entity.isActive = true' }
+                    # if you want to add products when creating categories, add the 'by_reference' option
+                    # - { property: 'products', type_options: { by_reference: false } }

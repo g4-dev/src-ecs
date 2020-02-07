@@ -2,19 +2,21 @@
 
 namespace Core\Entity;
 
+use Core\Entity\Traits\DatesAt;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Core\Repository\AddressRepository")
  * @ORM\Table(name="user_addresses")
+ * @ORM\HasLifecycleCallbacks
  */
 class Address
 {
     const TYPE_BILLING = 'billing';
     const TYPE_SHIPPING = 'shipping';
 
+    use DatesAt;
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -25,12 +27,7 @@ class Address
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $address1;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $address2;
+    private $address;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,12 +38,7 @@ class Address
      * @ORM\Column(type="integer")
      */
     private $postCode;
-
-    /**
-     * @ORM\Column(type="string", length=15, nullable=true)
-     */
-    private $phone;
-
+    
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -62,29 +54,10 @@ class Address
      * @ORM\Column(type="string", length=255)
      */
     private $type;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateCreated;
-
+    
     public function __construct()
     {
         $this->dateCreated = new \DateTime();
-    }
-    
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-        $metadata->addPropertyConstraint('address1', new Assert\Type('string'));
-        $metadata->addPropertyConstraint('address1', new Assert\NotNull());
-
-        $metadata->addPropertyConstraint('address2', new Assert\Type('string'));
-
-        $metadata->addPropertyConstraint('city', new Assert\Type('string'));
-        $metadata->addPropertyConstraint('city', new Assert\NotNull());
-
-        $metadata->addPropertyConstraint('postCode', new Assert\Type('integer'));
-        $metadata->addPropertyConstraint('postCode', new Assert\NotNull());
     }
 
     public function getId()
@@ -92,26 +65,14 @@ class Address
         return $this->id;
     }
 
-    public function getAddress1(): ?string
+    public function getAddress(): ?string
     {
-        return $this->address1;
+        return $this->address;
     }
 
-    public function setAddress1(?string $address1): self
+    public function setAddress(?string $address): self
     {
-        $this->address1 = $address1;
-
-        return $this;
-    }
-
-    public function getAddress2(): ?string
-    {
-        return $this->address2;
-    }
-
-    public function setAddress2(?string $address2): self
-    {
-        $this->address2 = $address2;
+        $this->address = $address;
 
         return $this;
     }
@@ -136,18 +97,6 @@ class Address
     public function setPostCode(?int $postCode): self
     {
         $this->postCode = $postCode;
-
-        return $this;
-    }
-
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(?string $phone): self
-    {
-        $this->phone = $phone;
 
         return $this;
     }
@@ -187,18 +136,6 @@ class Address
             throw new \InvalidArgumentException('Invalid address type');
         }
         $this->type = $type;
-
-        return $this;
-    }
-
-    public function getDateCreated(): ?\DateTimeInterface
-    {
-        return $this->dateCreated;
-    }
-
-    public function setDateCreated(\DateTimeInterface $dateCreated): self
-    {
-        $this->dateCreated = $dateCreated;
 
         return $this;
     }

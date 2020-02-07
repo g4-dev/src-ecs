@@ -1,0 +1,40 @@
+easy_admin:
+    entities:
+        Admin:
+            class: Core\Entity\Admin
+            label: 'Admins'
+            list:
+                title: 'Admins'
+                fields:
+                    - id
+                    - name
+                    - { property: 'email', type: 'email' }
+                    - { property: 'is_active', type: 'toggle', label: 'Active?' }
+                    - { property: 'roles', type: 'array' }
+                    - createdAt
+                actions: ['show', 'edit', 'delete']
+                dql_filter: 'entity.isDeleted = false'
+            show:
+                fields:
+                    - id
+                    - name
+                    - { property: 'email', type: 'email' }
+                    - { property: 'isActive', type: 'toggle', label: 'Active?' }
+                    - { property: 'roles', type: 'array' }
+                    - createdAt
+                    - lastLoginAt
+                    - lastLoginIp
+                    - lastUserAgent
+            form:
+                fields:
+                    - name
+                    - { property: 'is_active', type: 'toggle', label: 'Active?', role: ROLE_SUPERADMIN }
+                    - { property: 'passwordHash', type: 'password', label: 'Password' }
+                    - { property: 'email', type: 'email' }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true,
+                                                                           choices: { 'ROLE_MARKETING': 'ROLE_MARKETING',
+                                                                                      'ROLE_EMPLOYEE': 'ROLE_EMPLOYEE',
+                                                                                      'ROLE_ADMIN': 'ROLE_SUBADMIN',
+                                                                                      'ROLE_SUPPORT': 'ROLE_SUPPORT',
+                                                                                      'ROLE_SUPERADMIN': 'ROLE_SUPERADMIN' }
+                    }}

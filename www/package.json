@@ -7,14 +7,14 @@
   "scripts": {
     "dev": "encore dev",
     "fo": "encore dev --config-name front_office",
-    "fo-watch": "encore dev --watch --config-name front_office",
+    "fo:watch": "encore dev --watch --config-name front_office",
     "admin": "encore dev --config-name easyadmin",
-    "admin-watch": "yarn admin --watch",
+    "admin:watch": "yarn admin --watch",
     "lint": "eslint --ext .js,.ts --fix --cache=true assets/* ",
     "watch": "encore dev --watch",
     "prod": "lint && encore production",
     "test": "jest --runInBand --no-cache",
-    "test -w": "run test --watch"
+    "test:w": "run test --watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",

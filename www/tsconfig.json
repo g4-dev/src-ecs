@@ -16,9 +16,7 @@
     "types": ["jest"],
     "compileOnSave": true,
     "include": [
-      "./assets/easyadmin/*.ts",
-      "./assets/front_office/*.ts",
-      "./assets/core/*.ts"
+      "./**/*.ts"
     ],
     "exclude": [
       "**/build/", 

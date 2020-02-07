@@ -3,6 +3,9 @@
 
 namespace FrontOffice\Entity;
 
+use Core\Entity\Traits\DatesAt;
+use Core\Entity\Traits\Id;
+use Core\Entity\Transaction;
 use Doctrine\Common\Collections\ArrayCollection;
 use FrontOffice\Model\Shipment;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,14 +18,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Purchase
 {
-    /**
-     * The purchase increment id. This identifier will be use in all communication between the customer and the store.
-     *
-     * @var string
-     * @ORM\Column(type="string", name="id", nullable=false)
-     * @ORM\Id
-     */
-    protected $id = null;
+    const STATUSES = ['processing', 'shipped'];
+    
+    use Id;
+    use DatesAt;
 
     /**
      * The Unique id of the purchase.
@@ -39,15 +38,7 @@ class Purchase
      * @ORM\Column(type="date")
      */
     protected $deliveryDate = null;
-
-    /**
-     * The purchase datetime in the customer timezone.
-     *
-     * @var \DateTime
-     * @ORM\Column(type="datetimetz")
-     */
-    protected $createdAt = null;
-
+    
     /**
      * The shipping information.
      *
@@ -76,7 +67,7 @@ class Purchase
      * The user who made the purchase.
      *
      * @var \Core\Entity\User
-     * @ORM\ManyToOne(targetEntity="Core\Entity\User", inversedBy="purchases")
+     * @ORM\ManyToOne(targetEntity="Core\Entity\User", inversedBy="purchases", cascade={"persist"})
      */
     protected $buyer;
 
@@ -87,6 +78,16 @@ class Purchase
      * @ORM\OneToMany(targetEntity="PurchaseItem", mappedBy="purchase", cascade={"persist"})
      */
     protected $purchasedItems;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $trackingNumber;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Core\Entity\Transaction", mappedBy="purchase", cascade={"persist", "remove"})
+     */
+    private $transaction;
 
     /**
      * Constructor of the Purchase class.
@@ -100,9 +101,7 @@ class Purchase
         $this->deliveryDate = new \DateTime('+2 days');
         $this->deliveryHour = new \DateTime('14:00');
     }
-
-
-
+    
     /**
      * Set the address where the customer want its billing.
      *
@@ -160,6 +159,27 @@ class Purchase
     {
         $this->purchasedItems = $purchasedItems;
     }
+    
+    /**
+     * @param PurchaseItem $purchasedItems
+     */
+    public function addPurchasedItem($purchasedItem)
+    {
+        $this->purchasedItems[] = $purchasedItem;
+    }
+    
+    public function removePurchaseItem(PurchaseItem $product): self
+    {
+        if ($this->purchasedItems->contains($product)) {
+            $this->purchasedItems->removeElement($product);
+            // set the owning side to null (unless already changed)
+            if ($product->getPurchase() === $this) {
+                $product->setPurchase(null);
+            }
+        }
+        
+        return $this;
+    }
 
     /**
      * @return PurchaseItem[]
@@ -167,6 +187,23 @@ class Purchase
     public function getPurchasedItems()
     {
         return $this->purchasedItems;
+    }
+    
+    public function getTransaction(): ?Transaction
+    {
+        return $this->transaction;
+    }
+    
+    public function setTransaction(Transaction $transaction): self
+    {
+        $this->transaction = $transaction;
+        
+        // set the owning side of the relation if necessary
+        if ($this !== $transaction->getPurchase()) {
+            $transaction->setPurchase($this);
+        }
+        
+        return $this;
     }
 
     /**
@@ -186,22 +223,6 @@ class Purchase
     }
 
     /**
-     * @param \DateTime $createdAt
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
      * @param Shipment $shipping
      */
     public function setShipping($shipping)
@@ -215,6 +236,25 @@ class Purchase
     public function getShipping()
     {
         return $this->shipping;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getTrackingNumber()
+    {
+        return $this->trackingNumber;
+    }
+    
+    /**
+     * @param mixed $trackingNumber
+     * @return Purchase
+     */
+    public function setTrackingNumber($trackingNumber)
+    {
+        $this->trackingNumber = $trackingNumber;
+        
+        return $this;
     }
 
     /**
@@ -252,27 +292,14 @@ class Purchase
 
         return $this;
     }
-
-    /**
-     * @return string
-     */
-    public function getId()
+    
+    public function create(Basket $basket)
     {
-        return $this->id;
+        foreach ($basket->getProducts() as $product) {
+            $this->addPurchasedItem(new PurchaseItem($product));
+        }
     }
-
-    /**
-     * @param string $id
-     *
-     * @return Purchase
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
+    
     public function getTotal()
     {
         $total = 0.0;

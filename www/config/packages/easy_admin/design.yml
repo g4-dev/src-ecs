@@ -10,7 +10,17 @@
 # which is published at https://github.com/javiereguiluz/EasyAdminBundle
 easy_admin:
     site_name: 'Ecoservice'
-    #design:
+    design:
+        # TODO: create a css theme
         #assets:
             #css:
-                #- '/bundles/app/stylesheets/demo.css'
+                #- 'public/build/js/custom.css'
+        #templates:
+         #   edit: 'admin/custom_edit_form.html.twig'
+
+        #TODO : create a form design for Back Office
+        # you can also define an array of form themes to use all of them
+        #form_theme:
+        #    - 'admin/form/custom_layout.html.twig'
+        #    - 'form_div_layout.html.twig'
+        #    - '@EasyAdmin/form/bootstrap_4.html.twig'

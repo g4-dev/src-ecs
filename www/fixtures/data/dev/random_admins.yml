@@ -1,8 +1,8 @@
 Core\Entity\Admin:
-  admin{1..7}:
+  admin{1..10}:
     name: '<name()>'
     email (unique): '<email()>'
-    password_hash: '<(substr(md5(uniqid(rand(), true)), 0, 16))>'
+    password_hash: '<userPasswordEncoder("Azerty69")>'
     isActive: false
-    roles: ['ROLE_ADMIN']
+    roles: ['<randomElement([ROLE_ADMIN,ROLE_MARKETING,ROLE_SUPPORT,ROLE_EMPLOYEE,ROLE_SUPERADMIN])>']
     createdAt: '<dateTimeBetween("-100 days", "now")>'

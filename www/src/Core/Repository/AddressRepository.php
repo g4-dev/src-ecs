@@ -4,7 +4,7 @@ namespace Core\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-use FrontOffice\Entity\Address;
+use Core\Entity\Address;
 
 /**
  * @method Address|null find($id, $lockMode = null, $lockVersion = null)

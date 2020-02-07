@@ -1,0 +1,32 @@
+easy_admin:
+    entities:
+        ProService:
+            # TODO: traductions
+            class: Admin\Entity\ProService
+            image_base_path: '%kernel.project_dir%/public/uploads/'
+            list:
+                title: 'Services Pro'
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: 'shortDescription', type: 'text', label: 'Brief' }
+                    - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.product_images%' }
+                actions: ['edit', 'delete','show']
+                filters: ['tags']
+            show:
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: 'shortDescription', type: 'text', label: 'Brief' }
+                    - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.product_images%' }
+                    - tags
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-4' }
+                    - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
+                    - { property: 'name', label: 'Titre' }
+                    - { type: 'section', label: 'Advanced Settings', icon: 'warning', help: 'Reserved for administrators use' }
+                    - { property: 'isActive', label: 'Published' }
+                    - { type: 'group', css_class: 'col-sm-8' }
+                    - { property: 'tags', type_options: { required: true } }
+                    - { property: 'shortDescription', type: 'text', label: 'Brief' }
+                    - { property: 'description', type: 'text_editor', label: 'Description', type_options: { trim: true } }
+                    - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: true } }

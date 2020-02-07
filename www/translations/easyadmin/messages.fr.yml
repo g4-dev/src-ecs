@@ -1,0 +1,100 @@
+# Check out the 'messages_en.yml' for an explanation about the best practices
+# recommended to translate your backend efficiently.
+# TODO: traduction
+Dashboard: Accueil
+# main menu
+menu.category:     Catégories
+menu.product:      Produits
+menu.product.list: Tous les produits
+menu.product.add:  Ajouter un produit
+menu.customer:     Clients
+menu.admin:        Admin
+menu.purchase:     Ventes
+menu.about:        À propos d'EasyAdmin
+menu.blog:         Blog
+menu.articles.list: Listes des pages
+menu.articles.category: Catégories
+menu.settings: Paramètres
+menu.settings.homepage: Page d'accueil
+menu.diy: Recettes DIY
+menu.proservice: B2B
+menu.proservice.add: Ajouter un service
+menu.proservice.list: Tous les services
+
+#links to page
+links_to_page: Consulter
+# entity names, labels and titles
+Categories: Categories
+Category: Categorie
+Customers: Clients
+Product: Produit
+Products: Produits
+User: Utilisateur
+Articles: Articles
+Article: Article
+
+# entity properties
+Attachments: Pièces jointes
+Billing address: Adresse de facturation
+Buyer: Acheteur
+Contract: Contrat
+Created at: Crée le
+Delivery date: Date de livraison
+Delivery hour: Heure de livraison
+Description: Description
+EAN-13: EAN-13
+Ean: EAN-13
+Email: Email
+Enabled: Activé
+Features: Fonctionnalités
+Guid: GUID
+ID: ID
+Image file: Fichier image
+Image: Image
+Is active: Active ?
+Label: Titre
+Name: Nom
+Parent category: Catégorie Produit
+Price: Prix
+Published: Publié
+Purchase: Acheter
+Purchased items: Produits achetés
+Purchases: Achats
+Shipping: Expédition
+Tags: Étiquettes
+Total: Total
+Username: Nom de l'utilisateur
+url.prefix: Préfixe d'url /
+
+# help messages
+ean.help_message: Saisissez un code EAN-13 valide. Laissez-le vide si vous n'avez pas le code.
+
+# messages that contain variables
+'Product %entity_label%': 'Producto %entity_label%'
+
+# misc. messages
+Account Information: Information sur le compte
+Advanced Settings:  Options avancées
+Basic information: Information générale
+Contact Information: Information de contact
+Contract file: Fichier de contrat
+Delivery Details: Information de livraison
+Legal Information: Information Légal
+Product Details: Détail produit
+Purchase Details: Informations d'achat
+Transactions History: HHistorique des transactions
+
+# settings
+settings.cmsPages: Pages à la une
+settings.products: Produits à la une
+settings.diy: Recettes à la une
+menu.settings.nav: Menu
+# Roles
+ROLE_PRO: Professionel
+ROLE_USER: Utilisateur
+ROLE_EMPLOYEE: Employé
+# DIY
+diy.title: Recettes Diy
+
+#errors
+maximum.error: Vous ne pouvez en ajouter plus

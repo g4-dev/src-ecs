@@ -2,7 +2,7 @@
 
 namespace FrontOffice\Entity;
 
-use Core\Entity\Admin;
+use Admin\Entity\Product;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -53,7 +53,13 @@ class PurchaseItem
      * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id")
      */
     protected $purchase;
-
+    
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+        $this->quantity = $product->getQuantity();
+    }
+    
     /**
      * @param \Admin\Entity\Product $product
      */

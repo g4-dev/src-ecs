@@ -5,6 +5,7 @@ namespace Core\Service;
 use Core\Entity\User;
 use Core\Entity\Admin;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
@@ -99,16 +100,15 @@ class MailerService
         ]);
     }
 
-    public function orderConfirmation(User $user)
+    public function twigSend(string $subject, User $user, string $template)
     {
-        $message = (new \Swift_Message('Confirmation de commande'))
-            ->setFrom('send@example.com')
-            ->setTo($user->getEmail())
-            ->setBody(
-                $this->twig->render('mail/order_confirmation.html.twig'),
-                'text/html'
-            );
-
-        $this->swiftMailer->send($message);
+        try{
+            $message = $this->createTwigMessage($subject, $template);
+            $this->send($message, $user->getEmail());
+        } catch (TransportException | \Exception $e){
+            return $e->getMessage();
+        }
+        
+        return 'Mail successfully sent';
     }
 }

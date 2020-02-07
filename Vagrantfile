@@ -11,18 +11,16 @@ if(!File.exist?("#{current_dir}/vm_config.yaml"))
 end
 
 yml              = YAML.load_file("#{current_dir}/vm_config.yaml")
-conf, vm         =  yml['conf'], yml['vm']
-# If you're on a new build of Windows 10 you can try to use NFS
-# os, box_version  = conf['os'], conf['box_version']
-os               = "bento/debian-" + conf['os']
+conf, vm, rsync_exclude         = yml['conf'], yml['vm'], yml['rsync_exclude']
+# bento is an old debian build
+os               = conf['box'] ? conf['box'] : "loic-roux-404/deb-g4"
 # book repo
 playbook_name    = "playbook-#{conf['projectname']}"
 playbook         = "https://github.com/#{conf['org']}/#{playbook_name}.git"
-
 ### work path variable to change in debug mode
 # Be aware of shared folders when deleting things
 debug            = conf['debug_playbook']
-folder           = debug ? '/vagrant' : '/tmp'
+folder           = debug ? '/data/ecs' : '/tmp'
 web_dir          = "/data/#{conf['projectname']}/#{conf['web_path']}"
 # nfs config
 conf['nfs'] = Vagrant::Util::Platform.darwin? || Vagrant::Util::Platform.linux?
@@ -40,7 +38,6 @@ Vagrant.require_version ">= 2.2.2"
 
 Vagrant.configure(2) do |config|
   config.vm.box = os
-  #config.vm.box_version = "10.0.0"
 
   id_rsa_path        = File.join(Dir.home, ".ssh", "id_rsa")
   id_rsa_ssh_key     = File.read(id_rsa_path)
@@ -69,11 +66,10 @@ Vagrant.configure(2) do |config|
   config.hostmanager.aliases = hosts
   config.vm.network :private_network, ip: conf['private_ip']
 
-  if !debug
-    config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/vagrant", disabled: true
 
+  if !debug
     $init = <<-SCRIPT
-    sudo apt -y install git
     rm -rf /tmp/#{playbook_name} || true
     git clone #{playbook} /tmp/#{playbook_name} && cd /tmp/#{playbook_name} && git reset --hard origin/#{conf['playbook_version']}
     SCRIPT
@@ -90,10 +86,11 @@ Vagrant.configure(2) do |config|
       ansible.extra_vars = conf
   end
 
-  if !NFS_ENABLED
+  if !NFS_ENABLED && !debug
     config.vm.synced_folder "./", "/data/ecs/", type: "rsync",
-    rsync__args: ["--verbose", "--archive", "--delete", "--no-owner", "--no-group"],
-    rsync__exclude: ['/**/.DS_Store','/**/node_modules/**','/**/vendor/**', '.git', '.vagrant', '.idea/', '.vscode/','www/config/parameters.yaml','www/public/build/']
+        rsync__auto: true,
+        rsync__args: ["--archive", "--delete", "--no-owner", "--no-group","-q"],
+        rsync__exclude: rsync_exclude
   end
 
   if NFS_ENABLED && Vagrant::Util::Platform.darwin? && !Vagrant.has_plugin?('vagrant-bindfs')

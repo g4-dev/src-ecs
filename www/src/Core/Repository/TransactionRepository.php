@@ -4,7 +4,7 @@ namespace Core\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-use FrontOffice\Entity\Transaction;
+use Core\Entity\Transaction;
 
 /**
  * @method Transaction|null find($id, $lockMode = null, $lockVersion = null)
