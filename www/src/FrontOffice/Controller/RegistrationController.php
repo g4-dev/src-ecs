@@ -2,12 +2,11 @@
 
 namespace FrontOffice\Controller;
 
-use Core\Entity\User;
+use Core\Repository\OrderRepository;
 use Core\Service\UserService;
 use FrontOffice\Form\AccountUpdateForm;
 use FrontOffice\Form\RegistrationForm;
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -99,6 +98,41 @@ class RegistrationController extends AbstractController
 
         return $this->render('front_office/accounting/account-update.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/account_user/orders",
+     *     name="fo_accountOrd")
+     * @return Response
+     */
+    public function orders(): Response
+    {
+        $orders = $this->getUser()->getOrders();
+
+        return $this->render('shop/accounting/orders.html.twig', [
+            'orders' => $orders,
+        ]);
+    }
+
+    /**
+     * @Route("/account_user/order",
+     *     name="fo_accountOneOrd")
+     * @param int $id
+     * @param OrderRepository $orderRepository
+     * @return Response
+     */
+    public function order(int $id, OrderRepository $orderRepository): Response
+    {
+        $order = $orderRepository
+            ->findOneByIdAndUser($id, $this->getUser()->getId());
+
+        if (!$order) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('shop/account/order_single.html.twig', [
+            'order' => $order,
         ]);
     }
 }

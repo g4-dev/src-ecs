@@ -2,6 +2,7 @@
 
 namespace Core\Service;
 
+use App\Entity\User;
 use Core\Entity\Admin;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -96,5 +97,18 @@ class MailerService
             'subject' => $subject,
             'payload' => $payload
         ]);
+    }
+
+    public function orderConfirmation(User $user)
+    {
+        $message = (new \Swift_Message('Confirmation de commande'))
+            ->setFrom('send@example.com')
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->twig->render('mail/order_confirmation.html.twig'),
+                'text/html'
+            );
+
+        $this->swiftMailer->send($message);
     }
 }
