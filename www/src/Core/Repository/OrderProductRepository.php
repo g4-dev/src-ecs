@@ -4,7 +4,7 @@ namespace Core\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-use App\Entity\OrderProduct;
+use FrontOffice\Entity\OrderProduct;
 
 /**
  * @method OrderProduct|null find($id, $lockMode = null, $lockVersion = null)

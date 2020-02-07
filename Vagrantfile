@@ -58,6 +58,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+  config.vm.network "forwarded_port", guest: 82, host: 8082, auto_correct: true
   config.vm.network "forwarded_port", guest: 3306, host: 3366, auto_correct: true
 
   config.vm.hostname = conf['servername']
