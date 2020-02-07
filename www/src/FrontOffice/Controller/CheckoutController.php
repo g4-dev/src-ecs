@@ -7,14 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use FrontOffice\Entity\Basket;
 use FrontOffice\Form\AddressForm;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CheckoutController extends AbstractController
 {
     private $config;
-
-    private $stripePk;
 
     private $basket;
 
@@ -34,12 +33,15 @@ class CheckoutController extends AbstractController
         if (!$this->basket->hasProducts()) {
             return $this->redirectToRoute('fo_basket');
         }
-        $billingAddress = $addressRepository
-            ->findCurrentWithType($this->getUser()->getId(), 'billing');
-        if (null === $billingAddress) {
+        try {
+            $billingAddress = $addressRepository
+                ->findCurrentWithType($this->getUser()->getId(), 'billing');
             $this->addFlash('info', 'Veuillez renseigner une adresse de facturation avant de continuer');
             return $this->redirectToRoute('fo_account');
+        }catch (\Exception $e){
+            return new Response($e->getMessage(),400);
         }
+
 
         $address = $addressRepository
             ->findCurrentWithType($this->getUser()->getId(), 'shipping');

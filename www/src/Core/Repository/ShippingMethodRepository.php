@@ -4,7 +4,7 @@ namespace Core\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-use App\Entity\ShippingMethod;
+use FrontOffice\Entity\ShippingMethod;
 
 /**
  * @method ShippingMethod|null find($id, $lockMode = null, $lockVersion = null)
