@@ -1,1 +1,91 @@
 @import 'app';
+
+.cont-top-produit{
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  &-img{
+    height: 600px;
+    width: 450px;
+    margin-left: 70px;
+
+    img{
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &-des{
+    border: solid;
+    height: 100%;
+
+    div{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      border: solid;
+      margin-bottom: 50px;
+
+      h1{
+        color:$darkGreen;
+        font-size: $f40;
+      }
+
+      p{
+        color:$lightGreen;
+        font-size: 15px;
+      }
+    }
+
+    .description{
+      color:$darkGreen;
+      font-size:$f30;
+      line-height: 70px;
+      width: 420px;
+      margin-bottom: 80px;
+    }
+
+    .prix{
+      color:$lightGreen;
+      font-size: $f30;
+    }
+  }
+
+  &-spec{
+    border: solid red;
+    width: 20%;
+
+    .int-spec{
+      border: solid;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+
+      .spec{
+        border: solid green;
+        width: 100%;
+        height: 33%;
+
+        p:first-child{
+          font-size:20px;
+        }
+
+        div{
+          border: solid orange;
+          width: 100%;
+          margin-top: 20px;
+
+          p{
+            color: $darkGreen;
+          }
+        }
+      }
+    }
+  }
+}
