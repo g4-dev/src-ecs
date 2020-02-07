@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
@@ -20,24 +20,24 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PayPalController extends AbstractController
 {
-    private Basket $basket;
-    private ApiContext $apiContext;
-    private Session $session;
+    private $basket;
+    private $apiContext;
+    private $session;
     const CLIENT_ID = 'AddGmlqTUQrRQKC-BmA70jqEaJM7HDgkE22w22QUrDZwQTAXSupw6jtpqHFRiBsd8JoIAxjYqtaxyYDn';
     const CLIENT_SECRET = 'ECGl_NQUdmwneNJq9hYEntmE4XZ_5nkBg4vOVrTzKEyyRwsUuM_DPBVQ5FUvn4zmLcN3COXsLU74S0r4';
 
-    public function __construct(EntityManagerInterface $objectManager, $apiContext)
+    public function __construct(EntityManagerInterface $objectManager, SessionInterface $session)
     {
         $this->basket = new Basket($objectManager);
-        dump($apiContext);
         // TODO: Load the config in a cleaner way
-        $this->$apiContext = new ApiContext(
-            new OAuthTokenCredential(
-                self::CLIENT_ID,     // ClientID
-                self::CLIENT_SECRET      // ClientSecret
-            )
-        );
-        $this->session = new Session();
+//        $this->apiContext = new ApiContext(
+//            new OAuthTokenCredential(
+//                self::CLIENT_ID,     // ClientID
+//                self::CLIENT_SECRET      // ClientSecret
+//            )
+//        );
+
+        $this->session = $session;
     }
 
     /**

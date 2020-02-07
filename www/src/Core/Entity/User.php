@@ -127,12 +127,12 @@ class User extends AbstractUser implements UserInterface
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getAddress(): ?Address
     {
         return $this->address;
     }
 
-    public function setAddress(string $address): self
+    public function setAddress(?Address $address): self
     {
         $this->address = $address;
 
@@ -162,9 +162,19 @@ class User extends AbstractUser implements UserInterface
 
         return $this;
     }
-    
+
+    public function addPurchase(Purchase $purchase): self
+    {
+        if (!$this->purchases->contains($purchase)) {
+            $this->orders[] = $purchase;
+            $purchase->setUser($this);
+        }
+
+        return $this;
+    }
+
     /**
-     * @param \FrontOffice\Entity\Purchase[] $purchases
+     * @param Purchase[] $purchases
      */
     public function setPurchases($purchases)
     {

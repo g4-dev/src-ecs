@@ -3,10 +3,10 @@
 
 namespace Admin\Entity;
 
+use FrontOffice\Entity\Image;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Class Product.
@@ -131,6 +131,16 @@ class Product
      * @ORM\OneToMany(targetEntity="FrontOffice\Entity\PurchaseItem", mappedBy="product", cascade={"remove"})
      */
     private $purchasedItems;
+
+    /**
+     * @var string
+     */
+    private $slug;
+
+    /**
+     * @var string
+     */
+    private $images;
 
     public function __construct()
     {
@@ -422,10 +432,29 @@ class Product
     }
 
     /**
-     * @return PurchaseItem[]
+     * @return FrontOffice\Entity\PurchaseItem[]
      */
     public function getPurchasedItems()
     {
         return $this->purchasedItems;
+    }
+
+    public function addImage(Image $image)
+    {
+        $image->setProduct($this);
+
+        $this->images->add($image);
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

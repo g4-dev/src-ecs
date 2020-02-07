@@ -86,7 +86,7 @@ class CheckoutController extends AbstractController
             return $this->redirectToRoute('basket_show');
         }
 
-        $form = $this->createForm(\App\Form\ShippingMethodForm::class, null);
+        $form = $this->createForm(FrontOffice\Form\ShippingMethodForm::class, null);
 
         $form->handleRequest($req);
 

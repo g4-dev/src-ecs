@@ -21,7 +21,7 @@ class Order
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OrderProduct", mappedBy="order", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Core\Entity\OrderProduct", mappedBy="order", orphanRemoval=true, cascade={"persist"})
      */
     private $products;
 
@@ -36,25 +36,25 @@ class Order
     private $dateModified;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity="Core\Entity\User", inversedBy="orders")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Address")
+     * @ORM\ManyToOne(targetEntity="FrontOffice\Entity\Address")
      * @ORM\JoinColumn(name="shipping_address_id", referencedColumnName="id", nullable=false)
      */
     private $shippingAddress;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Address")
+     * @ORM\ManyToOne(targetEntity="FrontOffice\Entity\Address")
      * @ORM\JoinColumn(name="billing_address_id", referencedColumnName="id", nullable=false)
      */
     private $billingAddress;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Transaction", mappedBy="order", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="FrontOffice\Entity\Transaction", mappedBy="order", cascade={"persist", "remove"})
      */
     private $transaction;
 
@@ -69,7 +69,7 @@ class Order
     private $trackingNumber;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ShippingMethod")
+     * @ORM\ManyToOne(targetEntity="FrontOffice\Entity\ShippingMethod")
      * @ORM\JoinColumn(name="shipping_method_id", referencedColumnName="id", nullable=false)
      */
     private $shippingMethod;

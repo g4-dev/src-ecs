@@ -1,6 +1,6 @@
 <?php
 
-namespace FrontOffice\Entity;
+namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,7 +28,7 @@ class Transaction
     private $total;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Order", inversedBy="transaction", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="FrontOffice\Entity\Order", inversedBy="transaction", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=false)
      */
     private $order;

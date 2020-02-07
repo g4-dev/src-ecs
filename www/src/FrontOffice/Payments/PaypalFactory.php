@@ -6,7 +6,7 @@ use PayPal\Api\Details;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
 use PayPal\Api\Transaction;
-use App\Entity\Basket;
+use FrontOffice\Entity\Basket;
 
 /**
  * Helps generating paypal transactions
