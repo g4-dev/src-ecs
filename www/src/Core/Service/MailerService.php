@@ -2,7 +2,7 @@
 
 namespace Core\Service;
 
-use App\Entity\User;
+use Core\Entity\User;
 use Core\Entity\Admin;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\MailerInterface;

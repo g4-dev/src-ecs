@@ -1,9 +1,9 @@
 <?php
 namespace Core\Service;
 
-use App\Entity\Order;
-use App\Entity\OrderProduct;
-use App\Entity\Basket;
+use FrontOffice\Entity\Order;
+use FrontOffice\Entity\OrderProduct;
+use FrontOffice\Entity\Basket;
 use Core\Entity\User;
 use Core\Repository\AddressRepository;
 
@@ -34,7 +34,7 @@ class OrderfactoryService
               ->setStatus('processing')
               ->setShippingMethod($basket->getShippingMethod())
               ->setTransaction(
-                  new \App\Entity\Transaction(
+                  new \FrontOffice\Entity\Transaction(
                       $paymentMethod,
                       $totalPrice
                   )

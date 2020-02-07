@@ -20,7 +20,8 @@
         "symfony/yaml": "^5.0",
         "paypal/rest-api-sdk-php": "^1.14",
         "ext-json": "*",
-        "vich/uploader-bundle": "^1.13"
+        "vich/uploader-bundle": "^1.13",
+        "ext-intl": "*"
     },
     "config": {
         "preferred-install": {

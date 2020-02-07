@@ -57,7 +57,6 @@ security:
     access_control:
         - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
-        #        - { path: ^/pro/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         #       - { path: ^/pro, role: ROLE_PRO}
         - { path: ^/account_user, role: ROLE_USER }
         - { path: ^/account_user/update$, role: ROLE_USER }

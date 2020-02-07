@@ -1,6 +1,6 @@
 <?php
 
-namespace FrontOffice\Entity;
+namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -53,7 +53,7 @@ class Address
     private $country;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="addresses")
+     * @ORM\ManyToOne(targetEntity="Core\Entity\User", inversedBy="addresses")
      * @ORM\JoinColumn(name="user_id", nullable=false)
      */
     private $user;

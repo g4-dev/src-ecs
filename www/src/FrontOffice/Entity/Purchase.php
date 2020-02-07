@@ -101,6 +101,8 @@ class Purchase
         $this->deliveryHour = new \DateTime('14:00');
     }
 
+
+
     /**
      * Set the address where the customer want its billing.
      *
@@ -120,7 +122,7 @@ class Purchase
     }
 
     /**
-     * @param Core\Entity\User $buyer
+     * @param \Core\Entity\User $buyer
      */
     public function setBuyer($buyer)
     {
