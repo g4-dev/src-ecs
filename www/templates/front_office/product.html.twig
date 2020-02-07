@@ -1,0 +1,54 @@
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('product', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    <hr class="sep-header">
+    <div class="cont">
+        <a class="btn-back pop" href="#">Retour</a>
+    </div>
+    <div class="cont-top-produit">
+        <div class="cont-top-produit-img">
+            <img src="{{ asset('images/produit.png') }}">
+        </div>
+        <div class="cont-top-produit-des">
+            <div>
+                <h1 class="gel-bold">Produit</h1>
+                <p class="pop">Catégorie</p>
+            </div>
+            <p class="description pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna. </p>
+            <p class="prix serge-bold">XX,xx €</p>
+        </div>
+        <div class="cont-top-produit-spec">
+            <div class="int-spec">
+                <div class="spec quantite">
+                    <p class="pop">Quantité</p>
+                    <div>
+                        <p class="serge">+</p>
+                        <p class="serge-bold">0</p>
+                        <p class="serge">-</p>
+                    </div>
+                </div>
+                <div class="spec taille">
+                    <p class="pop">Taille</p>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="spec couleur">
+                    <p class="pop">Couleur</p>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('product', null, 'front_office') }}
+{% endblock %}
