@@ -142,6 +142,36 @@
     margin: 2vh 0;
   }
 
+  @media screen and (max-height: 650px) {
+    .overlay-content {
+      hr{
+        height: 2px;
+      }
+    }
+    .overlay a {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media screen and (max-height: 500px) {
+    .overlay-content {
+      hr{
+        height: 2px;
+      }
+    }
+    .overlay a {
+      font-size: 1.2rem;
+      margin: 1.5vh 0;
+    }
+  }
+
+  @media screen and (max-height: 350px) {
+    .overlay a {
+      font-size: 1rem;
+      margin: 1vh 0;
+    }
+  }
+
   .burger{
     cursor: pointer;
     z-index: 9999;
