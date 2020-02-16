@@ -9,6 +9,7 @@
     - product_category
     - product
     - professional
+    - panier
   default_ext: ts
 
 - name: easyadmin

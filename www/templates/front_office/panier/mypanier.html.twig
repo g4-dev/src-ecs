@@ -1,0 +1,56 @@
+<section class="fullCenter mon_panier">
+    <div class="panier_space flexStart pop">
+        <div class="center path">
+            <a href="#">Mon panier</a>
+            <p>></p>
+            <a href="#">Livraison</a>
+            <p>></p>
+            <a href="#">Paiement</a>
+            <p>></p>
+            <a href="#">Récapitulatif</a>
+        </div>
+    </div>
+
+    <div class="panier_space centerBetween">
+        <table class="pop">
+            <thead>
+                <th>Supp</th>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Total</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">X</a></td>
+                    <td class="table_img"><img src="{{ asset('images/produit.png') }}"></td>
+                    <td><p>1</p></td>
+                    <td><p>22,99 €</p></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="recapPanier">
+            <h3 class="pop">Récapitulatif Panier</h3>
+            <div class="sousTot centerBetween">
+                <p class="pop">Sous-total</p>
+                <p class="serge price">22.99 €</p>
+            </div>
+            <div class="livraison centerBetween">
+                <p class="pop">Livraison</p>
+                <p class="serge price">1.99 €</p>
+            </div>
+            <hr>
+            <div class="total centerBetween">
+                <p class="serge-bold"><strong>Total</strong></p>
+                <p class="serge-bold price"><strong>24,98 €</strong></p>
+            </div>
+            <div class="center continue pop"><a href="#">Continuer</a></div>
+        </div>
+    </div>
+    <div class="panier_space flexStart">
+        <div class="fullCenter button pop">
+            <a href="#">Continuer Achat</a>
+            <a href="#">Vider le panier</a>
+        </div>
+    </div>
+</section>
