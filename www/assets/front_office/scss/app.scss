@@ -51,6 +51,7 @@ button{
   color:$dark;
   position: relative;
   display: inline-block;
+  margin-left: 117px;
 
   &::after{
     content: '';
@@ -103,6 +104,68 @@ button{
     font-size: $f40;
     line-height: $inter80;
     color:$darkGreen;
+  }
+}
+
+/*Suggestions de produits*/
+.title-suggest{
+  margin-top: 75px;
+  color: $darkGrey;
+  margin-left: 70px;
+  font-size:$f40;
+}
+
+.cont-item{
+  width:100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 200px;
+
+  div{
+    height:360px;
+    width:280px;
+
+    .cont-item-img{
+      width: 280px;
+      height: 280px;
+      overflow: hidden;
+
+      a{
+        height:100%;
+        width:100%;
+        margin-bottom: 20px;
+
+        img{
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+          transform: scale(1);
+          transition: all .5s ease-in-out;
+        }
+
+        &:hover{
+          img{
+            transform: scale(1.2);
+            transition: all .5s ease-in-out;
+          }
+        }
+      }
+    }
+
+    p{
+      margin-top: 15px;
+      font-size: 25px;
+      z-index:100;
+      color: $darkGrey;
+    }
+  }
+}
+
+@media screen and (max-width:1025px){
+  .cont-item-img{
+    margin-bottom: 30px;
   }
 }
 

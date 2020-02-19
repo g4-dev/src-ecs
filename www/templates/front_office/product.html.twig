@@ -6,9 +6,7 @@
 
 {% block main %}
     <hr class="sep-header">
-    <div class="cont">
-        <a class="btn-back pop" href="#">Retour</a>
-    </div>
+    <a class="btn-back pop" href="#">Retour</a>
     <div class="cont-top-produit">
         <div class="cont-top-produit-img">
             <img src="{{ asset('images/produit.png') }}">
@@ -58,8 +56,12 @@
             <a href="#" class="btn-ajouter pop-bold">Ajouter</a>
         </div>
     </div>
-    <div class="cont-draglist-product">
+    <div class="cont cont-draglist-product">
         <div class="draglist">
+            <div class="croix">
+                <div></div>
+                <div></div>
+            </div>
             <p class="title pop">Lorem</p>
             <div class="hide">
                 <p class="title-hide pop-bold">Lorem</p>
@@ -67,6 +69,10 @@
             </div>
         </div>
         <div class="draglist">
+            <div class="croix">
+                <div></div>
+                <div></div>
+            </div>
             <p class="title pop">Lorem</p>
             <div class="hide">
                 <p class="title-hide pop-bold">Lorem</p>
@@ -74,11 +80,97 @@
             </div>
         </div>
         <div class="draglist">
+            <div class="croix">
+                <div></div>
+                <div></div>
+            </div>
             <p class="title pop">Lorem</p>
             <div class="hide">
                 <p class="title-hide pop-bold">Lorem</p>
                 <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.</p>
             </div>
+        </div>
+    </div>
+    <div class="cont cont-list-comments">
+        <div class="cont-comment">
+            <div class="cont-title">
+                <p class="pop-bold">Lorem</p>
+                <div class="cont-stars">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                </div>
+                <p class="pop date">01/01/2020</p>
+            </div>
+            <p class="pop comment">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+                Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+            </p>
+        </div>
+        <div class="cont-comment">
+            <div class="cont-title">
+                <p class="pop-bold">Lorem</p>
+                <div class="cont-stars">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                </div>
+                <p class="pop date">01/01/2020</p>
+            </div>
+            <p class="pop comment">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+                Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+            </p>
+        </div>
+        <div class="cont-comment">
+            <div class="cont-title">
+                <p class="pop-bold">Lorem</p>
+                <div class="cont-stars">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                </div>
+                <p class="pop date">01/01/2020</p>
+            </div>
+            <p class="pop comment">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+                Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+            </p>
+        </div>
+    </div>
+
+    <p class="gel-bold title-suggest">Suggestions</p>
+
+    <div class="cont-item">
+        <div>
+            <div class="cont-item-img">
+                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
+        </div>
+        <div>
+            <div class="cont-item-img">
+                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
+        </div>
+        <div>
+            <div class="cont-item-img">
+                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
+        </div>
+        <div>
+            <div class="cont-item-img">
+                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
         </div>
     </div>
 
