@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  flex-wrap: wrap;
 
   &-img{
     height: 600px;
@@ -340,4 +341,138 @@
   width: 80%;
   margin-left: 10%;
   margin-bottom: 50px;
+}
+
+@media screen and (max-width:1174px){
+  .cont-top-produit-spec{
+    width: 80%;
+    margin-left: 10%;
+    position: relative;
+
+    .int-spec{
+      margin-top: 5%;
+      height: auto;
+      align-items: flex-start;
+
+      .spec{
+        margin-bottom: 40px;
+      }
+
+      .taille{
+        width: 50%;
+      }
+
+      .couleur{
+        width: 50%;
+      }
+    }
+
+    .btn-ajouter{
+      position: absolute;
+      right: 10%;
+      bottom:10%;
+    }
+  }
+
+  .cont{
+    padding: 0;
+  }
+}
+
+@media screen and (max-width:939px) {
+
+  .cont-top-produit {
+    margin-top: 85px;
+    flex-direction: column;
+    align-items: center;
+
+    .cont-top-produit-img{
+      margin-bottom: 25px;
+      margin-left: 0;
+    }
+
+    .cont-top-produit-des {
+
+      div:first-child {
+        position: absolute;
+        top: 90px;
+      }
+
+      .description{
+        margin-bottom: 20px;
+      }
+    }
+
+    .cont-top-produit-spec{
+      width: 420px;
+      margin-top: 25px;
+      margin-left: unset;
+
+      .int-spec {
+        margin-bottom: 25px;
+
+        .spec {
+          width: 100%;
+
+          p {
+            margin-bottom: 15px;
+          }
+
+          div {
+            justify-content: center;
+            width: 100%;
+          }
+        }
+      }
+      .btn-ajouter{
+        position: relative;
+        left:8px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:830px){
+  .cont{
+    width:80%;
+    margin-left: 10%;
+  }
+
+  .cont-list-comments{
+
+    .cont-comment{
+
+      .cont-title{
+
+        p:first-child{
+          margin-right: 25px;
+        }
+
+        .cont-stars{
+          margin-right:25px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:485px){
+  .cont-top-produit-img, .cont-top-produit-spec{
+    width:350px !important;
+  }
+
+  .cont-top-produit-des{
+
+    .description {
+       font-size:18px;
+      line-height: 30px;
+      width: 350px;
+    }
+  }
+}
+
+@media screen and (max-width:370px){
+    .cont-top-produit-img, .cont-top-produit-spec, .description {
+      width: 290px !important;
+    }
 }
