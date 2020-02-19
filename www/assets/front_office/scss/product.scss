@@ -114,6 +114,12 @@
               font-size:25px;
               color:$darkGreen;
               cursor:pointer;
+              transition: all .2s linear;
+            }
+
+            .selectTaille{
+              color:$lightGreen !important;
+              transition: all .2s linear;
             }
           }
         }
@@ -127,31 +133,46 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
+            position: relative;
 
-            li{
+            li {
               height: 22px;
               width: 22px;
               border-radius: 50%;
               cursor: pointer;
+              position: relative;
 
-              &:first-child{
+              &:first-child {
                 background: $lightGreen;
               }
 
-              &:nth-child(2){
+              &:nth-child(2) {
                 background: $lightGrey;
               }
 
-              &:nth-child(3){
+              &:nth-child(3) {
                 background: $dark;
               }
 
-              &:nth-child(4){
-                background:#B48B7D;
+              &:nth-child(4) {
+                background: #B48B7D;
               }
 
-              &:last-child{
+              &:last-child {
                 background: $darkGreen;
+              }
+
+              .selectCouleur {
+                position: absolute;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 4px;
+                border: solid 2px rgba(0, 0, 0, .5);
+                border-radius: 50%;
               }
             }
           }
