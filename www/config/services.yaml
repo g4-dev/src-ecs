@@ -74,6 +74,11 @@ services:
         tags: ['doctrine.repository_service']
         public: true
 
+    Admin\Repository\:
+        resource: '../src/Admin/Repository/*'
+        tags: ['doctrine.repository_service']
+        public: true
+
     Admin\Command\InitSettingsCommand:
         arguments:
             - '@doctrine'

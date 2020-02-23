@@ -13,7 +13,6 @@ security:
                 property: email
 
     role_hierarchy:
-        ROLE_USER: [IS_AUTHENTICATED_ANONYMOUSLY, IS_AUTHENTICATED_FULLY]
         ROLE_PRO: [ROLE_USER]
         ROLE_ADMIN: [ROLE_USER]
         ROLE_MARKETING: [ROLE_ADMIN]
