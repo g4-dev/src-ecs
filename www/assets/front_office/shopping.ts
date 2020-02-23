@@ -1,1 +1,2 @@
-require('./scss/purchasing.scss');
+require('./scss/shopping.scss');
+require('./ts/partials/layout.ts');
