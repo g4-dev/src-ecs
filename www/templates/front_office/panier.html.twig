@@ -22,8 +22,11 @@
     {#{% include 'front_office/panier/adress.html.twig' %}#}
     {#{% include 'front_office/panier/paiement.html.twig' %}#}
 
-    {#Attention cette vue est à part, elle a juste besoin du header et du footer je te laisse gérer son placement @Loic#}
-    {% include 'front_office/panier/adressUpdate.html.twig' %}
+    {#Attention cette vue est à part, elle a juste besoin du header, du footer et du HR et du P (Adresse de livraison à la place de Panier) de cette page, je te laisse gérer son placement @Loic#}
+    {#{% include 'front_office/panier/adressUpdate.html.twig' %}#}
+
+    {#Attention cette vue est à part, elle a juste besoin du header, du footer et du HR et du P de cette page#}
+    {% include 'front_office/panier/confirmation.html.twig' %}
 {% endblock %}
 
 {% block scripts %}
