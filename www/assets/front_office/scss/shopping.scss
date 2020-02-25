@@ -489,3 +489,39 @@
 
   }
 }
+
+.confirm{
+  color: $darkGreen;
+  font-size: 2rem;
+  @include fullCenter;
+  .centerBox{
+    border: solid 1px $darkGrey;
+    padding: 80px 256px;
+    @media screen and (max-width: 1024px) {
+      padding: 64px 128px;
+    }
+    @media screen and (max-width: 700px) {
+      padding: 64px 48px;
+    }
+    @media screen and (max-width: 600px) {
+      padding: 64px 32px;
+      font-size: 1.5rem;
+    }
+    @media screen and (max-width: 400px) {
+      font-size: 1rem;
+    }
+    @include center;
+  }
+  .accueil_return div {
+    margin: 32px auto;
+    font-size: 1.5rem;
+    @media screen and (max-width: 600px) {
+      font-size: 1rem;
+    }
+    .continue{
+      color: white;
+      padding: 24px 64px;
+      background: $darkGreen;
+    }
+  }
+}
