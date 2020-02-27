@@ -4,74 +4,175 @@
     {{ encore_entry_link_tags('productShow', null, 'front_office') }}
 {% endblock %}
 
-{% block breadcrumb %}
-<div class="breadcrumbs">
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="{{ path('index') }}">Accueil</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
-            </ol>
-        </nav>
-    </div>
-</div>
-{% endblock breadcrumb %}
-
-{% block shop_content %}
-<div class="row">
-    <div class="col-md-5 pr-md-5 mb-4 mb-md-0">
-        {% set cover = product.images|first %}
-        <div class="image-container">
-            <img src="/img/upload/{{ cover.name }}" alt="{{ cover.description }}" class="img img-fluid product-single__image">
+{% block main %}
+    <hr class="sep-header">
+    <a class="btn-back pop" href="#">Retour</a>
+    <div class="cont-top-produit">
+        <div class="cont-top-produit-img">
+            <img src="{{ asset('images/produit.png') }}">
         </div>
-        {% if product.images.count > 1 %}
-            <div class="d-flex mt-2">
-                {% for image in product.images[1:] %}
-                    <div class="mr-2 image-container w-25">
-                        <img src="/img/upload/{{ image.name }}" alt="{{ image.description }}" class="img img-fluid product-single__image">
-                    </div>
-                {% endfor %}
+        <div class="cont-top-produit-des">
+            <div>
+                <h1 class="gel-bold">Produit</h1>
+                <p class="pop">Catégorie</p>
             </div>
-        {% endif %}
-    </div>
-    <div class="col-md-7">
-        <header class="mb-4">
-            <h1 class="product-single__heading">{{ product.name }}</h1>
-        </header>
-        <p class="product-single__price">{{ product.price }} €</p>
-        <div class="basket-add mb-4">
-            {% if product.hasStock %}
-                <a href="/basket/add/{{ product.id }}" class="btn btn-primary">
-                    <i class="fas fa-shopping-cart mr-2"></i>
-                    Ajouter au panier
-                </a>
-            {% else %}
-                <a href="#" class="btn btn-secondary disabled">Rupture de stock</a>
-            {% endif %}
+            <p class="description pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna. </p>
+            <p class="prix serge-bold">XX,xx €</p>
         </div>
-        <p>
-            {{ product.description }}
-        </p>
+        <div class="cont-top-produit-spec">
+            <div class="int-spec">
+                <div class="spec quantite">
+                    <p class="pop">Quantité</p>
+                    <div>
+                        <p class="serge">-</p>
+                        <p class="serge-bold">0</p>
+                        <p class="serge">+</p>
+                    </div>
+                </div>
+                <div class="spec taille">
+                    <p class="pop">Taille</p>
+                    <div>
+                        <ul>
+                            <li class="serge">S</li>
+                            <li class="serge">M</li>
+                            <li class="serge">L</li>
+                            <li class="serge">XL</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="spec couleur">
+                    <p class="pop">Couleur</p>
+                    <div>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn-ajouter pop-bold">Ajouter</a>
+        </div>
     </div>
-</div>
+    <div class="cont cont-draglist-product">
+        <div class="draglist">
+            <div class="croix">
+                <div></div>
+                <div></div>
+            </div>
+            <p class="title pop">Lorem</p>
+            <div class="hide">
+                <p class="title-hide pop-bold">Lorem</p>
+                <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.</p>
+            </div>
+        </div>
+        <div class="draglist">
+            <div class="croix">
+                <div></div>
+                <div></div>
+            </div>
+            <p class="title pop">Lorem</p>
+            <div class="hide">
+                <p class="title-hide pop-bold">Lorem</p>
+                <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.</p>
+            </div>
+        </div>
+        <div class="draglist">
+            <div class="croix">
+                <div></div>
+                <div></div>
+            </div>
+            <p class="title pop">Lorem</p>
+            <div class="hide">
+                <p class="title-hide pop-bold">Lorem</p>
+                <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.</p>
+            </div>
+        </div>
+    </div>
+    <div class="cont cont-list-comments">
+        <div class="cont-comment">
+            <div class="cont-title">
+                <p class="pop-bold">Lorem</p>
+                <div class="cont-stars">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                </div>
+                <p class="pop date">01/01/2020</p>
+            </div>
+            <p class="pop comment">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+                Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+            </p>
+        </div>
+        <div class="cont-comment">
+            <div class="cont-title">
+                <p class="pop-bold">Lorem</p>
+                <div class="cont-stars">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                </div>
+                <p class="pop date">01/01/2020</p>
+            </div>
+            <p class="pop comment">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+                Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+            </p>
+        </div>
+        <div class="cont-comment">
+            <div class="cont-title">
+                <p class="pop-bold">Lorem</p>
+                <div class="cont-stars">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                </div>
+                <p class="pop date">01/01/2020</p>
+            </div>
+            <p class="pop comment">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+                Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+            </p>
+        </div>
+    </div>
 
-<div class="overlay">
-    <div class="overlay__inner">
-        <div class="overlay__close">
-            <i class="fas fa-times"></i>
+    <p class="gel-bold title-suggest">Suggestions</p>
+
+    <div class="cont-item">
+        <div>
+            <div class="cont-item-img">
+                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
         </div>
-        <button class="btn previous mr-4">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <div class="overlay__slide">
+        <div>
+            <div class="cont-item-img">
+                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
         </div>
-        <button class="btn next ml-4">
-            <i class="fas fa-chevron-right"></i>
-        </button>
+        <div>
+            <div class="cont-item-img">
+                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
+        </div>
+        <div>
+            <div class="cont-item-img">
+                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+            </div>
+            <p class="gel-bold">Lorem</p>
+        </div>
     </div>
-</div>
 
 {% endblock %}
 

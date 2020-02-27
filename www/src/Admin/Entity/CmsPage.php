@@ -17,7 +17,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  *
  */
-class CmsPage implements \Core\Entity\Model\Sluggable
+class CmsPage implements CoreEn\Model\Sluggable
 {
     use CoreEn\Traits\Id;
     use CoreEn\Traits\Name;
@@ -69,10 +69,16 @@ class CmsPage implements \Core\Entity\Model\Sluggable
     private $cmsCategories;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="headlineCmsPages")
+     * @ORM\ManyToOne(targetEntity="Settings", inversedBy="headlineCmsPages")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $settings;
+    private $settingsHeadline;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Settings", inversedBy="footerCmsPages")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $settingsFooter;
     
     public function __construct()
     {
@@ -182,14 +188,26 @@ class CmsPage implements \Core\Entity\Model\Sluggable
         $category->addCmsPage($this);
     }
 
-    public function getSettings(): ?Settings
+    public function getSettingsHeadline(): ?Settings
     {
-        return $this->settings;
+        return $this->settingsHeadline;
     }
 
-    public function setSettings(?Settings $settings): self
+    public function setSettingsHeadline(?Settings $settingsHeadline): self
     {
-        $this->settings = $settings;
+        $this->settingsHeadline = $settingsHeadline;
+
+        return $this;
+    }
+    
+    public function getSettingsFooter(): ?Settings
+    {
+        return $this->settingsFooter;
+    }
+
+    public function setSettingsFooter(?Settings $settingsFooter): self
+    {
+        $this->settingsFooter = $settingsFooter;
 
         return $this;
     }

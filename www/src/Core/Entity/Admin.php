@@ -2,6 +2,7 @@
 
 namespace Core\Entity;
 
+use Core\Entity\Traits\IsActive;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -22,6 +23,7 @@ class Admin extends Model\AbstractUser implements UserInterface
     
     use Traits\Roles;
     use Traits\DatesAt;
+    use IsActive;
     
     public function __construct()
     {

@@ -41,3 +41,5 @@ easy-admin-demo/
 *.bak
 lemp/
 test-vagrant/
+
+www/bin/.phpunit

@@ -29,6 +29,7 @@ db_rebuild:
 	$(console) doctrine:database:create --connection=default -n
 	$(console) doctrine:schema:update -f -n
 	$(console) doctrine:fixture:load -n
+	$(console) ecs:init-app
 
 db_schema:
 	$(console) doctrine:schema:update -f -n

@@ -13,7 +13,9 @@ security:
                 property: email
 
     role_hierarchy:
+        ROLE_USER: [IS_AUTHENTICATED_ANONYMOUSLY, IS_AUTHENTICATED_FULLY]
         ROLE_PRO: [ROLE_USER]
+        ROLE_ADMIN: [ROLE_USER]
         ROLE_MARKETING: [ROLE_ADMIN]
         ROLE_EMPLOYEE: [ROLE_ADMIN]
         ROLE_SUPPORT: [ROLE_ADMIN]
@@ -61,4 +63,4 @@ security:
         - { path: ^/account, roles: ROLE_USER }
         - { path: ^/pro, roles: ROLE_PRO }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: [IS_AUTHENTICATED_ANONYMOUSLY, ROLE_ALLOWED_TO_SWITCH, IS_AUTHENTICATED_FULLY] }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

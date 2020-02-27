@@ -3,11 +3,10 @@
 
 namespace Admin\Entity;
 
-
 use Core\Entity\Traits;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**
@@ -16,31 +15,22 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Nav
 {
+
     use Traits\Id;
     use Traits\Name;
     
     /**
-     * @ORM\Column(name="position", type="integer", unique=true)
-     */
-    private $position;
-    
-    /**
-     * @ORM\OneToOne(targetEntity="Core\Entity\Model\Sluggable")
+     * @ORM\OneToOne(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true)
      * @ORM\JoinColumn(name="page_id", referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     private $page;
     
-    public function getPosition(): ?int
-    {
-        return $this->position;
-    }
-    
-    public function setPosition(int $position): self
-    {
-        $this->position = $position;
-        
-        return $this;
-    }
+    /**
+     * @ORM\Column(name="position", type="integer", nullable=false, unique=true)
+     * @Assert\NotBlank()
+     */
+    private $position;
     
     public function getPage(): ?object
     {
@@ -50,6 +40,18 @@ class Nav
     public function setPage(object $sluggableEntity): self
     {
         $this->page = $sluggableEntity;
+        
+        return $this;
+    }
+    
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+    
+    public function setPosition(int $position): self
+    {
+        $this->position = $position;
         
         return $this;
     }

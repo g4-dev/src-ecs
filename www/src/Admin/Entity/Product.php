@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Product.
@@ -119,10 +120,14 @@ class Product implements Sluggable
     private $images;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeDiys")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeProducts")
+     * @ORM\JoinTable(name="product_settings_home",
+     *      joinColumns={@ORM\JoinColumn(name="settings_home_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="homeProducts", referencedColumnName="id", unique=true)}
+     * )
+     * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
-    private $settings;
+    private $settingsHome;
 
     public function __construct()
     {

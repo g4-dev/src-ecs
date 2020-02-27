@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Admin\Repository\SettingsRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Settings
 
@@ -20,35 +21,35 @@ class Settings
     private $id = 0;
     
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\Diy", mappedBy="settings")
+     * @ORM\OneToMany(targetEntity="Admin\Entity\Diy", mappedBy="settingsHome", cascade={"persist", "remove"})
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $homeDiys;
     
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\Product", mappedBy="settings")
+     * @ORM\OneToMany(targetEntity="Admin\Entity\Product", mappedBy="settingsHome"), cascade={"persist", "remove"}
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $homeProducts;
     
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\CmsPage", mappedBy="settings")
+     * @ORM\OneToMany(targetEntity="Admin\Entity\CmsPage", mappedBy="settingsHeadline", cascade={"persist", "remove"})
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $headlineCmsPages;
     
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\CmsPage", mappedBy="settings")
+     * @ORM\OneToMany(targetEntity="Admin\Entity\CmsPage", mappedBy="settingsFooter", cascade={"persist", "remove"})
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
-    private $footerPages;
+    private $footerCmsPages;
     
     public function __construct()
     {
         $this->homeDiys = new ArrayCollection();
         $this->headlineCmsPages = new ArrayCollection();
         $this->homeProducts = new ArrayCollection();
-        $this->footerPages = new ArrayCollection();
+        $this->footerCmsPages = new ArrayCollection();
     }
     
     /**
@@ -97,7 +98,7 @@ class Settings
         
         if (!$this->homeDiys->contains($homeDiy)) {
             $this->homeDiys[] = $homeDiy;
-            $homeDiy->setSettings($this);
+            $homeDiy->setSettingsHome($this);
         }
         
         return $this;
@@ -108,8 +109,8 @@ class Settings
         if ($this->homeDiys->contains($homeDiy)) {
             $this->homeDiys->removeElement($homeDiy);
             // set the owning side to null (unless already changed)
-            if ($homeDiy->getSettings() === $this) {
-                $homeDiy->setSettings(null);
+            if ($homeDiy->getSettingsHome() === $this) {
+                $homeDiy->setSettingsHome(null);
             }
         }
         
@@ -160,8 +161,8 @@ class Settings
         if ($this->homeProducts->contains($homeProduct)) {
             $this->homeProducts->removeElement($homeProduct);
             // set the owning side to null (unless already changed)
-            if ($homeProduct->getSettings() === $this) {
-                $homeProduct->setSettings(null);
+            if ($homeProduct->getSettingsHeadline() === $this) {
+                $homeProduct->setSettingsHeadline(null);
             }
         }
         
@@ -195,7 +196,7 @@ class Settings
         
         if (!$this->headlineCmsPages->contains($headlineCmsPage)) {
             $this->headlineCmsPages[] = $headlineCmsPage;
-            $headlineCmsPage->setSettings($this);
+            $headlineCmsPage->setSettingsHeadline($this);
         }
         
         return $this;
@@ -206,8 +207,8 @@ class Settings
         if ($this->headlineCmsPages->contains($headlineCmsPage)) {
             $this->headlineCmsPages->removeElement($headlineCmsPage);
             // set the owning side to null (unless already changed)
-            if ($headlineCmsPage->getSettings() === $this) {
-                $headlineCmsPage->setSettings(null);
+            if ($headlineCmsPage->getSettingsHeadline() === $this) {
+                $headlineCmsPage->setSettingsHeadline(null);
             }
         }
         
@@ -217,42 +218,50 @@ class Settings
     /**
      * @return Collection|CmsPage[]
      */
-    public function getFooterPages(): Collection
+    public function getFooterCmsPages(): Collection
     {
-        return $this->footerPages;
+        return $this->footerCmsPages;
     }
     
     /**
-     * @param Collection|CmsPage[] $footerPages
+     * @param object $footerCmsPages
      * @return Settings
      */
-    public function setFooterPages(Collection $footerPages)
+    public function setFooterCmsPages($footerCmsPages)
     {
-        $this->footerPages = $footerPages;
+        $this->footerCmsPages = $footerCmsPages;
         
         return $this;
     }
 
-    public function addFooterPagesList(CmsPage $footerPages): self
+    public function addFooterCmsPage(CmsPage $footerPages): self
     {
-        if (!$this->footerPages->contains($footerPages)) {
-            $this->footerPages[] = $footerPages;
-            $footerPages->setSettings($this);
+        if (!$this->footerCmsPages->contains($footerPages)) {
+            $this->footerCmsPages[] = $footerPages;
+            $footerPages->setSettingsHeadline($this);
         }
 
         return $this;
     }
 
-    public function removeFooterPagesList(CmsPage $footerPages): self
+    public function removeFooterCmsPage(CmsPage $footerPages): self
     {
-        if ($this->footerPages->contains($footerPages)) {
-            $this->footerPages->removeElement($footerPages);
+        if ($this->footerCmsPages->contains($footerPages)) {
+            $this->footerCmsPages->removeElement($footerPages);
             // set the owning side to null (unless already changed)
-            if ($footerPages->getSettings() === $this) {
-                $footerPages->setSettings(null);
+            if ($footerPages->getSettingsHeadline() === $this) {
+                $footerPages->setSettingsHeadline(null);
             }
         }
 
         return $this;
     }
+    
+    /**
+     * @ORM\PrePersist()
+     */
+    public function onPrePersitFooterCmsPageAdd(){
+        dump("zigwiwiwwiw");
+    }
 }
+

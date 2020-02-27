@@ -88,6 +88,7 @@ Transactions History: HHistorique des transactions
 settings.cmsPages: Pages à la une
 settings.products: Produits à la une
 settings.diy: Recettes à la une
+settings.homepage: Configurer la page d'accueil
 menu.settings.nav: Menu
 # Roles
 ROLE_PRO: Professionel

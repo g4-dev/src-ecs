@@ -32,7 +32,6 @@ const aliases = function aliases(config) {
 
 const getWorkspaces = function getWorkspaces(entry = null) {
 
-
 	let workspaces = []
 	isSingleEntry = isSingleEntry || Boolean(entry)
 
@@ -107,5 +106,3 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 }
 
 module.exports = getWorkspaces();
-
-

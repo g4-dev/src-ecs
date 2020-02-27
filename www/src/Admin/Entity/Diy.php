@@ -72,7 +72,7 @@ class Diy implements \Core\Entity\Model\Sluggable
      * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeDiys")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $settings;
+    private $settingsHome;
     
     public function __construct()
     {
@@ -162,14 +162,14 @@ class Diy implements \Core\Entity\Model\Sluggable
         return $this;
     }
 
-    public function getSettings(): ?Settings
+    public function getSettingsHome(): ?Settings
     {
-        return $this->settings;
+        return $this->settingsHome;
     }
 
-    public function setSettings(?Settings $settings): self
+    public function setSettingsHome(?Settings $settingsHome): self
     {
-        $this->settings = $settings;
+        $this->settingsHome = $settingsHome;
 
         return $this;
     }

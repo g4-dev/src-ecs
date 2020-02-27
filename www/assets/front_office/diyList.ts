@@ -1,5 +1,5 @@
 require('./scss/diyList.scss');
-const $ = require('jquery');
+import * as $ from "jquery";
 
 var btnSearch = $('.input-diy');
 var search = $('.diy-bar');

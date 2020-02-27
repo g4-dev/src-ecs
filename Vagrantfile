@@ -86,7 +86,7 @@ Vagrant.configure(2) do |config|
       ansible.extra_vars = conf
   end
 
-  if !NFS_ENABLED && !debug
+  if !NFS_ENABLED
     config.vm.synced_folder "./", "/data/ecs/", type: "rsync",
         rsync__auto: true,
         rsync__args: ["--archive", "--delete", "--no-owner", "--no-group","-q"],

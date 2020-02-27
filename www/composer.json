@@ -19,6 +19,7 @@
         "symfony/google-mailer": "^5.0",
         "symfony/mailer": "^5.0",
         "symfony/orm-pack": "^1.0",
+        "doctrine/orm":"2.8.x-dev",
         "symfony/security-bundle": "^5.0",
         "symfony/twig-pack": "^1.0",
         "symfony/webpack-encore-bundle": "1.7.2",

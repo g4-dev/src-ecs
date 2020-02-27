@@ -28,7 +28,7 @@ easy_admin:
             form:
                 fields:
                     - name
-                    - { property: 'is_active', type: 'toggle', label: 'Active?', role: ROLE_SUPERADMIN }
+                    - { property: 'isActive' }
                     - { property: 'passwordHash', type: 'password', label: 'Password' }
                     - { property: 'email', type: 'email' }
                     - { property: 'roles', type: 'choice', type_options: { multiple: true,

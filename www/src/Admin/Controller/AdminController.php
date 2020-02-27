@@ -4,6 +4,7 @@ namespace Admin\Controller;
 
 use Admin\Entity\Diy;
 use Admin\Entity\Product;
+use Admin\Repository\NavRepository;
 use FrontOffice\Entity\Purchase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +13,14 @@ use AlterPHP\EasyAdminExtensionBundle\Controller\EasyAdminController;
 class AdminController extends EasyAdminController
 {
     use AdminTrait;
-
+    
+    private $navRepo;
+    
+    public function __construct(NavRepository $navRepo)
+    {
+        $this->navRepo = $navRepo;
+    }
+    
     /**
      * @Route("/", name="easyadmin")
      * @Route("/", name="admin")
@@ -22,18 +30,6 @@ class AdminController extends EasyAdminController
     public function indexAction(Request $request)
     {
         return parent::indexAction($request);
-    }
-
-    /**
-     * Override for soft delete.
-     * @param object $entity
-     */
-    protected function removeEntity($entity)
-    {
-        if (method_exists($entity, 'setIsDeleted')) {
-            $entity->setIsDeleted(true);
-        }
-        $this->updateEntity($entity);
     }
     
     /**

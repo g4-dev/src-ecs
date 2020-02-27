@@ -4,18 +4,18 @@
 
 ### Sur votre navigateur :
 
-- [ecoservice.cum](http://ecoservice.cum)
+- [ecoservice.com](http://ecoservice.com)
 - [localhost:8080](http://localhost:8080)
 
 ## Environement
 
 - Projet sur `/data/ecs/www`
 
-- Synchro des fichiers automatique sur phpStorm : [Installation](docs/1Installation.md#sources)
+- Synchro des fichiers automatique sur phpStorm ou `` : [Installation](docs/1Installation.md#sources)
 
 - VSCode est déconseillé
 
-- Renommez `config.yaml.dist` en `vm_config.yaml`
+- Dupliquez `config.yaml.dist` &rarr; `cp config.yaml.dist vm_config.yaml`
 
 ## Le flux de travail
 
@@ -47,6 +47,6 @@
 Pour se connecter sur le back office [/admin](ecoservice.coom/admin) avec les ids
 `admin@domain.tld` / `s3cr3t`
 
-Pour les utilisateurs front office: `test@yopmail.com` `Azerty69`
+Pour les utilisateurs front office: `test-ecs@yopmail.com` `Azerty69`
 
 ##### Complétez la liste [Liste des utilisateurs de tests](docs/4Tests.md#comptes-utilisateurs)

@@ -30,7 +30,7 @@ services:
 
     Core\:
         resource: '../src/Core/*'
-        exclude: '../src/{Migrations,Entity,Tests,Kernel.php}'
+        #exclude: '../src/{Migrations,Entity,Tests,Kernel.php}'
 
     core.admin:
         class: Core\Service\AdminService
@@ -72,4 +72,10 @@ services:
     Admin\Repository\:
         resource: '../src/Admin/Repository/*'
         tags: ['doctrine.repository_service']
+        public: true
+
+    Admin\Command\InitSettingsCommand:
+        arguments:
+            - '@doctrine'
+            - '%env(MAKE_PATH)%'
         public: true

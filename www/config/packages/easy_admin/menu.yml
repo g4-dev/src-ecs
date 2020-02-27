@@ -39,6 +39,6 @@ easy_admin:
             - label: 'menu.settings'
               icon: 'cogs'
               children:
-                  - { icon: 'grip-horizontal', label: 'menu.settings.homepage', entity: 'Settings', params: { action: 'edit', id: 1 } }
-                  - { icon: 'bars', label: 'menu.settings.nav', entity: 'Nav',  params: { sortField: 'position' } }
+                  - { icon: 'grip-horizontal', label: 'menu.settings.nav', entity: 'Nav', params: { sortField: 'position' } }
+                  - { icon: 'bars', label: 'menu.settings.homepage', entity: 'Settings', params: { action: 'edit', id: 1 } }
                   - { icon: 'users', label: 'menu.admin', entity: 'Admin' }
