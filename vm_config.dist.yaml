@@ -5,9 +5,8 @@ conf:
     servername: ecoservice.com      # Servername and domain for your projects
     org: g4-dev                     # Organisation hosting repo
     projectname: ecs                # repo name with pattern src-{{projectname}}
-    debug_playbook: false           # sftp/rsync to upload playbook
+    debug_playbook: false           # sftp/rsync to upload playbook (create dir if missing)
     playbook_version: master        # master = stable | versions/beta
-    project_version: master         # choose a src-ecs version (checkout on g4-dev remote | need to exist)
     testing_mode: 0                 # test services
     web_path: www                   # change web server if name != local_name
     app_env: dev                    # prod or dev
