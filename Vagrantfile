@@ -20,7 +20,7 @@ playbook         = "https://github.com/#{conf['org']}/#{playbook_name}.git"
 ### work path variable to change in debug mode
 # Be aware of shared folders when deleting things
 debug            = conf['debug_playbook']
-folder           = debug ? '/data/ecs' : '/tmp'
+folder           = debug ? '/data' : '/tmp'
 web_dir          = "/data/#{conf['projectname']}/#{conf['web_path']}"
 # nfs config
 conf['nfs'] = Vagrant::Util::Platform.darwin? || Vagrant::Util::Platform.linux?
@@ -70,11 +70,15 @@ Vagrant.configure(2) do |config|
 
   if !debug
     $init = <<-SCRIPT
-    rm -rf /tmp/#{playbook_name} || true
+    rm -rf #{folder}/#{playbook_name} || true
     git clone #{playbook} /tmp/#{playbook_name} && cd /tmp/#{playbook_name} && git reset --hard origin/#{conf['playbook_version']}
     SCRIPT
 
     config.vm.provision "shell", inline: $init, privileged: false
+  end
+
+  if debug
+    config.vm.synced_folder "./#{playbook_name}/", "/data/#{playbook_name}/", type: "rsync"
   end
 
   ## Install and configure software
@@ -86,8 +90,8 @@ Vagrant.configure(2) do |config|
       ansible.extra_vars = conf
   end
 
-  if !NFS_ENABLED && !debug
-    config.vm.synced_folder "./", "/data/ecs/", type: "rsync",
+  if !NFS_ENABLED
+    config.vm.synced_folder "./", "/data/ecs", type: "rsync",
         rsync__auto: true,
         rsync__args: ["--archive", "--delete", "--no-owner", "--no-group","-q"],
         rsync__exclude: rsync_exclude
