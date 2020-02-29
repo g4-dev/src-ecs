@@ -5,7 +5,7 @@ let difficultyBlock = document.getElementById("difficultyBlock");
 if(difficultyBlock !== null){
     let difficulty = difficultyBlock.getAttribute("data-difficulty");
     let difficultyLvl = document.getElementsByClassName("listDifficulty") as HTMLCollectionOf<HTMLElement>;
-
+    //Faites des const wesh
     /* Liste différente couleurs d'intensité à revoir */
     let niv1 = "rgb(70, 210, 70)";
     let niv2 = "rgb(40, 164, 40)";
