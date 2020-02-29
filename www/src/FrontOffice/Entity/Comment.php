@@ -10,7 +10,7 @@ use Core\Entity\User;
 /**
  * Comment
  *
- * @ORM\Table(name="Comment", indexes={@ORM\Index(name="Comment_user", columns={"user_id"}), @ORM\Index(name="Comment_product", columns={"product_id"})})
+ * @ORM\Table(name="comment", indexes={@ORM\Index(name="Comment_user", columns={"user_id"}), @ORM\Index(name="Comment_product", columns={"product_id"})})
  * @ORM\Entity
  */
 class Comment

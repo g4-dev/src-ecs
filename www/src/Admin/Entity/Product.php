@@ -40,7 +40,7 @@ class Product implements Sluggable
      * The EAN 13 of the product. (type set to string in PHP due to 32 bit limitation).
      *
      * @var string
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $ean;
 
@@ -118,33 +118,45 @@ class Product implements Sluggable
      * @ORM\Column(type="array")
      */
     private $images;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeProducts")
-     * @ORM\JoinTable(name="product_settings_home",
-     *      joinColumns={@ORM\JoinColumn(name="settings_home_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="homeProducts", referencedColumnName="id", unique=true)}
-     * )
-     * @Assert\Unique(message="validator.generics.in_collection_exist")
-     */
-    private $settingsHome;
 
     public function __construct()
     {
         $this->productCategories = new ArrayCollection();
+        $this->purchasedItems = new ArrayCollection();
         
         if (method_exists($this, '_init')) {
             $this->_init();
         }
     }
-
+    
+    /**
+     * Get all associated categories.
+     *
+     * @return ProductCategory[]
+     */
+    public function getProductCategories()
+    {
+        return $this->productCategories;
+    }
+    
+    /**
+     * Set all categories of the product.
+     *
+     * @param ProductCategory[] $productCategories
+     */
+    public function setProductCategories(array $productCategories)
+    {
+        $this->productCategories->clear();
+        $this->productCategories = new ArrayCollection($productCategories);
+    }
+    
     /**
      * Add a category in the product association.
      * (Owning side).
      *
      * @param $category ProductCategory the category to associate
      */
-    public function addCategory($category)
+    public function addProductCategory($category)
     {
         if ($this->productCategories->contains($category)) {
             return;
@@ -160,7 +172,7 @@ class Product implements Sluggable
      *
      * @param $category ProductCategory the category to associate
      */
-    public function removeCategory($category)
+    public function removeProductCategory($category)
     {
         if (!$this->productCategories->contains($category)) {
             return;
@@ -302,32 +314,6 @@ class Product implements Sluggable
     {
         return $this->tags;
     }
-
-    /**
-     * Get all associated categories.
-     *
-     * @return ProductCategory[]
-     */
-    public function getProductCategories()
-    {
-        return $this->productCategories;
-    }
-
-    /**
-     * Set all categories of the product.
-     *
-     * @param ProductCategory[] $productCategories
-     */
-    public function setProductCategories($productCategories)
-    {
-        // This is the owning side, we have to call remove and add to have change in the category side too.
-        foreach ($this->getProductCategories() as $category) {
-            $this->removeCategory($category);
-        }
-        foreach ($productCategories as $category) {
-            $this->addCategory($category);
-        }
-    }
     
     public function getStock(): ?int
     {
@@ -340,41 +326,29 @@ class Product implements Sluggable
         
         return $this;
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function __toString()
     {
-        return $this->getName();
+        return (string) $this->getName();
     }
-
+    
     /**
      * @param \FrontOffice\Entity\PurchaseItem[] $purchasedItems
      */
-    public function setPurchasedItems($purchasedItems)
+    public function setPurchasedItems(array $purchasedItems)
     {
-        $this->purchasedItems = $purchasedItems;
+        $this->purchasedItems->clear();
+        $this->purchasedItems = new ArrayCollection($purchasedItems);
     }
-
+    
     /**
      * @return \FrontOffice\Entity\PurchaseItem[]
      */
     public function getPurchasedItems()
     {
         return $this->purchasedItems;
-    }
-    
-    
-    public function getSettings(): ?Settings
-    {
-        return $this->settings;
-    }
-    
-    public function setSettings(?Settings $settings): self
-    {
-        $this->settings = $settings;
-        
-        return $this;
     }
 }

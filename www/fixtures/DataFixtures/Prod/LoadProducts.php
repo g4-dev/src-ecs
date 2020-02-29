@@ -163,7 +163,7 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
         $selectedCategoryIds = array_rand($allCategoryIds, $numCategories);
 
         foreach ((array) $selectedCategoryIds as $categoryId) {
-            $categories[] = $this->getReference('subcategory-'.$categoryId);
+            $categories[] = $this->getReference('product-subcategory-'.$categoryId);
         }
 
         return $categories;

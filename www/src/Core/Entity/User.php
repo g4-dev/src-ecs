@@ -14,7 +14,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity
  * @ORM\Table(
  *     name="user",
- *     options={"row_format":"DYNAMIC"},
+ *     options={"row_format":"DYNAMIC"}
  * )
  * @Vich\Uploadable()
  */

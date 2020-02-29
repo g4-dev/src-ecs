@@ -2,6 +2,7 @@
 
 namespace Fixtures\DataFixtures\Prod;
 
+use Admin\Entity\CmsCategory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -18,9 +19,9 @@ class LoadCategories extends Fixture implements OrderedFixtureInterface
     {
         foreach (range(0, 9) as $i) {
             $category = new ProductCategory();
-            $category->setName('Category #'.$i);
+            $category->setName('ProductCategory #'.$i);
 
-            $this->addReference('category-'.$i, $category);
+            $this->addReference('product-category-'.$i, $category);
             $manager->persist($category);
         }
 
@@ -28,13 +29,35 @@ class LoadCategories extends Fixture implements OrderedFixtureInterface
 
         foreach (range(0, 99) as $i) {
             $category = new ProductCategory();
-            $category->setName('Subcategory #'.$i);
-            $category->setParent($this->getReference('category-'.($i % 10)));
+            $category->setName('ProductSubcategory #'.$i);
+            $category->setParent($this->getReference('product-category-'.($i % 10)));
 
-            $this->addReference('subcategory-'.$i, $category);
+            $this->addReference('product-subcategory-'.$i, $category);
             $manager->persist($category);
         }
 
+        $manager->flush();
+    
+        // Cms categories creation
+        foreach (range(0, 9) as $i) {
+            $category = new CmsCategory();
+            $category->setName('CmsCategory #'.$i);
+        
+            $this->addReference('cms-category-'.$i, $category);
+            $manager->persist($category);
+        }
+    
+        $manager->flush();
+    
+        foreach (range(0, 99) as $i) {
+            $category = new CmsCategory();
+            $category->setName('CmsSubcategory #'.$i);
+            $category->setParent($this->getReference('cms-category-'.($i % 10)));
+        
+            $this->addReference('cms-subcategory-'.$i, $category);
+            $manager->persist($category);
+        }
+    
         $manager->flush();
     }
 }

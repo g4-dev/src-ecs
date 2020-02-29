@@ -5,6 +5,8 @@ namespace Admin\Controller;
 use Admin\Entity\Diy;
 use Admin\Entity\Product;
 use FrontOffice\Entity\Purchase;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AlterPHP\EasyAdminExtensionBundle\Controller\EasyAdminController;
@@ -22,18 +24,6 @@ class AdminController extends EasyAdminController
     public function indexAction(Request $request)
     {
         return parent::indexAction($request);
-    }
-
-    /**
-     * Override for soft delete.
-     * @param object $entity
-     */
-    protected function removeEntity($entity)
-    {
-        if (method_exists($entity, 'setIsDeleted')) {
-            $entity->setIsDeleted(true);
-        }
-        $this->updateEntity($entity);
     }
     
     /**

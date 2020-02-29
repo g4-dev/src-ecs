@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Core\Entity\Model\Sluggable;
 
 /**
  * @ORM\Entity(repositoryClass="Admin\Repository\SettingsRepository")
@@ -21,25 +22,19 @@ class Settings
     private $id = 0;
     
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\Diy", mappedBy="settingsHome", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Admin\Entity\Diy", mappedBy="settingsHome", cascade={"persist"})
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $homeDiys;
     
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\Product", mappedBy="settingsHome"), cascade={"persist", "remove"}
-     * @Assert\Unique(message="validator.generics.in_collection_exist")
-     */
-    private $homeProducts;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\CmsPage", mappedBy="settingsHeadline", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true)
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $headlineCmsPages;
     
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\CmsPage", mappedBy="settingsFooter", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true)
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $footerCmsPages;
@@ -48,7 +43,6 @@ class Settings
     {
         $this->homeDiys = new ArrayCollection();
         $this->headlineCmsPages = new ArrayCollection();
-        $this->homeProducts = new ArrayCollection();
         $this->footerCmsPages = new ArrayCollection();
     }
     
@@ -80,14 +74,6 @@ class Settings
     public function getHomeDiys(): Collection
     {
         return $this->homeDiys;
-    }
-    
-    /**
-     * @return Collection|Product[]
-     */
-    public function getHomeProducts(): Collection
-    {
-        return $this->homeProducts;
     }
     
     public function addHomeDiy(Diy $homeDiy): self
@@ -124,47 +110,6 @@ class Settings
     public function setHomeDiys($homeDiys)
     {
         $this->homeDiys = $homeDiys;
-        
-        return $this;
-    }
-    
-    /**
-     * @param mixed $homeProducts
-     * @return Settings
-     */
-    public function setHomeProducts($homeProducts)
-    {
-        $this->homeProducts = $homeProducts;
-        
-        return $this;
-    }
-    
-    /**
-     * @return Collection|Product[]|\Exception
-     */
-    public function addHomeProduct(Product $homeProduct): self
-    {
-        if(count($this->homeProducts) >= 4) {
-            return new \Exception("maximum.error");
-        }
-        
-        if (!$this->homeProducts->contains($homeProduct)) {
-            $this->homeProducts[] = $homeProduct;
-            $homeProduct->setSettings($this);
-        }
-        
-        return $this;
-    }
-    
-    public function removeHomeProduct(CmsPage $homeProduct): self
-    {
-        if ($this->homeProducts->contains($homeProduct)) {
-            $this->homeProducts->removeElement($homeProduct);
-            // set the owning side to null (unless already changed)
-            if ($homeProduct->getSettingsHeadline() === $this) {
-                $homeProduct->setSettingsHeadline(null);
-            }
-        }
         
         return $this;
     }

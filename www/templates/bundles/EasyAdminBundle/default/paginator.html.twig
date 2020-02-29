@@ -15,6 +15,12 @@
                 </a>
             </li>
 
+            <li class="border-0 p-0 border-top border-bottom">
+                <div class="page-link">
+                    <span class="btn-label">{{ paginator.currentPage }}</span></i>
+                </div>
+            </li>
+
             <li class="page-item {{ not paginator.hasNextPage ? 'disabled' }}">
                 <a class="page-link" href="{{ not paginator.hasNextPage ? '#' : path('easyadmin', _paginator_request_parameters|merge({ page: paginator.nextPage }) ) }}">
                     <span class="btn-label">{{ 'paginator.next'|trans }}</span> <i class="fa fa-angle-right mx-1"></i>

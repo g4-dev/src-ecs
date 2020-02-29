@@ -7,7 +7,7 @@ use Core\Service\AdminService;
 
 trait AdminTrait
 {
-    public AdminService $adminService;
+    public $adminService;
     
     public function __construct(AdminService $adminService)
     {

@@ -19,4 +19,9 @@ abstract class AbstractCategory{
     use Id;
     use Name;
     use Slug;
+    
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
 }

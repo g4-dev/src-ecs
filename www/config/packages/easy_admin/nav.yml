@@ -3,7 +3,6 @@ easy_admin:
         Nav:
             class: Admin\Entity\Nav
             label: 'Nav'
-            controller: Admin\Controller\NavController
             list:
                 - name
                 - { property: page.slug, template: '@admin/custom-fields/page-link.html.twig', label: 'links.page_cms' }

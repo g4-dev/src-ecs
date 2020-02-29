@@ -4,6 +4,7 @@
 namespace Admin\Entity;
 
 use Core\Entity as CoreEn;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -69,14 +70,12 @@ class CmsPage implements CoreEn\Model\Sluggable
     private $cmsCategories;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Settings", inversedBy="headlineCmsPages")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\Column(name="settings_headline")
      */
     private $settingsHeadline;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Settings", inversedBy="footerCmsPages")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\Column(name="settings_footer")
      */
     private $settingsFooter;
     
@@ -85,6 +84,8 @@ class CmsPage implements CoreEn\Model\Sluggable
         if (method_exists($this, '_init')) {
             $this->_init();
         }
+        
+       $this->cmsCategories = new ArrayCollection();
     }
     
     public function getBody(): ?string
@@ -157,6 +158,19 @@ class CmsPage implements CoreEn\Model\Sluggable
     }
     
     /**
+     * @param CmsCategory[] $cmsCat
+     * @return CmsPage
+     */
+    public function setCmsCategories(?array $cmsCat)
+    {
+        // This is the owning side, we have to call remove and add to have change in the category side too.
+       $this->cmsCategories->clear();
+       $this->cmsCategories = new ArrayCollection($cmsCat);
+        
+       return $this;
+    }
+    
+    /**
      * Add a category in the page association.
      * (Owning side).
      *
@@ -210,5 +224,10 @@ class CmsPage implements CoreEn\Model\Sluggable
         $this->settingsFooter = $settingsFooter;
 
         return $this;
+    }
+    
+    public function __toString(): string
+    {
+        return (string) $this->getName();
     }
 }

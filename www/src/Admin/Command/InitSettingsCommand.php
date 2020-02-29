@@ -53,21 +53,12 @@ class InitSettingsCommand extends Command
         return 0;
     }
     
-    private function getLastItems($entity, $qty){
-        return $this->doctrine->getRepository($entity)->findBy(
-           [],
-           ['createdAt' => 'ASC'],
-           $qty,
-           0
-        );
-    }
-    
     public function createSiteSettings(bool $fillSettings = true)
     {
         $entityManager = $this->doctrine->getManager();
         
         $settings = (new Settings())
-           ->setHomeProducts($fillSettings ? $this->getLastItems(Product::class, 4) : null)
+           //->setHomeProducts($fillSettings ? $this->getLastItems(Product::class, 4) : null)
            ->setHomeDiys($fillSettings ? $this->getLastItems(Diy::class, 4) : null)
            ->setHeadlineCmsPages($fillSettings ? $this->getLastItems(CmsPage::class,2) : null)
            ->setFooterCmsPages($fillSettings ?  $this->getLastItems(CmsPage::class,2) : null)
@@ -75,5 +66,14 @@ class InitSettingsCommand extends Command
     
         $entityManager->persist($settings);
         $entityManager->flush();
+    }
+    
+    protected function getLastItems($entity, $qty){
+        return $this->doctrine->getRepository($entity)->findBy(
+           [],
+           ['createdAt' => 'ASC'],
+           $qty,
+           0
+        );
     }
 }

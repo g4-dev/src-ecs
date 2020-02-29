@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="purchase")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Purchase
 {
@@ -291,6 +292,14 @@ class Purchase
         $this->guid = $guid;
 
         return $this;
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     */
+    public function onPrePersistSetGuild()
+    {
+        $this->guid = $this->guid ?? $this->generateId();
     }
     
     public function create(Basket $basket)

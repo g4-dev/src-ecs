@@ -3,9 +3,7 @@
 namespace Admin\Entity;
 
 use Core\Entity\Model\Sluggable;
-use Core\Entity\Traits\Id;
-use Core\Entity\Traits\Name;
-use Core\Entity\Traits\Slug;
+use Core\Generics\Collection\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -38,11 +36,6 @@ class ProductCategory extends AbstractCategory implements Sluggable
     public function __construct()
     {
         $this->products = new ArrayCollection();
-    }
-
-    public function __toString()
-    {
-        return $this->getName();
     }
 
     /**
@@ -83,7 +76,7 @@ class ProductCategory extends AbstractCategory implements Sluggable
     public function setProducts($products)
     {
         $this->products->clear();
-        $this->products = new ArrayCollection($products);
+        $this->products = new Collection($products);
     }
 
     /**
@@ -98,7 +91,7 @@ class ProductCategory extends AbstractCategory implements Sluggable
         }
 
         $this->products->add($product);
-        $product->addCategory($this);
+        $product->addProductCategory($this);
     }
 
     /**
@@ -111,6 +104,6 @@ class ProductCategory extends AbstractCategory implements Sluggable
         }
 
         $this->products->removeElement($product);
-        $product->removeCategory($this);
+        $product->removeProductCategory($this);
     }
 }

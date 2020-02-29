@@ -3,9 +3,7 @@
 namespace Admin\Entity;
 
 use Core\Entity\Model\Sluggable;
-use Core\Entity\Traits\Id;
-use Core\Entity\Traits\Name;
-use Core\Entity\Traits\Slug;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -38,11 +36,6 @@ class CmsCategory extends AbstractCategory implements Sluggable
     public function __construct()
     {
         $this->cmsPages = new ArrayCollection();
-    }
-
-    public function __toString()
-    {
-        return (string) $this->getName();
     }
 
     /**
