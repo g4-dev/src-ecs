@@ -37,12 +37,7 @@ class User extends Model\AbstractUser implements UserInterface
     private array $roles = [self::DEFAULT_ROLE];
     
     use Traits\Roles;
-
-    /**
-     * @var string
-     * @ORM\Column(name="first_name", type="string", length=32, nullable=false, unique=false)
-     */
-    private string $firstName;
+    use Traits\PersonNames;
     
     /**
      * @var string
@@ -129,18 +124,6 @@ class User extends Model\AbstractUser implements UserInterface
         // Do nothing.
     }
 
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
     public function getCompanyName(): ?string
     {
         return $this->companyName;
@@ -197,6 +180,17 @@ class User extends Model\AbstractUser implements UserInterface
     public function getAddresses(): Collection
     {
         return $this->addresses;
+    }
+    
+    /**
+     * @return User
+     */
+    public function setAddresses($address)
+    {
+        $this->addresses->clear();
+        $this->addresses = new ArrayCollection($address ?? []);
+        
+        return $this;
     }
     
     public function addAddress(Address $address): self

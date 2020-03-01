@@ -25,3 +25,6 @@ easy_admin:
                     - { type: 'group', label: 'Purchase Details', icon: 'shopping-cart', css_class: 'col-sm-4' }
                     - { property: 'guid', type_options: { 'disabled': true } }
                     - { property: 'buyer', type: 'easyadmin_autocomplete' }
+                    - { property: 'status', type: choice, type_options: { multiple: false,
+                                                                          choices: {'processing': 'processing','shipped': 'shipped' }
+                    }}

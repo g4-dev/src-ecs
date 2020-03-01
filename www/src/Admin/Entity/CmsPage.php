@@ -70,12 +70,12 @@ class CmsPage implements CoreEn\Model\Sluggable
     private $cmsCategories;
 
     /**
-     * @ORM\Column(name="settings_headline")
+     * @ORM\Column(name="settings_headline", nullable=true)
      */
     private $settingsHeadline;
     
     /**
-     * @ORM\Column(name="settings_footer")
+     * @ORM\Column(name="settings_footer", nullable=true)
      */
     private $settingsFooter;
     

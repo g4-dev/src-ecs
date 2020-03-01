@@ -39,11 +39,11 @@ class BasketController extends \Frontoffice\Controller\AbstractController
     }
 
     /**
-     * @Route("/basket/{id}", name="basketAdd", requirements={"id":"'\d+'"}, methods={"GET","POST"})
+     * @Route("/basket/{id}/add", name="basketAdd", requirements={"page": "\d+"}, methods={"GET","POST"})
      * @param $id
      * @return RedirectResponse
      */
-    public function addAction(int $id)
+    public function addBasketAction(int $id)
     {
         dump($id);
         $product = $this->getDoctrine()
@@ -68,11 +68,11 @@ class BasketController extends \Frontoffice\Controller\AbstractController
     }
 
     /**
-     * @Route("/basket/remove/{id}", name="basketRemove",requirements={"id":"'\d+'"}, methods={"DELETE"})
+     * @Route("/basket/remove/{id}", name="basketRemove", requirements={"page": "\d+"})
      * @param $id
      * @return RedirectResponse
      */
-    public function removeAction(int $id): RedirectResponse
+    public function removeBasketAction(int $id): RedirectResponse
     {
         $product = $this->getDoctrine()
             ->getRepository(Product::class)

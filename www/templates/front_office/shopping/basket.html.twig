@@ -24,10 +24,9 @@
     <div class="basket-products mb-4">
         {% for product in products %}
             <div class="basket-product row border-bottom py-2">
-                {% set thumb = product.images|first %}
                 <div class="col-4 col-sm-6 col-md-2">
-                    <a href="{{ path('productShow', {'slug': product.slug}) }}">
-                        <img src="/img/upload/{{ thumb.name }}" alt="{{ thumb.description }}" class="basket-product__img img img-fluid">
+                    <a href="/product/{{ product.slug }}">
+                        <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.name }}">
                     </a>
                 </div>
                 <div class="col">
@@ -38,11 +37,13 @@
                             </span>
                         </div>
                         <div class="col-md-2 pb-2">
+{#
                             <input class="basket-product__quantity form-control" type="number" name="quantity" data-target-id="{{ product.id }}" min="1" value="{{ product.quantity }}">
+#}
                         </div>
                         <div class="col-md pb-2">
                             <span class="basket-product__price" data-target-id="{{ product.id }}">
-                                {{ product.calcTotalPrice }} €
+                                {{ product.price}} €
                             </span>
                         </div>
                         <div class="col-md pb-2">
@@ -62,9 +63,9 @@
                 Sous total: <span class="basket-checkout__total-price">{{ totalPrice }}</span> €
             </p>
             {% if is_granted('ROLE_USER') %}
-                <a href="{{ path('checkout/address') }}" class="basket-checkout__order btn btn-primary">Commander</a>
+                <a href="{{ path('checkoutAddress') }}" class="basket-checkout__order btn btn-primary">Commander</a>
             {% else %}
-                <a href="{{ path('homepage', {'purchase': true }) }}" class="basket-checkout__order btn btn-primary">Commander</a>
+                <a href="{{ path('accountAddress', {'purchase': true, 'message': 'accounting.register_warning'|trans|raw }) }}" class="basket-checkout__order btn btn-primary">Commander</a>
             {% endif %}
         </div>
     </div>

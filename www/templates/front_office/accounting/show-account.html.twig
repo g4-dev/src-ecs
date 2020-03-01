@@ -37,6 +37,20 @@
     <br>
     <a href="{{ path('accountUpdate') }}"><button type="submit" class="btn btn-lg btn-success btn-submit">Edit</button></a>
 
+    <div>
+        {% if addresses is defined %}
+            <div>
+                {% for address in addresses  %}
+                    {{ address.firstName }} <br>
+                    {{ address.firstName }}
+                    {{ address.address}}
+                    <a href="{{ path('accountAddress', {'id': address.id } ) }}"></a>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <a href="{{ path('accountAddress') }}">Ajouter une addresse</a>
+    </div>
+
 {% endblock %}
 
 {% block scripts %}

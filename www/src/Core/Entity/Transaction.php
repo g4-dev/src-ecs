@@ -2,6 +2,8 @@
 
 namespace Core\Entity;
 
+use Core\Entity\Traits\DatesAt;
+use Core\Entity\Traits\Id;
 use Doctrine\ORM\Mapping as ORM;
 use FrontOffice\Entity\Purchase;
 
@@ -11,12 +13,13 @@ use FrontOffice\Entity\Purchase;
  */
 class Transaction
 {
+    use Id;
+    
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var \DateTime
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    private $id;
+    protected $createdAt = null;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -34,14 +37,9 @@ class Transaction
      */
     private $purchase;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateCreated;
-
     public function __construct(string $method, float $total)
     {
-        $this->dateCreated = new \DateTime();
+        $this->createdAt = new \DateTime();
         $this->total = $total;
         $this->method = $method;
     }
@@ -87,14 +85,14 @@ class Transaction
         return $this;
     }
 
-    public function getDateCreated(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->dateCreated;
+        return $this->createdAt;
     }
 
-    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    public function setCreatedAt(\DateTimeInterface $dateCreated): self
     {
-        $this->dateCreated = $dateCreated;
+        $this->createdAt = $dateCreated;
 
         return $this;
     }

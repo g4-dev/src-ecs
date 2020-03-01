@@ -44,6 +44,12 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    
+    public function findAllQueryBuilder()
+    {
+        return $this->createQueryBuilder('p')
+           ->getQuery();
+    }
 
     public function findAllWithDeleted()
     {

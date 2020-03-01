@@ -2,6 +2,8 @@
 
 namespace FrontOffice\Controller\Accounting;
 
+use Core\Entity\Address;
+use Core\Form\AddressType;
 use Core\Repository\AddressRepository;
 use Core\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -71,7 +73,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
      * @Route("/account", name="account")
      * @return Response
      */
-    public function showAccount(): Response
+    public function showAccountAction(): Response
     {
         // TODO: add more options
         $user = $this->getUser();
@@ -81,6 +83,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
            [
               'controller_name' => 'RegistrationController',
               'account' => $user,
+              'addresses' => $user->getAddresses()
            ]
         );
     }
@@ -91,7 +94,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function editAccount(Request $request, EntityManagerInterface $em)
+    public function editAccountAction(Request $request)
     {
         $user = $this->getUser();
         $form = $this->createForm(AccountUpdateForm::class, $user);
@@ -106,7 +109,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         }
         
         return $this->render(
-           'front_office/accounting/account-update.html.twig',
+           '@fo/accounting/account-update.html.twig',
            [
               'form' => $form->createView(),
            ]
@@ -114,77 +117,43 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
     }
     
     /**
-     * @Route("/account/edit-address", name="accountAddress")
+     * @Route("/address/edit/{id?}", name="accountAddress", requirements={"id"="\d+"})
      */
-    public function editAddress(AddressRepository $addressRepository): Response
+    public function editAddressAction(Request $request, Address $address = null): Response
     {
-        //TODO : simplify this broken update method (put it in an AdressController)
-        $user = $this->getUser();
-        
-        $address = $addressRepository->findCurrentWithType(
-           $user->getId(),
-           'billing'
-        );
-        
-        $userContact = new \FrontOffice\Form\Model\UserContact($user, $address);
-        
-        $form = $this->createForm(UserContactType::class, $userContact);
-        
-        $masterRequest = $this->get('request_stack')->getMasterRequest();
-        $form->handleRequest($masterRequest);
+        $form = $this->createForm(AddressType::class, $address);
+        $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $userContact = $form->getData();
-            $address = $userContact->getAddress();
-            
-            $uow = $this->getDoctrine()
-               ->getManager()
-               ->getUnitOfWork();
-            $uow->computeChangeSets();
-            
-            if ($uow->isEntityScheduled($address)) {
-                $address = clone $address;
-                $address->setDateCreated(new \DateTime());
-            }
-            
-            $user->setFirstName($userContact->getFirstName())
-               ->setLastName($userContact->getLastName());
-            
-            $address->setUser($user)
-               ->setCountry('France')
-               ->setType('billing');
-            
-            if ($uow->isEntityScheduled($address)) {
-                $address = clone $address;
-                $address->setDateCreated(new \DateTime());
-            }
-            
             $em = $this->getDoctrine()->getManager();
-            $em->persist($address);
+            $em->persist($form->getData()->setUser($this->getUser()));
             $em->flush();
         }
         
         return $this->render(
-           'front_office/shop/account/user_contact_form.html.twig',
+           '@fo/accounting/address.html.twig',
            [
               'address_form' => $form->createView(),
            ]
         );
     }
     
+    public function removeAddressAction()
+    {}
+    
     /**
      * @Route("/account/purchases", name="accountPurchaseList")
      * @return Response
      */
-    public function purchases(): Response
+    public function listPurchasesAction(): Response
     {
         // TODO: Ajaxify this method
-        $orders = $this->getUser()->getPurchases();
+        $purchases = $this->getUser()->getPurchases();
         
         return $this->render(
-           'front_office/shop/accounting/orders.html.twig',
+           'front_office/shopping/purchaseList.html.twig',
            [
-              'orders' => $orders,
+              'purchases' => $purchases,
            ]
         );
     }
@@ -195,7 +164,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
      * @param PurchaseRepository $purchaseRepository
      * @return Response
      */
-    public function purchase (int $id, PurchaseRepository $purchaseRepository): Response {
+    public function showPurchaseAction(int $id, PurchaseRepository $purchaseRepository): Response {
         // TODO: Ajaxify this method
         $purchase = $purchaseRepository
            ->findOneByIdAndUser($id, $this->getUser()->getId());

@@ -16,7 +16,7 @@
                 <a href="{{ path('account') }}" class="nav-link active">Compte</a>
             </li>
             <li class="nav-item">
-                <a href="{{ path('accountPurchasesList') }}" class="nav-link active">Commandes</a>
+                <a href="{{ path('accountPurchaseList') }}" class="nav-link active">Commandes</a>
             </li>
         </ul>
     </nav>
@@ -42,16 +42,18 @@
                                 <a href="{{ path('accountPuchaseShow', { 'id': purchase.id }) }}">{{ purchase.id }}</a>
                             </td>
                             <td>
-                                {{ purchase.dateCreated|date() }}
+                                {{ purchase.createdAt|date() }}
                             </td>
                             <td>
                                 <div class="badge badge-primary p-2">
                                     {{ purchase.status }}
                                 </div>
                             </td>
-                            <td>
-                                {{ purchase.transaction.total }} €
-                            </td>
+                            {% if purchase.transaction is defined %}
+                                <td>
+                                    {{ purchase.transaction.total }} €
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>

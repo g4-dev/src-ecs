@@ -79,7 +79,7 @@ class Basket implements \Countable
             
             return $products = array_map(
                 function ($p) {
-                    return $p->setQuantity($this->getQuantity($p));
+                    return $p->setStock($this->getQuantity($p));
                 },
                 $products
             );
@@ -126,7 +126,7 @@ class Basket implements \Countable
         $totalPrice = 0;
 
         foreach ($products as $product) {
-            $totalPrice += $product->calcTotalPrice();
+            $totalPrice += $product->getPrice();
         }
 
         return round($totalPrice, 2);

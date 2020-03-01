@@ -1,4 +1,4 @@
 # create this file if you need to configure anything
 maker:
     # pour utiliser maker changer temporairement cette configuration avec l'espace voulu
-    root_namespace: 'Admin\'
+    root_namespace: 'Core\'

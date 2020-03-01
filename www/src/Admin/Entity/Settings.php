@@ -22,19 +22,19 @@ class Settings
     private $id = 0;
     
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\Diy", mappedBy="settingsHome", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Core\Entity\Model\Sluggable", mappedBy="settingsHome", cascade={"persist"})
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $homeDiys;
     
     /**
-     * @ORM\OneToOne(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true, mappedBy="settingsHeadline")
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $headlineCmsPages;
     
     /**
-     * @ORM\OneToOne(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true, mappedBy="settingsFooter")
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $footerCmsPages;

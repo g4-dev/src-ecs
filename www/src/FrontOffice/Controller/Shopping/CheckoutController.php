@@ -30,7 +30,7 @@ class CheckoutController extends AbstractController
      * @param EntityManagerInterface $em
      * @return Response
     */
-    public function address(Request $req, AddressRepository $addressRepository): Response
+    public function checkoutAddress(Request $req, AddressRepository $addressRepository): Response
     {
         if (!$this->basket->hasProducts()) {
             return $this->redirectToRoute('basket');
@@ -58,7 +58,7 @@ class CheckoutController extends AbstractController
 
             if ($uow->isEntityScheduled($address)) {
                 $address = clone $address;
-                $address->setDateCreated(new \DateTime());
+                $address->setCreatedAt(new \DateTime());
             }
 
             $address->setType('shipping')

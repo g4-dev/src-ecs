@@ -14,7 +14,7 @@ class UserContactType extends AbstractType
         $builder
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-            ->add('address', AddressType::class, [
+            ->add('address', \Core\Form\AddressType::class, [
                 'error_bubbling' => true,
             ])
         ;

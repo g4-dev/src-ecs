@@ -89,6 +89,11 @@ class Purchase
      * @ORM\OneToOne(targetEntity="Core\Entity\Transaction", mappedBy="purchase", cascade={"persist", "remove"})
      */
     private $transaction;
+    
+    /**
+     * @ORM\Column(name="status")
+     */
+    private $status;
 
     /**
      * Constructor of the Purchase class.
@@ -295,11 +300,32 @@ class Purchase
     }
     
     /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    
+    /**
+     * @param mixed $status
+     * @return Purchase
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        
+        return $this;
+    }
+    
+    /**
      * @ORM\PrePersist()
      */
-    public function onPrePersistSetGuild()
+    public function onPrePersist()
     {
         $this->guid = $this->guid ?? $this->generateId();
+        $this->transaction = new Transaction('paypal', $this->getTotal());
+        $this->transaction->setPurchase($this);
     }
     
     public function create(Basket $basket)
