@@ -34,7 +34,7 @@ class RequestSubscriber implements EventSubscriberInterface
         if (!$event->isMasterRequest() || $request->isXmlHttpRequest()) {
             return;
         }
-    
+
         $this->saveTargetPath($this->session, self::PROVIDER_KEY, $request->getUri());
     }
 }

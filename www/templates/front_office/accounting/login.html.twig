@@ -1,4 +1,4 @@
-{% extends 'front_office/layout.html.twig' %}
+{% extends '@fo/layout.html.twig' %}
 
 {% block links %}
   {{ encore_entry_link_tags('accounting', null, 'front_office') }}
@@ -9,13 +9,13 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        {% include 'front_office/partials/flash-messages.html.twig' %}
+        {% include '@fo/partials/flash-messages.html.twig' %}
       </div>
     </div>
     <div class="row">
       <div class="col-md-8 offset-2 app-login">
         <h1 class="border-bottom">Sign in</h1>
-        {% include 'front_office/forms/login-form.html.twig' %}
+        {% include '@fo/forms/login-form.html.twig' %}
         <div class="links text-center">
           <a href="{{ path('registration') }}">Register new account</a> |
           <a href="{{ path('passwordReminder') }}">Lost password</a>

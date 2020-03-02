@@ -43,7 +43,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         }
         
         return $this->render(
-           'front_office/accounting/registration.html.twig',
+           '@fo/accounting/registration.html.twig',
            [
               'form' => $form->createView(),
            ]

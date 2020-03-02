@@ -11,9 +11,9 @@ framework:
         handler_id: ~
         # improves the security of the cookies used for sessions
         cookie_secure: 'auto'
-        cookie_lifetime: 48000
+        cookie_lifetime: '%login_time%'
 
-        gc_maxlifetime: 48000
+        gc_maxlifetime: '%login_time%'
 
     router:
         strict_requirements: ~
@@ -57,7 +57,9 @@ framework:
         dsn: '%env(MAILER_DSN)%'
 
     validation:
-        email_validation_mode: html5
+        enabled: true
+        enable_annotations: true
+        email_validation_mode: loose
 
 sensio_framework_extra:
     router:

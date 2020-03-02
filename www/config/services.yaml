@@ -1,23 +1,9 @@
 imports:
     - { resource: parameters.yaml }
+    - { resource: config.yaml }
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
-
-# Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-parameters:
-    locale: 'fr'
-    website_name: Ecoservice
-
-    # perf
-    container.dumper.inline_factories: true
-
-    # image mappings
-    ecs.path.product_images: /uploads/images/products
-    ecs.path.user_contracts: /uploads/files/user/contracts
-    ecs.path.blog_covers: /uploads/images/blog
-
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -26,11 +12,10 @@ services:
 
         bind:
             $emailFrom: '%env(MAILER_URL)%'
-            $emailName: 'Ecoservice'
+            $emailName: '%website_name%'
 
     Core\:
         resource: '../src/Core/*'
-        #exclude: '../src/{Migrations,Entity,Tests,Kernel.php}'
 
     core.admin:
         class: Core\Service\AdminService
@@ -66,8 +51,8 @@ services:
     front_office.security.login_form_guard:
         class: 'FrontOffice\Security\LoginFormGuard'
 
-    #Admin\Service\:
-        #resource: '../src/Admin/Service/*'
+    Admin\Service\:
+        resource: '../src/Admin/Service/*'
 
     Admin\Repository\:
         resource: '../src/Admin/Repository/*'

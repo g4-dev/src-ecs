@@ -1,0 +1,24 @@
+# website config
+parameters:
+    locale: 'fr'
+    website_name: Ecoservice
+
+    # session
+    login_time: 64000
+
+    # perf
+    container.dumper.inline_factories: true
+
+    # image mappings
+    ecs.path.product_images: /uploads/images/products
+    ecs.path.user_contracts: /uploads/files/user/contracts
+    ecs.path.blog_covers: /uploads/images/blog
+
+    # templates config
+    front_end.default_path: '%kernel.project_dir%/templates'
+    front_end.fo: '%front_end.default_path%/front_office'
+    front_end.admin: '%front_end.default_path%/bundles/EasyAdminBundle'
+
+    # webpack
+    front_end.fo_build: '%kernel.project_dir%/public/build/front_office'
+    front_end.admin_build: '%kernel.project_dir%/public/build/admin'

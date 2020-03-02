@@ -2,19 +2,28 @@
     <div class="centerBetween fullWidth headerBackground">
         <div class="flexStart midWidth UpperHeader">
             <a href="#">Contact</a>
-            <a href="#">DIY</a>
+            <a href="{{ path('diyList') }}">DIY</a>
         </div>
         <div class="flexEnd midWidth UpperHeader">
-            <a href="#">Espace pro</a>
-            <a href="{{ path('account') }}">{{ app.user.name ?? 'Connexion' }}<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
-                <path d="M9 11.041v-0.825c1.102-0.621 2-2.168 2-3.716 0-2.485 0-4.5-3-4.5s-3 2.015-3 4.5c0 1.548 0.898 3.095 2 3.716v0.825c-3.392 0.277-6 1.944-6 3.959h14c0-2.015-2.608-3.682-6-3.959z"></path>
-            </svg></a>
+            <a href="{{ path('proServiceList') }}">Espace pro</a>
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('account') }}">
+                    <span>{{ app.user.name }}</span>
+                    {% include 'svg/user.svg.twig' %}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="appAccountMenuDropdownBtn">
+                    <a class="dropdown-item" href="{{ path('logout') }}">Logout</a>
+                </div>
+            {% else %}
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="{{ path('login') }}">
+                        Sign In
+                        {% include 'svg/user.svg.twig' %}
+                    </a>
+                </li>
+            {% endif %}
             <a href="{{ path('basket') }}">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
-                    <path d="M6 14.5c0 0.828-0.672 1.5-1.5 1.5s-1.5-0.672-1.5-1.5c0-0.828 0.672-1.5 1.5-1.5s1.5 0.672 1.5 1.5z"></path>
-                    <path d="M16 14.5c0 0.828-0.672 1.5-1.5 1.5s-1.5-0.672-1.5-1.5c0-0.828 0.672-1.5 1.5-1.5s1.5 0.672 1.5 1.5z"></path>
-                    <path d="M16 8v-6h-12c0-0.552-0.448-1-1-1h-3v1h2l0.751 6.438c-0.458 0.367-0.751 0.93-0.751 1.562 0 1.105 0.895 2 2 2h12v-1h-12c-0.552 0-1-0.448-1-1 0-0.003 0-0.007 0-0.010l13-1.99z"></path>
-                </svg>
+                {% include 'svg/basket.svg.twig' %}
             </a>
         </div>
     </div>

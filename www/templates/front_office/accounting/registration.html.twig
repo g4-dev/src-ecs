@@ -1,4 +1,4 @@
-{% extends 'front_office/layout.html.twig' %}
+{% extends '@fo/layout.html.twig' %}
 
 {% block links %}
   {{ encore_entry_link_tags('accounting', null, 'front_office') }}
@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col">
         <h1 class="border-bottom">Sign up</h1>
-        {% include 'front_office/forms/registration-form.html.twig' %}
+        {% include '@fo/forms/registration-form.html.twig' %}
       </div>
     </div>
   </div>

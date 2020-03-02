@@ -1,4 +1,4 @@
-{% extends 'front_office/layout.html.twig' %}
+{% extends '@fo/layout.html.twig' %}
 
 {% block links %}
     {{ encore_entry_link_tags('shopping', null, 'front_office') }}
@@ -26,7 +26,7 @@
     {#{% include 'front_office/panier/adressUpdate.html.twig' %}#}
 
     {#Attention cette vue est à part, elle a juste besoin du header, du footer et du HR et du P de cette page#}
-    {% include 'front_office/panier/confirmation.html.twig' %}
+    {% include '@fo/panier/confirmation.html.twig' %}
 {% endblock %}
 
 {% block scripts %}
