@@ -7,29 +7,32 @@
 {% block main %}
 
     {% include 'bundles/EasyAdminBundle/default/flash_messages.html.twig' %}
+    <div class="slideshow-container">
+        <section class="centerBetween fullWidth alignInit Slide fade" id="entreprise">
+            <article class="midWidth">
+                <h2 class="gel-sBold">Entreprise</h2>
+                <p class="pop">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt
+                    facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
+                <button class="pop">En savoir plus</button>
+            </article>
+            <div class="midWidth">
+                <img src="{{ asset('images/entreprise.jpg') }}" alt="entreprise">
+            </div>
+        </section>
 
-    <section class="centerBetween fullWidth alignInit" id="entreprise">
-        <article class="midWidth">
-            <h2 class="gel-sBold">Entreprise</h2>
-            <p class="pop">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt
-                facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
-            <button class="pop">En savoir plus</button>
-        </article>
-        <div class="midWidth">
-            <img src="{{ asset('images/entreprise.jpg') }}" alt="entreprise">
-        </div>
-    </section>
-
-    <section class="centerBetween fullWidth alignInit" id="zerodechet">
-        <article class="midWidth">
-            <h2 class="gel-bold">Zéro déchets</h2>
-            <p class="pop">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
-            <button class="pop">En savoir plus</button>
-        </article>
-        <div class="midWidth">
-            <img src="{{ asset('images/dechet.jpg') }}" alt="dechet">
-        </div>
-    </section>
+        <section class="centerBetween fullWidth alignInit Slide fade" id="zerodechet">
+            <article class="midWidth">
+                <h2 class="gel-bold">Zéro déchets</h2>
+                <p class="pop">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
+                <button class="pop">En savoir plus</button>
+            </article>
+            <div class="midWidth">
+                <img src="{{ asset('images/dechet.jpg') }}" alt="dechet">
+            </div>
+        </section>
+        <a class="prev" id="slideback">&#10094;</a>
+        <a class="next" id="slideforward">&#10095;</a>
+    </div>
 
     <section id="produit">
         <div>
