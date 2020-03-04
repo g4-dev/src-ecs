@@ -7,9 +7,9 @@
   "scripts": {
     "dev": "encore dev",
     "fo": "encore dev --config-name front_office",
-    "fo:watch": "encore dev --watch --config-name front_office",
+    "fo:w": "encore dev --watch --config-name front_office",
     "admin": "encore dev --config-name easyadmin",
-    "admin:watch": "yarn admin --watch",
+    "admin:w": "yarn admin --watch",
     "lint": "eslint --ext .js,.ts --fix --cache=true assets/* ",
     "watch": "encore dev --watch",
     "prod": "lint && encore production",
@@ -30,16 +30,16 @@
     "jquery-highlight": "^3.5",
     "jquery.are-you-sure": "^1.9",
     "lodash": "^4.17",
-    "node-sass": "^4.13",
+    "sass-loader": "^7.3.1",
+    "sass": "^1.26.2",
     "popper.js": "^1.16.0",
-    "sass-loader": "^7.3",
     "select2": "^4.0",
     "select2-bootstrap-theme": "^0.1.0-beta.10",
-    "ts-loader": "5.3",
-    "typescript": "^3.7"
+    "ts-loader": "^5.3",
+    "typescript": "^3.8"
   },
   "devDependencies": {
-    "@symfony/webpack-encore": "^0.22",
+    "@symfony/webpack-encore": "^0.28",
     "@types/jest": "^24.9",
     "@typescript-eslint/eslint-plugin": "^2.17",
     "@typescript-eslint/parser": "2.16",

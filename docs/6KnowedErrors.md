@@ -5,8 +5,8 @@
 
 ### Deployment
 
-- Classes non retrouvées `deployment` > `options` > Enlever `**/vendor/**` et download www/
-- Vérifier les mappings dans `deployment` > `ecs` > `onglet mappings`
+- Classes non retrouvées `deployment` > `options` > Enlever `**/vendor/**` et clic droit > deployment > download www/
+- Vérifier les mappings dans `deployment` > `ecs` > `onglet mappings` (paths à `/`)
 - Vérifier `deployment` > `options` > `always` sur `Upload changed files every...`
 
 ### Lors du provision
@@ -25,6 +25,10 @@
 
 > Erreurs lors de l'installation
 
+### Les sources ne s'upload pas
+
+Allez dans `paramètres` > `deployment` > `options` > `cocher Always save`
+
 ### SSH errors
 
 ```
@@ -37,9 +41,9 @@ the private key path for Vagrant is setup properly as well.
 - Executer cette commande : `ssh-keygen -m PEM -t rsa -b 4096 -C "votre-adresse@mail.com"`
 - Sur votre machine `cat ~/.ssh/id_rsa.pub`  
 - Ensuite `vagrant ssh` pour entrer dans la VM
-- `rm ~/.ssh/authorized_keys` et `vi ~/.ssh/authorized_keys` puis copier le contenu de votre nouvelle clé obtenue avec la commande précédente.
+- `rm ~/.ssh/authorized_keys` et `vi ~/.ssh/authorized_keys` puis copier (ajouter au fichier sans supprimer ce qu'il restait) le contenu de votre nouvelle clé obtenue avec la commande précédente.
 
-##### Le protocole utilisé par ssh n'utilise
+##### Le protocole utilisé par ssh n'utilise plus le même algorithme de cryptographie sur la dernière maj windows
 
 #### Le **nfs** ne marche pas sur mac os catalina : [solution à suivre](https://stackoverflow.com/a/58547588 )
 

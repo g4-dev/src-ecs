@@ -1,4 +1,4 @@
 require('./scss/productShow.scss');
-require ('#fr/components/comment');
-require('#fr/productShow.scss');
-require ('@fr/components/product');
+require ('#fo/components/comment');
+require('#fo/productShow.scss');
+require ('@fo/components/product');

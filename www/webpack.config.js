@@ -2,8 +2,8 @@ var Encore = require("@symfony/webpack-encore")
 const path = require("path")
 const fsr = require("fs").readFileSync
 const yml = require("js-yaml")
-const { configs, poll } = yml.safeLoad(fsr("./config/pages.yml"), yml.JSON_SCHEMA)
-const EXCLUDE = "/node_modules/"
+const { parameters : { configs , poll, regenDist } } = yml.safeLoad(fsr("./config/pages.yml"), yml.JSON_SCHEMA)
+const EXCLUDE = ["/node_modules/", "/vendor/"]
 let isSingleEntry = false;
 
 // Config message
@@ -11,14 +11,16 @@ console.info("Don't forget to add entries in config/pages.yaml\n")
 // end
 
 // set an config object used in all workspace (front-office / admin)
-const aliases = function aliases(config) {
-	let configAliases = {}
-		const name = config.name,
-		aliasName = name.slice(0, 2)
+const aliases = function aliases(config, alias = null) {
+	let configAliases = {};
+	const name = config.name,
+		aliasName = alias ? alias : name.slice(0, 2);
 
 	try {
 		configAliases[`@${aliasName}`] = path.resolve(__dirname,`assets/${name}/ts`)
 		configAliases[`#${aliasName}`] =  path.resolve(__dirname, `assets/${name}/scss`)
+		configAliases['@core'] = path.resolve(__dirname, `assets/core/ts`)
+		configAliases['#core'] = path.resolve(__dirname, `assets/core/scss`)
 	} catch (e) {
 		throw new Error("Pages name are probably too similar, verify your config/pages.yaml : \n" + e)
 	}
@@ -35,9 +37,13 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 	let workspaces = []
 	isSingleEntry = isSingleEntry || Boolean(entry)
 
-	configs.forEach(function({ name, pages, default_ext = "js" }) {
+	for (const name in configs) {
 
-		let typescriptEnable = default_ext === "ts"
+		const defaultExt = configs[name].defaultExt;
+		const typescriptEnable = defaultExt === "ts"
+		const pages = configs[name].pages;
+		const alias = configs[name].alias;
+		const buildPath = configs[name].build ? configs[name].build :`/${name}/build`;
 
 		if (typeof entry === "string") {
 			Encore.addEntry(entry, path.resolve(__dirname, `assets/${name}/${entry}`))
@@ -60,9 +66,9 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 
 		Encore
 
-			.setOutputPath(`public/build/${name}`)
+			.setOutputPath(`public/${buildPath}`)
 
-			.setPublicPath(`/build/${name}`)
+			.setPublicPath(`/${buildPath}`)
 
 			.disableSingleRuntimeChunk()
 
@@ -72,9 +78,12 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 
 			.enableVersioning(Encore.isProduction())
 
-			.enableSassLoader()
+			.enableSassLoader(options => {
+				options.implementation = require('sass');
+			})
 
 			.enablePostCssLoader()
+		;
 
 		if (typescriptEnable) {
 			Encore.enableTypeScriptLoader()
@@ -93,16 +102,30 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 		let config = Encore.getWebpackConfig()
 
 		// fix build with nfs enable
-		config.watchOptions = { poll: poll, ignored: EXCLUDE }
+		Encore.configureWatchOptions(watchOptions => {
+			watchOptions.poll = poll; // check for changes every 250 milliseconds
+			watchOptions.ignored = EXCLUDE;
+		});
+
 		config.name = name
-		config.resolve.alias = aliases(config)
+		config.resolve.alias = aliases(config, alias ? alias : null)
 
 		workspaces.push(config)
 
 		Encore.reset()
-	})
+	};
+
+	if(!Encore.isProduction() && regenDist) {
+		const fs = require("fs")
+		fs.writeFile("./webpack.config.dist.js", "module.exports = "+JSON.stringify(workspaces), function(err) {
+			if(err) {
+				return console.log(err);
+			}
+			console.log('------------\nwebpack.config.dist.js written');
+		});
+	}
 
 	return workspaces
-}
+};
 
 module.exports = getWorkspaces();

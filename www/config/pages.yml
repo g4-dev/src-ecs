@@ -1,25 +1,31 @@
 # enable with nfs/ disable with rsync
 #(false | true)
-poll: false
-configs:
-  # Add pages for the differents spaces here (correspond to webpack entries)
-  - name: front_office
-    pages:
-      - homepage
-      - accounting
-      - shopping
-      - proServiceList
-      - cmsShow # anciennement compAndDechet (supprimer ce commentaire)
-      - cmsList
-      - diyShow
-      - diyList
-      - productList # List == category
-      - productShow
-    default_ext: ts
+parameters:
+    poll: 200
+    regenDist: false # regenerate a webpack config dist
+    configs:
+        # Add pages for the differents spaces here (correspond to webpack entries)
+        front_office:
+            build: front_office/build
+            pages:
+                - homepage
+                - accounting # Regroupe tous ce qui concerne l'inscription /
+                - shopping
+                - proServiceList
+                - cmsShow # anciennement compAndDechet (supprimer ce commentaire)
+                - cmsList
+                - diyShow
+                - diyList
+                - productList # List == category
+                - productShow
+            defaultExt: ts
+            alias: fo
 
-  - name: easyadmin
-    pages:
-      - js/app
+        easyadmin:
+            build: front_office/admin
+            pages:
+                - js/app
+            alias: admin
 
 ## README
 # Suivre arborescense des fichiers assets

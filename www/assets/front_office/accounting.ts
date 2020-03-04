@@ -1,3 +1,3 @@
 require('bootstrap')
-require('@fr/components/loginBox')
+require('@fo/components/loginBox')
 require('./scss/accounting.scss');

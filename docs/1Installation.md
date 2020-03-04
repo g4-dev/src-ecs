@@ -60,6 +60,15 @@ Le serveur `ecs` ne doit pas être mis par default si vous utiliser `vagrant rsy
 Puis reproduire ces paramètres
 ![Déploiement](res/deployement2.png)
 
+> les excludes 
+`
+.svn;.cvs;.idea;.DS_Store;.git;.hg;*.hprof;*.pyc;www/vendor/;www/parameters.yaml;www/node_modules/;www/var/cache;www/bin;www/phpunit.xml;/**/public/**/build**`
+`
+
+# aliases js/scss
+
+Renseigner le fichier `webpack.config.dist.js` dans `Preferences` > `Languages & Framework` > `JavaScript` > `Webpack`.
+
 ## Sources
 > Pour mettre à jours les sources local sur la VM <br>
 > *(Ne concerne pas ceux qui ont le NFS activé)*

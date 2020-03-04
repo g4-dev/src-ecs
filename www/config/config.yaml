@@ -20,5 +20,5 @@ parameters:
     front_end.admin: '%front_end.default_path%/bundles/EasyAdminBundle'
 
     # webpack
-    front_end.fo_build: '%kernel.project_dir%/public/build/front_office'
-    front_end.admin_build: '%kernel.project_dir%/public/build/admin'
+    front_end.fo_build: '%kernel.project_dir%/public/front_office/build'
+    front_end.admin_build: '%kernel.project_dir%/public/admin/build'

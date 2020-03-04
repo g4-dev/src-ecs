@@ -16,6 +16,7 @@ services:
 
     Core\:
         resource: '../src/Core/*'
+        exclude:  '../src/Core/{DependencyInjection,Entity,Tests}'
 
     core.admin:
         class: Core\Service\AdminService

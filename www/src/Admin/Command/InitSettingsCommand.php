@@ -30,11 +30,11 @@ class InitSettingsCommand extends Command
         parent::__construct();
     }
     
-    protected static $defaultName = 'ecs:init-app';
+    protected static $defaultName = 'ecs:scss-app';
     
     protected function configure()
     {
-        $this->setDescription('init app settings');
+        $this->setDescription('scss app settings');
         $this->addOption('fillSettings', 'f',InputOption::VALUE_OPTIONAL,'fill settings with last items.', false);
     }
     

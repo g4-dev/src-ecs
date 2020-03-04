@@ -76,9 +76,9 @@ On utilise *Typescript* à la place de javascript et sass
 **Avancé :**
 
 - `fo-watch`: watch l'espace front 
-- `require('@fr/')` &rarr; alias pour `front_office/ts`
-- `require('#fr/')` &rarr; alias pour `front_office/scss`
-- `require('#ea/')` &rarr; alias pour `easyadmin/scss`
+- `require('@fo/')` &rarr; alias pour `front_office/ts`
+- `require('#fo/')` &rarr; alias pour `front_office/scss`
+- `require('#admin/')` &rarr; alias pour `easyadmin/scss`
 
 Voici l'organisation du projet par espaces:
 
