@@ -107,10 +107,11 @@ class Settings
      * @param mixed $homeDiys
      * @return Settings
      */
-    public function setHomeDiys($homeDiys)
+    public function setHomeDiys(?array $homeDiys): self
     {
-        $this->homeDiys = $homeDiys;
-        
+        $this->homeDiys->clear();
+        $this->homeDiys = new ArrayCollection($homeDiys);
+    
         return $this;
     }
     
@@ -126,14 +127,15 @@ class Settings
      * @param mixed $headlineCmsPages
      * @return Settings
      */
-    public function setHeadlineCmsPages($headlineCmsPages)
+    public function setHeadlineCmsPages(?array $headlineCmsPages): self
     {
-        $this->headlineCmsPages = $headlineCmsPages;
+        $this->headlineCmsPages->clear();
+        $this->headlineCmsPages = new ArrayCollection($headlineCmsPages);
         
         return $this;
     }
     
-    public function addHeadlineCmsPage(CmsPage $headlineCmsPage): self
+    public function addHeadlineCmsPage(CmsPage $headlineCmsPage)
     {
         if(count($this->headlineCmsPages) >= 2) {
             return new \Exception("maximum.error");
@@ -169,12 +171,12 @@ class Settings
     }
     
     /**
-     * @param object $footerCmsPages
-     * @return Settings
+     * @return Collection|CmsPage[]
      */
-    public function setFooterCmsPages($footerCmsPages)
+    public function setFooterCmsPages(?array $footerCmsPages): self
     {
-        $this->footerCmsPages = $footerCmsPages;
+        $this->footerCmsPages->clear();
+        $this->footerCmsPages = new ArrayCollection($footerCmsPages);
         
         return $this;
     }

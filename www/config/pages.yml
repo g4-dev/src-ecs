@@ -22,7 +22,7 @@ parameters:
             alias: fo
 
         easyadmin:
-            build: front_office/admin
+            build: admin/build
             pages:
                 - js/app
             alias: admin

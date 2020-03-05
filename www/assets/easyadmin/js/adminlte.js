@@ -14,11 +14,7 @@
 * NOTE: this is a modified version created for EasyAdmin theme. It removes some
 * original code for features we don't want to be activated.
 */
-
-// Make sure jQuery has been loaded
-if (typeof jQuery === 'undefined') {
-    throw new Error('AdminLTE requires jQuery')
-}
+global.$ = global.jQuery = require('jquery');
 
 /* Tree()
  * ======

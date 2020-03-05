@@ -78,6 +78,8 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 
 			.enableVersioning(Encore.isProduction())
 
+			.autoProvidejQuery()
+
 			.enableSassLoader(options => {
 				options.implementation = require('sass');
 			})
@@ -117,11 +119,11 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 
 	if(!Encore.isProduction() && regenDist) {
 		const fs = require("fs")
-		fs.writeFile("./webpack.config.dist.js", "module.exports = "+JSON.stringify(workspaces), function(err) {
+		fs.writeFile("./webpack.config.dist.json", "module.exports = "+JSON.stringify(workspaces), function(err) {
 			if(err) {
-				return console.log(err);
+				throw new Error(err);
 			}
-			console.log('------------\nwebpack.config.dist.js written');
+			console.info('------------\nwebpack.config.dist written');
 		});
 	}
 

@@ -1,4 +1,4 @@
-module.exports = {
+{
     "context": "/data/ecs/www",
     "entry": {
         "homepage": "/data/ecs/www/assets/front_office/homepage",

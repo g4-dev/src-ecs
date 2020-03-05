@@ -1,4 +1,4 @@
-{% extends '@fo/font_office/base.html.twig' %}
+{% extends '@fo/layout.html.twig' %}
 
 {% block links %}
   {{ encore_entry_link_tags('accounting', null, 'front_office') }}
@@ -31,10 +31,14 @@
           </div>
         {% endif %}
         <div class="form-group">
-          <button type="submit" class="btn btn-lg btn-success">Login</button>
+          <button type="submit" class="btn btn-lg btn-success">{{ 'Login'|trans|raw }}</button>
         </div>
       </form>
     </div>
+  </div>
+
+  <div>
+    <a href="{{ path('homepage') }}" class="btn btn-default">{{ 'return'|trans|raw }}</a>
   </div>
 
 {% endblock %}

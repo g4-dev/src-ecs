@@ -4,6 +4,8 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         website_name: '%website_name%'
+        easydmin_asset_config: 'admin'
+        easydmin_asset_entry: 'js/app'
     paths:
         'templates': '%front_end.default_path%'
         '%front_end.admin%': 'admin'
@@ -11,7 +13,6 @@ twig:
     # TODO: mettre en place les form_themes https://symfony.com/doc/current/form/form_themes.html
     form_themes:
         - 'bootstrap_4_layout.html.twig'
-        #- '%front_end.fo%/partials/ecs-bootstrap-4-layout.html.twig'
 
 webpack_encore:
     # The path where Encore is building the assets.

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "encore dev",
     "fo": "encore dev --config-name front_office",
-    "fo:w": "encore dev --watch --config-name front_office",
+    "fo:w": "encore dev --config-name front_office --watch",
     "admin": "encore dev --config-name easyadmin",
     "admin:w": "yarn admin --watch",
     "lint": "eslint --ext .js,.ts --fix --cache=true assets/* ",
