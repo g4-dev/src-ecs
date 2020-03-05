@@ -1,4 +1,4 @@
-{
+module.exports = {
     "context": "/data/ecs/www",
     "entry": {
         "homepage": "/data/ecs/www/assets/front_office/homepage",
@@ -239,7 +239,9 @@
             "@fo": "/data/ecs/www/assets/front_office/ts",
             "#fo": "/data/ecs/www/assets/front_office/scss",
             "@core": "/data/ecs/www/assets/core/ts",
-            "#core": "/data/ecs/www/assets/core/scss"
+            "#core": "/data/ecs/www/assets/core/scss",
+            "@admin": "/data/ecs/www/assets/admin/ts",
+            "#admin": "/data/ecs/www/assets/admin/scss"
         }
     },
     "externals": [],

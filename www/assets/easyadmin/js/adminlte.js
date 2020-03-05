@@ -16,6 +16,11 @@
 */
 global.$ = global.jQuery = require('jquery');
 
+// Make sure jQuery has been loaded
+if (typeof jQuery === 'undefined') {
+    throw new Error('AdminLTE requires jQuery')
+}
+
 /* Tree()
  * ======
  * Converts a nested list into a multilevel
