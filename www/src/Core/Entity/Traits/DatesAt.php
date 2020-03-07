@@ -5,6 +5,11 @@ namespace Core\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Use an _init method in your entity constructor to set default dates
+ *
+ * @ORM\HasLifecycleCallbacks()
+ */
 trait DatesAt
 {
     /**
@@ -24,9 +29,10 @@ trait DatesAt
      */
     private $deletedAt;
     
-    public function _init(){
-        $this->updatedAt = new \DateTime();
-        $this->createdAt = new \DateTime();
+    public function _init()
+    {
+        $this->updatedAt = new \DateTime('now');
+        $this->createdAt = new \DateTime('now');
         $this->deletedAt = null;
     }
     
@@ -37,6 +43,7 @@ trait DatesAt
         } else {
             $this->createdAt = new \DateTime();
         }
+        
         return $this;
     }
     
@@ -48,18 +55,14 @@ trait DatesAt
     /**
      * @ORM\PrePersist()
      */
-    public function onPrePersistSetCreatedDate()
+    public function onPrePersistSetCreatedAt()
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = $this->createdAt ?? new \DateTime();
     }
     
-    public function setUpdatedAt($datetime)
+    public function setUpdatedAt(?\DateTime $datetime)
     {
-        if ($datetime instanceof \DateTime) {
-            $this->updatedAt = $datetime;
-        } else {
-            $this->updatedAt = new \DateTime();
-        }
+        $this->updatedAt = $datetime ?? new \DateTime('now');;
         
         return $this;
     }
@@ -74,7 +77,7 @@ trait DatesAt
      */
     public function onPrePersistSetUpdatedDate()
     {
-        $this->updatedAt = new \DateTime();
+        $this->updatedAt = $this->updatedAt ?? new \DateTime('now');
     }
     
     /**
@@ -89,7 +92,7 @@ trait DatesAt
      * @param mixed $deletedAt
      * @return self
      */
-    public function setDeletedAt($deletedAt)
+    public function setDeletedAt(?\DateTime $deletedAt)
     {
         $this->deletedAt = $deletedAt;
         

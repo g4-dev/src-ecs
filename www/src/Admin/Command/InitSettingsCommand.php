@@ -22,7 +22,7 @@ class InitSettingsCommand extends Command
     
     private $makePath;
     
-    public function __construct(Registry $doctrine, string $makePath)
+    public function __construct(Registry $doctrine, string $makePath = null)
     {
         $this->doctrine = $doctrine;
         $this->makePath = $makePath;
@@ -38,7 +38,7 @@ class InitSettingsCommand extends Command
         $this->addOption('fillSettings', 'f',InputOption::VALUE_OPTIONAL,'fill settings with last items.', false);
     }
     
-    protected function execute(InputInterface $input, OutputInterface $output)
+    public function execute(?InputInterface $input, ?OutputInterface $output)
     {
         $actualSettings = $this->doctrine->getRepository(Settings::class)
            ->find(self::UNIQUE_ROW_ID);
@@ -48,7 +48,7 @@ class InitSettingsCommand extends Command
             return 0;
         }
         
-        $this->createSiteSettings($input->getOption('fillSettings'));
+        $this->createSiteSettings($input ? $input->getOption('fillSettings'): true);
         echo "Settings created \n";
         return 0;
     }
@@ -59,9 +59,18 @@ class InitSettingsCommand extends Command
         
         $settings = (new Settings())
            //->setHomeProducts($fillSettings ? $this->getLastItems(Product::class, 4) : null)
-           ->setHomeDiys($fillSettings ? $this->getLastItems(Diy::class, 4) : null)
-           ->setHeadlineCmsPages($fillSettings ? $this->getLastItems(CmsPage::class,2) : null)
-           ->setFooterCmsPages($fillSettings ?  $this->getLastItems(CmsPage::class,2) : null)
+           ->setHomeDiys($fillSettings ?
+              $this->getLastItems(Diy::class, 4)
+              : [])
+           
+           ->setHeadlineCmsPages($fillSettings ?
+              $this->getLastItems(CmsPage::class,2)
+              : [])
+           
+           ->setFooterCmsPages($fillSettings ?
+              $this->getLastItems(CmsPage::class,2)
+              : [])
+           
            ->setId();
     
         $entityManager->persist($settings);

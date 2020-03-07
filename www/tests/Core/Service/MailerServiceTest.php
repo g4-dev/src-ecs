@@ -7,9 +7,9 @@ use Tests\Traits\MailerServiceTrait;
 
 class MailerServiceTest extends ServiceTestCase
 {
-    use MailerServiceTrait;
+    //use MailerServiceTrait;
 
-    public function testMailer()
+/*    public function testMailer()
     {
         $mailer = $this->getMailerService();
 
@@ -27,5 +27,5 @@ class MailerServiceTest extends ServiceTestCase
         $this->assertStringContainsString('Hello!', $message->getBody());
 
         $mailer->send($message, ['dummy@domain.tld' => 'Dummy']);
-    }
+    }*/
 }

@@ -1,7 +1,7 @@
 easy_admin:
     entities:
         CmsPage:
-            # TODO: traductions
+            # TODO TRAD traductions
             class: Admin\Entity\CmsPage
             image_base_path: '%kernel.project_dir%/public/uploads/'
             list:
@@ -23,3 +23,7 @@ easy_admin:
                     - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
                     - { property: 'cmsCategories', type: 'easyadmin_autocomplete' }
                     - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }
+                    - { property: 'layout', type: 'choice', label: 'Layout', type_options: { multiple: false,
+                                                                                             choices: {'two-cols': '2-col','one-col': '1-col' }
+                                                                                        }
+                    }

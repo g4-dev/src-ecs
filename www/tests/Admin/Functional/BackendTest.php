@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Tests;
+namespace Tests\Admin\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -50,5 +50,10 @@ class BackendTest extends WebTestCase
                 ['action' => 'edit', 'entity' => 'Product', 'id' => 1],
             ],
         ];
+    }
+    
+    protected static function getKernelClass()
+    {
+        return \Core\Kernel::class;
     }
 }

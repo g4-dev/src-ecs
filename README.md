@@ -11,7 +11,7 @@
 
 - Projet sur `/data/ecs/www`
 
-- Synchro des fichiers automatique sur phpStorm ou `` : [Installation](docs/1Installation.md#sources)
+- Synchro des fichiers automatique sur phpStorm ou `vagrant rsync-auto` : [Installation](docs/1Installation.md#sources)
 
 - VSCode est déconseillé
 

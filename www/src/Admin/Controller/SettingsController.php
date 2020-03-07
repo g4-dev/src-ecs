@@ -2,6 +2,7 @@
 
 namespace Admin\Controller;
 
+use Admin\Command\InitSettingsCommand;
 use Admin\Entity\CmsPage;
 use Admin\Entity\Diy;
 use Admin\Entity\Settings;
@@ -16,7 +17,6 @@ class SettingsController extends EasyAdminController
     
     protected function initialize(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
         $actualSettings = $this->getDoctrine()->getRepository(Settings::class)
               ->find(self::UNIQUE_ROW_ID) ?? null;
     
@@ -25,15 +25,7 @@ class SettingsController extends EasyAdminController
             return;
         }
     
-        $settings = (new Settings())
-           ->setHomeProducts($this->getLastItems(Product::class, 4))
-           ->setHomeDiys($this->getLastItems(Diy::class, 4))
-           ->setHeadlineCmsPages($this->getLastItems(CmsPage::class,2))
-           ->setFooterPages($this->getLastItems(CmsPage::class,2))
-           ->setId();
-    
-        $em->persist($settings);
-        $em->flush();
+        (new InitSettingsCommand($this->getDoctrine()))->execute(null, null);
     
         parent::initialize($request);
     }

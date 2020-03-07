@@ -42,6 +42,13 @@ class CmsPage implements CoreEn\Model\Sluggable
     private $author;
     
     /**
+     * @var string
+     *
+     * @ORM\Column(type="text", options={"default": "1-col"})
+     */
+    private $layout = '1-col';
+    
+    /**
      * It only stores the name of the image associated with the product.
      *
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -70,12 +77,12 @@ class CmsPage implements CoreEn\Model\Sluggable
     private $cmsCategories;
 
     /**
-     * @ORM\Column(name="settings_headline", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="headlineCmsPages")
      */
     private $settingsHeadline;
     
     /**
-     * @ORM\Column(name="settings_footer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="footerCmsPages")
      */
     private $settingsFooter;
     
@@ -111,18 +118,11 @@ class CmsPage implements CoreEn\Model\Sluggable
         return $this;
     }
     
-    /**
-     * @return string
-     */
     public function getImage(): ?string
     {
         return $this->image;
     }
     
-    /**
-     * @param string $image
-     * @return CmsPage
-     */
     public function setImage(?string $image): self
     {
         $this->image = $image;
@@ -130,37 +130,23 @@ class CmsPage implements CoreEn\Model\Sluggable
         return $this;
     }
     
-    /**
-     * @return File
-     */
     public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
     
-    /**
-     * @param File $imageFile
-     * @return CmsPage
-     */
     public function setImageFile(?File $imageFile): self
     {
         $this->imageFile = $imageFile;
         
         return $this;
     }
-    
-    /**
-     * @return CmsCategory[]
-     */
+
     public function getCmsCategories()
     {
         return $this->cmsCategories;
     }
-    
-    /**
-     * @param CmsCategory[] $cmsCat
-     * @return CmsPage
-     */
+
     public function setCmsCategories(?array $cmsCat)
     {
         // This is the owning side, we have to call remove and add to have change in the category side too.
@@ -169,14 +155,8 @@ class CmsPage implements CoreEn\Model\Sluggable
         
        return $this;
     }
-    
-    /**
-     * Add a category in the page association.
-     * (Owning side).
-     *
-     * @param $category CmsCategory the category to associate
-     */
-    public function addCmsCategory($category)
+
+    public function addCmsCategory(CmsCategory $category)
     {
         if ($this->cmsCategories->contains($category)) {
             return;
@@ -185,14 +165,8 @@ class CmsPage implements CoreEn\Model\Sluggable
         $this->cmsCategories->add($category);
         $category->addCmsPage($this);
     }
-    
-    /**
-     * Remove a category in the product association.
-     * (Owning side).
-     *
-     * @param $category CmsCategory the category to associate
-     */
-    public function removeCmsCategory($category)
+
+    public function removeCmsCategory(CmsCategory $category)
     {
         if (!$this->cmsCategories->contains($category)) {
             return;
@@ -207,9 +181,11 @@ class CmsPage implements CoreEn\Model\Sluggable
         return $this->settingsHeadline;
     }
 
-    public function setSettingsHeadline(?Settings $settingsHeadline): self
+    public function setSettingsHeadline(?array $settingsHeadline): self
     {
-        $this->settingsHeadline = $settingsHeadline;
+        foreach ($settingsHeadline as $headline) {
+            $this->setSettingsHeadline($headline);
+        }
 
         return $this;
     }

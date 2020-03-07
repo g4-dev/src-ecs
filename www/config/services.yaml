@@ -1,6 +1,6 @@
 imports:
     - { resource: parameters.yaml }
-    - { resource: config.yaml }
+    - { resource: variables.yaml }
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
@@ -11,12 +11,12 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
         bind:
-            $emailFrom: '%env(MAILER_URL)%'
+            $emailFrom: 'env(MAILER_USER)'
             $emailName: '%website_name%'
 
     Core\:
         resource: '../src/Core/*'
-        exclude:  '../src/Core/{DependencyInjection,Entity,Tests}'
+        exclude:  '../src/Core/{DependencyInjection,Entity,Tests,Migrations,Kernel.php}'
 
     core.admin:
         class: Core\Service\AdminService
@@ -52,8 +52,8 @@ services:
     front_office.security.login_form_guard:
         class: 'FrontOffice\Security\LoginFormGuard'
 
-    Admin\Service\:
-        resource: '../src/Admin/Service/*'
+    #Admin\Service\:
+        #resource: '../src/Admin/Service/*'
 
     Admin\Repository\:
         resource: '../src/Admin/Repository/*'

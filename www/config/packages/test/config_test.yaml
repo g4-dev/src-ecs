@@ -1,0 +1,21 @@
+imports:
+    - { resource: ../dev/nelmio_alice.yaml }
+
+framework:
+    test: true
+    session:
+        storage_id: session.storage.mock_file
+    router:
+        strict_requirements: true
+    validation:
+        # As of Symfony 4.3 you can disable the NotCompromisedPassword Validator
+        # disable_not_compromised_password: true
+    profiler: { collect: false }
+
+twig:
+    strict_variables: true
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+

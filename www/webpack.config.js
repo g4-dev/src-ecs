@@ -119,7 +119,7 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 
 	if(!Encore.isProduction() && regenDist) {
 		const fs = require("fs")
-		fs.writeFile("./webpack.config.dist.json", "module.exports = "+JSON.stringify(workspaces), function(err) {
+		fs.writeFile("./webpack.config.dist.json", "module.exports = "+JSON.stringify(workspaces[0]), function(err) {
 			if(err) {
 				throw new Error(err);
 			}

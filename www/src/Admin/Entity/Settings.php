@@ -17,24 +17,30 @@ class Settings
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="smallint", length=1, options={"default" : 0})
+     * @ORM\Column(type="smallint", length=1)
      */
-    private $id = 0;
+    private $id;
     
     /**
-     * @ORM\OneToMany(targetEntity="Core\Entity\Model\Sluggable", mappedBy="settingsHome", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Admin\Entity\Diy", mappedBy="settingsHome", cascade={"persist"})
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $homeDiys;
     
     /**
-     * @ORM\OneToMany(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true, mappedBy="settingsHeadline")
+     * @ORM\OneToMany(targetEntity="Admin\Entity\CmsPage", orphanRemoval=true, mappedBy="settingsHeadline")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="headline_cms_page_id", referencedColumnName="id")
+     * })
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $headlineCmsPages;
     
     /**
-     * @ORM\OneToMany(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true, mappedBy="settingsFooter")
+     * @ORM\OneToMany(targetEntity="Admin\Entity\CmsPage", orphanRemoval=true, mappedBy="settingsFooter")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="footer_cms_page_id", referencedColumnName="id")
+     * })
      * @Assert\Unique(message="validator.generics.in_collection_exist")
      */
     private $footerCmsPages;
@@ -46,17 +52,11 @@ class Settings
         $this->footerCmsPages = new ArrayCollection();
     }
     
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
     
-    /**
-     * @return Settings
-     */
     public function setId(): Settings
     {
         if ($this->id === 1) {
@@ -68,20 +68,22 @@ class Settings
         return $this;
     }
     
-    /**
-     * @return Collection|Diy[]
-     */
     public function getHomeDiys(): Collection
     {
         return $this->homeDiys;
     }
     
-    public function addHomeDiy(Diy $homeDiy): self
+    public function setHomeDiys(?array $homeDiys = []): self
     {
-        if(count($this->homeDiys) >= 4) {
-            return new \Exception("maximum.error");
+        foreach ($homeDiys as $diy) {
+            $this->addHomeDiy($diy);
         }
         
+        return $this;
+    }
+    
+    public function addHomeDiy(Diy $homeDiy): self
+    {
         if (!$this->homeDiys->contains($homeDiy)) {
             $this->homeDiys[] = $homeDiy;
             $homeDiy->setSettingsHome($this);
@@ -103,44 +105,22 @@ class Settings
         return $this;
     }
     
-    /**
-     * @param mixed $homeDiys
-     * @return Settings
-     */
-    public function setHomeDiys(?array $homeDiys): self
-    {
-        $this->homeDiys->clear();
-        $this->homeDiys = new ArrayCollection($homeDiys);
-    
-        return $this;
-    }
-    
-    /**
-     * @return Collection|CmsPage[]
-     */
     public function getHeadlineCmsPages(): Collection
     {
         return $this->headlineCmsPages;
     }
-    
-    /**
-     * @param mixed $headlineCmsPages
-     * @return Settings
-     */
-    public function setHeadlineCmsPages(?array $headlineCmsPages): self
+
+    public function setHeadlineCmsPages(?array $headlineCmsPages = []): self
     {
-        $this->headlineCmsPages->clear();
-        $this->headlineCmsPages = new ArrayCollection($headlineCmsPages);
+        foreach ($headlineCmsPages as $page) {
+            $this->addHeadlineCmsPage($page);
+        }
         
         return $this;
     }
     
     public function addHeadlineCmsPage(CmsPage $headlineCmsPage)
     {
-        if(count($this->headlineCmsPages) >= 2) {
-            return new \Exception("maximum.error");
-        }
-        
         if (!$this->headlineCmsPages->contains($headlineCmsPage)) {
             $this->headlineCmsPages[] = $headlineCmsPage;
             $headlineCmsPage->setSettingsHeadline($this);
@@ -162,21 +142,16 @@ class Settings
         return $this;
     }
 
-    /**
-     * @return Collection|CmsPage[]
-     */
     public function getFooterCmsPages(): Collection
     {
         return $this->footerCmsPages;
     }
-    
-    /**
-     * @return Collection|CmsPage[]
-     */
+
     public function setFooterCmsPages(?array $footerCmsPages): self
     {
-        $this->footerCmsPages->clear();
-        $this->footerCmsPages = new ArrayCollection($footerCmsPages);
+        foreach ($footerCmsPages as $page) {
+            $this->addFooterCmsPage($page);
+        }
         
         return $this;
     }
@@ -208,7 +183,7 @@ class Settings
      * @ORM\PrePersist()
      */
     public function onPrePersitFooterCmsPageAdd(){
-        dump("zigwiwiwwiw");
+        dump("Gros persist qui fait bien mal");
     }
 }
 

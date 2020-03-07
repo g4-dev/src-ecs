@@ -1,23 +1,26 @@
 SHELL := /bin/bash
-projectname = ecs
-D = /data
-ScriptsDir = $(D)/$(projectname)
-www = $(D)/$(projectname)/www
-console = php $(www)/bin/console
-migration_dir = $(www)/migrations
+projectname ?= ecs
+D ?= /data
+WWW ?= $(D)/$(projectname)/www
+CONSOLE = php $(WWW)/bin/CONSOLE
+migration_dir = $(WWW)/migrations
+VBIN = $(WWW)/vendor/bin
+BIN = $(WWW)/bin
 NPROC := $(shell nproc)
-# Be careful with this command (nfs / shared folder should be disabled)
-clean_vagrant:
-	/bin/bash /tmp/cleaner.sh
+KERNEL_CLASS := \\Core\\Kernel
 
 # DATABASES OPERATIONS
 local_script = $(D)/$(projectname)/$(projectname).sql
 remote_script = $(D)/$(projectname)/remote_.sql
 
+# Be careful with this command (nfs / shared folder should be disabled)
+clean_vagrant:
+	/bin/bash /tmp/cleaner.sh
+
 # Mettre à jour notre base de donnée locale avec celles de l'externe
 db_soft_update:
-	$(console) doctrine:schema:update -f
-	$(console) doctrine:fixtures:load -n
+	$(CONSOLE) doctrine:schema:update -f
+	$(CONSOLE) doctrine:fixtures:load -n
 
 # Mettre à jour la base de donnée externe avec nos datas
 db_update_remote:
@@ -25,21 +28,45 @@ db_update_remote:
 	mysql -u EmwnLitSLR  -h remotemysql.com EmwnLitSLR -pGk0qCm6hFI --execute="USE EmwnLitSLR;SOURCE $(local_script);"
 
 db_rebuild:
-	$(console) doctrine:database:drop --connection=default --force -n
-	$(console) doctrine:database:create --connection=default -n
-	$(console) doctrine:schema:update -f -n
-	$(console) doctrine:fixture:load -n
-	$(console) ecs:init-app
+	$(CONSOLE) doctrine:database:drop --connection=default --force -n
+	$(CONSOLE) doctrine:database:create --connection=default -n
+	$(CONSOLE) doctrine:schema:update -f -n
+	$(CONSOLE) doctrine:fixture:load -n
+	$(CONSOLE) ecs:init-app
 
 db_schema:
-	$(console) doctrine:schema:update -f -n
+	$(CONSOLE) doctrine:schema:update -f -n
 
-test:
-	APP_ENV=test php /data/ecs/www/vendor/bin/paratest -p$(NPROC) /data/ecs/www/
+# sf make simplify
+SUPPORTED_COMMANDS := reg_en new_en
+# create args
+SUPPORTS_MAKE_ARGS := $(findstring $(firstword $(MAKECMDGOALS)), $(SUPPORTED_COMMANDS))
 
-test_with_coverage:
-	APP_ENV=test $(console) cache:clear && $(console) cache:warmup && \
-	php /www/vendor/bin/paratest -p$(NPROC) --coverage-html www/tests/results
+ifneq "$(SUPPORTS_MAKE_ARGS)" ""
+  	COMMAND_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  	$(eval $(COMMAND_ARGS):;@:)
+endif
+
+# usage make reg_en Core EN="YourEntityName"
+reg_en:
+	$(CONSOLE) make:entity --regenerate "$(COMMAND_ARGS)\\Entity\\$(EN)"
+	echo "Don‘t forget to download updated files"
+
+new_en:
+	$(CONSOLE) make:entity "$(COMMAND_ARGS)\\Entity\\$(EN)"
+	echo "Don‘t forget to download updated files"
+
+# tests
+test_install:
+	ln -sf $(VBIN)/paratest $(BIN)
+	ln -sf $(VBIN)/phpunit $(BIN)
+
+tests:
+	APP_ENV=test php $(VBIN)/paratest -p$(NPROC) -f --phpunit=$(VBIN)/phpunit --colors $(WWW)/tests
+
+warmed_test:
+	APP_ENV=test $(CONSOLE) cache:clear && $(CONSOLE) cache:warmup && \
+	php $(VBIN)/paratest -p$(NPROC) -f --phpunit=$(VBIN)/phpunit --colors $(WWW)/tests
 
 # Synchronise your files automaticly (daemonized)
 sync:

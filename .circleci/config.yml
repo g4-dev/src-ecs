@@ -3,14 +3,31 @@
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
 version: 2.1
+
+commands:
+    console:
+        parameters:
+            sf:
+                type: string
+                default: cache:clear
+        steps:
+            -   run: php www/bin/console << parameters.sf >>
+
 jobs:
+    #db:
+        #docker:
+            # Specify the version you desire here
+            #-   image: circleci/mariadb:10.4-ram
+            #environment:
+                #-   MYSQL_DATABASE: ecommerce
+                #-   MYSQL_USER: ecs_user
+                #-   MYSQL_PASSWORD: ecommerce
     build:
         #machine:
-                #docker_layer_caching: true
+        #docker_layer_caching: true
         docker:
             # Specify the version you desire here
             -   image: circleci/php:7.4-node-browsers
-            #- image: circleci/mariadb:10.4-ram
 
         parallelism: 3
 
@@ -18,52 +35,82 @@ jobs:
 
         environment:
             APP_ENV: dev
-            APP_DEBUG: test
-            MYSQL_URL: mysql://EmwnLitSLR:Gk0qCm6hFI@remotemysql.com/EmwnLitSLR
+            APP_DEBUG: dev
+            LOCAL_DATABASE_URL: 'mysql://ecs_user:ecommerce@localhost/ecommerce'
+            MAKE_PATH: ~/src-ecs
+            kernel.logs_dir: www/var/data/logs/app_ecs_test.log
 
         steps:
             - checkout
-            -   run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
-            -   run: sudo docker-php-ext-install zip
-            -   run: mv ./www/config/parameters.yaml.dist ./www/config/parameters.yaml
+            -   run: sudo apt update && sudo apt install libpng-dev #libsqlite3-dev
+            -   run: sudo docker-php-ext-install zip gd #sqlite3 pdo_sqlite
+            -   run: mkdir -p www/var/data/logs
+            -   run: mv ./www/config/parameters.dist.yaml ./www/config/parameters.yaml
 
             # Download and cache dependencies
             -   restore_cache:
                     keys:
-                        # "composer.lock" can be used if it is committed to the repo
-                        - v1-dependencies-{{ checksum "./www/composer.lock" }}
-                        # fallback to using the latest cache if no exact match is found
+                        #"composer.lock" can be used if it is committed to the repo
+                        - v1-dependencies-{{ checksum "./www/composer.lock" }}-{{ arch }}
+                        #fallback to using the latest cache if no exact match is found
                         - v1-dependencies-
 
             -   run: composer install -d ./www -n --prefer-dist --no-scripts
 
-            # -   run: php ./www/bin/console doctrine:schema:validate
-
             -   save_cache:
-                    key: v1-dependencies-{{ checksum "./www/composer.lock" }}
+                    key: v1-dependencies-{{ checksum "./www/composer.lock" }}-{{ arch }}
                     paths:
                         - ./www/vendor
+                        - ~/.cache/composer
             -   restore_cache:
                     keys:
-                        - node-v1-{{ checksum "./www/yarn.lock" }}
+                        - node-v1-{{ checksum "./www/yarn.lock" }}-{{ arch }}
                         - node-v1-
 
             -   run: yarn --cwd ./www/ install
 
             -   save_cache:
-                    key: node-v1-{{ checksum "./www/yarn.lock" }}
+                    key: node-v1-{{ checksum "./www/yarn.lock" }}-{{ arch }}
                     paths:
                         - ./www/node_modules
+                        - ~/.yarn
+                        - ~/.cache/yarn
 
-            #-   run: yarn --cwd ./www/ lint || export WARNING="yarn lint error --> bad code style"
+            -   run:
+                    name: check js code style
+                    command: yarn --cwd ./www/ lint || echo "yarn lint error check your code style" || true
 
-            #-   run: test -n "$WARNING" && false
+            -   run:
+                    name: yarn dev
+                    command: yarn --cwd ./www/ dev
 
-            -   run: yarn --cwd ./www/ dev
+            -   console:
+                    sf: cache:clear
 
+            -   console:
+                    sf: cache:warmup
 
-            # - run: make db_update_local
-            # - run: ./vendor/bin/phpunit
+            #-   console:
+                    #sf: doctrine:database:drop --connection=default --force -n
+            #-   console:
+                    #sf: doctrine:database:create--connection=default -n
+            #-   console:
+                    #sf: doctrine:schema:create -n
+            #-   console:
+                    #sf: doctrine:fixture:load -n
+            #-   console:
+                    #sf: ecs:init-app
+            #-   console:
+                    #sf: doctrine:schema:validate
 
+            #-   run:
+                    #name: test suite
+                    #command: make tests
+
+            #-   store_test_results:
+                    #path: /tmp/logs
+                    #destination: phpunit
+
+            # screenshots / logs...
             -   store_artifacts:
                     path: /tmp/artifacts

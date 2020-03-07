@@ -94,6 +94,11 @@ menu.settings.nav: Menu
 ROLE_PRO: Professionel
 ROLE_USER: Utilisateur
 ROLE_EMPLOYEE: Employé
+
+#Blog
+Layout: Mise en page
+two-cols: 2 Colonnes
+one-col: Une colonne
 # DIY
 diy.title: Recettes Diy
 

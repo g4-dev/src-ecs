@@ -24,7 +24,7 @@ class MailerService
     protected $mailer;
 
     /**
-     * @var \Twig_Environment
+     * @var \Twig\Environment
      */
     protected $twig;
 
