@@ -3,7 +3,6 @@
 
 namespace Core\Entity;
 
-
 use Core\Entity\Traits\Id;
 use Core\Entity\Traits\Name;
 use Doctrine\ORM\Mapping as ORM;

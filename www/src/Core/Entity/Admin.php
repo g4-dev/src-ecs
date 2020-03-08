@@ -26,7 +26,7 @@ class Admin extends Model\AbstractUser implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="Admin\Entity\NewsLetter", mappedBy="admin")
-     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $newsLetters;
     
@@ -74,7 +74,7 @@ class Admin extends Model\AbstractUser implements UserInterface
     {
         if (!$this->newsLetters->contains($newsLetter)) {
             $this->newsLetters[] = $newsLetter;
-            $newsLetter->setAdmin($this);
+            $newsLetter->addAdmin($this);
         }
 
         return $this;
@@ -84,10 +84,7 @@ class Admin extends Model\AbstractUser implements UserInterface
     {
         if ($this->newsLetters->contains($newsLetter)) {
             $this->newsLetters->removeElement($newsLetter);
-            // set the owning side to null (unless already changed)
-            if ($newsLetter->getAdmin() === $this) {
-                $newsLetter->setAdmin(null);
-            }
+            $newsLetter->removeAdmin($this);
         }
 
         return $this;

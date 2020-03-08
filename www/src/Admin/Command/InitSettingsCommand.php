@@ -48,36 +48,29 @@ class InitSettingsCommand extends Command
             return 0;
         }
         
-        $this->createSiteSettings($input ? $input->getOption('fillSettings'): true);
+        $this->createSiteSettings();
         echo "Settings created \n";
         return 0;
     }
     
-    public function createSiteSettings(bool $fillSettings = true)
+    public function createSiteSettings()
     {
         $entityManager = $this->doctrine->getManager();
+        $diy = $this->getLastItems(Diy::class, 1);
+        $footerPage = $this->getLastItems(CmsPage::class,1);
+        $product = $this->getLastItems(Product::class,1);
         
-        $settings = (new Settings())
-           //->setHomeProducts($fillSettings ? $this->getLastItems(Product::class, 4) : null)
-           ->setHomeDiys($fillSettings ?
-              $this->getLastItems(Diy::class, 4)
-              : [])
-           
-           ->setHeadlineCmsPages($fillSettings ?
-              $this->getLastItems(CmsPage::class,2)
-              : [])
-           
-           ->setFooterCmsPages($fillSettings ?
-              $this->getLastItems(CmsPage::class,2)
-              : [])
-           
-           ->setId();
+        $settings = new Settings();
+        $diy ? $settings->addHomeDiy($diy[0]) : null;
+        $footerPage ? $settings->addHomeCmsPage($footerPage[0]) : null;
+        $product ? $settings->addHomeProduct($product[0]): null;
     
         $entityManager->persist($settings);
         $entityManager->flush();
     }
     
-    protected function getLastItems($entity, $qty){
+    protected function getLastItems($entity, $qty)
+    {
         return $this->doctrine->getRepository($entity)->findBy(
            [],
            ['createdAt' => 'ASC'],

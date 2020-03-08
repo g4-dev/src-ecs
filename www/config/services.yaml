@@ -52,8 +52,8 @@ services:
     front_office.security.login_form_guard:
         class: 'FrontOffice\Security\LoginFormGuard'
 
-    #Admin\Service\:
-        #resource: '../src/Admin/Service/*'
+    Admin\Event\EasyAdminSubscriber\:
+        resource: '../src/Admin/Event/EasyAdminSubscriber.php'
 
     Admin\Repository\:
         resource: '../src/Admin/Repository/*'

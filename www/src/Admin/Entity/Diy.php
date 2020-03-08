@@ -4,6 +4,7 @@
 namespace Admin\Entity;
 
 use Core\Entity as CoreEn;
+use Core\Entity\Admin;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -70,9 +71,8 @@ class Diy implements \Core\Entity\Model\Sluggable
 
     /**
      * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeDiys")
-     * @ORM\JoinColumn(nullable=true)
      */
-    private $settingsHome;
+    private $settingHome;
     
     public function __construct()
     {
@@ -162,14 +162,14 @@ class Diy implements \Core\Entity\Model\Sluggable
         return $this;
     }
 
-    public function getSettingsHome(): ?Settings
+    public function getSettingHome(): ?Settings
     {
-        return $this->settingsHome;
+        return $this->settingHome;
     }
 
-    public function setSettingsHome(?Settings $settingsHome): self
+    public function setSettingHome(?Settings $settingHome): self
     {
-        $this->settingsHome = $settingsHome;
+        $this->settingHome = $settingHome;
 
         return $this;
     }

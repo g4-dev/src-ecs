@@ -9,9 +9,7 @@ easy_admin:
                     - { property: 'isActive', type: 'toggle', label: 'Active?' }
                     - name
                     - { property: 'price', format: '%.2f', css_class: text-right }
-                    #- { property: 'ean', type: 'string' }
-                    #- { property: 'image', type: 'image', base_path: '%ecs.path.product_images%' }
-                    - { property: 'createdAt', format: 'j / M / Y' }
+                    - { property: 'updatedAt', label: 'updated At', format: 'j / M / Y' }
                     - tags
                     - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.product', route: 'productShow' }
                 filters: ['isActive', 'name', 'price']
@@ -29,13 +27,14 @@ easy_admin:
                     - features
                     - categories
                     - tags
+                    - images
             form:
                 fields:
                     - { type: 'group', css_class: 'col-sm-8', label: 'Basic information', icon: 'pencil' }
                     - { property: 'name', css_class: 'large' }
                     - { property: 'description', type: 'text' }
                     - { type: 'divider' }
-                    - { property: 'productCategories', type: 'easyadmin_autocomplete' }
+                    - { property: 'productCategories', type: 'easyadmin_autocomplete', type_options: { attr: { create: true } } }
                     - { type: 'group', css_class: 'col-sm-4', label: 'Product Details', icon: 'cube' }
                     - { property: 'ean', help: 'ean.help_message', type_options: { required: false } }
                     - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
@@ -48,6 +47,6 @@ easy_admin:
                     - { type: 'group', css_class: 'col-sm-4' }
                     - { property: 'tags' }
                     - { type: 'group', css_class: 'col-sm-4', label: 'Attachments', icon: 'paperclip' }
-                    - { property: 'imageFile', type: 'vich_image', type_options: { required: true } }
+                    - { property: 'imageFile', type: 'vich_image', label: 'Cover',  type_options: { required: false } }
                     - { property: 'images', type: 'collection', type_options: { entry_type: 'Core\Form\ImageType' }}
 

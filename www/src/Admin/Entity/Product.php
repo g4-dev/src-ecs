@@ -114,6 +114,11 @@ class Product implements Sluggable
      * @ORM\OneToMany(targetEntity="FrontOffice\Entity\PurchaseItem", mappedBy="product", cascade={"remove"})
      */
     private $purchasedItems;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeProducts")
+     */
+    private $settingProduct;
     
 
     public function __construct()
@@ -359,6 +364,18 @@ class Product implements Sluggable
                 $purchasedItem->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSettingProduct(): ?Settings
+    {
+        return $this->settingProduct;
+    }
+
+    public function setSettingProduct(?Settings $settingProduct): self
+    {
+        $this->settingProduct = $settingProduct;
 
         return $this;
     }

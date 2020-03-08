@@ -78,14 +78,9 @@ class CmsPage implements CoreEn\Model\Sluggable
     private $cmsCategories;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="headlineCmsPages")
-     */
-    private $settingsHeadline;
-    
-    /**
      * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="footerCmsPages")
      */
-    private $settingsFooter;
+    private $settingFooter;
     
     public function __construct()
     {
@@ -176,32 +171,6 @@ class CmsPage implements CoreEn\Model\Sluggable
         $this->cmsCategories->removeElement($category);
         $category->addCmsPage($this);
     }
-
-    public function getSettingsHeadline(): ?Settings
-    {
-        return $this->settingsHeadline;
-    }
-
-    public function setSettingsHeadline(?array $settingsHeadline): self
-    {
-        foreach ($settingsHeadline as $headline) {
-            $this->setSettingsHeadline($headline);
-        }
-
-        return $this;
-    }
-    
-    public function getSettingsFooter(): ?Settings
-    {
-        return $this->settingsFooter;
-    }
-
-    public function setSettingsFooter(?Settings $settingsFooter): self
-    {
-        $this->settingsFooter = $settingsFooter;
-
-        return $this;
-    }
     
     public function __toString(): string
     {
@@ -216,6 +185,18 @@ class CmsPage implements CoreEn\Model\Sluggable
     public function setLayout(string $layout): self
     {
         $this->layout = $layout;
+
+        return $this;
+    }
+
+    public function getSettingFooter(): ?Settings
+    {
+        return $this->settingFooter;
+    }
+
+    public function setSettingFooter(?Settings $settingFooter): self
+    {
+        $this->settingFooter = $settingFooter;
 
         return $this;
     }

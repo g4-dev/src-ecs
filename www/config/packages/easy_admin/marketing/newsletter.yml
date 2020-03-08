@@ -1,6 +1,6 @@
 easy_admin:
     entities:
-        Diy:
+        NewsLetter:
             # TODO: traductions
             class: Admin\Entity\NewsLetter
             disabled_actions: ['delete','edit']
@@ -23,5 +23,5 @@ easy_admin:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
-                    - { property: 'tags', type_options: { required: true } }
-                    - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }
+                    - { property: isActive, label: 'letterStatus'}
+                    - { property: admin, label: 'sender' }

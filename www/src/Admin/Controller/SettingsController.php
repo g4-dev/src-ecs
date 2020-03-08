@@ -30,6 +30,11 @@ class SettingsController extends EasyAdminController
         parent::initialize($request);
     }
     
+    public function editAction()
+    {
+        return parent::editAction();
+    }
+    
     public function getLastItems($entity, $qty){
         return $this->getDoctrine()->getRepository($entity)->findBy(
            [],

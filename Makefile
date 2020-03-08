@@ -53,6 +53,7 @@ reg_en:
 	echo "Don‘t forget to download updated files"
 
 new_en:
+	sed -i -e 's/\troot_namespace:*/\troot_namespace: \\$(COMMAND_ARGS)/g' $(WWW)/config/packages/dev/maker.yaml
 	$(CONSOLE) make:entity "$(COMMAND_ARGS)\\Entity\\$(EN)"
 	echo "Don‘t forget to download updated files"
 

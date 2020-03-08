@@ -9,3 +9,4 @@ Core\Entity\User:
     password_hash: '<userPasswordEncoder("Azerty69")>'
     roles: ['ROLE_PRO']
     company_name: 'Company Test'
+    news_letter: true

@@ -20,7 +20,7 @@ class Nav
     use Traits\Name;
     
     /**
-     * @ORM\OneToOne(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true, fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="page_id", referencedColumnName="id")
      * @Assert\NotBlank()
      */

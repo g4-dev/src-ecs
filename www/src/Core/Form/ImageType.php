@@ -3,7 +3,7 @@
 
 namespace Core\Form;
 
-use Core\Entity\Model\Image;
+use Core\Entity\Image;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\AbstractType;
