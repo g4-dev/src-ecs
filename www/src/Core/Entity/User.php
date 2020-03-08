@@ -26,13 +26,13 @@ class User extends Model\AbstractUser implements UserInterface
     
     /**
      * @var string
-     * @ORM\Column(name="token", type="string", length=32, nullable=true, unique=false)
+     * @ORM\Column(type="string", length=32, nullable=true, unique=false)
      */
     protected $token;
     
     /**
      * @var array
-     * @ORM\Column(name="roles", type="array", nullable=false)
+     * @ORM\Column(type="array", nullable=false)
      */
     private array $roles = [self::DEFAULT_ROLE];
     
@@ -41,13 +41,13 @@ class User extends Model\AbstractUser implements UserInterface
     
     /**
      * @var string
-     * @ORM\Column(name="company_name", type="string", length=50, nullable=true, unique=false)
+     * @ORM\Column(type="string", length=50, nullable=true, unique=false)
      */
     private $companyName;
 
     /**
      * @var string
-     * @ORM\Column(name="phone_number", type="string", length=10, nullable=true, unique=true)
+     * @ORM\Column(type="string", length=10, nullable=true, unique=true)
      */
     private $phoneNumber;
     
@@ -63,6 +63,12 @@ class User extends Model\AbstractUser implements UserInterface
      * @ORM\OneToMany(targetEntity="Core\Entity\Address", mappedBy="user", orphanRemoval=true, cascade={"remove"})
      */
     private $addresses;
+    
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $newsLetter;
     
     /**
      * It only stores the name of the file which stores the contract subscribed
@@ -90,6 +96,7 @@ class User extends Model\AbstractUser implements UserInterface
             $this->_init();
         }
         $this->addresses = new ArrayCollection();
+        $this->purchases = new ArrayCollection();
     }
     
     public function setToken(string $token)
@@ -246,5 +253,42 @@ class User extends Model\AbstractUser implements UserInterface
     public function getContract()
     {
         return $this->contract;
+    }
+
+    public function getRoles(): ?array
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getNewsLetter(): ?bool
+    {
+        return $this->newsLetter;
+    }
+
+    public function setNewsLetter(bool $newsLetter): self
+    {
+        $this->newsLetter = $newsLetter;
+
+        return $this;
+    }
+
+    public function removePurchase(Purchase $purchase): self
+    {
+        if ($this->purchases->contains($purchase)) {
+            $this->purchases->removeElement($purchase);
+            // set the owning side to null (unless already changed)
+            if ($purchase->getBuyer() === $this) {
+                $purchase->setBuyer(null);
+            }
+        }
+
+        return $this;
     }
 }

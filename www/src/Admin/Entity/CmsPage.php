@@ -5,6 +5,7 @@ namespace Admin\Entity;
 
 use Core\Entity as CoreEn;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -142,7 +143,7 @@ class CmsPage implements CoreEn\Model\Sluggable
         return $this;
     }
 
-    public function getCmsCategories()
+    public function getCmsCategories(): Collection
     {
         return $this->cmsCategories;
     }
@@ -205,5 +206,17 @@ class CmsPage implements CoreEn\Model\Sluggable
     public function __toString(): string
     {
         return (string) $this->getName();
+    }
+
+    public function getLayout(): ?string
+    {
+        return $this->layout;
+    }
+
+    public function setLayout(string $layout): self
+    {
+        $this->layout = $layout;
+
+        return $this;
     }
 }

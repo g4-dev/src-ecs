@@ -10,6 +10,7 @@ parameters:
     container.dumper.inline_factories: true
 
     # image mappings
+    ecs.path.default_images: /uploads/images/default
     ecs.path.product_images: /uploads/images/products
     ecs.path.user_contracts: /uploads/files/user/contracts
     ecs.path.blog_covers: /uploads/images/blog

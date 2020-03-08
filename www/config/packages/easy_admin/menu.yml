@@ -25,12 +25,13 @@ easy_admin:
                   - { entity: 'ProService', icon: 'th-list', label: 'menu.proservice.list' }
                   - { entity: 'ProService', icon: 'plus-circle', label: 'menu.proservice.add', params: { action: 'new' } }
 
-            - label: 'menu.blog'
+            - label: 'menu.marketing'
               icon: 'newspaper'
               children:
                   - { entity: 'CmsPage', icon: 'th-list', label: 'menu.articles.list', params: { sortField: 'createdAt' }, default: true }
                   - { entity: 'CmsCategory', icon: 'tags', label: 'menu.articles.category' }
                   - { entity: 'Diy', icon: 'recycle', label: 'menu.diy' }
+                  - { entity: 'NewsLetter', icon: 'paper', label: 'menu.newsletter' }
 
             - { label: 'menu.customer', entity: 'User', icon: 'users' }
 

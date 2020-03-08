@@ -1,4 +1,4 @@
-{% extends 'front_office/layout.html.twig' %}
+{% extends '@fo/layout.html.twig' %}
 
 {% block links %}
     {{ encore_entry_link_tags('homepage', null, 'front_office') }}
@@ -6,7 +6,7 @@
 
 {% block main %}
 
-    {% include 'bundles/EasyAdminBundle/default/flash_messages.html.twig' %}
+    {% include '@fo/components/flash-messages.html.twig' %}
     <div class="slideshow-container">
         <section class="centerBetween fullWidth alignInit Slide fade" id="entreprise">
             <article class="midWidth">
@@ -48,12 +48,12 @@
                                     {% set thumb = product.images|first %}
                                     <div class="image-container">
                                         <a href="/product/{{ product.slug }}">
-                                            <img src="/img/upload/{{ thumb.name }}" alt="{{ thumb.description }}" class="product-card__image img img-fluid">
+                                            <img src="vich_uploader_asset({{ product.imageFile, product.image }})" alt="{{ product.image }}" class="product-card__image img img-fluid">
                                         </a>
                                     </div>
                                     <div class="card-body pt-0">
                                         <h4 class="product-card__heading">
-                                            <a href="/product/{{ product.slug }}" class="product-card__link">
+                                            <a href="path('product',{{ product.slug }})" class="product-card__link">
                                                 {{ product.name }}
                                             </a>
                                         </h4>

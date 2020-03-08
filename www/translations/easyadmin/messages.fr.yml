@@ -11,7 +11,7 @@ menu.customer:     Clients
 menu.admin:        Admin
 menu.purchase:     Ventes
 menu.about:        À propos d'EasyAdmin
-menu.blog:         Blog
+menu.marketing:    Marketing
 menu.articles.list: Listes des pages
 menu.articles.category: Catégories
 menu.settings: Paramètres

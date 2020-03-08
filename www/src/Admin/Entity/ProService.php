@@ -74,12 +74,6 @@ class ProService
      */
     private $shortDescription;
     
-    /**
-     * @var string
-     * @ORM\Column(type="array")
-     */
-    private $images;
-
     public function __construct()
     {
         if (method_exists($this, '_init')) {

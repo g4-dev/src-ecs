@@ -7,6 +7,7 @@ use Core\Entity\Model\Sluggable;
 use Core\Entity\Traits;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use FrontOffice\Entity\PurchaseItem;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -27,6 +28,7 @@ class Product implements Sluggable
     use Traits\DatesAt;
     use Traits\Slug;
     use Traits\IsActive;
+    use Traits\ImageCollection;
     
     /**
      * List of tags associated to the product.
@@ -113,20 +115,14 @@ class Product implements Sluggable
      */
     private $purchasedItems;
     
-    /**
-     * @var string
-     * @ORM\Column(type="array")
-     */
-    private $images;
 
     public function __construct()
     {
         $this->productCategories = new ArrayCollection();
         $this->purchasedItems = new ArrayCollection();
-        
-        if (method_exists($this, '_init')) {
-            $this->_init();
-        }
+    
+        method_exists($this, '_initImages') ? $this->_initImages() : null;
+        method_exists($this, '_init') ? $this->_init() : null;
     }
     
     /**
@@ -328,14 +324,6 @@ class Product implements Sluggable
     }
     
     /**
-     * {@inheritdoc}
-     */
-    public function __toString()
-    {
-        return (string) $this->getName();
-    }
-    
-    /**
      * @param \FrontOffice\Entity\PurchaseItem[] $purchasedItems
      */
     public function setPurchasedItems(array $purchasedItems)
@@ -350,5 +338,28 @@ class Product implements Sluggable
     public function getPurchasedItems()
     {
         return $this->purchasedItems;
+    }
+
+    public function addPurchasedItem(PurchaseItem $purchasedItem): self
+    {
+        if (!$this->purchasedItems->contains($purchasedItem)) {
+            $this->purchasedItems[] = $purchasedItem;
+            $purchasedItem->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removePurchasedItem(PurchaseItem $purchasedItem): self
+    {
+        if ($this->purchasedItems->contains($purchasedItem)) {
+            $this->purchasedItems->removeElement($purchasedItem);
+            // set the owning side to null (unless already changed)
+            if ($purchasedItem->getProduct() === $this) {
+                $purchasedItem->setProduct(null);
+            }
+        }
+
+        return $this;
     }
 }

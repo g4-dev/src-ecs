@@ -6,7 +6,9 @@ namespace FrontOffice\Entity;
 use Core\Entity\Traits\DatesAt;
 use Core\Entity\Traits\Id;
 use Core\Entity\Transaction;
+use Core\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FrontOffice\Model\Shipment;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -174,7 +176,7 @@ class Purchase
         $this->purchasedItems[] = $purchasedItem;
     }
     
-    public function removePurchaseItem(PurchaseItem $product): self
+    public function removePurchasedItem(PurchaseItem $product): self
     {
         if ($this->purchasedItems->contains($product)) {
             $this->purchasedItems->removeElement($product);

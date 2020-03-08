@@ -10,7 +10,7 @@ conf:
     testing_mode: 0                 # test services
     web_path: www                   # change web server if name != local_name
     app_env: dev                    # prod or dev
-    ssl: false                      # disable if you can't install a certificate
+    ssl: false                      # Need re provision and manually adding cert to your machine settings
     nfs_force_disable: yes          # don't wan't nfs enabled because it's slow
 
 vm:

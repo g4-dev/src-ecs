@@ -1,0 +1,27 @@
+easy_admin:
+    entities:
+        Diy:
+            # TODO: traductions
+            class: Admin\Entity\NewsLetter
+            disabled_actions: ['delete','edit']
+            list:
+                title: 'diy.title'
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: 'createdAt', label: 'Created at', format: 'j / M / Y' }
+                    - { property: isActive, type: 'toggle', label: 'letterStatus'}
+                    - { property: admin, label: 'sender' }
+                actions: ['create']
+            show:
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: 'body', label: Contenu, type: html } #TODO preview
+                    - { property: 'createdAt', label: 'Created at', format: 'j / M / Y' }
+                    - { property: 'isActive', type: 'toggle', label: 'letterStatus'}
+                    - { property: 'admin', label: 'sender' }
+            form:
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
+                    - { property: 'tags', type_options: { required: true } }
+                    - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }

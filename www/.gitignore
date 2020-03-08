@@ -60,7 +60,8 @@ dist
 /node_modules/
 npm-debug.log
 yarn-error.log
-public/build/**
+public/**/build/**
+!.note
 ###< symfony/webpack-encore-bundle ###
 
 ###> phpunit/phpunit ###
