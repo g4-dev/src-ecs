@@ -12,35 +12,31 @@ end
 
 yml              = YAML.load_file("#{current_dir}/vm_config.yaml")
 conf, vm, rsync_exclude         = yml['conf'], yml['vm'], yml['rsync_exclude']
-# bento is an old debian build
 os               = conf['box'] ? conf['box'] : "loic-roux-404/deb-g4"
+
 # book repo
 playbook_name    = "playbook-#{conf['projectname']}"
 playbook         = "https://github.com/#{conf['org']}/#{playbook_name}.git"
+
 ### work path variable to change in debug mode
 # Be aware of shared folders when deleting things
 debug            = conf['debug_playbook']
 folder           = debug ? '/data' : '/tmp'
 web_dir          = "/data/#{conf['projectname']}/#{conf['web_path']}"
+
+# provision status
+IS_PROVISIONNING = ARGV[1] == '--provision' 
+PROVISIONNED     = File.exist? File.dirname(__FILE__) + "/.vagrant/machines/default/virtualbox/action_provision"
+
 # nfs config
 conf['nfs'] = Vagrant::Util::Platform.darwin? || Vagrant::Util::Platform.linux?
-NFS_ENABLED = !conf['nfs_force_disable'] && conf['nfs'] && ARGV[1] != '--provision' && (File.exist? File.dirname(__FILE__) + "/.vagrant/machines/default/virtualbox/action_provision")
-# ssl config
+NFS_ENABLED = !conf['nfs_force_disable'] && conf['nfs'] && !IS_PROVISIONNING  && PROVISIONNED
+
 hosts            = ""
 
 if !Vagrant.has_plugin?('vagrant-hostmanager')
   puts "The vagrant-hostmanager plugin is required. Please install it with \"vagrant plugin install vagrant-hostmanager\""
   exit
-end
-
-if !Vagrant.has_plugin?('vagrant-ca-certificates') && conf['ssl']
-     puts "The vagrant-ca-certificates plugin is required with ssl enabled. Please install it with \"vagrant plugin install vagrant-ca-certificates\""
-     exit
-elsif conf['ssl']
-    config.ca_certificates.enabled = true
-    config.ca_certificates.certs = [
-      '/etc/ssl/#{conf["servername"]}/pkcs12.pfx'
-    ]
 end
 
 hosts << conf['servername'] << " "
