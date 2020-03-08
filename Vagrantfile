@@ -32,6 +32,17 @@ if !Vagrant.has_plugin?('vagrant-hostmanager')
   puts "The vagrant-hostmanager plugin is required. Please install it with \"vagrant plugin install vagrant-hostmanager\""
   exit
 end
+
+if !Vagrant.has_plugin?('vagrant-ca-certificates') && conf['ssl']
+     puts "The vagrant-ca-certificates plugin is required with ssl enabled. Please install it with \"vagrant plugin install vagrant-ca-certificates\""
+     exit
+elsif conf['ssl']
+    config.ca_certificates.enabled = true
+    config.ca_certificates.certs = [
+      '/etc/ssl/#{conf["servername"]}/pkcs12.pfx'
+    ]
+end
+
 hosts << conf['servername'] << " "
 
 Vagrant.require_version ">= 2.2.2"
@@ -93,7 +104,7 @@ Vagrant.configure(2) do |config|
   if !NFS_ENABLED
     config.vm.synced_folder "./", "/data/ecs", type: "rsync",
         rsync__auto: true,
-        rsync__args: ["--archive", "--delete", "--no-owner", "--no-group","-q"],
+        rsync__args: ["--archive", "--delete", "--no-owner", "--no-group","-q", "-W"],
         rsync__exclude: rsync_exclude
   end
 
@@ -122,6 +133,6 @@ Vagrant.configure(2) do |config|
 
   # fix ssh common issues
   ssh_path = "/home/vagrant/.ssh"
-  config.vm.provision :shell, :inline => "echo '#{id_rsa_ssh_key }' > #{ssh_path}/id_rsa && chmod 600 #{ssh_path}/id_rsa"
-  config.vm.provision :shell, :inline => "echo '#{id_rsa_ssh_key_pub }' > #{ssh_path}/authorized_keys && chmod 600 #{ssh_path}/authorized_keys"
+  config.vm.provision :shell, :inline => "echo '#{id_rsa_ssh_key}' > #{ssh_path}/id_rsa && chmod 600 #{ssh_path}/id_rsa"
+  config.vm.provision :shell, :inline => "echo '#{id_rsa_ssh_key_pub}' > #{ssh_path}/authorized_keys && chmod 600 #{ssh_path}/authorized_keys"
 end
