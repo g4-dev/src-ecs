@@ -44,3 +44,4 @@ test-vagrant/
 
 www/bin/.phpunit
 docs/*.pfx
+docs/*.pem
