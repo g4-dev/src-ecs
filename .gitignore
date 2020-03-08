@@ -43,3 +43,4 @@ lemp/
 test-vagrant/
 
 www/bin/.phpunit
+docs/*.pfx

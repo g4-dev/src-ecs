@@ -119,7 +119,9 @@ On prévoit par la suite mettre en place un certificat autosigné (pour le caden
 `./vm_config.yaml` &rarr; `ssl: yes`
 
 - Le **certificat** : 
-> `scp -P 22 root@ecoservice.dev:/etc/ssl/ecoservice.dev/pkcs12.pfx docs/cert/` (mdp: vagrant)
+> `scp -P 22 vagrant@ecoservice.dev:/etc/ssl/ecoservice.dev/pkcs12.pfx docs/` (mdp: vagrant)
+
+- Il faut ensuite l'ajouter manuellement dans les paramètres du navigateur ou de votre machine
 
 ---
 [&larr; retour au **Sommaire**](0Sommaire.md) &nbsp;&nbsp;| &nbsp;&nbsp;[**Stacks et bonnes pratiques** &rarr;](2Stack.md)
