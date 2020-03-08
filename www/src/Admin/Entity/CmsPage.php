@@ -4,6 +4,7 @@
 namespace Admin\Entity;
 
 use Core\Entity as CoreEn;
+use Core\Entity\Admin;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -76,11 +77,6 @@ class CmsPage implements CoreEn\Model\Sluggable
      * @ORM\JoinTable(name="cms_categories")
      */
     private $cmsCategories;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="footerCmsPages")
-     */
-    private $settingFooter;
     
     public function __construct()
     {
@@ -185,18 +181,6 @@ class CmsPage implements CoreEn\Model\Sluggable
     public function setLayout(string $layout): self
     {
         $this->layout = $layout;
-
-        return $this;
-    }
-
-    public function getSettingFooter(): ?Settings
-    {
-        return $this->settingFooter;
-    }
-
-    public function setSettingFooter(?Settings $settingFooter): self
-    {
-        $this->settingFooter = $settingFooter;
 
         return $this;
     }

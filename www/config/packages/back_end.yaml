@@ -18,6 +18,10 @@
 imports:
     - { resource: easy_admin/ }
 
+easy_admin_extension:
+    embedded_list:
+        open_new_tab: false
+
 vich_uploader:
     db_driver: orm # or mongodb or phpcr
 

@@ -57,12 +57,12 @@ class InitSettingsCommand extends Command
     {
         $entityManager = $this->doctrine->getManager();
         $diy = $this->getLastItems(Diy::class, 1);
-        $footerPage = $this->getLastItems(CmsPage::class,1);
+        $page = $this->getLastItems(CmsPage::class,1);
         $product = $this->getLastItems(Product::class,1);
         
         $settings = new Settings();
         $diy ? $settings->addHomeDiy($diy[0]) : null;
-        $footerPage ? $settings->addHomeCmsPage($footerPage[0]) : null;
+        $page ? $settings->addHomeCmsPage($page[0]) : null;
         $product ? $settings->addHomeProduct($product[0]): null;
     
         $entityManager->persist($settings);

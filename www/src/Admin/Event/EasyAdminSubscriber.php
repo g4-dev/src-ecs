@@ -20,13 +20,16 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-           'easy_admin.pre_persist' => array('setSettings'),
+           'easy_admin.post_initialize' => array('setSettings'),
         );
     }
     
     public function setSettings(GenericEvent $event)
     {
+        dump($event);
         $entity = $event->getSubject();
+        dump($event->getSubject());
+        die;
         
         if (!($entity instanceof Settings)) {
             return;

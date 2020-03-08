@@ -18,8 +18,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity
  * @ORM\Table(indexes={@ORM\Index(name="search_idx",
- *     columns={"name", "email"},
- *     options={"where": "(((id IS NOT NULL) AND (name IS NULL)) AND (email IS NULL))"})
+ *     columns={"name"},
+ *     options={"where": "(((id IS NOT NULL)"})
  * })
  */
 abstract class AbstractCategory{
