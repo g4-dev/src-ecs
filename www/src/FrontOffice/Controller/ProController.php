@@ -20,17 +20,18 @@ class ProController extends AbstractController
 
     /**
      * @Route("/services-pro/devis", name="proDevis")
+     * @param MailerService $mailer
      * @return Response
      */
-    public function devis(Request $request)
+    public function devis(Request $request, MailerService $mailer )
     {
         $form = $this->createForm(DevisForm::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $mailer->broadcastToAdmins($mailer->createTwigMessage("Devis", 'front_office/proDevisMailReturned.html.twig'));
             $this->addFlash('success', 'Envoi du mail effectuer');
             return $this->redirectToRoute('proServiceList');
         }
-
         return $this->render('front_office/proDevis.html.twig', [
             'controller_name' => 'ProContoller',
             'active' => 'Pro-Devis',
