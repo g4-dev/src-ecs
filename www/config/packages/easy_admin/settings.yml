@@ -5,7 +5,6 @@ easy_admin:
             label: 'Settings'
             controller: Admin\Controller\SettingsController
             disabled_actions: ['list', 'delete', 'new']
-
             show:
                 fields:
                     - id

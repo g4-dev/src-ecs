@@ -2,14 +2,8 @@
 
 namespace Admin\Controller;
 
-use Admin\Command\InitSettingsCommand;
-use Admin\Entity\CmsPage;
-use Admin\Entity\Diy;
 use Admin\Entity\Settings;
-use Admin\Entity\Product;
 use AlterPHP\EasyAdminExtensionBundle\Controller\EasyAdminController;
-use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
-use Symfony\Component\HttpFoundation\Request;
 
 class SettingsController extends EasyAdminController
 {
