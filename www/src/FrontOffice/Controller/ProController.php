@@ -2,7 +2,6 @@
 
 
 namespace FrontOffice\Controller;
-
 use FrontOffice\Form\Accounting\DevisForm;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
