@@ -1,3 +1,4 @@
+require('./popup');
 let burger_nav = document.getElementById("burger_nav");
 let burgerIco = document.getElementById("rotation");
 

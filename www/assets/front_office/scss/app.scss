@@ -180,6 +180,83 @@ button{
   }
 }
 
+/*PopUp connection*/
+.pop-up-connection{
+  position: absolute;
+  width:300px;
+  background: $white;
+  border-radius: 25px;
+  top: 70px;
+  right: 40px;
+  z-index:9999;
+  box-shadow: 5px 5px 20px rgba(0,0,0,.4);
+  display: none;
+
+  &:before{
+    content:'';
+    position: absolute;
+    left: 60%;
+    transform: translateX(-50%) rotate(45deg);
+    top: -10px;
+    background: $white;
+    height: 20px;
+    width: 20px;
+  }
+
+  h2{
+    color:$darkGreen;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 25px;
+  }
+
+  form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+    input:nth-child(1), input:nth-child(2){
+      padding:10px 0;
+      border: solid 1px $darkGreen;
+      margin-bottom: 15px;
+      width: 80%;
+      margin-left: 10%;
+
+      &::placeholder{
+        padding-left: 10px;
+        color:$darkGreen;
+      }
+    }
+
+    input:last-child{
+      cursor: pointer;
+      height: 75px;
+      background: $darkGreen;
+      color: $white;
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      border: none;
+      transition: all .5s ease-in-out;
+
+      &:hover{
+        background:#435E36;
+        transition: all .5s ease-in-out;
+      }
+    }
+
+    a{
+      color: $darkGreen;
+      margin-left: 5%;
+      font-size:13px;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.showPop{
+  display: block;
+}
+
 @media screen and (max-width:1025px){
   .cont-item-img{
     margin-bottom: 30px;
