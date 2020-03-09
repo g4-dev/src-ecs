@@ -1,0 +1,14 @@
+{% extends '@fo/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('proDevis', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    {{ form_start(Pro_Devis) }}
+    {{ form_end(Pro_Devis) }}
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('proDevis', null, 'front_office') }}
+{% endblock %}
