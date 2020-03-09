@@ -107,6 +107,23 @@ button{
   }
 }
 
+/*Btn général*/
+.btn{
+  border: solid 1px $darkGreen;
+  width: 200px;
+  color:$darkGreen;
+  font-size:20px;
+  text-align: center;
+  padding:15px 20px;
+  transition: all .35s linear;
+
+  &:hover{
+    background: $darkGreen;
+    color:$white;
+    transition: all .35s linear;
+  }
+}
+
 /*Suggestions de produits*/
 .title-suggest{
   margin-top: 75px;

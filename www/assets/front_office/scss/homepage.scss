@@ -4,6 +4,13 @@ main{
   .slideshow-container {
     position: relative;
     margin: auto;
+
+    article{
+
+      p{
+        margin-bottom: 30px;
+      }
+    }
   }
 
   .prev, .next {
@@ -216,6 +223,15 @@ main{
     }
   }
 
+  /*Suggest item*/
+  .title-suggest-home{
+    margin-bottom: 30px;
+  }
+
+  .cont-item-home{
+    margin-bottom: unset;
+  }
+
   #produit, #recette{
     $align: 80%;
 
@@ -242,8 +258,6 @@ main{
       }
     }
     p{
-      font-size: 2.5rem;
-      margin: 2rem;
       color: $dark;
     }
     button{
@@ -284,25 +298,33 @@ main{
   #pro_parti {
     margin-top: 2rem;
     color: $lightGrey;
+
     article {
       padding: 64px $basicPadding*5;
+      height: 60vh;
 
       h4 {
         font-size: 3rem;
         font-weight: bold;
+        margin-bottom: 24px;
       }
 
       p {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
         text-align: center;
+        line-height: 30px;
       }
 
-      button {
+      a {
         margin-top: 64px;
-        padding: 16px 48px;
-        font-size: 2rem;
-        color: $lightGrey;
-        border: solid 4px $lightGrey;
+        //padding: 16px 48px;
+        //font-size: 2rem;
+        color: $white;
+        border: solid 1px $white;
+
+        &:hover{
+          border:solid 1px $darkGreen;
+        }
       }
     }
 
@@ -360,10 +382,6 @@ main{
         padding: 64px 16px;
         h4 {
           font-size: 3rem;
-        }
-
-        p {
-          font-size: 2.5rem;
         }
 
         button {

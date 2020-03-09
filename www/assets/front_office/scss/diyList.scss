@@ -43,23 +43,10 @@
 }
 
 .btn-voir-plus{
-  border: solid 1px $darkGreen;
-  width: 200px;
-  color:$darkGreen;
-  font-size:20px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  text-align: center;
-  padding:15px 0;
-  margin-top: -120px;
-  transition: all .35s linear;
-
-  &:hover{
-    background: $darkGreen;
-    color:$white;
-    transition: all .35s linear;
-  }
+  margin-top:-120px;
 }
 
 .showBtn{

@@ -13,7 +13,7 @@
                 <h2 class="gel-sBold">Entreprise</h2>
                 <p class="pop">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt
                     facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
-                <button class="pop">En savoir plus</button>
+                <a class="btn pop">En savoir plus</a>
             </article>
             <div class="midWidth">
                 <img src="{{ asset('images/entreprise.jpg') }}" alt="entreprise">
@@ -24,7 +24,7 @@
             <article class="midWidth">
                 <h2 class="gel-bold">Zéro déchets</h2>
                 <p class="pop">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
-                <button class="pop">En savoir plus</button>
+                <a class="btn pop">En savoir plus</a>
             </article>
             <div class="midWidth">
                 <img src="{{ asset('images/dechet.jpg') }}" alt="dechet">
@@ -35,9 +35,7 @@
     </div>
 
     <section id="produit">
-        <div>
-            <p class="gel-sBold">Produits</p>
-        </div>
+        <p class="gel-bold title-suggest title-suggest-home">Produits</p>
         <div class="fullCenter">
             <div class="produit_space">
                     {#TODO: Mettre les derniers produits en s'aidant du code ci-dessous (vérifier back)#}
@@ -65,32 +63,36 @@
                         {% endfor %}
                     </div>#}
 
-                <div class="itemsList">
-                    <article class="fullCenter">
-                        <img src="{{ asset('images/produit.png') }}" alt="produit"/>
-                        <h3 class="gel-sBold">Lorem</h3>
-                    </article>
-
-                    <article class="fullCenter">
-                        <img src="{{ asset('images/produit.png') }}" alt="produit"/>
-                        <h3 class="gel-sBold">Lorem</h3>
-                    </article>
-                </div>
-                <div class="itemsList">
-                    <article class="fullCenter">
-                        <img src="{{ asset('images/produit.png') }}" alt="produit"/>
-                        <h3 class="gel-sBold">Lorem</h3>
-                    </article>
-
-                    <article class="fullCenter">
-                        <img src="{{ asset('images/produit.png') }}" alt="produit"/>
-                        <h3 class="gel-sBold">Lorem</h3>
-                    </article>
+                <div class="cont-item cont-item-home">
+                    <div>
+                        <div class="cont-item-img">
+                            <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+                        </div>
+                        <p class="gel-bold">Lorem</p>
+                    </div>
+                    <div>
+                        <div class="cont-item-img">
+                            <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+                        </div>
+                        <p class="gel-bold">Lorem</p>
+                    </div>
+                    <div>
+                        <div class="cont-item-img">
+                            <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+                        </div>
+                        <p class="gel-bold">Lorem</p>
+                    </div>
+                    <div>
+                        <div class="cont-item-img">
+                            <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+                        </div>
+                        <p class="gel-bold">Lorem</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="center">
-            <button class="pop">Voir plus</button>
+            <a class="btn pop">Voir plus</a>
         </div>
     </section>
 
@@ -98,43 +100,49 @@
         <article class="midWidth fullCenter" id='pro'>
             <h4 class="pop-sBold">Professionnel</h4>
             <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="pop">Lorem</button>
+            <a class="btn pop">Lorem</a>
         </article>
         <article class="midWidth fullCenter" id='parti'>
             <h4 class="pop-sBold">Particulier</h4>
             <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="pop">Lorem</button>
+            <a class="btn pop">Lorem</a>
         </article>
     </section>
 
     <section class="" id="recette">
-        <div>
-            <p class="gel-sBold">Dernières recettes</p>
-        </div>
+        <p class="gel-bold title-suggest title-suggest-home">Recettes</p>
         <div class="fullCenter">
             <div class="produit_space">
-                <div class="itemsList">
-                    <article class="fullCenter">
-                        <img src="{{ asset('images/recette.png') }}" alt="recette"/>
-                    </article>
-
-                    <article class="fullCenter">
-                        <img src="{{ asset('images/recette.png') }}" alt="recette"/>
-                    </article>
-                </div>
-                <div class="itemsList">
-                    <article class="fullCenter">
-                        <img src="{{ asset('images/recette.png') }}" alt="recette"/>
-                    </article>
-
-                    <article class="fullCenter">
-                        <img src="{{ asset('images/recette.png') }}" alt="recette"/>
-                    </article>
+                <div class="cont-item cont-item-home">
+                    <div>
+                        <div class="cont-item-img">
+                            <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
+                        </div>
+                        <p class="gel-bold">Lorem</p>
+                    </div>
+                    <div>
+                        <div class="cont-item-img">
+                            <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
+                        </div>
+                        <p class="gel-bold">Lorem</p>
+                    </div>
+                    <div>
+                        <div class="cont-item-img">
+                            <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
+                        </div>
+                        <p class="gel-bold">Lorem</p>
+                    </div>
+                    <div>
+                        <div class="cont-item-img">
+                            <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
+                        </div>
+                        <p class="gel-bold">Lorem</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="center">
-            <button class="pop">Voir plus</button>
+            <a class="btn pop">Voir plus</a>
         </div>
     </section>
 {% endblock %}
