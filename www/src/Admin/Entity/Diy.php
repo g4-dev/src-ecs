@@ -68,6 +68,11 @@ class Diy implements \Core\Entity\Model\Sluggable
      * @var File
      */
     private $imageFile;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeDiys")
+     */
+    private $settingHome;
     
     public function __construct()
     {
@@ -154,6 +159,18 @@ class Diy implements \Core\Entity\Model\Sluggable
     {
         $this->imageFile = $imageFile;
         
+        return $this;
+    }
+
+    public function getSettingHome(): ?Settings
+    {
+        return $this->settingHome;
+    }
+
+    public function setSettingHome(?Settings $settingHome): self
+    {
+        $this->settingHome = $settingHome;
+
         return $this;
     }
 }

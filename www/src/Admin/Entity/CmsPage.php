@@ -78,6 +78,14 @@ class CmsPage implements CoreEn\Model\Sluggable
      */
     private $cmsCategories;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeCmsPages")
+     * @ORM\JoinColumns(
+     *     @ORM\JoinColumn(name="setting_id", referencedColumnName="id")
+     * )
+     */
+    private $settingHome;
+    
     public function __construct()
     {
         if (method_exists($this, '_init')) {
@@ -181,6 +189,18 @@ class CmsPage implements CoreEn\Model\Sluggable
     public function setLayout(string $layout): self
     {
         $this->layout = $layout;
+
+        return $this;
+    }
+
+    public function getSettingHome(): ?Settings
+    {
+        return $this->settingHome;
+    }
+
+    public function setSettingHome(?Settings $settingHome): self
+    {
+        $this->settingHome = $settingHome;
 
         return $this;
     }

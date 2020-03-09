@@ -13,26 +13,37 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SettingsController extends EasyAdminController
 {
-    const UNIQUE_ROW_ID  = 1;
     
-    protected function initialize(Request $request)
-    {
-        $actualSettings = $this->getDoctrine()->getRepository(Settings::class)
-              ->find(self::UNIQUE_ROW_ID) ?? null;
-    
-        if($actualSettings){
-            parent::initialize($request);
-            return;
-        }
-    
-        (new InitSettingsCommand($this->getDoctrine()))->execute(null, null);
-    
-        parent::initialize($request);
-    }
-    
-    public function editAction()
+    public function editSettingsAction()
     {
         return parent::editAction();
+    }
+    
+    protected function updateSettingsEntity(Settings $settings)
+    {
+        foreach ($settings->getHomeCmsPages() as $item)
+        {
+            dump($item);
+            $item->setSettingHome($settings);
+            $this->updateEntity($item);
+            $this->persistEntity($item);
+        }
+    
+        foreach ($settings->getHomeDiys() as $item)
+        {
+            $item->setSettingHome($settings);
+            $this->updateEntity($item);
+            $this->persistEntity($item);
+        }
+    
+        foreach ($settings->getHomeProducts() as $item)
+        {
+            $item->setSettingHome($settings);
+            $this->updateEntity($item);
+            $this->persistEntity($item);
+        }
+        
+        $this->updateEntity($settings);
     }
     
     public function getLastItems($entity, $qty){

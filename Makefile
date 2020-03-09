@@ -18,23 +18,19 @@ clean_vagrant:
 	/bin/bash /tmp/cleaner.sh
 
 # Mettre à jour notre base de donnée locale avec celles de l'externe
-db_soft_update:
+db_soft:
 	$(CONSOLE) doctrine:schema:update -f
 	$(CONSOLE) doctrine:fixtures:load -n
 
-# Mettre à jour la base de donnée externe avec nos datas
-db_update_remote:
-	MYSQL_PWD="ecommerce" mysqldump --single-transaction --skip-lock-tables -u ecs_user ecommerce > $(local_script)
-	mysql -u EmwnLitSLR  -h remotemysql.com EmwnLitSLR -pGk0qCm6hFI --execute="USE EmwnLitSLR;SOURCE $(local_script);"
-
-db_rebuild:
+db:
 	$(CONSOLE) doctrine:database:drop --connection=default --force -n
 	$(CONSOLE) doctrine:database:create --connection=default -n
+	$(CONSOLE) doctrine:schema:create -n
 	$(CONSOLE) doctrine:schema:update -f -n
 	$(CONSOLE) doctrine:fixture:load -n
 	$(CONSOLE) ecs:init-app
 
-db_schema:
+schema:
 	$(CONSOLE) doctrine:schema:update -f -n
 
 # sf make simplify
