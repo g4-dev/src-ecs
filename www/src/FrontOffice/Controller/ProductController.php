@@ -4,6 +4,7 @@
 namespace FrontOffice\Controller;
 
 use Admin\Entity\Product;
+use Admin\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,9 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/products/{page}", name="productList")
+     * @Route("/products/{slug}/{page?1}", name="productList")
      */
-    public function listAction($page, Request $req)
+    public function listAction(string $slug, Request $req, ?int $page = 1)
     {
         // TODO: prendre le code de easyadmin pour faire la pagination
         // Pagination de tout
@@ -30,7 +31,8 @@ class ProductController extends AbstractController
         $pagerfanta->setCurrentPage($page);
         //vue temporaire en attendant pour tester l'ajout au panier
         return $this->render('@fo/shopping/productAll.html.twig', [
-           'products' => $pagerfanta
+           'products' => $pagerfanta,
+            'slug' => $slug
         ]);
     }
     
@@ -54,6 +56,28 @@ class ProductController extends AbstractController
         
         return $this->render('front_office/shopping/productShow.html.twig', [
            'product' => $product,
+        ]);
+    }
+
+    /**
+     * @Route("/category/products/{slug}/{page?1}", name="productCategoryList")
+     */
+    public function listProductsAction(string $slug,  Request $req, ?int $page = 1)
+    {
+        // TODO: prendre le code de easyadmin pour faire la pagination
+        // Pagination de tout
+        // En ajax si possible
+        $qb = $this->getDoctrine()
+            ->getRepository(CategoryRepository::class)
+            ->findAllQueryBuilder();
+        $adapter = new DoctrineORMAdapter($qb);
+        $pagerfanta = new Pagerfanta($adapter);
+        $pagerfanta->setMaxPerPage(10);
+        $pagerfanta->setCurrentPage($page);
+        //vue temporaire en attendant pour tester l'ajout au panier
+        return $this->render('@fo/shopping/productList.html.twig', [
+            'products' => $pagerfanta,
+            'slug' => $slug
         ]);
     }
 }

@@ -16,6 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     "cms_category" = "CmsCategory",
  *      "product_category" = "ProductCategory"
  * })
+ * @ORM\Entity(repositoryClass="\Admin\Repository\CategoryRepository")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity
  * @ORM\Table(indexes={@ORM\Index(name="search_idx",
@@ -27,7 +28,37 @@ abstract class AbstractCategory implements Sluggable {
     use Id;
     use Name;
     use Slug;
-    
+
+    /**
+     * The description of the product.
+     *
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+
+    /**
+     * Set the description of the product.
+     *
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * The the full description of the product.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+
     public function __toString()
     {
         return (string) $this->getName();
