@@ -14,12 +14,18 @@ easy_admin:
                     - { property: 'name', label: 'Label' }
                     - { property: 'parent', label: 'Parent category' }
                     - 'products'
+                    - { property: 'slug', template: '@admin/custom-fields/category-link.html.twig', label: 'links.category', route: 'productCategoryList' }
+
+
+
             show:
                 fields:
                     - 'id'
                     - { property: 'name', label: 'Label', css_class: 'large' }
                     - { property: 'parent', label: 'Parent category' }
                     - 'products'
+                    - { property: 'slug', template: '@admin/custom-fields/category-link.html.twig', label: 'links.category', route: 'productCategoryList' }
+
             form:
                 fields:
                     - { type: 'group', css_class: 'col-sm-4' }
