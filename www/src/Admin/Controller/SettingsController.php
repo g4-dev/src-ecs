@@ -23,7 +23,6 @@ class SettingsController extends EasyAdminController
     {
         foreach ($settings->getHomeCmsPages() as $item)
         {
-            dump($item);
             $item->setSettingHome($settings);
             $this->updateEntity($item);
             $this->persistEntity($item);
@@ -44,14 +43,5 @@ class SettingsController extends EasyAdminController
         }
         
         $this->updateEntity($settings);
-    }
-    
-    public function getLastItems($entity, $qty){
-        return $this->getDoctrine()->getRepository($entity)->findBy(
-           [],
-           ['createdAt' => 'ASC', 'id' => 'ASC'],
-           $qty,
-           0
-        );
     }
 }
