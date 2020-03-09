@@ -5,37 +5,57 @@
 {% endblock %}
 
 {% block main %}
-<div class="container">
+<hr class="sep-header">
+<h1 class="pop-sBold title">Demander un service</h1>
+<div class="devisForm">
     {{ form_start(Pro_Devis) }}
+    <div class="form_item">
+        {{ form_label(Pro_Devis.name, 'Nom') }}
+        {{ form_widget(Pro_Devis.name) }}
+    </div>
 
-    {{ form_label(Pro_Devis.name, 'Nom') }}
-    {{ form_widget(Pro_Devis.name) }}
+    <div class="form_item">
+        {{ form_label(Pro_Devis.firstName, 'Prénom') }}
+        {{ form_widget(Pro_Devis.firstName) }}
+    </div>
 
-    {{ form_label(Pro_Devis.firstName, 'Prénom') }}
-    {{ form_widget(Pro_Devis.firstName) }}
+    <div class="form_item">
+        {{ form_label(Pro_Devis.companyName, 'Société') }}
+        {{ form_widget(Pro_Devis.companyName) }}
+    </div>
 
-    {{ form_label(Pro_Devis.companyName, 'Société') }}
-    {{ form_widget(Pro_Devis.companyName) }}
+    <div class="form_item">
+        {{ form_label(Pro_Devis.address, 'Adresse de l\'entreprise') }}
+        {{ form_widget(Pro_Devis.address) }}
+    </div>
 
-    {{ form_label(Pro_Devis.address, 'Adresse entreprise') }}
-    {{ form_widget(Pro_Devis.address) }}
+    <div class="form_item">
+        {{ form_label(Pro_Devis.phoneNumber, 'Télephone de l\'entreprise') }}
+        {{ form_widget(Pro_Devis.phoneNumber) }}
+    </div>
 
-    {{ form_label(Pro_Devis.phoneNumber, 'Télephone entreprise') }}
-    {{ form_widget(Pro_Devis.phoneNumber) }}
+    <div class="form_item">
+        {{ form_label(Pro_Devis.email, 'Mail de l\'entreprise') }}
+        {{ form_widget(Pro_Devis.email) }}
+    </div>
+    <div class="formCheckbox">
+        <div>
+            {{ form_label(Pro_Devis.blueTrashCan, 'Prestation Poubelle Bleu') }}
+            {{ form_widget(Pro_Devis.blueTrashCan) }}
+        </div>
 
-    {{ form_label(Pro_Devis.email, 'Mail entreprise') }}
-    {{ form_widget(Pro_Devis.email) }}
+        <div>
+            {{ form_label(Pro_Devis.yellowTrashCan, 'Prestation Poubelle Jaune') }}
+            {{ form_widget(Pro_Devis.yellowTrashCan) }}
+        </div>
 
-    {{ form_label(Pro_Devis.blueTrashCan, 'Prestation Poubelle Bleu') }}
-    {{ form_widget(Pro_Devis.blueTrashCan) }}
-
-    {{ form_label(Pro_Devis.yellowTrashCan, 'Prestation Poubelle Jaune') }}
-    {{ form_widget(Pro_Devis.yellowTrashCan) }}
-
-    {{ form_label(Pro_Devis.news_letter, 'News letter') }}
-    {{ form_widget(Pro_Devis.news_letter) }}
-    <div class="">
-        <input type="submit" class="test" value="Envoyer la demande de devis">
+        <div>
+            {{ form_label(Pro_Devis.news_letter, 'Newsletter') }}
+            {{ form_widget(Pro_Devis.news_letter) }}
+        </div>
+    </div>
+    <div class="center continueSubmit">
+        <button type="submit" class="continue pop">Envoyer la demande de devis</button>
     </div>
     {{ form_end(Pro_Devis) }}
 </div>
