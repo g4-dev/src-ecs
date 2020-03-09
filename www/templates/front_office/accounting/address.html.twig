@@ -7,10 +7,12 @@
 {% block title %}Gestion Adresse{% endblock %}
 
 {% block main %}
-    <header class="mb-4">
-        <h1>Adresse de livraison</h1>
-    </header>
-    {% include '@fo/forms/address-form.html.twig' %}
+    <hr class="sep-header">
+    <h1 class="pop-sBold panier_title">Adresse</h1>
+
+    <section class="adressUpdate pop">
+        {% include '@fo/forms/address-form.html.twig' %}
+    </section>
     <input type="submit" form="address-form" value="{{ actionMode ?? 'add'|trans|raw }}" class="btn btn-primary">
     <a href="{{ path('account') }}">{{ 'back'|trans }}</a>
 
