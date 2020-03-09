@@ -11,64 +11,91 @@
 
 {% block main %}
 
-<header class="mb-4">
-    <h1>Mon panier</h1>
-</header>
+<hr class="sep-header">
+<h1 class="pop-sBold panier_title">Mon panier</h1>
 
 {% if products is empty %}
-    <div class="basket-empty">
-        <p>Le panier est vide.</p>
-        <a href="/" class="btn btn-info">Continuer les achats</a>
-    </div>
-{% else %}
-    <div class="basket-products mb-4">
-        {% for product in products %}
-            <div class="basket-product row border-bottom py-2">
-                <div class="col-4 col-sm-6 col-md-2">
-                    <a href="/product/{{ product.slug }}">
-                        <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.name }}">
-                    </a>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col-md pb-2">
-                            <span class="basket-product__name">
-                                {{ product.name }}
-                            </span>
-                        </div>
-                        <div class="col-md-2 pb-2">
-{#
-                            <input class="basket-product__quantity form-control" type="number" name="quantity" data-target-id="{{ product.id }}" min="1" value="{{ product.quantity }}">
-#}
-                        </div>
-                        <div class="col-md pb-2">
-                            <span class="basket-product__price" data-target-id="{{ product.id }}">
-                                {{ product.price}} €
-                            </span>
-                        </div>
-                        <div class="col-md pb-2">
-                            <a href="/basket/remove/{{ product.id }}" class="basket-product__remove btn" title="Supprimer">
-                                <i class="far fa-trash-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+
+    <div class="basket-empty fullCenter">
+        <p class="empty pop">Le panier est vide.</p>
+        <a href="/" class="continueWhite pop">Continuer les achats</a>
     </div>
 
-    <div class="d-flex">
-        <div class="basket-checkout ml-auto">
-            <p class="basket-checkout__total">
-                Sous total: <span class="basket-checkout__total-price">{{ totalPrice }}</span> €
-            </p>
-            {% if is_granted('ROLE_USER') %}
-                <a href="{{ path('checkoutAddress') }}" class="basket-checkout__order btn btn-primary">Commander</a>
-            {% else %}
-                <a href="{{ path('accountAddress', { 'purchase': true, 'message': 'accounting.register_warning'|trans|raw }) }}" class="basket-checkout__order btn btn-primary">Commander</a>
-            {% endif %}
+{% else %}
+    <section class="fullCenter mon_panier">
+        <div class="panier_space panier">
+            <table class="pop">
+                <thead>
+                <th>Supp</th>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th class="total_pc">Total</th>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>
+                            <a href="/basket/remove/{{ product.id }}" class="basket-product__remove btn" title="Supprimer">
+                                {% include "./svg/trash.html.twig" %}
+                            </a>
+                            <a href="#"></a>
+                        </td>
+                        <td class="table_img">
+                            <a href="/product/{{ product.slug }}">
+                                <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.name }}">
+                                <h2>{{ product.name }}</h2>
+                            </a>
+                        </td>
+                        <td>
+                            {# ADD INPUT NUMBER CONTROL#}
+                            {# <input class="basket-product__quantity form-control" type="number" name="quantity"
+                            data-target-id="{{ product.id }}" min="1" value="{{ product.quantity }}"> #}
+                        </td>
+                        <td class="total_pc">
+                            <p data-target-id="{{ product.id }}">{{ product.price}} €</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr class="total_mob">
+                    <td><p>Total</p></td>
+                    <td colspan="3"><p class="price">{{ totalPrice }} €</p></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="recapPanier">
+                <h3 class="pop">Récapitulatif Panier</h3>
+                <div class="sousTot centerBetween">
+                    <p class="pop">Sous-total</p>
+                    <p class="serge price">{{ totalPrice }} €</p>
+                </div>
+                <div class="livraison centerBetween">
+                    <p class="pop">Livraison</p>
+                    {#TODO ADD LIVRAISON PRIX LIVRAISON #}
+                    <p class="serge price">1.99 €</p>
+                </div>
+                <hr>
+                <div class="total centerBetween">
+                    <p class="serge-bold"><strong>Total</strong></p>
+                    <p class="serge-bold price"><strong>24,98 €</strong></p>
+                </div>
+                <div class="center continue pop">
+                    {% if is_granted('ROLE_USER') %}
+                        <a href="{{ path('checkoutAddress') }}">Commander</a>
+                    {% else %}
+                        <a href="{{ path('accountAddress', {'purchase': true, 'message': 'accounting.register_warning'|trans|raw }) }}">Commander</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="panier_space flexStart">
+            {# TODO ADD LIEN VERS CONTINUER LIEN VERS CONTINUER ET VIDER #}
+            <div class="fullCenter button pop">
+                <a href="#">Continuer Achat</a>
+                <a href="#">Vider le panier</a>
+            </div>
+        </div>
+    </section>
 
 {% endif %}
 
