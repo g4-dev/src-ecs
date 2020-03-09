@@ -1,6 +1,7 @@
 <?php
 namespace Admin\Entity;
 
+use Core\Entity\Model\Sluggable;
 use Core\Entity\Traits\Id;
 use Core\Entity\Traits\Name;
 use Core\Entity\Traits\Slug;
@@ -22,7 +23,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     options={"where": "(((id IS NOT NULL)"})
  * })
  */
-abstract class AbstractCategory{
+abstract class AbstractCategory implements Sluggable {
     use Id;
     use Name;
     use Slug;
