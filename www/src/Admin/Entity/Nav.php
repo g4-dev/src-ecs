@@ -15,7 +15,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Nav
 {
-
     use Traits\Id;
     use Traits\Name;
     
