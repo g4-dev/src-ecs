@@ -1,14 +1,46 @@
 {% extends '@fo/layout.html.twig' %}
 
 {% block links %}
-    {{ encore_entry_link_tags('proDevis', null, 'front_office') }}
+    {{ encore_entry_link_tags('proServiceList', null, 'front_office') }}
 {% endblock %}
 
 {% block main %}
+<div class="container">
     {{ form_start(Pro_Devis) }}
+
+    {{ form_label(Pro_Devis.name, 'Nom') }}
+    {{ form_widget(Pro_Devis.name) }}
+
+    {{ form_label(Pro_Devis.firstName, 'Prénom') }}
+    {{ form_widget(Pro_Devis.firstName) }}
+
+    {{ form_label(Pro_Devis.companyName, 'Société') }}
+    {{ form_widget(Pro_Devis.companyName) }}
+
+    {{ form_label(Pro_Devis.address, 'Adresse entreprise') }}
+    {{ form_widget(Pro_Devis.address) }}
+
+    {{ form_label(Pro_Devis.phoneNumber, 'Télephone entreprise') }}
+    {{ form_widget(Pro_Devis.phoneNumber) }}
+
+    {{ form_label(Pro_Devis.email, 'Mail entreprise') }}
+    {{ form_widget(Pro_Devis.email) }}
+
+    {{ form_label(Pro_Devis.blueTrashCan, 'Prestation Poubelle Bleu') }}
+    {{ form_widget(Pro_Devis.blueTrashCan) }}
+
+    {{ form_label(Pro_Devis.yellowTrashCan, 'Prestation Poubelle Jaune') }}
+    {{ form_widget(Pro_Devis.yellowTrashCan) }}
+
+    {{ form_label(Pro_Devis.news_letter, 'News letter') }}
+    {{ form_widget(Pro_Devis.news_letter) }}
+    <div class="">
+        <input type="submit" class="test" value="Envoyer la demande de devis">
+    </div>
     {{ form_end(Pro_Devis) }}
+</div>
 {% endblock %}
 
 {% block scripts %}
-    {{ encore_entry_script_tags('proDevis', null, 'front_office') }}
+    {{ encore_entry_script_tags('proServiceList', null, 'front_office') }}
 {% endblock %}

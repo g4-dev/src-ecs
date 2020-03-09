@@ -27,9 +27,8 @@ class ProController extends AbstractController
         $form = $this->createForm(DevisForm::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->addFlash('success', 'Envoi du mail effectuer');
-            return $this->redirectToRoute('proDevis');
+            return $this->redirectToRoute('proServiceList');
         }
 
         return $this->render('front_office/proDevis.html.twig', [

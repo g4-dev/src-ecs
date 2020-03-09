@@ -7,9 +7,10 @@ use Core\Validator\Constraints\EntityNotExists;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
@@ -57,7 +58,7 @@ class DevisForm extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
-                'attr' => ['placeholder' => 'Your email address', 'class' => 'form-control-lg'],
+                'attr' => ['placeholder' => 'exemple@exemple.com', 'class' => 'form-control-lg'],
                 'constraints' => [
                     new NotBlank(),
                     new Email(['message' => "The '{{ value }}' is not a valid email!"]),
@@ -68,35 +69,24 @@ class DevisForm extends AbstractType
                     ])
                 ]
             ])
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'required' => true,
-                'first_name' => 'first',
-                'first_options' => [
-                    'attr' => ['placeholder' => 'Password', 'class' => 'form-control-lg'],
-                    'constraints' => [new NotBlank(), new Length(['min' => 8])]
-                ],
-                'second_name' => 'second',
-                'second_options' => [
-                    'attr' => ['placeholder' => 'Repeat password', 'class' => 'form-control-lg'],
-                    'constraints' => [new NotBlank(), new Length(['min' => 8])]
-                ]
-            ])
-            ->add('poubellejaune', CheckboxType::class, [
+            ->add('yellowTrashCan', CheckboxType::class, [
                 'label'    => 'Poubelle Jaune',
                 'required' => false,
             ])
-            ->add('poubellebleu', CheckboxType::class, [
+            ->add('blueTrashCan', CheckboxType::class, [
             'label'    => 'Poubelle Bleu',
             'required' => false,
             ])
-           ->add('news_letter', RadioType::class, [
-              'required' => true,
+
+           ->add('news_letter', CheckboxType::class, [
+              'required' => false,
               'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
-              'constraints' => [
-                 new NotBlank(),
-              ]
            ])
+            ->add('submit', SubmitType::class, ['label' => 'Valider mon inscription',
+                'attr' => [
+                    'hidden' => true,
+                ],
+            ])
             ;
     }
 }
