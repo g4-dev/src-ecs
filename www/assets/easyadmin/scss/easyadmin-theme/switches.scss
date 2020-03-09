@@ -74,14 +74,13 @@
 }
 
 .checkbox-switch input + span:before {
-    border-radius: 20px;
+    border-radius: 0;
     width: 40px;
 }
-
 .checkbox-switch input + span:after {
     background: var(--white);
     border: solid transparent 2px;
-    border-radius: 20px;
+    border-radius: 0;
     content: "";
     background-clip: padding-box;
     width: 20px;
@@ -100,11 +99,11 @@
 }
 
 .checkbox-switch input:checked + span:before {
-    background: var(--color-success);
+    background: $green-backoffice;
 }
 
 .checkbox-switch input:not(checked) + span:before {
-    background: var(--color-danger);
+    background: $red-backoffice;
 }
 
 .checkbox-switch input + span:before {

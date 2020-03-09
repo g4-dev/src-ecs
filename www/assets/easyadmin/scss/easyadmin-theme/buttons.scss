@@ -7,6 +7,7 @@
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
+    text-transform: uppercase;
 }
 .btn:not(:disabled):not(.disabled):not(.btn-link):hover,
 .btn:not(:disabled):not(.disabled):not(.btn-link):active,
@@ -17,13 +18,18 @@
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):focus, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled):active:focus {
-    background-color: var(--color-primary);
-    color: var(--text-on-primary);
+    background-color: $white;
+    border: none;
+    border-radius: 0;
+    color: $red-backoffice;
 }
 
 .btn-secondary, .btn-secondary[disabled], .btn-secondary.disabled {
-    background-color: var(--white);
-    color: var(--color-text);
+    background-color: $white;
+    color: $red-backoffice;
+    border-radius: 0;
+    border:0;
+    text-transform: uppercase;
 }
 .btn-secondary:hover, .btn-secondary:not(:disabled):not(.disabled):focus, .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled):active:focus {
     background-color: var(--white);
@@ -52,6 +58,7 @@
 
 .btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active, .btn-link:active:focus {
     box-shadow: none; // needed to make the button link look like a regular link
+    color: $red-backoffice;
 }
 
 .btn.disabled, .btn:disabled,

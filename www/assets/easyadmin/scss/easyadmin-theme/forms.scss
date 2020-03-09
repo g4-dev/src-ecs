@@ -60,7 +60,8 @@
 .form-widget select.form-control {
     border: 0;
     padding: 3px 7px 5px;
-    box-shadow: 0 0 0 1px rgba(43, 45, 80, .16), 0 0 0 1px rgba(6, 122, 184, 0), 0 0 0 2px rgba(6, 122, 184, 0), 0 1px 1px rgba(0, 0, 0, .08);
+    box-shadow: 0 0 0 1px $red-backoffice, 0 0 0 1px $red-backoffice, 0 0 0 2px $red-backoffice, 0 1px 1px $red-backoffice;
+    border-radius: 0;
     height: 30px;
     max-width: 350px;
     white-space: nowrap;
@@ -274,21 +275,19 @@ fieldset .form-group .nullable-control label {
 
 // Form fieldsets (used for the "from groups" feature)
 fieldset {
-    background: var(--fieldset-bg);
-    border: var(--border-width) var(--border-style) var(--border-color);
-    border-radius: var(--border-radius);
     margin: 10px 0;
     padding: 10px 20px 15px;
 }
 
 fieldset > legend {
     border: 0;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xl);
     font-weight: 500;
     text-transform: uppercase;
     margin: 0 0 5px -5px;
     padding: 0 5px;
     width: auto;
+    color: $text-dark-backoffice;
 }
 fieldset > legend .fa {
     color: var(--text-muted);
@@ -310,6 +309,8 @@ fieldset .form-group legend.col-form-label {
     flex: 100% 0 0;
     margin: 0 0 4px 0;
     text-align: left;
+    text-transform: uppercase;
+    color: $red-backoffice;
 }
 
 fieldset .form-group .form-widget,
@@ -326,6 +327,9 @@ fieldset .form-group.field-collection-action {
 
 fieldset .form-group.field-collection-action {
     padding-top: 0;
+}
+fieldset .form-group.field-collection-action a{
+    color: $red-backoffice;
 }
 
 fieldset .field-collection-action .btn {
@@ -394,6 +398,7 @@ fieldset .legend-help {
 
 .form-actions .btn {
     margin-left: 10px;
+    border-radius: 0;
 }
 
 // Form errors

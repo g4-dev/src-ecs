@@ -1,7 +1,14 @@
 // Sidebar navigation menu
 // ----------------------------------------------------------------------------
 
-.sidebar-menu,
+.sidebar-menu{
+    padding-left: 0;
+}
+
+.sidebar-menu i {
+    color: $text-dark-backoffice;
+}
+
 .sidebar-menu ul {
     padding-left: 0;
 }
@@ -16,17 +23,25 @@
 
 .sidebar-menu li {
     list-style: none;
+    padding: 5px;
+}
+.sidebar-menu>li {
+    padding: 15px 20px;
+}
+.sidebar-menu li span{
+    padding-left: 10px;
 }
 
 .sidebar-menu a {
-    color: var(--text-color-dark);
+    color: $text-dark-backoffice;
+    text-transform: uppercase;
     display: block;
     line-height: 20px;
     padding: 4px 5px 10px 0;
 }
 
 .sidebar-menu .fa {
-    color: var(--text-color-dark);
+    color: $text-dark-backoffice;
     filter: opacity(50%);
     font-size: 17px;
     margin-right: 4px;
@@ -36,11 +51,13 @@
 .sidebar-menu li:not(.submenu-active).active {
     border-radius: var(--border-radius);
     font-weight: 500;
+    background-color: $green-backoffice;
+    border-radius: 0;
 }
 
 .sidebar-menu li:not(.submenu-active).active a,
 .sidebar-menu li:not(.submenu-active).active .fa {
-    color: var(--color-primary);
+    color: $text-dark-backoffice;
     filter: opacity(100%);
 }
 
@@ -54,8 +71,6 @@
 
 .treeview-menu {
     display: none;
-    margin-bottom: 12px;
-    margin-top: -4px;
 }
 
 .sidebar-menu .active .treeview-menu {
@@ -66,7 +81,7 @@
     color: var(--text-color);
     font-size: var(--font-size-sm);
     line-height: 20px;
-    padding: 3px 5px 3px 28px;
+    padding: 3px 5px 3px 15px;
 }
 
 .treeview-menu a .fa {
@@ -83,6 +98,8 @@
     right: 1px;
     transition: transform 0.25s ease;
     width: auto;
+    margin-top: 5%;
+    margin-right: 15px;
 }
 
 .treeview.menu-open .treeview-icon {

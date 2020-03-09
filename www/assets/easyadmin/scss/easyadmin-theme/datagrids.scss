@@ -12,6 +12,22 @@ table.datagrid {
   border: 0;
   padding: 0;
 }
+.datagrid thead th a {
+  text-transform: uppercase;
+  font-size: smaller;
+  font-weight: 500;
+  color: $white;
+}
+.datagrid thead tr {
+  background-color: $red-backoffice;
+}
+.datagrid tbody tr:nth-child(odd) {
+  background-color: $gray-backoffice;
+}
+.datagrid tbody tr td a{
+  text-transform: uppercase;
+  color: $red-backoffice;
+}
 .datagrid thead a, .datagrid thead span {
   color: var(--text-color-dark);
   display: block;
@@ -38,7 +54,7 @@ table.datagrid {
   margin-left: 2px;
 }
 .datagrid thead .sorted i {
-  color: var(--color-primary);
+  color: $white;
 }
 .datagrid th, .datagrid td {
   border-bottom: var(--border-width) var(--border-style) var(--border-color);
@@ -178,7 +194,7 @@ table.datagrid {
   padding: 15px;
 }
 .action-filters-button i {
-  color: var(--text-color-light);
+  color: $red-backoffice;
 }
 .action-filters-button.action-filters-applied i {
   color: var(--color-primary);

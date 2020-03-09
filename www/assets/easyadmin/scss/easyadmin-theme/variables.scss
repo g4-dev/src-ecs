@@ -25,6 +25,11 @@ $gray: $gray-600;
 $gray-light: $gray-300;
 $gray-lighter: $gray-200;
 
+$red-backoffice: #B48B7D;
+$green-backoffice: #D2D9B9;
+$gray-backoffice: #F1F1F3;
+$text-dark-backoffice: #3D3D3D;
+
 $body-color: hsl(225, 15%, 35%);
 $text-color: hsl(225, 15%, 35%);
 $headings-color: darken($text-color, 0.25%);
@@ -61,7 +66,7 @@ $font-size-h6: $font-size-base * 1.25;
 $input-bg: $white;
 $input-bg-disabled: $gray-200;
 $input-color: $primary;
-$input-border: $primary;
+$input-border: $red-backoffice;
 $input-border-radius: 0;
 $input-border-focus: darken($input-border, 1.2%);
 $input-color-placeholder: $gray-600;
@@ -96,7 +101,7 @@ $label-success-bg: $success;
 $label-info-bg: $info;
 $label-warning-bg: $warning;
 $label-danger-bg: $danger;
-$label-color: $text-color;
+$label-color: $red-backoffice;
 $label-link-hover-color: $text-color;
 
 $alert-padding: 15px 20px;
