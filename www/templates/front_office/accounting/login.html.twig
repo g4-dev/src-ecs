@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-
+{#
   <div class="container">
     <div class="row">
       <div class="col-md-8 offset-2 app-login">
@@ -18,7 +18,17 @@
       </div>
     </div>
   </div>
+#}
+  <hr class="sep-header">
+  <h1 class="pop-sBold panier_title">Connexion</h1>
 
+  <section class="formTheme pop">
+    {% include '@fo/forms/login-form.html.twig' %}
+  </section>
+  <div class="login_links text-center pop">
+    <a class="link" href="{{ path('registration') }}">S'enregistrer</a>
+    <a class="link" href="{{ path('passwordReminder') }}">Mot de passe perdu</a>
+  </div>
 {% endblock %}
 
 {% block scripts %}

@@ -234,6 +234,31 @@
   }
 }
 
+.login_links{
+  padding: 32px 0;
+  margin-top:32px;
+  @include centerAround;
+  @media screen and (max-width: 600px) {
+    @include fullCenter;
+  }
+  .link{
+    @media screen and (max-width: 600px) {
+      margin: 16px 0;
+    }
+    font-size: 1.2rem;
+    color: white;
+    padding: 16px 64px;
+    background: $darkGreen;
+    @media screen and (max-width: 500px) {
+      padding: 16px 16px;
+    }
+  }
+}
+
+.helpMessage{
+  font-size: 0.9rem;
+}
+
 .admin{
   min-height: 100vh;
   h1{

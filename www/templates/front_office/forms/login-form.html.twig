@@ -1,26 +1,27 @@
-<form class="form" novalidate="" autocomplete="off" method="POST">
+{{ form_start(form) }}
+<div class="form_item">
+  {{ form_label(form._username, 'Utilisateur') }}
+  <div class="errorInput">
+    {{ form_widget(form._username) }}
+    {{ form_errors(form._username) }}
+  </div>
+</div>
+
+<div class="form_item">
+  {{ form_label(form._password, 'Mot de passe') }}
+  <div class="errorInput">
+    {{ form_widget(form._password) }}
+    {{ form_errors(form._password) }}
+  </div>
+</div>
+{% if error %}
   <div class="form-group">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <div class="input-group-text"><i class="fas fa-user"></i></div>
-      </div>
-      <input class="form-control form-control-lg {% if error %}is-invalid{% endif %}" type="text" name="login_form[_username]" placeholder="Your email address" required/>
-    </div>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <div class="input-group-text"><i class="fas fa-lock"></i></div>
-      </div>
-      <input class="form-control form-control-lg {% if error %}is-invalid{% endif %}" type="password" name="login_form[_password]" placeholder="Password" required/>
+    <div class="alert alert-danger text-center" role="alert">
+      Invalid email or password.
     </div>
   </div>
-  {% if error %}
-    <div class="form-group">
-      <div class="alert alert-danger text-center" role="alert">
-        Mot de passe ou email invalide
-      </div>
-    </div>
-  {% endif %}
-  <div class="form-group text-center">
-    <button type="submit" class="btn btn-lg btn-success btn-submit">Sign in</button>
-  </div>
-</form>
+{% endif %}
+<div class="center continueSubmit">
+  <button type="submit" class="continue pop">Se connecter</button>
+</div>
+{{ form_end(form) }}

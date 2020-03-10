@@ -7,7 +7,7 @@ use Core\Validator\Constraints\EntityNotExists;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -57,7 +57,7 @@ class RegistrationForm extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
-                'attr' => ['placeholder' => 'Adresse mail', 'class' => 'form-control-lg'],
+                'attr' => ['placeholder' => 'Your email address', 'class' => 'form-control-lg'],
                 'constraints' => [
                     new NotBlank(),
                     new Email(['message' => "The '{{ value }}' is not a valid email!"]),
@@ -73,18 +73,21 @@ class RegistrationForm extends AbstractType
                 'required' => true,
                 'first_name' => 'first',
                 'first_options' => [
-                    'attr' => ['placeholder' => 'Mot de passe', 'class' => 'form-control-lg'],
+                    'attr' => ['placeholder' => 'Password', 'class' => 'form-control-lg'],
                     'constraints' => [new NotBlank(), new Length(['min' => 8])]
                 ],
                 'second_name' => 'second',
                 'second_options' => [
-                    'attr' => ['placeholder' => 'Confirmation du mot de passe', 'class' => 'form-control-lg'],
+                    'attr' => ['placeholder' => 'Repeat password', 'class' => 'form-control-lg'],
                     'constraints' => [new NotBlank(), new Length(['min' => 8])]
                 ]
             ])
-           ->add('news_letter', CheckboxType::class, [
-              'required' => false,
-              'attr' => ['placeholder' => 'Newsletter', 'class' => 'form-control-lg'],
+           ->add('news_letter', RadioType::class, [
+              'required' => true,
+              'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
+              'constraints' => [
+                 new NotBlank(),
+              ]
            ])
             ;
     }

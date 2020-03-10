@@ -17,7 +17,7 @@ class PasswordReminderForm extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'required' => true,
-                'attr' => ['placeholder' => 'Adres email', 'class' => 'form-control-lg'],
+                'attr' => ['placeholder' => 'Adresse email', 'class' => 'form-control-lg'],
                 'constraints' => [
                     new NotBlank(),
                     new Email(['message' => "The '{{ value }}' is not a valid email!"]),

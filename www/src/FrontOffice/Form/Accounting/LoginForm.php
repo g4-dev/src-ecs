@@ -14,11 +14,18 @@ class LoginForm extends AbstractType
         $builder
             ->add('_username', TextType::class, [
                 'required' => true,
-                'label' => false
+                'label' => false,
+                'attr' => [
+                    'placeholder' => "Nom d'utilisateur"
+                ]
             ])
             ->add('_password', PasswordType::class, [
                 'required' => true,
-                'label' => false
+                'label' => false,
+                'attr' => [
+                    'placeholder' => "Mot de passe"
+                ]
+
             ]);
     }
 }
