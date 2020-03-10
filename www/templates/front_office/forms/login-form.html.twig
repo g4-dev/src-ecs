@@ -1,6 +1,6 @@
 {{ form_start(form) }}
 <div class="form_item">
-  {{ form_label(form._username, 'Utilisateur') }}
+  {{ form_label(form._username, 'Email') }}
   <div class="errorInput">
     {{ form_widget(form._username) }}
     {{ form_errors(form._username) }}
@@ -17,7 +17,7 @@
 {% if error %}
   <div class="form-group">
     <div class="alert alert-danger text-center" role="alert">
-      Invalid email or password.
+      Email ou mot de passe invalide.
     </div>
   </div>
 {% endif %}

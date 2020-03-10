@@ -16,7 +16,7 @@ class LoginForm extends AbstractType
                 'required' => true,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => "Nom d'utilisateur"
+                    'placeholder' => "Email"
                 ]
             ])
             ->add('_password', PasswordType::class, [
