@@ -5,14 +5,10 @@
 {% endblock %}
 
 {% block main %}
-
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1 class="border-bottom">Sign up</h1>
-        {% include '@fo/forms/registration-form.html.twig' %}
-      </div>
-    </div>
+  <hr class="sep-header">
+  <h1 class="pop-sBold panier_title">Inscription</h1>
+  <div>
+    {% include '@fo/forms/registration-form.html.twig' %}
   </div>
 
   <div class="app-call" data-method="initRegistrationForm">

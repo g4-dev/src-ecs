@@ -131,3 +131,105 @@
 
   }
 }
+
+.formTheme{
+  font-size: 1.5rem;
+  padding: 0 128px;
+  @media screen and (max-width: 1024px) {
+    padding: 0 64px;
+  }
+  @media screen and (max-width: 700px) {
+    padding: 0 32px;
+  }
+  @media screen and (max-width: 500px) {
+    padding: 0 16px;
+  }
+  color: $darkGrey;
+  .form_item{
+    @include flexEnd;
+    padding: 16px 0;
+  }
+  label{
+    display: block;
+    min-width: 350px;
+    text-align: right;
+    margin-right: 32px;
+  }
+  .errorInput{
+    width: 100%;
+  }
+  .form-control{
+    .is-invalid{
+      padding-right: unset !important;
+    }
+  }
+  input{
+    height: 32px;
+  }
+  input::placeholder{
+    color: transparent;
+    padding-left: 16px;
+  }
+  .formCheckbox{
+    .form-check{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 16px 0;
+      input{
+        width: 32px;
+      }
+      @media screen and (max-width: 500px) {
+        label{
+          display: block;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    label{
+      text-align: left;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 1.25rem;
+    label{
+      min-width:250px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 1rem;
+    label{
+      min-width:200px;
+    }
+    .form-check{
+      label{
+        padding-top: 4px;
+      }
+      input{
+        width: 24px !important;
+      }
+    }
+  }
+  @media screen and (max-width: 500px) {
+    label{
+      display: none;
+    }
+    input::placeholder{
+      color: $darkGrey;
+      padding-left: 16px;
+    }
+  }
+  .continueSubmit{
+    margin: 32px 0 0 0 !important;
+    .continue{
+      font-size: 1.2rem;
+      color: white;
+      padding: 16px 64px;
+      background: $darkGreen;
+      @media screen and (max-width: 500px) {
+        padding: 16px 16px;
+      }
+    }
+  }
+}
