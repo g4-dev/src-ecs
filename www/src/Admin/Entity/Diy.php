@@ -70,7 +70,7 @@ class Diy implements \Core\Entity\Model\Sluggable
     private $imageFile;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeDiys")
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeDiys", cascade={"persist", "remove"})
      */
     private $settingHome;
     

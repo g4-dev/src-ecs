@@ -15,7 +15,7 @@ easy_admin:
             form:
                 title: 'settings.homepage'
                 fields:
-                    - { type: 'group', css_class: 'col-sm-4' }
+                    - { type: 'group', css_class: 'col-sm-4', help: 'settings.product.info_last_if_empty' }
                     - { property: 'homeCmsPages', label: 'settings.cmsPages' }
                     - { type: 'group', css_class: 'col-sm-4' }
                     - { property: 'homeDiys', label: 'settings.diy'}

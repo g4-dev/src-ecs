@@ -2,7 +2,6 @@
 
 namespace Admin\Entity;
 
-use Core\Entity\Model\Sluggable;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,10 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  * Class CmsCategory.
  *
  * @ORM\Table(name="cms_category")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Admin\Repository\CategoryRepository")
  * @ORM\MappedSuperclass
  */
-class CmsCategory extends AbstractCategory implements Sluggable
+class CmsCategory extends AbstractCategory
 {
     /**
      * Product in the category.

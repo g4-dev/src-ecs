@@ -116,7 +116,7 @@ class Product implements Sluggable
     private $purchasedItems;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeProducts")
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeProducts", cascade={"persist", "remove"})
      */
     private $settingHome;
     

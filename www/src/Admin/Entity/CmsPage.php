@@ -79,7 +79,7 @@ class CmsPage implements CoreEn\Model\Sluggable
     private $cmsCategories;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeCmsPages")
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeCmsPages", cascade={"persist", "remove"})
      * @ORM\JoinColumns(
      *     @ORM\JoinColumn(name="setting_id", referencedColumnName="id")
      * )

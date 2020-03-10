@@ -91,6 +91,7 @@ settings.products: Produits à la une
 settings.diy: Recettes à la une
 settings.homepage: Configurer la page d'accueil
 menu.settings.nav: Menu
+settings.product.info_last_if_empty: Laisser vide pour afficher les dernier éléments
 # Roles
 ROLE_PRO: Professionel
 ROLE_USER: Utilisateur

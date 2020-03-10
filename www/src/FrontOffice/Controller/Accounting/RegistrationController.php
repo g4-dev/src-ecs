@@ -14,6 +14,7 @@ use FrontOffice\Repository\PurchaseRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class RegistrationController extends \FrontOffice\Controller\AbstractController
@@ -23,9 +24,10 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
      */
     protected UserService $userService;
     
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, SessionInterface $session)
     {
         $this->userService = $userService;
+        $this->session = $session;
     }
     
     /**
@@ -174,7 +176,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         }
         
         return $this->render(
-           'front_office/shop/account/order_single.html.twig',
+           'front_office/shopping/purchaseShow.html.twig',
            [
               'purchase' => $purchase
            ]

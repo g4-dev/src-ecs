@@ -28,7 +28,6 @@
 </header>
 
 {{ form_start(address_form, { 'attr': { 'id': 'address-form' }}) }}
-    {% include "front_office/accounting/address-form.html.twig" with {'address_form': address_form} %}
 {{ form_end(address_form) }}
 <input type="submit" form="address-form" value="Suivant" class="btn btn-primary">
 

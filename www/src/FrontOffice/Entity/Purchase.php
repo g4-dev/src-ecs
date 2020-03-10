@@ -3,6 +3,7 @@
 
 namespace FrontOffice\Entity;
 
+use Core\Entity\Address;
 use Core\Entity\Traits\DatesAt;
 use Core\Entity\Traits\Id;
 use Core\Entity\Transaction;
@@ -57,12 +58,20 @@ class Purchase
      * @ORM\Column(type="time", nullable=true)
      */
     protected $deliveryHour = null;
+    
+    /**
+     * The customer billing address.
+     *
+     * @var string
+     * @ORM\OneToOne(targetEntity="Core\Entity\Address", mappedBy="purchaseShipping", cascade={"persist"})
+     */
+    protected $shippingAddress;
 
     /**
      * The customer billing address.
      *
      * @var string
-     * @ORM\Column(type="text")
+     * @ORM\OneToOne(targetEntity="Core\Entity\Address", mappedBy="purchaseBilling", cascade={"persist"})
      */
     protected $billingAddress;
 
@@ -111,27 +120,9 @@ class Purchase
     }
     
     /**
-     * Set the address where the customer want its billing.
-     *
-     * @param string $billingAddress
-     */
-    public function setBillingAddress($billingAddress)
-    {
-        $this->billingAddress = $billingAddress;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBillingAddress()
-    {
-        return $this->billingAddress;
-    }
-
-    /**
      * @param \Core\Entity\User $buyer
      */
-    public function setBuyer($buyer)
+    public function setBuyer(User $buyer)
     {
         $this->buyer = $buyer;
     }
@@ -139,7 +130,7 @@ class Purchase
     /**
      * @return \Core\Entity\User
      */
-    public function getBuyer()
+    public function getBuyer(): ?User
     {
         return $this->buyer;
     }
@@ -346,5 +337,41 @@ class Purchase
         }
 
         return $total;
+    }
+
+    public function getShippingAddress(): ?Address
+    {
+        return $this->shippingAddress;
+    }
+
+    public function setShippingAddress(?Address $shippingAddress): self
+    {
+        $this->shippingAddress = $shippingAddress;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newPurchaseShipping = null === $shippingAddress ? null : $this;
+        if ($shippingAddress->getPurchaseShipping() !== $newPurchaseShipping) {
+            $shippingAddress->setPurchaseShipping($newPurchaseShipping);
+        }
+
+        return $this;
+    }
+
+    public function getBillingAddress(): ?Address
+    {
+        return $this->billingAddress;
+    }
+
+    public function setBillingAddress(?Address $billingAddress): self
+    {
+        $this->billingAddress = $billingAddress;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newPurchaseBilling = null === $billingAddress ? null : $this;
+        if ($billingAddress->getPurchaseBilling() !== $newPurchaseBilling) {
+            $billingAddress->setPurchaseBilling($newPurchaseBilling);
+        }
+
+        return $this;
     }
 }

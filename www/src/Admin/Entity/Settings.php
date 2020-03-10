@@ -16,12 +16,12 @@ class Settings
     use Id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\Diy", mappedBy="settingHome", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Admin\Entity\Diy", mappedBy="settingHome")
      */
     private $homeDiys;
 
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\CmsPage", mappedBy="settingHome", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Admin\Entity\CmsPage", mappedBy="settingHome")
      * @ORM\JoinColumns(
      *     @ORM\JoinColumn(name="setting_id", referencedColumnName="id")
      * )
@@ -29,12 +29,13 @@ class Settings
     private $homeCmsPages;
 
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\Product",  mappedBy="settingHome", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Admin\Entity\Product",  mappedBy="settingHome")
      */
     private $homeProducts;
 
-    public function __construct()
+    public function __construct(?int $id = 1)
     {
+        $this->id = 1;
         $this->homeDiys = new ArrayCollection();
         $this->homeCmsPages = new ArrayCollection();
         $this->homeProducts = new ArrayCollection();
@@ -131,5 +132,10 @@ class Settings
         }
 
         return $this;
+    }
+    
+    public function __toString(): string
+    {
+        return (string) $this->getId();
     }
 }

@@ -17,7 +17,9 @@ class AddressType extends AbstractType
             ->add('firstName', TextType::class, ['label' => 'firstName' ])
             ->add('lastName', TextType::class, ['label' => 'lastName' ])
             ->add('address', TextType::class)
-            ->add('addressComplement', TextType::class)
+            ->add('addressComplement', TextType::class, [
+               'required' => false
+            ])
             ->add('postCode', TextType::class)
             ->add('city', TextType::class)
             ->add('country', TextType::class)

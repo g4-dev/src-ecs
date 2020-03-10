@@ -65,7 +65,7 @@
             {% if is_granted('ROLE_USER') %}
                 <a href="{{ path('checkoutAddress') }}" class="basket-checkout__order btn btn-primary">Commander</a>
             {% else %}
-                <a href="{{ path('accountAddress', {'purchase': true, 'message': 'accounting.register_warning'|trans|raw }) }}" class="basket-checkout__order btn btn-primary">Commander</a>
+                <a href="{{ path('accountAddress', { 'purchase': true, 'message': 'accounting.register_warning'|trans|raw }) }}" class="basket-checkout__order btn btn-primary">Commander</a>
             {% endif %}
         </div>
     </div>

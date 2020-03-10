@@ -3,6 +3,7 @@
 namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FrontOffice\Entity\Purchase;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -62,7 +63,19 @@ class Address
      * @ORM\JoinColumn(name="user_id", nullable=true)
      */
     private $user;
-
+    
+    /**
+     * @ORM\OneToOne(targetEntity="FrontOffice\Entity\Purchase", inversedBy="shippingAddress")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $purchaseShipping;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="FrontOffice\Entity\Purchase", inversedBy="billingAddress")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $purchaseBilling;
+    
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
@@ -168,6 +181,30 @@ class Address
     public function setType(?string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getPurchaseShipping(): ?Purchase
+    {
+        return $this->purchaseShipping;
+    }
+
+    public function setPurchaseShipping(Purchase $purchaseShipping): self
+    {
+        $this->purchaseShipping = $purchaseShipping;
+
+        return $this;
+    }
+
+    public function getPurchaseBilling(): ?Purchase
+    {
+        return $this->purchaseBilling;
+    }
+
+    public function setPurchaseBilling(?Purchase $purchaseBilling): self
+    {
+        $this->purchaseBilling = $purchaseBilling;
 
         return $this;
     }

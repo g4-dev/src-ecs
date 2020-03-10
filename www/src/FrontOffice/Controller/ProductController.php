@@ -3,7 +3,9 @@
 
 namespace FrontOffice\Controller;
 
+use Admin\Entity\AbstractCategory;
 use Admin\Entity\Product;
+use Admin\Entity\ProductCategory;
 use Admin\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
@@ -68,7 +70,7 @@ class ProductController extends AbstractController
         // Pagination de tout
         // En ajax si possible
         $qb = $this->getDoctrine()
-            ->getRepository(CategoryRepository::class)
+            ->getRepository(AbstractCategory::class)
             ->findAllQueryBuilder();
         $adapter = new DoctrineORMAdapter($qb);
         $pagerfanta = new Pagerfanta($adapter);

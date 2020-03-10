@@ -59,9 +59,3 @@ services:
         resource: '../src/Admin/Repository/*'
         tags: ['doctrine.repository_service']
         public: true
-
-    Admin\Command\InitSettingsCommand:
-        arguments:
-            - '@doctrine'
-            - '%env(MAKE_PATH)%'
-        public: true

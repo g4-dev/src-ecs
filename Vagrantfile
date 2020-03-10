@@ -75,6 +75,11 @@ Vagrant.configure(2) do |config|
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
+  if conf['smb']
+    config.vm.synced_folder ".", "/data/ecs", type: 'smb', smb_password: "vagrant", smb_username: "vagrant",
+    mount_options: ["username=vagrant","password=vagrant"]
+  end
+
   if !debug
     $init = <<-SCRIPT
     rm -rf #{folder}/#{playbook_name} || true
@@ -112,7 +117,7 @@ Vagrant.configure(2) do |config|
   if NFS_ENABLED
     # NFS config / bind vagrant user to nfs mount
     if Vagrant::Util::Platform.darwin?
-        config.vm.synced_folder "./", "/data/ecs", nfs: true, mount_options: ['rw','tcp','fsc','async','noatime','rsize=8192','wsize=8192','noacl','actimeo=2'],
+        config.vm.synced_folder "./", "/data/ecs", nfs: true, mount_options: ['rw','tcp','fsc','noatime','rsize=8192','wsize=8192','noacl','actimeo=2'],
         linux__nfs_options: ['rw','no_subtree_check','all_squash','async']
         config.bindfs.bind_folder web_dir, web_dir
     else

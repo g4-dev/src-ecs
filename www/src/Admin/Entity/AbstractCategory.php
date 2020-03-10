@@ -16,9 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  *     "cms_category" = "CmsCategory",
  *      "product_category" = "ProductCategory"
  * })
- * @ORM\Entity(repositoryClass="\Admin\Repository\CategoryRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Admin\Repository\CategoryRepository")
  * @ORM\Table(indexes={@ORM\Index(name="search_idx",
  *     columns={"name"},
  *     options={"where": "(((id IS NOT NULL)"})
