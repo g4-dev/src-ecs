@@ -40,11 +40,11 @@ class DiyController extends AbstractController
     {
         $diy = $this->getDoctrine()
            ->getRepository(Diy::class)
-           ->findOneBySlug();
+           ->findOneBySlug($slug);
     
         if (!$diy) {
             $this->addFlash('error','Il n\'y a pas de DIY avec la page '. $slug);
-            $this->redirectToRoute('diyList',null, 400);
+            $this->redirectToRoute('diyList',[], 302);
         }
         dump($diy);
         

@@ -10,7 +10,7 @@ easy_admin:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
                     - tags
-                    - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.diy', route: 'diyList' }
+                    - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.diy', route: 'diyShow' }
                 filters: ['tags']
                 actions: ['edit', 'delete']
             show:
@@ -18,7 +18,7 @@ easy_admin:
                     - { property: 'name', label: 'Titre' }
                     - { property: body, label: Contenu, type: html }
                     - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
-                    - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.diy', route: 'diyList' }
+                    - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.diy', route: 'diyShow' }
 
             form:
                 fields:
