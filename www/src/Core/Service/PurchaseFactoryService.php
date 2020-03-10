@@ -24,13 +24,11 @@ class PurchaseFactoryService
         }
 
         $shippingAddress = $this->addressRepository->findCurrentWithType($user->getId(), 'shipping');
-        $billingAddress = $this->addressRepository->findCurrentWithType($user->getId(), 'billing');
         
         $totalPrice = $basket->grandTotal();
 
         $purchase->setBuyer($user)
               ->setShippingAddress($shippingAddress)
-              ->setBillingAddress($billingAddress)
               ->setStatus('processing')
               ->setShippingMethod($basket->getShippingMethod())
               ->setTransaction(

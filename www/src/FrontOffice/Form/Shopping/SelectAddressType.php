@@ -27,7 +27,7 @@ class SelectAddressType extends AbstractType
         $addresses = $options['addresses'];
     
         if ($addresses) {
-            $builder->add('addressBilling', EntityType::class, [
+            $builder->add('address', EntityType::class, [
                'class' => Address::class,
                'placeholder' => 'Choisissez une adresse',
                'choices' => $addresses,
@@ -36,7 +36,7 @@ class SelectAddressType extends AbstractType
                },
                'required' => true,
                'multiple' => false,
-                'expanded' => true
+               'expanded' => true
             ]);
         }
     }

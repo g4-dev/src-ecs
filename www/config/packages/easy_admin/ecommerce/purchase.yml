@@ -25,7 +25,5 @@ easy_admin:
                     - { property: 'guid', type_options: { 'disabled': true } }
                     - { property: 'buyer', type: 'easyadmin_autocomplete' }
                     - { property: 'status', type: choice, type_options: { multiple: false, choices: {'processing': 'processing','shipped': 'shipped' } } }
-                    - { type: 'group', label: 'address.billing', css_class: 'col-sm-6' }
-                    - { property: 'billingAddress', type: 'Core\Form\AddressType'}
                     - { type: 'group', label: 'address.shopping', css_class: 'col-sm-6' }
                     - { property: 'shippingAddress', type: 'Core\Form\AddressType' }

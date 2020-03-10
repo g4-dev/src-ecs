@@ -60,7 +60,7 @@ class Purchase
     protected $deliveryHour = null;
     
     /**
-     * The customer billing address.
+     * The customer shipping address.
      *
      * @var string
      * @ORM\OneToOne(targetEntity="Core\Entity\Address", mappedBy="purchaseShipping", cascade={"persist"})
