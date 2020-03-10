@@ -69,7 +69,8 @@
         <div class="overlay-content" id="a_list">
             <div><a href="{{ path('homepage') }}">Accueil</a></div>
             <div>
-                <a href="{{ path('account') }}">Compte</a>{{ app.user.name ?? 'Connexion' }}
+            {# TODO Back, afficher connexion lorsque user non connecté et compte lorsque utilisateur connecté #}
+                <a class="connec-res" connec="false" href="#">Connexion</a>
             </div>
             <div><a>Espace pro</a></div>
             <hr>
