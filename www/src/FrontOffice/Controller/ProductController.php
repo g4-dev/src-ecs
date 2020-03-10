@@ -5,10 +5,7 @@ namespace FrontOffice\Controller;
 
 use Admin\Entity\AbstractCategory;
 use Admin\Entity\Product;
-use Admin\Entity\ProductCategory;
-use Admin\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Pagerfanta\Pagerfanta;
@@ -19,7 +16,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/products/{slug}/{page?1}", name="productList")
      */
-    public function listAction(string $slug, Request $req, ?int $page = 1)
+    public function listAction(Request $req, string $slug, ?int $page = 1)
     {
         // TODO: prendre le code de easyadmin pour faire la pagination
         // Pagination de tout
@@ -31,6 +28,8 @@ class ProductController extends AbstractController
         $pagerfanta = new Pagerfanta($adapter);
         $pagerfanta->setMaxPerPage(10);
         $pagerfanta->setCurrentPage($page);
+        
+        dump($pagerfanta);
         //vue temporaire en attendant pour tester l'ajout au panier
         return $this->render('@fo/shopping/productAll.html.twig', [
            'products' => $pagerfanta,
@@ -54,17 +53,15 @@ class ProductController extends AbstractController
             throw $this->createNotFoundException();
         }
         // TODO: afficher le produit dans les vues twig
-
-        
         return $this->render('front_office/shopping/productShow.html.twig', [
            'product' => $product,
         ]);
     }
 
     /**
-     * @Route("/category/products/{slug}/{page?1}", name="productCategoryList")
+     * @Route("/category/products/{slug}/{page?1}", name="productCategoryList", requirements={"slug"="^[A-Za-z0-9-]*$"})
      */
-    public function listProductsAction(string $slug,  Request $req, ?int $page = 1)
+    public function listProductsByCategoryAction(string $slug,  Request $req, ?int $page = 1)
     {
         // TODO: prendre le code de easyadmin pour faire la pagination
         // Pagination de tout

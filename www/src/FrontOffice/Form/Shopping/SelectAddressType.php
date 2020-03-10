@@ -15,23 +15,24 @@ class SelectAddressType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        dump($options);
         $builder
            ->add('billingAddress', EntityType::class, [
               'class' => Address::class,
               'choice_label' => 'Choisir une addresse',
-              'query_builder' => function (EntityRepository $er) {
+              'query_builder' => function (EntityRepository $er) use ($options) {
                   return $er->createQueryBuilder('a')
                      ->where('a.type = '. Address::TYPE_BILLING)
-                     //->andWhere('a.user_id =' . $this->security->getUser()->getId());
+                     ->andWhere('a.user_id =' . $options['user']);
               },
            ])
            ->add('shippingAddress', EntityType::class, [
               'class' => Address::class,
               'choice_label' => 'Choisir une addresse',
-              'query_builder' => function (EntityRepository $er) {
+              'query_builder' => function (EntityRepository $er) use ($options) {
                   return $er->createQueryBuilder('a')
                      ->where('a.type = '. Address::TYPE_SHIPPING)
-                     //->andWhere('a.user_id =' . $this->security->getUser()->getId());
+                     ->andWhere('a.user_id =' . $options['user']);
               },
            ])
         ;

@@ -1,5 +1,5 @@
 /*
-import { Api } from '@core';
+import { Api } from '@core/index';
 
 class ProductsApi {
 	static URL: '/api/products/index';

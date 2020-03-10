@@ -1,6 +1,7 @@
 <?php
 namespace FrontOffice\Controller\Shopping;
 
+use Core\Entity\Address;
 use Core\Repository\AddressRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use FrontOffice\Form\Shopping\SelectAddressType;
@@ -35,8 +36,10 @@ class CheckoutController extends AbstractController
         if (!$this->basket->hasProducts()) {
             return $this->redirectToRoute('basket');
         }
+        
         $billingAddress = $addressRepository
            ->findCurrentWithType($this->getUser()->getId(), 'billing');
+        
         if (null === $billingAddress) {
             $this->addFlash('info', 'Veuillez renseigner une adresse de facturation avant de continuer');
             return $this->redirectToRoute('accountAddress');
@@ -44,12 +47,13 @@ class CheckoutController extends AbstractController
     
         $address = $addressRepository
            ->findCurrentWithType($this->getUser()->getId(), 'shipping');
+        
         if (null === $address) {
             $this->addFlash('info', 'Veuillez renseigner une adresse de livraison avant de continuer');
             return $this->redirectToRoute('accountAddress');
         }
 
-        $form = $this->createForm(SelectAddressType::class, null , ['user' =>$this->getUser()] );
+        $form = $this->createForm(SelectAddressType::class, new Address(), ['user' => $this->getUser()] );
         
         $form->handleRequest($req);
         

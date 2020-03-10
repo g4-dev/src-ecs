@@ -13,7 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * Article
  *
  * @ORM\Table(name="cms_diy", indexes={@ORM\Index(name="index_cms_page_id", columns={"id","name"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Admin\Repository\DiyRepository")
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
  *
