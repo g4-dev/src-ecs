@@ -233,3 +233,19 @@
     }
   }
 }
+
+.admin{
+  min-height: 100vh;
+  h1{
+    color: $darkGreen;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  label{
+    min-width: 350px;
+    text-align: left !important;
+  }
+  .continueSubmit{
+    margin-bottom: 2rem !important;
+  }
+}
