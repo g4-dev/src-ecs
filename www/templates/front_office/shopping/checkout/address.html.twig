@@ -27,9 +27,14 @@
     <h1>Adresse de livraison</h1>
 </header>
 
-{{ form_start(address_choice_form, { 'attr': { 'id': 'addressForm' }}) }}
-{{ form_end(address_choice_form) }}
-<input type="submit" form="address-form" value="Suivant" class="btn btn-primary">
+{% if address_choice_form|default(false) %}
+    {{ form_start(address_choice_form, { 'attr': { 'id': 'addressForm' }}) }}
+    {{ form_end(address_choice_form) }}
+    
+    <input type="submit" form="address-form" value="Suivant" class="btn btn-primary">
+{% else %}
+    <a href="{{ path('accountAddress') }}">Ajoutez une addresse</a>
+{% endif %}
 
 {% endblock %}
 {% block scripts %}

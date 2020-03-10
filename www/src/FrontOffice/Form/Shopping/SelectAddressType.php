@@ -12,13 +12,12 @@ class SelectAddressType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $user = $options['user'] ?? null;
-        $addresses = $user ? $user->getAddresses() : null;
+        $addresses = $options['addresses'];
     
         if ($addresses) {
             $builder->add('addressBilling', ChoiceType::class, [
-               'placeholder' => 'Where exactly?',
-               'choices' => $user->getAddresses() ,
+               'placeholder' => 'Choisissez une adresse',
+               'choices' => $addresses,
                'required' => false,
             ]);
         }

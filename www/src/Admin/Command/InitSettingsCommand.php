@@ -56,12 +56,10 @@ class InitSettingsCommand extends Command
     public function createSiteSettings()
     {
         $entityManager = $this->doctrine->getManager();
-//        $diy = $this->getLastItems(Diy::class, 1);
         $page = $this->getLastItems(CmsPage::class,1);
         $product = $this->getLastItems(Product::class,1);
         
         $settings = new Settings();
-//        $diy ? $settings->addHomeDiy($diy[0]) : null;
         $page ? $settings->addHomeCmsPage($page[0]) : null;
         $product ? $settings->addHomeProduct($product[0]): null;
     

@@ -23,7 +23,6 @@ class AddressRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->where('a.user = :userId')
-            ->andWhere('a.type = :type')
             ->setParameter('userId', $userId)
             ->orderBy('a.updatedAt', 'DESC')
             ->setMaxResults(1)

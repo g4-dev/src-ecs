@@ -24,12 +24,6 @@ class AddressType extends AbstractType
             ->add('city', TextType::class)
             ->add('country', TextType::class)
             ->add('phoneNumber', TelType::class)
-            ->add('type', ChoiceType::class, [
-               'choices'  => [
-                  'Billing address' => Address::TYPE_BILLING,
-                  'Shipping' => Address::TYPE_SHIPPING,
-               ]
-            ])
         ;
     }
 

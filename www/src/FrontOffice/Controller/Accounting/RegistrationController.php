@@ -141,7 +141,9 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
     }
     
     public function removeAddressAction()
-    {}
+    {
+        /*TODO: remove address*/
+    }
     
     /**
      * @Route("/account/purchases", name="accountPurchaseList")

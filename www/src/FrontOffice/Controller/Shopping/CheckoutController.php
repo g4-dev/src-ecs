@@ -38,26 +38,19 @@ class CheckoutController extends AbstractController
         if (!$this->basket->hasProducts()) {
             return $this->redirectToRoute('basket');
         }
-        
-        $billingAddress = $addressRepository
-           ->findCurrentWithType($this->getUser()->getId(), 'billing');
-        
-        if (null === $billingAddress) {
-            $this->addFlash('info', 'Veuillez renseigner une adresse de facturation avant de continuer');
-            $this->session->set('redirectBasketAfterAddress', true);
-            //return $this->redirectToRoute('accountAddress');
-        }
     
-        $address = $addressRepository
-           ->findCurrentWithType($this->getUser()->getId(), 'shipping');
+        $addresses = $addressRepository->findBy(['user' => $this->getUser()]);
         
-        if (null === $address) {
+        if (null === $addresses) {
             $this->addFlash('info', 'Veuillez renseigner une adresse de livraison avant de continuer');
-            $this->session->set('redirectBasketAfterAddress', true);
             //return $this->redirectToRoute('accountAddress');
         }
-
-        $form = $this->createForm(SelectAddressType::class, null, ['user' => $this->getUser()] );
+        
+        if (!$addresses){
+            return $this->render('front_office/shopping/checkout/address.html.twig');
+        }
+        
+        $form = $this->createForm(SelectAddressType::class, null, ['addresses' => $addresses] );
         
         $form->handleRequest($req);
         
@@ -103,6 +96,7 @@ class CheckoutController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("checkout/summary", name="checkoutSummary")
      */
     public function summary()
@@ -128,6 +122,7 @@ class CheckoutController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("checkout/payment", name="checkoutPayment")
      */
     public function payment()

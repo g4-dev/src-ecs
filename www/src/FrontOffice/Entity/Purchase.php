@@ -68,14 +68,6 @@ class Purchase
     protected $shippingAddress;
 
     /**
-     * The customer billing address.
-     *
-     * @var string
-     * @ORM\OneToOne(targetEntity="Core\Entity\Address", mappedBy="purchaseBilling", cascade={"persist"})
-     */
-    protected $billingAddress;
-
-    /**
      * The user who made the purchase.
      *
      * @var \Core\Entity\User
@@ -352,24 +344,6 @@ class Purchase
         $newPurchaseShipping = null === $shippingAddress ? null : $this;
         if ($shippingAddress->getPurchaseShipping() !== $newPurchaseShipping) {
             $shippingAddress->setPurchaseShipping($newPurchaseShipping);
-        }
-
-        return $this;
-    }
-
-    public function getBillingAddress(): ?Address
-    {
-        return $this->billingAddress;
-    }
-
-    public function setBillingAddress(?Address $billingAddress): self
-    {
-        $this->billingAddress = $billingAddress;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newPurchaseBilling = null === $billingAddress ? null : $this;
-        if ($billingAddress->getPurchaseBilling() !== $newPurchaseBilling) {
-            $billingAddress->setPurchaseBilling($newPurchaseBilling);
         }
 
         return $this;

@@ -22,19 +22,17 @@ class SettingsController extends EasyAdminController
             $this->updateEntity($item);
         }
     
-/*        foreach ($settings->getHomeDiys() as $item)
+        foreach ($settings->getHomeDiys() as $item)
         {
             $item->setSettingHome($settings);
             $this->updateEntity($item);
-            $this->persistEntity($item);
         }
     
         foreach ($settings->getHomeProducts() as $item)
         {
             $item->setSettingHome($settings);
             $this->updateEntity($item);
-            $this->persistEntity($item);
-        }*/
+        }
         
         $this->updateEntity($settings);
     }
