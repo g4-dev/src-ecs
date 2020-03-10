@@ -14,10 +14,7 @@ trait ImageCollection
      * @var Image[]|ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Core\Entity\Image", cascade={"persist"})
-     * @ORM\JoinTable(name="product_images",
-     *      joinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id", unique=true)}
-     * )
+     * @ORM\JoinTable()
      */
     private $images;
     

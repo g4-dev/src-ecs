@@ -105,6 +105,6 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
 
         $this->eventDispatcher->dispatch(new UserAccountEvent($user),UserAccountEvent::LOGIN);
 
-        return new RedirectResponse($this->router->generate('homepage'));
+        //return new RedirectResponse($this->router->generate('homepage'));
     }
 }

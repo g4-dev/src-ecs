@@ -18,9 +18,15 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
      * @var MailerService
      */
     protected $mailer;
+    
+    /**
+     * @var string
+     */
+    protected $emailFrom;
 
-    public function __construct(LoggerInterface $logger, MailerService $mailer)
+    public function __construct(string $emailFrom, LoggerInterface $logger, MailerService $mailer)
     {
+        $this->emailFrom = $emailFrom;
         $this->logger = $logger;
         $this->mailer = $mailer;
     }

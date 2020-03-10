@@ -1,10 +1,13 @@
+{%- set currentRoute = app.request.attributes.get('_route') -%}
+{% set currentRouteParams = app.request.attributes.get('_route_params') %}
+{% set currentPath = path(currentRoute, currentRouteParams ) %}
+
 <!DOCTYPE html>
 <html lang="FR">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   {% block links %} {% endblock %}
 
   <style>
@@ -15,7 +18,7 @@
 
 {% block body %}
 
-  {% include '@fo/partials/header.html.twig' %}
+  {% include '@fo/partials/header.html.twig' with { currentRoute: currentRoute} %}
 
   {% include '@fo/components/flash-messages.html.twig' %}
 
@@ -28,6 +31,7 @@
 {% endblock %}
 
 {% block scripts %}{% endblock %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hinclude/0.9.5/hinclude.min.js"></script>
 
 </body>
 </html>

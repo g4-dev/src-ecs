@@ -1,0 +1,20 @@
+<div class="pop-up-connection ">
+    <h2 class="pop-sBold">Se connecter</h2>
+    <form class="form" action="{{ path('login') }}" novalidate="" autocomplete="off" method="POST">
+        <input type="email" class="{% if error %}is-invalid{% endif %}" name="login_form[_username]" placeholder="Your email address" required />
+        <input type="password" class="{% if error %}is-invalid{% endif %}" name="login_form[_password]" placeholder="Password" required/>
+        <input type="hidden" name="_target_path" value="{{ targetPath|default('homepage') }}"/>
+        <div class="links text-center">
+            <a href="{{ path('registration') }}">Register new account</a> |
+            <a href="{{ path('passwordReminder') }}">Lost password</a>
+        </div>
+        {% if error %}
+            <div class="form-group">
+                <div class="alert alert-danger text-center" role="alert">
+                    Mot de passe ou email invalide
+                </div>
+            </div>
+        {% endif %}
+        <button class="pop" type="submit">Se connecter</button>
+    </form>
+</div>

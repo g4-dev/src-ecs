@@ -24,8 +24,9 @@ class DiyController extends AbstractController
            ->findAllQueryBuilder();
         $adapter = new DoctrineORMAdapter($qb);
         $pagerfanta = new Pagerfanta($adapter);
-        $pagerfanta->setMaxPerPage(10);
+        $pagerfanta->setMaxPerPage(1 === $page ? 4 : 10);
         $pagerfanta->setCurrentPage($page);
+        dump($pagerfanta->getIterator());
         //TODO : remove
         dump($pagerfanta);
         

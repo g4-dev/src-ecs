@@ -18,6 +18,11 @@ services:
         resource: '../src/Core/*'
         exclude:  '../src/Core/{DependencyInjection,Entity,Tests,Migrations,Kernel.php}'
 
+    core.event_sub:
+        class: Core\Event\UserAccountEventSubscriber
+        arguments:
+            - '$emailFrom'
+
     core.admin:
         class: Core\Service\AdminService
         public: true
@@ -70,3 +75,8 @@ services:
         class: FrontOffice\Form\Shopping\SelectAddressType
         autowire: true
         tags: ['form.type']
+
+    FrontOffice\Twig\LoginExtension:
+        class: FrontOffice\Twig\LoginExtension
+        autowire: true
+        tags: ['twig.extension']

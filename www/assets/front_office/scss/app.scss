@@ -215,7 +215,9 @@ button{
     flex-direction: column;
     margin-top: 30px;
 
-    input:nth-child(1), input:nth-child(2){
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
       padding:10px 0;
       border: solid 1px $darkGreen;
       margin-bottom: 15px;
@@ -228,7 +230,7 @@ button{
       }
     }
 
-    input:last-child{
+    button[type="submit"] {
       cursor: pointer;
       height: 75px;
       background: $darkGreen;

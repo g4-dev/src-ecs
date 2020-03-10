@@ -5,20 +5,30 @@
 {% endblock %}
 
 {% block main %}
+    {% if  diys.currentPage > 1 %}
     <div class="top-page">
         <div class="green-top-page">
-            <h1 class="gel-bold">Do It Yourself</h1>
-            <p class="gel">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.</p>
+            <h1 class="gel-bold">{{ 'diy.info.title'|trans }}</h1>
+            <p class="gel">{{ 'diy.info.desc'|trans }}</p>
         </div>
         <div>
             <img src="{{ asset('images/diy.png') }}">
         </div>
     </div>
+    {% endif %}
     <form class="search-diy">
         <input type="text" class="diy-bar" placeholder="Recherche">
         <input type="submit" class="input-diy pop-bold">
     </form>
     <div class="cont-item">
+        {% for diy in diys %}
+            <div>
+                <div class="cont-item-img">
+                    <a href="{{ path('diyShow', diy.slug) }}"><img src="{{ vich_uploader_asset(diy, 'imageFile') }}" alt="{{ diy.image }}"></a>
+                </div>
+                <p class="gel-bold">{{ diy.description }}</p>
+            </div>
+        {% endfor %}
         <div>
             <div class="cont-item-img">
                 <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
@@ -44,7 +54,7 @@
             <p class="gel-bold">Lorem</p>
         </div>
     </div>
-    <a href="#" class="btn btn-voir-plus pop">Voir plus</a>
+    <a href="{{ path('diyList', {page: diys.currentPage + 1}) }}" class="btn btn-voir-plus pop">Voir plus</a>
 {% endblock %}
 
 {% block scripts %}

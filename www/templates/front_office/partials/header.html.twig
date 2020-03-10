@@ -5,7 +5,7 @@
             <a href="{{ path('diyList') }}">DIY</a>
         </div>
         <div class="flexEnd midWidth UpperHeader">
-            <a class="pro" href="#">Espace pro</a>
+            <a class="pro" href="{{ path('proServiceList') }}">Espace pro</a>
 
             {% if is_granted('ROLE_USER') %}
                 <a class="pro" href="{{ path('account') }}">
@@ -17,11 +17,7 @@
 
             {% else %}
 
-                <a class="pro" href="#">
-                    {#TODO FRONT vertical aligns#}
-{#
-                    {{ 'Login'|trans|raw }}
-#}
+                <a class="pro connect-pop-toggle">
                     {% include 'svg/user.svg.twig' %}
                 </a>
 
@@ -87,12 +83,7 @@
         </div>
     </div>
 </header>
-<div class="pop-up-connection">
-    <h2 class="pop-sBold">Se connecter</h2>
-    <form action="#">
-        <input type="email" name="email" placeholder="Mail" required >
-        <input type="password" name="password" placeholder="Mot de passe" required >
-        <a class="pop" href="#">Pas encore de compte ? </a>
-        <input class="pop" type="submit" name="submit" value="Se connecter">
-    </form>
-</div>
+
+{% if is_granted('ROLE_USER') == false %}
+    {{ popLogin(currentRoute)|raw}}
+{% endif %}

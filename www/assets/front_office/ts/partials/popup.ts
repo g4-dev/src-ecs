@@ -1,6 +1,7 @@
 import * as $ from "jquery";
 
-$('.pro').click(function(){
+$('.connect-pop-toggle').on('click', function(e){
+   e.preventDefault();
    $('.pop-up-connection').toggleClass('showPop');
 });
 

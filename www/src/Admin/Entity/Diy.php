@@ -26,11 +26,23 @@ class Diy implements \Core\Entity\Model\Sluggable
     use CoreEn\Traits\DatesAt;
     use CoreEn\Traits\Slug;
     use CoreEn\Traits\IsActive;
+    const MAP_TABLE = 'diy_images';
+    use CoreEn\Traits\ImageCollection;
     
     /**
      * @ORM\Column(type="text")
      */
     private $body;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $summary;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $difficulty;
     
     /**
      * @var CoreEn\Admin
@@ -43,12 +55,9 @@ class Diy implements \Core\Entity\Model\Sluggable
     private $author;
     
     /**
-     * List of tags associated to the product.
-     *
-     * @var string[]
-     * @ORM\Column(type="simple_array")
+     * @ORM\Column(type="integer")
      */
-    private $tags = array();
+    private $time;
     
     /**
      * It only stores the name of the image associated with the product.
@@ -170,6 +179,42 @@ class Diy implements \Core\Entity\Model\Sluggable
     public function setSettingHome(?Settings $settingHome): self
     {
         $this->settingHome = $settingHome;
+
+        return $this;
+    }
+
+    public function getSummary(): ?string
+    {
+        return $this->summary;
+    }
+
+    public function setSummary(string $summary): self
+    {
+        $this->summary = $summary;
+
+        return $this;
+    }
+
+    public function getDifficulty(): ?int
+    {
+        return $this->difficulty;
+    }
+
+    public function setDifficulty(int $difficulty): self
+    {
+        $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
+    public function getTime(): ?int
+    {
+        return $this->time;
+    }
+
+    public function setTime(int $time): self
+    {
+        $this->time = $time;
 
         return $this;
     }

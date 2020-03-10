@@ -28,6 +28,7 @@ class Product implements Sluggable
     use Traits\DatesAt;
     use Traits\Slug;
     use Traits\IsActive;
+    const MAP_TABLE = 'product_images';
     use Traits\ImageCollection;
     
     /**

@@ -12,7 +12,7 @@ conf:
     app_env: dev                    # prod or dev
     ssl: false                      # Need re provision and manually adding cert to your machine settings
     nfs_force_disable: yes          # don't wan't nfs enabled because it's slow
-    smb: no                         # mount smb (windows only)
+    smb: no                         # mount smb (windows only | faster than nfs in some case)
 
 vm:
     name: ecoservice                # VM name for Virtualbox (string)
@@ -34,7 +34,7 @@ rsync_exclude:
     - '.vscode/'
     - 'www/config/parameters.yaml'
     - 'www/phpunit.xml'
-    - 'www/public/**'
+    - '/**/public/**/build/'
     - 'www/var/cache/**'
     - 'docs/**'
     - '.vscode/**'

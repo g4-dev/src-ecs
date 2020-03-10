@@ -9,14 +9,14 @@ easy_admin:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
-                    - tags
+                    - { property: 'difficulty', label: 'difficulty', type: range}
                     - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.diy', route: 'diyShow' }
-                filters: ['tags']
                 actions: ['edit', 'delete']
             show:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: body, label: Contenu, type: html }
+                    - { property: 'difficulty', label: 'difficulty', type: range }
                     - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
                     - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.diy', route: 'diyShow' }
 
@@ -24,5 +24,5 @@ easy_admin:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
-                    - { property: 'tags', type_options: { required: true } }
+                    - { property: 'difficulty', label: 'difficulty', type: range}
                     - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }

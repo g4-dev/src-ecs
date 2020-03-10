@@ -75,7 +75,12 @@ Vagrant.configure(2) do |config|
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
-  if conf['smb']
+  if conf['smb'] && NFS_ENABLED
+    puts 'Disable nfs or smb, two shared folder make an over use of CPU & RAM'
+    exit
+  endif
+
+  if conf['smb'] && !debug & !NFS_ENABLED
     config.vm.synced_folder ".", "/data/ecs", type: 'smb', smb_password: "vagrant", smb_username: "vagrant",
     mount_options: ["username=vagrant","password=vagrant"]
   end
@@ -102,7 +107,7 @@ Vagrant.configure(2) do |config|
       ansible.extra_vars = conf
   end
 
-  if !NFS_ENABLED
+  if !NFS_ENABLED && !conf['smb']
     config.vm.synced_folder "./", "/data/ecs", type: "rsync",
         rsync__auto: true,
         rsync__args: ["--archive", "--delete", "--no-owner", "--no-group","-q", "-W"],
