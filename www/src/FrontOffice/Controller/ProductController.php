@@ -5,6 +5,7 @@ namespace FrontOffice\Controller;
 
 use Admin\Entity\AbstractCategory;
 use Admin\Entity\Product;
+use Admin\Entity\ProductCategory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,7 +45,6 @@ class ProductController extends AbstractController
      */
     public function showAction(string $slug)
     {
-        dump($slug);
         $product = $this->getDoctrine()
            ->getRepository(Product::class)
            ->findOneBySlug($slug);
@@ -63,16 +63,17 @@ class ProductController extends AbstractController
      */
     public function listProductsByCategoryAction(string $slug,  Request $req, ?int $page = 1)
     {
-        // TODO: prendre le code de easyadmin pour faire la pagination
         // Pagination de tout
-        // En ajax si possible
         $qb = $this->getDoctrine()
-            ->getRepository(AbstractCategory::class)
+            ->getRepository(ProductCategory::class)
+            ->findOneBySlug()
             ->findAllQueryBuilder();
+        dump($qb);
         $adapter = new DoctrineORMAdapter($qb);
         $pagerfanta = new Pagerfanta($adapter);
         $pagerfanta->setMaxPerPage(10);
         $pagerfanta->setCurrentPage($page);
+        
         //vue temporaire en attendant pour tester l'ajout au panier
         return $this->render('@fo/shopping/productList.html.twig', [
             'products' => $pagerfanta,

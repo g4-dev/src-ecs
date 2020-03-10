@@ -25,8 +25,7 @@ class AddressRepository extends ServiceEntityRepository
             ->where('a.user = :userId')
             ->andWhere('a.type = :type')
             ->setParameter('userId', $userId)
-            ->setParameter('type', $type)
-            ->orderBy('a.createdAt', 'DESC')
+            ->orderBy('a.updatedAt', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();

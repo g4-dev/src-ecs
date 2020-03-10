@@ -11,6 +11,7 @@ use FrontOffice\Entity\Basket;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class CheckoutController extends AbstractController
 {
@@ -27,6 +28,7 @@ class CheckoutController extends AbstractController
 
     /**
      * @Route("checkout/address", name="checkoutAddress")
+     * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return Response
@@ -42,7 +44,8 @@ class CheckoutController extends AbstractController
         
         if (null === $billingAddress) {
             $this->addFlash('info', 'Veuillez renseigner une adresse de facturation avant de continuer');
-            return $this->redirectToRoute('accountAddress');
+            $this->session->set('redirectBasketAfterAddress', true);
+            //return $this->redirectToRoute('accountAddress');
         }
     
         $address = $addressRepository
@@ -50,26 +53,28 @@ class CheckoutController extends AbstractController
         
         if (null === $address) {
             $this->addFlash('info', 'Veuillez renseigner une adresse de livraison avant de continuer');
-            return $this->redirectToRoute('accountAddress');
+            $this->session->set('redirectBasketAfterAddress', true);
+            //return $this->redirectToRoute('accountAddress');
         }
 
-        $form = $this->createForm(SelectAddressType::class, new Address(), ['user' => $this->getUser()] );
+        $form = $this->createForm(SelectAddressType::class, null, ['user' => $this->getUser()] );
         
         $form->handleRequest($req);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            dump($form->getData());
             $this->session->set('checkout/address', true);
 
             return $this->redirectToRoute('checkout/shipping');
         }
 
-        return $this->render('front_office/shop/checkout/address.html.twig', [
-            'address_form' => $form->createView(),
+        return $this->render('front_office/shopping/checkout/address.html.twig', [
+            'address_choice_form' => $form->createView(),
         ]);
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("checkout/shipping", name="checkoutShipping")
      */
     public function shipping(Request $req)

@@ -16,16 +16,13 @@ class SettingsController extends EasyAdminController
     
     protected function updateSettingsEntity(Settings $settings)
     {
-        $em = $this->getDoctrine();
         foreach ($settings->getHomeCmsPages() as $item)
         {
-            dump($em->getRepository(CmsPage::class)->find($item->getId()));
-            dump($settings->getHomeCmsPages());
             $item->setSettingHome($settings);
             $this->updateEntity($item);
         }
     
-        foreach ($settings->getHomeDiys() as $item)
+/*        foreach ($settings->getHomeDiys() as $item)
         {
             $item->setSettingHome($settings);
             $this->updateEntity($item);
@@ -37,7 +34,7 @@ class SettingsController extends EasyAdminController
             $item->setSettingHome($settings);
             $this->updateEntity($item);
             $this->persistEntity($item);
-        }
+        }*/
         
         $this->updateEntity($settings);
     }

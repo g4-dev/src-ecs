@@ -2,46 +2,37 @@
 
 namespace FrontOffice\Form\Shopping;
 
-use Core\Entity\Address;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
+
 
 class SelectAddressType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        dump($options);
-        $builder
-           ->add('billingAddress', EntityType::class, [
-              'class' => Address::class,
-              'choice_label' => 'Choisir une addresse',
-              'query_builder' => function (EntityRepository $er) use ($options) {
-                  return $er->createQueryBuilder('a')
-                     ->where('a.type = '. Address::TYPE_BILLING)
-                     ->andWhere('a.user_id =' . $options['user']);
-              },
-           ])
-           ->add('shippingAddress', EntityType::class, [
-              'class' => Address::class,
-              'choice_label' => 'Choisir une addresse',
-              'query_builder' => function (EntityRepository $er) use ($options) {
-                  return $er->createQueryBuilder('a')
-                     ->where('a.type = '. Address::TYPE_SHIPPING)
-                     ->andWhere('a.user_id =' . $options['user']);
-              },
-           ])
-        ;
+        $user = $options['user'] ?? null;
+        $addresses = $user ? $user->getAddresses() : null;
+    
+        if ($addresses) {
+            $builder->add('addressBilling', ChoiceType::class, [
+               'placeholder' => 'Where exactly?',
+               'choices' => $user->getAddresses() ,
+               'required' => false,
+            ]);
+        }
     }
     
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-           'data_class' => null
+           'data_class' => null,
+           'user' => null,
         ]);
+    
+        // you can also define the allowed types, allowed values and
+        // any other feature supported by the OptionsResolver component
+        $resolver->setAllowedTypes('user', 'object');
     }
 }

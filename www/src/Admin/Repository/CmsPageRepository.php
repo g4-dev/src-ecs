@@ -17,4 +17,26 @@ class CmsPageRepository extends ServiceEntityRepository
     }
     
     use DuplicateSlugTrait;
+    
+    public function findOneBySlug(string $slug): ?Product
+    {
+        return $this->createQueryBuilder('p')
+           ->where('p.slug = :slug')
+           ->setParameter('slug', $slug)
+           ->getQuery()
+           ->getOneOrNullResult();
+    }
+    
+    public function findAll()
+    {
+        return $this->createQueryBuilder('p')
+           ->getQuery()
+           ->getResult();
+    }
+    
+    public function findAllQueryBuilder()
+    {
+        return $this->createQueryBuilder('p')
+           ->getQuery();
+    }
 }

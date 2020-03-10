@@ -33,7 +33,7 @@ class Settings
      */
     private $homeProducts;
 
-    public function __construct(?int $id = 1)
+    public function __construct()
     {
         $this->id = 1;
         $this->homeDiys = new ArrayCollection();

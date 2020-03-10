@@ -3,18 +3,16 @@
 
 namespace FrontOffice\Controller;
 
-use Admin\Entity\AbstractCategory;
 use Admin\Entity\Diy;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DiyController extends AbstractController
 {
     /**
-     * @Route("/diy/{page?1}", name="diyList", requirements={"slug"="^[A-Za-z0-9-]*$"})
+     * @Route("/diy/list/{page?1}", name="diyList", requirements={"slug"="^[A-Za-z0-9-]*$"})
      */
     public function listAction(int $page = 1) : Response
     {
@@ -48,6 +46,7 @@ class DiyController extends AbstractController
             $this->addFlash('error','Il n\'y a pas de DIY avec la page '. $slug);
             $this->redirectToRoute('diyList',null, 400);
         }
+        dump($diy);
         
         return $this->render('front_office/cms/diyShow.html.twig', [
            'diy' => $diy

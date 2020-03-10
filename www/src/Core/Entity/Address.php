@@ -15,7 +15,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Address
 {
-    const TYPE_BILLING = 'billing';
     const TYPE_SHIPPING = 'shipping';
 
     use Traits\DatesAt;
@@ -69,18 +68,6 @@ class Address
      * @ORM\JoinColumn(nullable=true)
      */
     private $purchaseShipping;
-    
-    /**
-     * @ORM\OneToOne(targetEntity="FrontOffice\Entity\Purchase", inversedBy="billingAddress")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $purchaseBilling;
-    
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     */
-    private $type;
     
     public function __construct()
     {
