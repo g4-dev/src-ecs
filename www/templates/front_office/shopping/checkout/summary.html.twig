@@ -1,4 +1,4 @@
-{% extends '@fo/layout.html.twig' %}
+{% extends '@fo/shopping/checkout/steps-layout.html.twig'%}
 {% block title %}Récapitulatif{% endblock %}
 
 {% block breadcrumb %}
@@ -37,15 +37,20 @@
                     <div class="row">
                         {% set image = product.images|first %}
                         <div class="col">
-                            <img src="/img/upload/{{ image.name }}" alt="{{ image.description }}" class="img img-fluid">
+                            <img src="{{ vich_uploader_asset(product, 'imageFile') }}" class="img img-fluid">
                         </div>
                         <div class="col">
                             {{ product.name }}
                         </div>
                     </div>
                 </td>
+                {% dump(product) %}
+{#
                 <td class="col">{{ product.quantity }}</td>
+#}
+{#
                 <td class="col">{{ product.calcTotalPrice }} €</td>
+#}
             </tr>
         {% endfor %}
     </tbody>
@@ -55,14 +60,6 @@
     <div>
         <p>
             <span class="font-weight-bold">Sous total:</span> {{ total_price }} €
-        </p>
-        <p>
-            <span class="font-weight-bold">Livraison:</span>
-            {% if shipping_fee == 0 %}
-                gratuite
-            {% else %}
-                {{ shipping_fee }} €
-            {% endif %}
         </p>
         <p>
             <span class="font-weight-bold">Dont TVA:</span>
@@ -75,10 +72,6 @@
     </div>
 </div>
 
-<a href="{{ path('checkout_payment') }}" class="btn btn-primary">Suivant</a>
+<a href="{{ path('checkoutPayment') }}" class="btn btn-primary">{{ 'Paid'|trans|raw }}</a>
 
-{% endblock %}
-
-{% block scripts %}
-    {{ encore_entry_script_tags('shopping', null, 'front_office') }}
 {% endblock %}

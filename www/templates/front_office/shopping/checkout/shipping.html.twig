@@ -1,9 +1,7 @@
-{% extends '@fo/layout.html.twig' %}
+{% extends '@fo/shopping/checkout/steps-layout.html.twig' %}
 {% block title %}Livraison{% endblock %}
 
-{% block links %}
-    {{ encore_entry_link_tags('shopping', null, 'front_office') }}
-{% endblock %}
+
 
 {% block breadcrumb %}
 <div class="breadcrumbs">
@@ -42,9 +40,4 @@
 {{ form_end(form) }}
 <input type="submit" form="form" value="Suivant" class="btn btn-primary">
 
-{% endblock %}
-
-
-{% block scripts %}
-    {{ encore_entry_script_tags('shopping', null, 'front_office') }}
 {% endblock %}

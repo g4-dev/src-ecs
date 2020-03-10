@@ -144,7 +144,7 @@ class Basket implements \Countable
         $this->session->set('shipping', $shippingMethod);
     }
 
-    public function getShippingFee(): float
+/*    public function getShippingFee(): float
     {
         return $this->session->get('shipping')->getFee();
     }
@@ -155,10 +155,10 @@ class Basket implements \Countable
         return $this->objectManager
             ->getRepository(ShippingMethod::class)
             ->find($id);
-    }
+    }*/
 
     public function grandTotal(): float
     {
-        return $this->totalPrice($this->getProducts()) + $this->getShippingFee();
+        return $this->totalPrice($this->getProducts()); // + $this->getShippingFee();
     }
 }

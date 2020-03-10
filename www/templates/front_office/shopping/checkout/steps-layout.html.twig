@@ -1,0 +1,25 @@
+{% extends '@fo/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('shopping', null, 'front_office') }}
+{% endblock %}
+
+{% block breadcrumb %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item">Identification</li>
+                    <li class="breadcrumb-item">Adresse</li>
+                    <li class="breadcrumb-item">Livraison</li>
+                    <li class="breadcrumb-item active" aria-current="page">Récapitulatif</li>
+                    <li class="breadcrumb-item">Paiement</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+{% endblock breadcrumb %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('shopping', null, 'front_office') }}
+{% endblock %}

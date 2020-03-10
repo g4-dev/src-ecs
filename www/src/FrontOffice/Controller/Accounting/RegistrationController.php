@@ -140,9 +140,12 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         );
     }
     
-    public function removeAddressAction()
+    public function removeAddressAction($address)
     {
+        $em = $this->getDoctrine()->getManager();
         /*TODO: remove address*/
+        $em->remove($address);
+        $em->flush();
     }
     
     /**

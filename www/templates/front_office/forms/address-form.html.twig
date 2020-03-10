@@ -3,50 +3,5 @@
 <div>
 {{ form_start(address_form, { 'attr': { 'id': 'address-form' }}) }}
 {{ form_end(address_form) }}
+{{ form_errors(address_form) }}
 </div>
-
-{#
-<div class="form-row">
-    <div class="col form-group">
-        {{ form_label(address_form.postCode, 'Code postal') }}
-        {{ form_widget(address_form.postCode) }}
-    </div>
-    <div class="col form-group">
-        {{ form_label(address_form.city, 'Ville') }}
-        {{ form_widget(address_form.city) }}
-    </div>
-</div>
-{{ form_row(address_form.address1, {
-    'label': 'Rue',
-}) }}
-{{ form_row(address_form.addressComplement, {
-    'label': 'Complément',
-    'required': false,
-    'attr': {
-        'placeholder': 'appartement, étage, escalier, etc.',
-    },
-}) }}
-<div class="form-row">
-    <div class="col form-group">
-        {{ form_label(address_form.postCode, 'Code postal') }}
-        {{ form_widget(address_form.postCode) }}
-    </div>
-    <div class="col form-group">
-        {{ form_label(address_form.city, 'Ville') }}
-        {{ form_widget(address_form.city) }}
-    </div>
-    <div class="col form-group">
-        {{ form_label(address_form.country, 'Country') }}
-        {{ form_widget(address_form.country) }}
-    </div>
-</div>
-{{ form_row(address_form.phoneNumber, {
-    'label': 'Téléphone',
-    'required': false,
-}) }}
-
-{{ form_row(address_form.type, {
-    'label': 'Type',
-}) }}
-
-#}

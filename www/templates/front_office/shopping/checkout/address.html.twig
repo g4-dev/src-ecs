@@ -1,8 +1,4 @@
-{% extends 'front_office/layout.html.twig' %}
-
-{% block links %}
-    {{ encore_entry_link_tags('shopping', null, 'front_office') }}
-{% endblock %}
+{% extends '@fo/shopping/checkout/steps-layout.html.twig' %}
 
 {% block title %}Adresse{% endblock %}
 
@@ -30,13 +26,10 @@
 {% if address_choice_form|default(false) %}
     {{ form_start(address_choice_form, { 'attr': { 'id': 'addressForm' }}) }}
     {{ form_end(address_choice_form) }}
-    
-    <input type="submit" form="address-form" value="Suivant" class="btn btn-primary">
+
+    <button type="submit" form="addressForm" class="btn btn-primary">{{ 'Continuer'|trans|raw }}</button>
 {% else %}
     <a href="{{ path('accountAddress') }}">Ajoutez une addresse</a>
 {% endif %}
 
-{% endblock %}
-{% block scripts %}
-    {{ encore_entry_script_tags('shopping', null, 'front_office') }}
 {% endblock %}

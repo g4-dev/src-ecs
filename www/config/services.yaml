@@ -11,7 +11,7 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
         bind:
-            $emailFrom: 'env(MAILER_USER)'
+            $emailFrom: '%env(MAILER_USER)%'
             $emailName: '%website_name%'
 
     Core\:
@@ -65,3 +65,8 @@ services:
             - '@doctrine'
             - '%env(MAKE_PATH)%'
         public: true
+
+    fo.shipping_method.form_type:
+        class: FrontOffice\Form\Shopping\SelectAddressType
+        autowire: true
+        tags: ['form.type']

@@ -172,4 +172,10 @@ class Address
         return $this;
     }
     
+    public function __toString()
+    {
+        $D = ' - ';
+        return $this->getUser()->getName().
+           $D.$this->getAddress().$D.$this->getCity().', '.$this->getPostCode();
+    }
 }

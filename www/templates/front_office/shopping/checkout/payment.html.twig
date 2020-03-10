@@ -1,9 +1,5 @@
-{% extends '@fo/layout.html.twig' %}
+{% extends '@fo/shopping/checkout/steps-layout.html.twig' %}
 {% block title %}Paiement{% endblock %}
-
-{% block links %}
-    {{ encore_entry_link_tags('shopping', null, 'front_office') }}
-{% endblock %}
 
 {% block breadcrumb %}
 <div class="breadcrumbs">
@@ -29,13 +25,8 @@
 <div class="row">
 
     <div class="col-md mt-4 mt-md-0">
-        <h4>Avec paypal</h4>
         <a href="{{ path('checkoutPayment') }}" class="basket-checkout__order btn btn-primary">Payer avec paypal</a>
     </div>
 </div>
 
-{% endblock %}
-
-{% block scripts %}
-    {{ encore_entry_script_tags('shopping', null, 'front_office') }}
 {% endblock %}
