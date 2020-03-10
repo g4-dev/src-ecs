@@ -4,7 +4,6 @@
 @import 'app.scss';
 @import "./components/form.scss";
 @import "./components/login.scss";
-@import "partials/show-account.scss";
 
 .panier_title{
   margin-left: 32px;
@@ -14,6 +13,22 @@
   @media screen and (max-width: 500px) {
     margin-left: 16px;
   }
+}
+
+.continueWhite{
+  font-size: 1.2rem;
+  margin: 8px 0;
+  padding: 16px 16px;
+  width: 200px;
+  text-align: center;
+  border: 2px solid $darkGrey;
+}
+
+.continueWhite:hover {
+  background: $darkGreen;
+  color: white;
+  border: 2px $darkGrey solid;
+  transition: .4s ease;
 }
 
 .adressUpdate{
@@ -272,5 +287,58 @@
   }
   .continueSubmit{
     margin-bottom: 2rem !important;
+  }
+}
+
+.container-account{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  .container-info{
+    @media (max-width: 767px){
+      width: 100%;
+    }
+    @media (min-width: 768px){
+      width: 60%;
+    }
+    padding: 30px;
+    h1{
+      color: $darkGreen;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+    .btn-contain{
+      margin: 15px 0;
+      display:flex;
+      justify-content: flex-start;
+      @media (max-width: 700px){
+        @include fullCenter;
+        align-items: start;
+      }
+    }
+    .content-account{
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      p{
+        color: $dark;
+        font-size: 1.2rem;
+        width: 50%;
+        margin: 10px 0;
+      }
+    }
+    a{
+      font-size: 1.2rem;
+      margin-right: 20px;
+      padding: 16px 32px;
+      @media (max-width: 350px){
+        padding: 16px 16px;
+      }
+      border: 2px solid $darkGreen;
+    }
+    a:hover{
+      background-color: $darkGreen;
+      color: $white;
+    }
   }
 }

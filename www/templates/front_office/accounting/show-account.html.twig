@@ -5,22 +5,21 @@
 {% endblock %}
 
 {% block main %}
+    <hr class="sep-header">
+    <h1 class="pop-sBold panier_title">Mon compte</h1>
     <div class="container-account">
         <div class="container-info">
-            <h1 class="gel-bold">Mon compte</h1>
-
             <div class="btn-contain">
-                <a href="{{ path('accountPurchaseList') }}">Commandes</a>
-                <a href="{{ path('accountUpdate') }}">Edit</a>
+                <a class="continueWhite pop" href="{{ path('accountPurchaseList') }}">Commandes</a>
+                <a class="continueWhite pop" href="{{ path('accountUpdate') }}">Editer mon compte</a>
             </div>
 
             {% include 'bundles/EasyAdminBundle/default/flash_messages.html.twig' %}
-            {#  TODO julien review front  #}
             <div class="content-account">
                 <p class="serge-bold">Nom : </p> <p class="serge">{{ account.name }}</p>
                 <p class="serge-bold">Prenom : </p> <p class="serge">{{ account.firstName }}</p>
                 <p class="serge-bold">Téléphone : </p> <p class="serge">{{ account.phoneNumber }}</p>
-                {# Adresse : {{ account.address }}#}
+                {#<p class="serge-bold">Adresse : </p> <p class="serge">{{ account.addres }}</p>#}
                 <p class="serge-bold">Email : </p> <p class="serge">{{ account.Username }}</p>
                 <p class="serge-bold">Entreprise : </p> <p class="serge">{{ account.companyName }}</p>
             </div>
@@ -36,7 +35,7 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                <a href="{{ path('accountAddress') }}">Ajouter une addresse</a>
+                <a class="continueWhite pop" href="{{ path('accountAddress') }}">Ajouter une addresse</a>
             </div>
         </div>
     </div>
