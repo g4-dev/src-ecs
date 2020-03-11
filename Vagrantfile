@@ -78,7 +78,7 @@ Vagrant.configure(2) do |config|
   if conf['smb'] && NFS_ENABLED
     puts 'Disable nfs or smb, two shared folder make an over use of CPU & RAM'
     exit
-  endif
+  end
 
   if conf['smb'] && !debug & !NFS_ENABLED
     config.vm.synced_folder ".", "/data/ecs", type: 'smb', smb_password: "vagrant", smb_username: "vagrant",
