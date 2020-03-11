@@ -89,3 +89,8 @@ services:
         class: FrontOffice\Twig\MenuExtension
         autowire: true
         tags: ['twig.extension']
+        
+    FrontOffice\Repository\:
+        resource: '../src/FrontOffice/Repository/*'
+        tags: ['doctrine.repository_service']
+        public: true
