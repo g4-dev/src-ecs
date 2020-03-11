@@ -7,31 +7,23 @@
 {% block main %}
 
     {% include '@fo/components/flash-messages.html.twig' %}
-    <div class="slideshow-container">
-        <section class="centerBetween fullWidth alignInit Slide fade" id="entreprise">
-            <article class="midWidth">
-                <h2 class="gel-sBold">Entreprise</h2>
-                <p class="pop">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt
-                    facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
-                <a class="btn pop">En savoir plus</a>
-            </article>
-            <div class="midWidth">
-                <img src="{{ asset('images/entreprise.jpg') }}" alt="entreprise">
-            </div>
-        </section>
-
-        <section class="centerBetween fullWidth alignInit Slide fade" id="zerodechet">
-            <article class="midWidth">
-                <h2 class="gel-bold">Zéro déchets</h2>
-                <p class="pop">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, facere! Reiciendis incidunt facere repudiandae necessitatibus eligendi. Inventore vel, tenetur quia, alias aperiam</p>
-                <a class="btn pop">En savoir plus</a>
-            </article>
-            <div class="midWidth">
-                <img src="{{ asset('images/dechet.jpg') }}" alt="dechet">
-            </div>
-        </section>
-        <a class="prev" id="slideback">&#10094;</a>
-        <a class="next" id="slideforward">&#10095;</a>
+    <div class="slideshow-container slideshow">
+        {% for cmsPage in cmsPages %}
+            <section class="centerBetween fullWidth alignInit slide fade {% if loop.index == 1 %}active{% endif %}" id="entreprise">
+                <article class="midWidth">
+                    <h2 class="gel-sBold">{{ cmsPage.name}}</h2>
+                    <p class="pop">{{ cmsPage.description|striptags|slice(0, 175)|raw  }}</p>
+                    <a class="btn pop">{{ 'KnowMore'|trans|raw }}</a>
+                </article>
+                <div class="midWidth">
+                    <img src="{{ vich_uploader_asset(cmsPage, 'imageFile') }}" alt="{{ cmsPage.image }}">
+                </div>
+            </section>
+        {% endfor %}
+        <div class="controls">
+            <a class="next" id="slideforward">&#10095;</a>
+            <a class="prev" id="slideback">&#10094;</a>
+        </div>
     </div>
 
     <section id="produit">

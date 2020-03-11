@@ -43,11 +43,10 @@ class BasketController extends AbstractController
 
     /**
      * @Route("/basket/add/{product}", name="basketAdd")
-     * @IsGranted("ROLE_USER")
      * @param $id
      * @return RedirectResponse
      */
-    public function addBasketAction($product)
+    public function addBasket($product)
     {
         $product = $this->getDoctrine()
             ->getRepository(Product::class)

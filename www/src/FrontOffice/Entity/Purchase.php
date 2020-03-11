@@ -9,7 +9,6 @@ use Core\Entity\Traits\Id;
 use Core\Entity\Transaction;
 use Core\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use FrontOffice\Model\Shipment;
 use Doctrine\ORM\Mapping as ORM;
 

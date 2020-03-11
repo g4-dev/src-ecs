@@ -4,7 +4,7 @@ parameters:
     website_name: Ecoservice
 
     # session
-    login_time: 64000
+    login_time: 96000
 
     # perf
     container.dumper.inline_factories: true

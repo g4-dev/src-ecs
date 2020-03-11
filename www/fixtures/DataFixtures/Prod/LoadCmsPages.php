@@ -29,6 +29,26 @@ class LoadCmsPages extends Fixture implements OrderedFixtureInterface
             $this->addReference('cmsPage-'.$i, $cmsPage);
             $manager->persist($cmsPage);
         }
+    
+        $cmsPage = new CmsPage();
+        $cmsPage->setIsActive(true);
+        $cmsPage->setName("Entreprise");
+        $cmsPage->setDescription($this->getRandomBody());
+        $cmsPage->setImage('entreprise.jpg');
+        $cmsPage->setCategory($this->getRandomCategories());
+        $cmsPage->setBody("<div><h1>DUMMY CONTENT ".$i."</h1>".$this->getRandomBody()."</div>");
+        $cmsPage->setOnHome(true);
+        
+        $cmsPage = new CmsPage();
+        $cmsPage->setIsActive(true);
+        $cmsPage->setName("Zéro Déchet");
+        $cmsPage->setDescription($this->getRandomBody());
+        $cmsPage->setImage('dechet.jpg');
+        $cmsPage->setCategory($this->getRandomCategories());
+        $cmsPage->setBody("<div><h1>DUMMY CONTENT ".$i."</h1>".$this->getRandomBody()."</div>");
+        $cmsPage->setOnHome(true);
+        
+        $manager->persist($cmsPage);
 
         $manager->flush();
     }

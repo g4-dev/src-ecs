@@ -87,7 +87,7 @@ Transactions History: HHistorique des transactions
 
 # settings
 onHome: Affiché sur la page d'accueil
-onHome.help: Ajouter ces pages en avant sur la page d'accueil
+onHome.help: Ajouter ces pages sur le diaporama de la page d'accueil
 menu.settings.nav: Menu
 settings.product.info_last_if_empty: Laisser vide pour afficher les dernier éléments
 # Roles

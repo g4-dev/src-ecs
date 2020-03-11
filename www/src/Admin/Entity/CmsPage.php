@@ -85,6 +85,11 @@ class CmsPage extends AbstractSluggable
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Admin\Entity\TitleContent", mappedBy="cmsPage")
+     */
+    private $titleContents;
     
     public function __construct()
     {
@@ -93,6 +98,7 @@ class CmsPage extends AbstractSluggable
         }
         
        $this->category = new ArrayCollection();
+       $this->titleContents = new ArrayCollection();
     }
     
     public function getBody(): ?string
@@ -213,6 +219,34 @@ class CmsPage extends AbstractSluggable
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TitleContent[]
+     */
+    public function getTitleContents(): Collection
+    {
+        return $this->titleContents;
+    }
+
+    public function addTitleContent(TitleContent $titleContent): self
+    {
+        if (!$this->titleContents->contains($titleContent)) {
+            $this->titleContents[] = $titleContent;
+            $titleContent->addCmsPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTitleContent(TitleContent $titleContent): self
+    {
+        if ($this->titleContents->contains($titleContent)) {
+            $this->titleContents->removeElement($titleContent);
+            $titleContent->removeCmsPage($this);
+        }
 
         return $this;
     }

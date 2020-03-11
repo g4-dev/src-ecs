@@ -58,12 +58,12 @@ class LoginExtension extends AbstractExtension
         $collectionMenu = $this->navRepo->findby([], ['position' => 'ASC']) ?? [];
         
         if (!$collectionMenu) {
-            return [
+            return [[
                'name' => 'not configured menu',
                'title' => 'configure your menu in /admin',
                'route' => 'homepage',
                'routeParams' => null
-            ];
+            ]];
         }
         
         $navWalked = [];
