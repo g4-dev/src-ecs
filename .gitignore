@@ -45,3 +45,4 @@ test-vagrant/
 www/bin/.phpunit
 docs/*.pfx
 docs/*.pem
+e-commerce-pomp/

@@ -30,14 +30,4 @@ class ProductRepository extends ServiceEntityRepository
            ->getQuery()
            ->getSingleScalarResult();
     }
-
-    public function findLatest(int $maxResults): array
-    {
-        return $this->createQueryBuilder('p')
-            ->select('p')
-            ->orderBy('p.updatedAt', 'DESC')
-            ->setMaxResults($maxResults)
-            ->getQuery()
-            ->getResult();
-    }
 }

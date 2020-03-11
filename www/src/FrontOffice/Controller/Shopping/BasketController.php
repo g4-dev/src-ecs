@@ -1,6 +1,7 @@
 <?php
 namespace FrontOffice\Controller\Shopping;
 
+use Admin\Repository\ProductRepository;
 use FrontOffice\Entity\Basket;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,10 +17,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class BasketController extends AbstractController
 {
     private Basket $basket;
+    
+    private $productRepository;
 
-    public function __construct(EntityManagerInterface $objectManager)
+    public function __construct(EntityManagerInterface $objectManager, ProductRepository $productRepository)
     {
         $this->basket = new Basket($objectManager);
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -42,21 +46,20 @@ class BasketController extends AbstractController
     }
 
     /**
-     * @Route("/basket/add/{product}", name="basketAdd")
+     * @Route("/basket/add/{id}", name="basketAdd", requirements={"id": "\d+"})
      * @param $id
      * @return RedirectResponse
      */
-    public function addBasket($product)
+    public function addBasket($id)
     {
-        $product = $this->getDoctrine()
-            ->getRepository(Product::class)
-            ->find($product);
+        dump($this->productRepository);
+        $product = $this->productRepository->findBy(['id' => $id]);
         
         if (!$product) {
             throw $this->createNotFoundException();
         }
 
-        if ($product->getStock() > 1) {
+        if ($id->getStock() > 1) {
             $this->basket->add($product);
         } else {
             $this->addFlash('primary', 'Le produit n\'est plus en stock');

@@ -54,13 +54,6 @@ class InitSettingsCommand extends Command
             $d->setOnhome(true);
             $entityManager->persist($d);
         }
-    
-        $cmsPages = $this->getLastItems(Diy::class, 2);
-        
-        foreach ($cmsPages as $c) {
-            $c->setOnhome(true);
-            $entityManager->persist($c);
-        }
         
         echo "Settings created \n";
         return 0;

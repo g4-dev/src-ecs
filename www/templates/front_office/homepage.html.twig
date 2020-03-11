@@ -7,24 +7,34 @@
 {% block main %}
 
     {% include '@fo/components/flash-messages.html.twig' %}
-    <div class="slideshow-container slideshow">
-        {% for cmsPage in cmsPages %}
-            <section class="centerBetween fullWidth alignInit slide fade {% if loop.index == 1 %}active{% endif %}" id="entreprise">
-                <article class="midWidth">
-                    <h2 class="gel-sBold">{{ cmsPage.name}}</h2>
-                    <p class="pop">{{ cmsPage.description|striptags|slice(0, 175)|raw  }}</p>
-                    <a class="btn pop">{{ 'KnowMore'|trans|raw }}</a>
-                </article>
-                <div class="midWidth">
-                    <img src="{{ vich_uploader_asset(cmsPage, 'imageFile') }}" alt="{{ cmsPage.image }}">
+    <div class="slideshow-container">
+        {% set slider = cmsPages|length > 1 %}
+        <div class="{% if slider %}slideshow{% endif %}">
+            {% for cmsPage in cmsPages %}
+
+            <section class="homePage {% if slider %}slide{% endif %} {% if loop.index == 1 %} active{% endif %}">
+                <div class="slide-row centerBetween fullWidth alignInit ">
+                    <article class="midWidth">
+                        <h2 class="gel-sBold">{{ cmsPage.name}}</h2>
+                        <p class="pop">{{ cmsPage.description|striptags|slice(0, 175)|raw  }}</p>
+                        <a class="btn pop">{{ 'KnowMore'|trans|raw }}</a>
+                    </article>
+                    <div class="midWidth">
+                        <img src="{{ vich_uploader_asset(cmsPage, 'imageFile') }}" alt="{{ cmsPage.image }}">
+                    </div>
                 </div>
             </section>
-        {% endfor %}
-        <div class="controls">
-            <a class="next" id="slideforward">&#10095;</a>
-            <a class="prev" id="slideback">&#10094;</a>
+            {% endfor %}
         </div>
+        {% if slider %}
+            <div class="controls">
+                <a class="next" id="slideforward">&#10095;</a>
+                <a class="prev" id="slideback">&#10094;</a>
+            </div>
+        {% endif %}
     </div>
+
+
 
     <section id="produit">
         <p class="gel-bold title-suggest title-suggest-home">Produits</p>
@@ -56,30 +66,14 @@
                     </div>#}
 
                 <div class="cont-item cont-item-home">
-                    <div>
-                        <div class="cont-item-img">
-                            <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+                    {% for product in products %}
+                        <div>
+                            <div class="cont-item-img">
+                                <a href="{{ path('productShow', { slug: product.slug}) }}"><img src="{{ vich_uploader_asset(product, 'imageFile')}}"></a>
+                            </div>
+                            <p class="gel-bold">{{ product.name }}</p>
                         </div>
-                        <p class="gel-bold">Lorem</p>
-                    </div>
-                    <div>
-                        <div class="cont-item-img">
-                            <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
-                        </div>
-                        <p class="gel-bold">Lorem</p>
-                    </div>
-                    <div>
-                        <div class="cont-item-img">
-                            <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
-                        </div>
-                        <p class="gel-bold">Lorem</p>
-                    </div>
-                    <div>
-                        <div class="cont-item-img">
-                            <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
-                        </div>
-                        <p class="gel-bold">Lorem</p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -106,30 +100,14 @@
         <div class="fullCenter">
             <div class="produit_space">
                 <div class="cont-item cont-item-home">
-                    <div>
-                        <div class="cont-item-img">
-                            <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
+                    {% for diy in diys %}
+                        <div>
+                            <div class="cont-item-img">
+                                <a href="{{ path('diyShow', { slug: diy.slug}) }}"><img src="{{ vich_uploader_asset(diy, 'imageFile')}}"></a>
+                            </div>
+                            <p class="gel-bold">{{ diy.name }}</p>
                         </div>
-                        <p class="gel-bold">Lorem</p>
-                    </div>
-                    <div>
-                        <div class="cont-item-img">
-                            <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
-                        </div>
-                        <p class="gel-bold">Lorem</p>
-                    </div>
-                    <div>
-                        <div class="cont-item-img">
-                            <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
-                        </div>
-                        <p class="gel-bold">Lorem</p>
-                    </div>
-                    <div>
-                        <div class="cont-item-img">
-                            <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
-                        </div>
-                        <p class="gel-bold">Lorem</p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

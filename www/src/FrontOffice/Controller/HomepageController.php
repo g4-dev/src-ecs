@@ -19,13 +19,13 @@ class HomepageController extends AbstractController
         $purchase = $req->get('purchase');
         
         $cmsPages = $this->getDoctrine()->getRepository(CmsPage::class)
-           ->findBy(['onHome' => true],null,3);
+           ->findBy(['onHome' => true],null,5);
     
         $products = $this->getDoctrine()->getRepository(Product::class)
-            ->findBy(['isActive' => true], ['updatedAt' => 'DESC'], 4);
+           ->findLatest(4);
     
         $diys = $this->getDoctrine()->getRepository(Diy::class)
-           ->findBy(['isActive' => true], ['updatedAt' => 'DESC'], 4);
+           ->findLatest(4);
         
         dump($diys);
         dump($cmsPages);

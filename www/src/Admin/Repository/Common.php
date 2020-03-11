@@ -75,4 +75,15 @@ trait Common
            ->getQuery()
            ->getResult();
     }
+    
+    public function findLatestHome(int $maxResults): array
+    {
+        return $this->createQueryBuilder('p')
+           ->select('p')
+           ->orderBy('p.createdAt', 'DESC')
+           ->where('p.onHome = true')
+           ->setMaxResults($maxResults)
+           ->getQuery()
+           ->getResult();
+    }
 }

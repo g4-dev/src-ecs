@@ -27,7 +27,7 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             $item->setDescription($this->getRandomDescription());
             $item->setPrice($this->getRandomPrice());
             $item->setEan($this->getRandomEan());
-            $item->setImage('image'.($i % 10).'.jpg');
+            $item->setImage('image'.rand(0, 3).'.jpg');
             $item->setCategory($this->getRandomCategories());
             $item->setTags($this->getRandomTags());
             $item->setFeatures($this->getRandomFeatures());
@@ -46,7 +46,7 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             $item->setSummary($this->getRandomDescription());
             $item->setDifficulty(rand(1,4));
             $item->setTime(rand(1,4).'m');
-            $item->setImage('image'.($i % 10).'.jpg');
+            $item->setImage('image-diy-0.png');
         
             $this->addReference('diy-'.$i, $item);
             $manager->persist($item);
