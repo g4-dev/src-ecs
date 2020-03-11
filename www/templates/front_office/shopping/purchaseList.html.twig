@@ -5,27 +5,22 @@
 {% endblock %}
 
 {% block main %}
+    <hr class="sep-header">
+    <h1 class="pop-sBold panier_title">Mes commandes</h1>
+    <div class="panier_space continueSubmit">
+        <div class="fullCenter">
+            <a href="{{ path('accountPurchaseList') }}"  class="continueWhite">Commandes</a>
+        </div>
+        <div class="fullCenter">
+            <a href="{{ path('account') }}"  class="continueWhite">Compte</a>
+        </div>
+    </div>
 
-    <header class="mb-4">
-        <h1>Mes commandes</h1>
-    </header>
-
-    <nav>
-        <ul class="nav nav-tabs user-account-tabs">
-            <li class="nav-item">
-                <a href="{{ path('account') }}" class="nav-link active">Compte</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ path('accountPurchaseList') }}" class="nav-link active">Commandes</a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="card">
+    <div class="fullCenter listeCommande">
         <div class="card-body">
-            {% if purchases is empty %}
+           {# {% if purchases is empty %}
                 <p>Pas de commande pour l'instant.</p>
-            {% else %}
+            {% else %}#}
                 <table class="table">
                     <thead>
                     <tr>
@@ -36,29 +31,30 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for purchase in purchases %}
+                    {#{% for purchase in purchases %}#}
                         <tr>
                             <td>
-                                <a href="{{ path('accountPuchaseShow', { 'id': purchase.id }) }}">{{ purchase.id }}</a>
+                                {#<a href="{{ path('accountPuchaseShow', { 'id': purchase.id }) }}">{{ purchase.id }}</a>#}
+                                <p>kQFSLGJSDHJ</p>
                             </td>
                             <td>
-                                {{ purchase.createdAt|date() }}
+                                {#{{ purchase.createdAt|date() }}#}FHSFJHDHSQFDJ
                             </td>
                             <td>
                                 <div class="badge badge-primary p-2">
-                                    {{ purchase.status }}
+                                    {#{{ purchase.status }}#}Jkefhjdqfjhj
                                 </div>
                             </td>
-                            {% if purchase.transaction is defined %}
+                            {#{% if purchase.transaction is defined %}
                                 <td>
                                     {{ purchase.transaction.total }} €
                                 </td>
-                            {% endif %}
+                            {% endif %}#}
                         </tr>
-                    {% endfor %}
+    {#{% endfor %}#}
                     </tbody>
                 </table>
-            {% endif %}
+           {# {% endif %}#}
         </div>
     </div>
 

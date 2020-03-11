@@ -381,11 +381,12 @@
     }
   }
 }
-
-.debugUpdate{
-  .debugCheck{
-    input{
-      margin-left: 50px;
+@media (max-width: 1024px) {
+  .debugUpdate {
+    .debugCheck {
+      input {
+        margin-left: 50px;
+      }
     }
   }
 }
