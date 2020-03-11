@@ -7,40 +7,6 @@
 {% block body %}
 
   <!-- Admin login -->
-{#
-  <div class="admin-login-panel">
-    <div class="body">
-      <form class="form" action="{{ path('admin_login') }}" method="POST">
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text tweak-bottom-border"><i class="fas fa-user-tie"></i></div>
-            </div>
-            <input class="form-control form-control-lg tweak-bottom-border" type="text" name="login_form[_username]" placeholder="Username" required/>
-          </div>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text tweak-top-border"><i class="fas fa-lock"></i></div>
-            </div>
-            <input class="form-control form-control-lg tweak-top-border" type="password" name="login_form[_password]" placeholder="Password" required/>
-          </div>
-        </div>
-        {% if error %}
-          <div class="alert alert-danger text-center" role="alert">
-            {{ error.messageKey|trans(error.messageData, 'security') }}
-          </div>
-        {% endif %}
-        <div class="form-group">
-          <button type="submit" class="btn btn-lg btn-success">{{ 'Login'|trans|raw }}</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div>
-    <a href="{{ path('homepage') }}" class="btn btn-default">{{ 'return'|trans|raw }}</a>
-  </div>
-#}
   <div class="fullCenter admin">
     <h1 class="gel-bold">Connexion au panel d'administration</h1>
     <div class="formTheme">

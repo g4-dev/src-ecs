@@ -12,9 +12,12 @@
 
     <section class="adressUpdate pop">
         {% include '@fo/forms/address-form.html.twig' %}
+        <div class="add_adressUpdate">
+            <div class="fullCenter">
+                <a class="pop add_adress" href="{{ path('account') }}">{{ 'Revenir à mon compte'|trans }}</a>
+            </div>
+        </div>
     </section>
-    <input type="submit" form="address-form" value="{{ actionMode ?? 'add'|trans|raw }}" class="btn btn-primary">
-    <a href="{{ path('account') }}">{{ 'back'|trans }}</a>
 
 {% endblock %}
 

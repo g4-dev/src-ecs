@@ -19,17 +19,32 @@
 {% endblock breadcrumb %}
 
 {% block main %}
-<header class="mb-4">
-    <h1>Adresse de livraison</h1>
-</header>
+    <hr class="sep-header">
+    <h1 class="pop-sBold panier_title">Adresse de livraison</h1>
 
-{% if address_choice_form|default(false) %}
-    {{ form_start(address_choice_form, { 'attr': { 'id': 'addressForm' }}) }}
-    {{ form_end(address_choice_form) }}
-
-    <button type="submit" form="addressForm" class="btn btn-primary">{{ 'Continuer'|trans|raw }}</button>
-{% else %}
-    <a href="{{ path('accountAddress') }}">Ajoutez une addresse</a>
-{% endif %}
-
+    <section class="adress_choice">
+    {% if address_choice_form|default(false) %}
+        {{ form_start(address_choice_form, { 'attr': { 'id': 'addressForm', "class": "pop" }}) }}
+            <div class="adress_border">
+                <div class="adress_list">
+                        <div class="adress_item flexStart">
+                            {{ form_widget(address_choice_form.address)}}
+                            {{ form_label(address_choice_form.address)}}
+                        </div>
+                </div>
+            </div>
+            <div class="panier_space flexEnd address_button">
+                <div class="fullCenter button pop">
+                    <button type="submit" class="pop continue">{{ 'Continuer'|trans }}</button>
+                </div>
+            </div>
+        {{ form_end(address_choice_form) }}
+        {% else %}
+        <div class="panier_space flexStart address_button">
+            <div class="fullCenter button pop">
+                <a class="continueWhite" href="{{ path('accountAddress') }}">+ Ajouter une adresse</a>
+            </div>
+        </div>
+        {% endif %}
+    </section>
 {% endblock %}

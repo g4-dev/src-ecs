@@ -105,7 +105,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userService->update($user, $form->getData()->toArray());
             
-            $this->addFlash('success', 'User successfully updated');
+            $this->addFlash('success', 'Mise à jour effectuée');
             
             return $this->redirectToRoute('account');
         }
@@ -139,13 +139,17 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
            ]
         );
     }
-    
-    public function removeAddressAction($address)
+
+    /**
+     * @Route("/address/remove/{address}", name="removeAddress")
+     */
+    public function removeAddressAction(Address $address)
     {
         $em = $this->getDoctrine()->getManager();
-        /*TODO: remove address*/
         $em->remove($address);
         $em->flush();
+
+        return $this->redirectToRoute('account');
     }
     
     /**

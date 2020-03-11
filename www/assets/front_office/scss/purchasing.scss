@@ -41,43 +41,6 @@
 .panier_space {
   width: 100%;
   color: $darkGrey;
-  /*
-  .path {
-    font-size: 1.5rem;
-    margin: 32px 0 32px 128px;
-
-    p {
-      padding: 0 16px;
-    }
-
-    @media screen and (max-width: 1700px) {
-      margin: 32px 0 32px 64px;
-    }
-    @media screen and (max-width: 850px) {
-      font-size: 1.2rem;
-      margin: 32px 0 32px 32px;
-    }
-    @media screen and (max-width: 630px) {
-      font-size: 1rem;
-      p {
-        padding: 0 8px;
-      }
-    }
-    @media screen and (max-width: 500px) {
-      font-size: 0.9rem;
-      margin: 32px 0 32px 16px;
-      p {
-        padding: 0 4px;
-      }
-    }
-    @media screen and (max-width: 430px) {
-      font-size: 0.8rem;
-    }
-    @media screen and (max-width: 350px) {
-      font-size: 0.7rem;
-    }
-  }
-  */
 }
 
 .mon_panier{
@@ -98,6 +61,7 @@
       text-align: right;
     }
     font-size: 1.2rem;
+    text-align: left !important;
   }
   @media screen and (max-width: 1024px) {
     .total_mob{
@@ -246,5 +210,120 @@
     @media screen and (max-width: 1550px) {
       margin: 32px auto 0 auto;
     }
+  }
+}
+
+.adress_choice{
+  font-size: 1.5rem;
+  color: blue;
+  @media screen and (max-width: 800px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 1rem;
+  }
+  .address_button div{
+    margin: 32px auto;
+    @media screen and (max-width: 1024px) {
+      margin: 32px auto;
+    }
+    font-size: 1.2rem;
+    button{
+      font-size: 1.2rem;
+    }
+    .continue{
+      color: white;
+      padding: 16px 64px;
+      background: $darkGreen;
+    }
+    .add_address{
+      padding: 16px 64px;
+      @media screen and (max-width: 500px) {
+        padding: 16px 32px;
+      }
+      border: 2px solid $darkGreen;
+    }
+    .add_address:hover {
+      background: $darkGreen;
+      color: white;
+      border: 2px $darkGrey solid;
+      transition: .4s ease;
+    }
+  }
+  .resetMargin{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .adress_border{
+    font-size: 1.5rem;
+    @media screen and (max-width: 500px) {
+      font-size: 1rem;
+    }
+    margin: 0 128px;
+    @media screen and (max-width: 1024px) {
+      margin: 0 64px;
+    }
+    @media screen and (max-width: 700px) {
+      margin: 0 32px;
+    }
+    @media screen and (max-width: 500px) {
+      margin: 0 16px;
+    }
+    border: solid 1px $darkGrey;
+    color: $darkGreen;
+    .adress_title{
+      margin: 0 64px;
+      @media screen and (max-width: 1024px) {
+        margin: 0 32px;
+      }
+      @media screen and (max-width: 500px) {
+        margin: 0 16px;
+      }
+      padding: 32px 0;
+      border-bottom: solid 1px $darkGrey;
+    }
+    .adress_list{
+      margin: 0 128px;
+      @media screen and (max-width: 1024px) {
+        margin: 0 64px;
+      }
+      @media screen and (max-width: 500px) {
+        margin: 0 32px;
+      }
+      @media screen and (max-width: 400px) {
+        margin: 0 16px;
+      }
+      padding: 16px 0;
+      .adress_item{
+        padding: 32px 0;
+        .form-check{
+          margin: 32px;
+          cursor: pointer;
+        }
+        legend{
+          display: none;
+        }
+        input{
+          cursor: pointer;
+          display: block;
+          transform: scale(2);
+        }
+        label{
+          cursor: pointer;
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+}
+
+.paiementPayp{
+  .continue a{
+    padding: 16px 64px;
+    color: white;
+    background: $darkGreen;
+  }
+  .marginPaypal{
+    margin-top: 128px;
   }
 }

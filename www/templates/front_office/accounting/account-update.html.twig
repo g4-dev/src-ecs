@@ -5,18 +5,32 @@
 {% endblock %}
 
 {% block main %}
-
+{#
   <div class="container">
     <div class="row">
       <div class="col">
         <h1 class="border-bottom">Edit</h1>
-        {% include 'front_office/forms/account-update-form.html.twig' %}
-        <a href="{{ path('account') }}"><button class="btn btn-lg btn-success btn-submit">Retour</button></a>
       </div>
     </div>
   </div>
-  <div class="app-call" data-method="initAccountUpdateForm">
   </div>
+  #}
+  <hr class="sep-header">
+  <h1 class="pop-sBold panier_title">Editer mon compte</h1>
+
+  <section class="formTheme pop debugUpdate">
+    {% include 'front_office/forms/account-update-form.html.twig' %}
+  </section>
+  <div class="login_links text-center pop">
+    <div class="panier_space continueSubmit">
+      <div class="fullCenter">
+        <a class="continueWhite" href="{{ path('account') }}">Retour</a>
+      </div>
+    </div>
+  </div>
+  <div class="app-call" data-method="initAccountUpdateForm"></div>
+
+
 
 {% endblock %}
 

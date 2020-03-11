@@ -18,14 +18,18 @@
 {% endblock breadcrumb %}
 
 {% block main %}
-<header class="mb-4">
-    <h1>Paiement</h1>
-</header>
+    <hr class="sep-header">
+    <h1 class="pop-sBold panier_title">Paiement</h1>
+
+    <section class="fullCenter paiementPayp">
+        <div class="pop marginPaypal continue">
+            <a href="{{ path('checkoutPayment') }}">Payer avec paypal</a>
+        </div>
+    </section>
 
 <div class="row">
 
     <div class="col-md mt-4 mt-md-0">
-        <a href="{{ path('paypalPayment') }}" class="basket-checkout__order btn btn-primary">Payer avec paypal</a>
     </div>
 </div>
 

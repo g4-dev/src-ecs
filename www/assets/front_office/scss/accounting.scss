@@ -129,7 +129,11 @@
   }
   .add_adressUpdate div{
     margin: 32px auto;
-    font-size: 1rem;
+    font-size: 1.2rem !important;
+    .buttonSub{
+      font-size: 1.2rem;
+      color: $darkGrey;
+    }
     .add_adress{
       padding: 16px 64px;
       @media screen and (max-width: 500px) {
@@ -294,6 +298,41 @@
   margin-top: 30px;
   display: flex;
   justify-content: center;
+  .adressList{
+    margin-bottom: 5rem !important;
+    .bottomMarg{
+      margin-bottom: 32px;
+    }
+    .blockAddress{
+      @media screen and (min-width: 768px) {
+        @include flexStart;
+        align-items: center;
+      }
+      @media screen and (max-width: 768px) {
+        margin-bottom: 64px;
+      }
+    }
+    .fullcenter_mob{
+      @media screen and (max-width: 768px) {
+        @include fullCenter;
+        align-items: flex-start;
+      }
+    }
+    .bottomMob{
+      @media screen and (max-width: 768px) {
+        margin-bottom: 32px;
+      }
+    }
+    .a_adressList{
+      margin-left: 2rem;
+      @media screen and (max-width: 768px) {
+        margin-left: 0rem;
+      }
+    }
+  }
+  .showAddAddress{
+    margin-top: 5rem;
+  }
   .container-info{
     @media (max-width: 767px){
       width: 100%;
@@ -313,7 +352,7 @@
       justify-content: flex-start;
       @media (max-width: 700px){
         @include fullCenter;
-        align-items: start;
+        align-items: flex-start;
       }
     }
     .content-account{
@@ -339,6 +378,14 @@
     a:hover{
       background-color: $darkGreen;
       color: $white;
+    }
+  }
+}
+
+.debugUpdate{
+  .debugCheck{
+    input{
+      margin-left: 50px;
     }
   }
 }

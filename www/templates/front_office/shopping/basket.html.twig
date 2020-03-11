@@ -35,7 +35,7 @@
                 {% for product in products %}
                     <tr>
                         <td>
-                            <a href="/basket/remove/{{ product.id }}" class="basket-product__remove btn" title="Supprimer">
+                            <a href="/basket/remove/{{ product.id }}" class="basket-product__remove" title="Supprimer">
                                 {% include "./svg/trash.html.twig" %}
                             </a>
                             <a href="#"></a>
@@ -43,7 +43,6 @@
                         <td class="table_img">
                             <a href="/product/{{ product.slug }}">
                                 <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.name }}">
-                                <h2>{{ product.name }}</h2>
                             </a>
                         </td>
                         <td>
@@ -91,7 +90,7 @@
         <div class="panier_space flexStart">
             {# TODO ADD LIEN VERS CONTINUER LIEN VERS CONTINUER ET VIDER #}
             <div class="fullCenter button pop">
-                <a href="#">Continuer Achat</a>
+                <a href="{{ path("homepage") }}">Continuer Achat</a>
                 <a href="#">Vider le panier</a>
             </div>
         </div>

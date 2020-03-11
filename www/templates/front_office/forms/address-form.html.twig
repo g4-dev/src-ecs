@@ -40,56 +40,9 @@
     {{ form_label(address_form.phoneNumber)}}
     {{ form_widget(address_form.phoneNumber)}}
 </div>
-{# TODO ADD BOUTON FONCTIONNEL#}
 <div class="panier_space flexStart add_adressUpdate">
-    <div class="fullCenter button pop">
-        <a class="add_adress" href="#">+ Ajouter cette adresse</a>
+    <div class="fullCenter">
+        <button class="pop add_adress buttonSub" type="submit">+ Ajouter cette adresse</button>
     </div>
 </div>
 {{ form_end(address_form) }}
-
-    {#
-    <div class="form-row">
-        <div class="col form-group">
-            {{ form_label(address_form.postCode, 'Code postal') }}
-            {{ form_widget(address_form.postCode) }}
-        </div>
-        <div class="col form-group">
-            {{ form_label(address_form.city, 'Ville') }}
-            {{ form_widget(address_form.city) }}
-        </div>
-    </div>
-    {{ form_row(address_form.address1, {
-        'label': 'Rue',
-    }) }}
-    {{ form_row(address_form.addressComplement, {
-        'label': 'Complément',
-        'required': false,
-        'attr': {
-            'placeholder': 'appartement, étage, escalier, etc.',
-        },
-    }) }}
-    <div class="form-row">
-        <div class="col form-group">
-            {{ form_label(address_form.postCode, 'Code postal') }}
-            {{ form_widget(address_form.postCode) }}
-        </div>
-        <div class="col form-group">
-            {{ form_label(address_form.city, 'Ville') }}
-            {{ form_widget(address_form.city) }}
-        </div>
-        <div class="col form-group">
-            {{ form_label(address_form.country, 'Country') }}
-            {{ form_widget(address_form.country) }}
-        </div>
-    </div>
-    {{ form_row(address_form.phoneNumber, {
-        'label': 'Téléphone',
-        'required': false,
-    }) }}
-
-    {{ form_row(address_form.type, {
-        'label': 'Type',
-    }) }}
-
-    #}

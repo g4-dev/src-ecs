@@ -8,12 +8,12 @@
             <a class="pro" href="{{ path('proServiceList') }}">Espace pro</a>
 
             {% if is_granted('ROLE_USER') %}
-                <a class="pro" href="{{ path('account') }}">
+                <a class="pro center" href="{{ path('account') }}">
                     {{ app.user.name }}
                     {% include 'svg/user.svg.twig' %}
                 </a>
 
-                <a class="pro" href="{{ path('logout') }}">Logout</a>
+                <a class="pro" href="{{ path('logout') }}">Déconnexion</a>
 
             {% else %}
 

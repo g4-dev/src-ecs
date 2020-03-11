@@ -1,38 +1,40 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-<form class="form app-form" novalidate="" autocomplete="off"  action="{{ path('accountUpdate') }}" method="POST">
-  {{ form_widget(form._token) }}
-  <div class="form-group row">
-    <div class="col-md-8">
-      <label class="form-label">Nom : </label>
-      {{ form_widget(form.name) }}
-      {{ form_errors(form.name) }}
+{{ form_start(form) }}
+
+<div class="nameAndFirst">
+  <div class="form_item">
+    {{ form_label(form.name)}}
+    {{ form_widget(form.name)}}
+  </div>
+  <div class="form_item secondItem">
+    {{ form_label(form.firstName)}}
+    {{ form_widget(form.firstName)}}
+  </div>
+</div>
+
+<div class="form_item">
+  {{ form_label(form.phoneNumber)}}
+  {{ form_widget(form.phoneNumber)}}
+</div>
+
+<div class="form_item">
+  {{ form_label(form.companyName)}}
+  {{ form_widget(form.companyName)}}
+</div>
+
+<div class="formCheckbox">
+  <div>
+    {{ form_label(form.newsLetter, 'Newsletter') }}
+    <div class="errorInput debugCheck">
+      {{ form_widget(form.newsLetter) }}
     </div>
   </div>
-  <div class="form-group row">
-    <div class="col-md-8">
-      <label class="form-label">Prenom : </label>
-      {{ form_widget(form.firstName) }}
-      {{ form_errors(form.firstName) }}
-    </div>
+</div>
+
+<div class="panier_space continueSubmit">
+  <div class="fullCenter">
+    <button class="pop continue" type="submit">Mettre à jour mon compte</button>
   </div>
-  <div class="form-group row">
-    <div class="col-md-8">
-      <label class="form-label">Téléphone : </label>
-      {{ form_widget(form.phoneNumber) }}
-      {{ form_errors(form.phoneNumber) }}
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-md-8">
-      <label class="form-label">Entreprise : </label>
-      {{ form_widget(form.companyName) }}
-      {{ form_errors(form.companyName) }}
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-md-8">
-      <button type="submit" class="btn btn-lg btn-success btn-submit">Save</button>
-    </div>
-  </div>
-</form>
+</div>
+{{ form_end(form) }}
