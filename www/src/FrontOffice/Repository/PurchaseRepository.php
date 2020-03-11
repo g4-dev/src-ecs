@@ -1,6 +1,8 @@
 <?php
 namespace FrontOffice\Repository;
 
+use Admin\Repository\Common;
+use Core\Repository\DuplicateSlugTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -18,24 +20,17 @@ class PurchaseRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Purchase::class);
     }
-
-    public function findOneByIdAndUser(int $orderId, int $userId): ?Purchase
-    {
-        return $this->createQueryBuilder('o')
-            ->where('o.id = :id')
-            ->andWhere('o.user = :user_id')
-            ->setParameter('id', $orderId)
-            ->setParameter('user_id', $userId)
-            ->getQuery()
-            ->getOneOrNullResult();
-    }
+    
     public function findLatest(int $maxResults): array
     {
         return $this->createQueryBuilder('p')
-            ->select('p')
-            ->orderBy('p.createdAt', 'DESC')
-            ->setMaxResults($maxResults)
-            ->getQuery()
-            ->getResult();
+           ->select('p')
+           ->orderBy('p.updatedAt', 'DESC')
+           ->setMaxResults($maxResults)
+           ->getQuery()
+           ->getResult();
     }
+    
+    use Common;
+    use DuplicateSlugTrait;
 }
