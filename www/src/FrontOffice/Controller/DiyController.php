@@ -45,10 +45,8 @@ class DiyController extends AbstractController
     
         if (!$diy) {
             $this->addFlash('error','Il n\'y a pas de DIY avec la page '. $slug);
-            $this->redirectToRoute('diyList',[], 302);
+            return $this->redirectToRoute('diyList');
         }
-        dump($diy);
-        
         return $this->render('front_office/cms/diyShow.html.twig', [
            'diy' => $diy
         ]);

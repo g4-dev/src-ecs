@@ -14,31 +14,9 @@ class DiyRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CmsPage::class);
+        parent::__construct($registry, Diy::class);
     }
     
-    public function findAllQueryBuilder()
-    {
-        return $this->createQueryBuilder('p')
-           ->getQuery();
-    }
-    
-    public function findOneBySlug(string $slug): ?Diy
-    {
-        return $this->createQueryBuilder('p')
-           ->where('p.slug = :slug')
-           ->setParameter('slug', $slug)
-           ->getQuery()
-           ->getOneOrNullResult();
-    }
-
-    public function findLatest(int $maxResults): array
-    {
-        return $this->createQueryBuilder('p')
-            ->select('p')
-            ->orderBy('p.updatedAt', 'DESC')
-            ->setMaxResults($maxResults)
-            ->getQuery()
-            ->getResult();
-    }
+    use DuplicateSlugTrait;
+    use Common;
 }

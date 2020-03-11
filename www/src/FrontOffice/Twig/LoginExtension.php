@@ -35,8 +35,6 @@ class LoginExtension extends AbstractExtension
            '_username' => $this->authUtils->getLastUsername()
         ]);
         
-        dump($target);
-        
         return $this->twig->render('front_office/partials/embed-login.html.twig', [
            'form' => $form->createView(),
            'error' => $this->authUtils->getLastAuthenticationError(),

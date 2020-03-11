@@ -17,7 +17,6 @@
 <body>
 
 {% block body %}
-
   {% include '@fo/partials/header.html.twig' with { currentRoute: currentRoute} %}
 
   {% include '@fo/components/flash-messages.html.twig' %}
@@ -31,7 +30,10 @@
 {% endblock %}
 
 {% block scripts %}{% endblock %}
+
+{# à garder peut servir
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hinclude/0.9.5/hinclude.min.js"></script>
+#}
 
 </body>
 </html>

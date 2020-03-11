@@ -5,6 +5,7 @@ namespace Admin\Entity;
 
 use Core\Entity as CoreEn;
 use Core\Entity\Admin;
+use Core\Entity\Model\Sluggable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,18 +14,14 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * CmsPage
- *
- * @ORM\Table(name="cms_page", indexes={@ORM\Index(name="index_cms_page_id", columns={"id","name"})})
+ * @ORM\MappedSuperclass
+ * @ORM\Table(name="cms_page")
  * @ORM\Entity(repositoryClass="Admin\Repository\CmsPageRepository")
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
- *
  */
-class CmsPage implements CoreEn\Model\Sluggable
+class CmsPage extends AbstractSluggable
 {
-    use CoreEn\Traits\Id;
-    use CoreEn\Traits\Name;
-    use CoreEn\Traits\Slug;
     use CoreEn\Traits\DatesAt;
     use CoreEn\Traits\IsActive;
     
@@ -34,8 +31,6 @@ class CmsPage implements CoreEn\Model\Sluggable
     private $body;
     
     /**
-     * @var CoreEn\Admin
-     *
      * @ORM\ManyToOne(targetEntity="Core\Entity\Admin")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="admin_id", referencedColumnName="id")
@@ -79,12 +74,14 @@ class CmsPage implements CoreEn\Model\Sluggable
     private $cmsCategories;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeCmsPages", cascade={"persist", "remove"})
-     * @ORM\JoinColumns(
-     *     @ORM\JoinColumn(name="setting_id", referencedColumnName="id")
-     * )
+     * @ORM\Column(type="boolean", options={"default": false})
      */
-    private $settingHome;
+    private $onHome = false;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
     
     public function __construct()
     {
@@ -193,14 +190,26 @@ class CmsPage implements CoreEn\Model\Sluggable
         return $this;
     }
 
-    public function getSettingHome(): ?Settings
+    public function getOnHome(): ?bool
     {
-        return $this->settingHome;
+        return $this->onHome;
     }
 
-    public function setSettingHome(?Settings $settingHome): self
+    public function setOnHome(bool $onHome): self
     {
-        $this->settingHome = $settingHome;
+        $this->onHome = $onHome;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

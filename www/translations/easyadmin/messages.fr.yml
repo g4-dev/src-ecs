@@ -86,10 +86,8 @@ Purchase Details: Informations d'achat
 Transactions History: HHistorique des transactions
 
 # settings
-settings.cmsPages: Pages à la une
-settings.products: Produits à la une
-settings.diy: Recettes à la une
-settings.homepage: Configurer la page d'accueil
+onHome: Affiché sur la page d'accueil
+onHome.help: Ajouter ces pages en avant sur la page d'accueil
 menu.settings.nav: Menu
 settings.product.info_last_if_empty: Laisser vide pour afficher les dernier éléments
 # Roles

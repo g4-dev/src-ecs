@@ -16,7 +16,7 @@ easy_admin:
               icon: 'shopping-basket'
               children:
                   - { entity: 'Product', icon: 'th-list', label: 'menu.product.list', params: { sortField: 'updatedAt' }, default: true }
-                  - { entity: 'Category', icon: 'tags', label: 'menu.category' }
+                  - { entity: 'ProductCategory', icon: 'tags', label: 'menu.category' }
                   - { entity: 'Product', icon: 'plus-circle', label: 'menu.product.add', params: { action: 'new' } }
 
             - label: 'menu.proservice'
@@ -32,14 +32,12 @@ easy_admin:
                   - { entity: 'CmsCategory', icon: 'tags', label: 'menu.articles.category' }
                   - { entity: 'Diy', icon: 'recycle', label: 'menu.diy' }
                   - { entity: 'NewsLetter', icon: 'paper', label: 'menu.newsletter' }
-
             - { label: 'menu.customer', entity: 'User', icon: 'users' }
-
             - { label: 'menu.purchase', entity: 'Purchase', icon: 'credit-card', params: { sortField: 'deliveryDate' } }
 
             - label: 'menu.settings'
               icon: 'cogs'
               children:
                   - { icon: 'grip-horizontal', label: 'menu.settings.nav', entity: 'Nav', params: { sortField: 'position' } }
-                  - { icon: 'bars', label: 'menu.settings.homepage', entity: 'Settings', params: { action: 'edit', id: 1 } }
+                  #- { icon: 'bars', label: 'menu.settings.homepage', entity: 'Settings', params: { action: 'edit', id: 1 } }
                   - { icon: 'users', label: 'menu.admin', entity: 'Admin' }

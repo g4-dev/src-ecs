@@ -39,13 +39,12 @@ class BasketController extends \Frontoffice\Controller\AbstractController
     }
 
     /**
-     * @Route("/basket/{id}/add", name="basketAdd", requirements={"page": "\d+"}, methods={"GET","POST"})
+     * @Route("/basket/{id}/add", name="basketAdd", requirements={"page": "\d+"}, methods={"GET"})
      * @param $id
      * @return RedirectResponse
      */
     public function addBasketAction(int $id)
     {
-        dump($id);
         $product = $this->getDoctrine()
             ->getRepository(Product::class)
             ->find($id);
@@ -59,11 +58,9 @@ class BasketController extends \Frontoffice\Controller\AbstractController
         } else {
             $this->addFlash('primary', 'Le produit n\'est plus en stock');
         }
-
-        $slug = $product->getSlug();
-
+        
         return $this->redirectToRoute('productShow', [
-            'slug' => $slug,
+            'slug' => $product->getSlug(),
         ]);
     }
 

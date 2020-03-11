@@ -6,9 +6,11 @@
 
 {% block main %}
     <div class="top-category">
-        {% include "@fo/partials/category-header.html.twig" %}
-        {#<div class="products-list products-list-top">
-            <a href="#" class="product-minia">
+        {% include "@fo/partials/category-header.html.twig" with { 'description': category.description, 'image': category.image } %}
+
+        <div class="products-list products-list-top">
+            {% for product in products %}
+            <a href="{{ path('productShow',{ slug: product.slug }) }}" class="product-minia">
                 <div>
                     <img src="{{ asset('images/produit.png') }}">
                     <div class="description">
@@ -19,6 +21,7 @@
                 <h2 class="gel-bold">Lorem</h2>
                 <p class="pop">XX.xx €</p>
             </a>
+            {% endfor %}
             <a href="#" class="product-minia">
                 <div>
                     <img src="{{ asset('images/produit.png') }}">
@@ -76,7 +79,7 @@
             </div>
             <h2 class="gel-bold">Lorem</h2>
             <p class="pop">XX.xx €</p>
-        </a>#}
+        </a>
     </div>
 {% endblock %}
 

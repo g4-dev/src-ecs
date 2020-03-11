@@ -6,6 +6,7 @@ namespace FrontOffice\Controller;
 use Admin\Entity\AbstractCategory;
 use Admin\Entity\Product;
 use Admin\Entity\ProductCategory;
+use Pagerfanta\Adapter\DoctrineCollectionAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +18,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/products/{slug}/{page?1}", name="productList")
      */
-    public function listAction(Request $req, string $slug, ?int $page = 1)
+    public function productList(Request $req, string $slug, ?int $page = 1)
     {
         // TODO: prendre le code de easyadmin pour faire la pagination
         // Pagination de tout
@@ -43,7 +44,7 @@ class ProductController extends AbstractController
      * @param $slug
      * @return Response
      */
-    public function showAction(string $slug)
+    public function productShow(string $slug)
     {
         $product = $this->getDoctrine()
            ->getRepository(Product::class)
@@ -61,15 +62,16 @@ class ProductController extends AbstractController
     /**
      * @Route("/category/products/{slug}/{page?1}", name="productCategoryList", requirements={"slug"="^[A-Za-z0-9-]*$"})
      */
-    public function listProductsByCategoryAction(string $slug,  Request $req, ?int $page = 1)
+    public function productCategoryList(Request $req, string $slug,  ?int $page = 1)
     {
         // Pagination de tout
-        $qb = $this->getDoctrine()
+        $category = $this->getDoctrine()
             ->getRepository(ProductCategory::class)
-            ->findOneBySlug()
-            ->findAllQueryBuilder();
-        dump($qb);
-        $adapter = new DoctrineORMAdapter($qb);
+            ->findOneBySlug($slug);
+        
+        $products = $category->getProducts();
+    
+        $adapter = new DoctrineCollectionAdapter($products);
         $pagerfanta = new Pagerfanta($adapter);
         $pagerfanta->setMaxPerPage(10);
         $pagerfanta->setCurrentPage($page);
@@ -77,6 +79,7 @@ class ProductController extends AbstractController
         //vue temporaire en attendant pour tester l'ajout au panier
         return $this->render('@fo/shopping/productList.html.twig', [
             'products' => $pagerfanta,
+            'category' => $category,
             'slug' => $slug
         ]);
     }

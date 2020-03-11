@@ -40,33 +40,32 @@ class InitSettingsCommand extends Command
     
     public function execute(?InputInterface $input, ?OutputInterface $output)
     {
-        $actualSettings = $this->doctrine->getRepository(Settings::class)
-           ->find(self::UNIQUE_ROW_ID);
+        $entityManager = $this->doctrine->getManager();
+        $products = $this->getLastItems(Product::class, 3);
         
-        if($actualSettings){
-            echo "Settings already here - [SKIPPING] \n";
-            return 0;
+        foreach ($products as $c) {
+            $c->setOnhome(true);
+            $entityManager->persist($c);
+        }
+    
+        $diys = $this->getLastItems(Diy::class, 4);
+        
+        foreach ($diys as $d) {
+            $d->setOnhome(true);
+            $entityManager->persist($d);
+        }
+    
+        $cmsPages = $this->getLastItems(Diy::class, 2);
+        
+        foreach ($cmsPages as $c) {
+            $c->setOnhome(true);
+            $entityManager->persist($c);
         }
         
-        $this->createSiteSettings();
         echo "Settings created \n";
         return 0;
     }
-    
-    public function createSiteSettings()
-    {
-        $entityManager = $this->doctrine->getManager();
-        $page = $this->getLastItems(CmsPage::class,1);
-        $product = $this->getLastItems(Product::class,1);
-        
-        $settings = new Settings();
-        $page ? $settings->addHomeCmsPage($page[0]) : null;
-        $product ? $settings->addHomeProduct($product[0]): null;
-    
-        $entityManager->persist($settings);
-        $entityManager->flush();
-    }
-    
+
     protected function getLastItems($entity, $qty)
     {
         return $this->doctrine->getRepository($entity)->findBy(

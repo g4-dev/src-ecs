@@ -21,6 +21,7 @@ class LoadCmsPages extends Fixture implements OrderedFixtureInterface
             $cmsPage = new CmsPage();
             $cmsPage->setIsActive((rand(1, 1000) % 10) < 7);
             $cmsPage->setName($this->getRandomName());
+            $cmsPage->setDescription($this->getRandomBody());
             $cmsPage->setImage('image'.($i % 10).'.jpg');
             $cmsPage->setCmsCategories($this->getRandomCategories());
             $cmsPage->setBody("<div><h1>DUMMY CONTENT ".$i."</h1>".$this->getRandomBody()."</div>");

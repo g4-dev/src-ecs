@@ -2,12 +2,12 @@
 
 namespace Fixtures\DataFixtures\Prod;
 
+use Admin\Entity\Diy;
 use Core\Helper\Slugger;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Admin\Entity\Product;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadProducts extends Fixture implements OrderedFixtureInterface
 {
@@ -19,21 +19,37 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
 
     public function load(ObjectManager $manager)
     {
+        // PRODUCT
         foreach (range(0, 99) as $i) {
-            $product = new Product();
-            $product->setIsActive((rand(1, 1000) % 10) < 7);
-            $product->setName($this->getRandomName());
-            $product->setDescription($this->getRandomDescription());
-            $product->setPrice($this->getRandomPrice());
-            $product->setEan($this->getRandomEan());
-            $product->setImage('image'.($i % 10).'.jpg');
-            $product->setProductCategories($this->getRandomCategories());
-            $product->setTags($this->getRandomTags());
-            $product->setFeatures($this->getRandomFeatures());
-            $product->setStock(rand(1, 100));
+            $item = new Product();
+            $item->setIsActive((rand(1, 1000) % 10) < 7);
+            $item->setName($this->getRandomName());
+            $item->setDescription($this->getRandomDescription());
+            $item->setPrice($this->getRandomPrice());
+            $item->setEan($this->getRandomEan());
+            $item->setImage('image'.($i % 10).'.jpg');
+            $item->setProductCategories($this->getRandomCategories());
+            $item->setTags($this->getRandomTags());
+            $item->setFeatures($this->getRandomFeatures());
+            $item->setStock(rand(1, 100));
     
-            $this->addReference('product-'.$i, $product);
-            $manager->persist($product);
+            $this->addReference('product-'.$i, $item);
+            $manager->persist($item);
+        }
+    
+        // DIY
+        foreach (range(0, 99) as $i) {
+            $item = new Diy();
+            $item->setIsActive((rand(1, 1000) % 10) < 7);
+            $item->setName($this->getRandomName());
+            $item->setBody($this->getRandomDescription());
+            $item->setSummary($this->getRandomDescription());
+            $item->setDifficulty(rand(1,4));
+            $item->setTime(rand(1,4).'m');
+            $item->setImage('image'.($i % 10).'.jpg');
+        
+            $this->addReference('diy-'.$i, $item);
+            $manager->persist($item);
         }
 
         $manager->flush();

@@ -1,46 +1,14 @@
 <?php
 
 
-namespace Core\Entity;
+namespace Core\Entity\Traits;
 
-use Core\Entity\Traits\Id;
-use Core\Entity\Traits\Name;
-use Doctrine\ORM\Mapping as ORM;
+use Core\Entity\Image;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * Image
- *
- * @ORM\Table()
- * @ORM\Entity()
- * @Vich\Uploadable
- */
-class Image
+trait ImageGetters
 {
-    use Id;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-    
-    /**
-     * @var File
-     *
-     * @Vich\UploadableField(mapping="default_images", fileNameProperty="image")
-     */
-    private $imageFile;
-    
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime", length=255)
-     */
-    private $updatedAt;
-    
     /**
      * @param File|null $image
      * @return Image

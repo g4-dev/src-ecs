@@ -24,9 +24,9 @@
         {% for diy in diys %}
             <div>
                 <div class="cont-item-img">
-                    <a href="{{ path('diyShow', diy.slug) }}"><img src="{{ vich_uploader_asset(diy, 'imageFile') }}" alt="{{ diy.image }}"></a>
+                    <a href="{{ path('diyShow', { slug: diy.slug}) }}"><img src="{{ vich_uploader_asset(diy, 'imageFile') }}" alt="{{ diy.image }}"></a>
                 </div>
-                <p class="gel-bold">{{ diy.description }}</p>
+                <p class="gel-bold">{{ diy.summary }}</p>
             </div>
         {% endfor %}
         <div>
@@ -54,7 +54,7 @@
             <p class="gel-bold">Lorem</p>
         </div>
     </div>
-    <a href="{{ path('diyList', {page: diys.currentPage + 1}) }}" class="btn btn-voir-plus pop">Voir plus</a>
+    <a href="{{ path('diyList', { page: diys.currentPage + 1 }) }}" class="btn btn-voir-plus pop">Voir plus</a>
 {% endblock %}
 
 {% block scripts %}

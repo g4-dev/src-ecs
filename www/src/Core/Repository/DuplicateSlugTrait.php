@@ -4,6 +4,8 @@
 namespace Core\Repository;
 
 
+use Admin\Entity\AbstractSluggable;
+
 trait DuplicateSlugTrait
 {
     public function findDuplicateSlug(?int $id, string $slug): ?Product
@@ -23,6 +25,15 @@ trait DuplicateSlugTrait
         return $queryBuilder
            ->orderBy('p.slug', 'DESC')
            ->setMaxResults(1)
+           ->getQuery()
+           ->getOneOrNullResult();
+    }
+    
+    public function findOneBySlug(string $slug): ?AbstractSluggable
+    {
+        return $this->createQueryBuilder('p')
+           ->where('p.slug = :slug')
+           ->setParameter('slug', $slug)
            ->getQuery()
            ->getOneOrNullResult();
     }

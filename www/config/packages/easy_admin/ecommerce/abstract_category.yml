@@ -9,4 +9,5 @@ easy_admin:
                     - { property: 'name', label: 'Label' }
                     - { property: 'parent', label: 'Parent category' }
                     - { property: 'slug', template: '@admin/custom-fields/category-link.html.twig', label: 'links.category', route: 'productCategoryList' }
+                    - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }
 

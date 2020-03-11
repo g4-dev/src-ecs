@@ -5,6 +5,7 @@ namespace Admin\Entity;
 
 use Core\Entity as CoreEn;
 use Core\Entity\Admin;
+use Core\Entity\Model\Sluggable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -12,21 +13,17 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Article
  *
- * @ORM\Table(name="cms_diy", indexes={@ORM\Index(name="index_cms_page_id", columns={"id","name"})})
+ * @ORM\MappedSuperclass
+ * @ORM\Table(name="cms_diy")
  * @ORM\Entity(repositoryClass="Admin\Repository\DiyRepository")
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
- *
  */
-class Diy implements \Core\Entity\Model\Sluggable
+class Diy extends AbstractSluggable
 {
     // Name == title
-    use CoreEn\Traits\Name;
-    use CoreEn\Traits\Id;
     use CoreEn\Traits\DatesAt;
-    use CoreEn\Traits\Slug;
     use CoreEn\Traits\IsActive;
-    const MAP_TABLE = 'diy_images';
     use CoreEn\Traits\ImageCollection;
     
     /**
@@ -48,16 +45,19 @@ class Diy implements \Core\Entity\Model\Sluggable
      * @var CoreEn\Admin
      *
      * @ORM\ManyToOne(targetEntity="Core\Entity\Admin")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="admin_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(nullable=true)
      */
     private $author;
     
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $time;
+    
+    /**
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    private $onHome = false;
     
     /**
      * It only stores the name of the image associated with the product.
@@ -77,11 +77,6 @@ class Diy implements \Core\Entity\Model\Sluggable
      * @var File
      */
     private $imageFile;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeDiys", cascade={"persist", "remove"})
-     */
-    private $settingHome;
     
     public function __construct()
     {
@@ -111,26 +106,6 @@ class Diy implements \Core\Entity\Model\Sluggable
         $this->author = $author;
         
         return $this;
-    }
-    
-    /**
-     * Set the list of the tags.
-     *
-     * @param \string[] $tags
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-    }
-    
-    /**
-     * Get the list of tags associated to the product.
-     *
-     * @return \string[]
-     */
-    public function getTags()
-    {
-        return $this->tags;
     }
     
     /**
@@ -171,18 +146,6 @@ class Diy implements \Core\Entity\Model\Sluggable
         return $this;
     }
 
-    public function getSettingHome(): ?Settings
-    {
-        return $this->settingHome;
-    }
-
-    public function setSettingHome(?Settings $settingHome): self
-    {
-        $this->settingHome = $settingHome;
-
-        return $this;
-    }
-
     public function getSummary(): ?string
     {
         return $this->summary;
@@ -207,14 +170,26 @@ class Diy implements \Core\Entity\Model\Sluggable
         return $this;
     }
 
-    public function getTime(): ?int
+    public function getTime(): ?string
     {
         return $this->time;
     }
 
-    public function setTime(int $time): self
+    public function setTime(string $time): self
     {
         $this->time = $time;
+
+        return $this;
+    }
+
+    public function getOnHome(): ?bool
+    {
+        return $this->onHome;
+    }
+
+    public function setOnHome(bool $onHome): self
+    {
+        $this->onHome = $onHome;
 
         return $this;
     }

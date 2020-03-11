@@ -1,6 +1,6 @@
 easy_admin:
     entities:
-        Category:
+        ProductCategory:
             class: Admin\Entity\ProductCategory
             label: 'Categories'
             list:
@@ -16,8 +16,6 @@ easy_admin:
                     - 'products'
                     - { property: 'slug', template: '@admin/custom-fields/category-link.html.twig', label: 'links.category', route: 'productCategoryList' }
 
-
-
             show:
                 fields:
                     - 'id'
@@ -25,6 +23,7 @@ easy_admin:
                     - { property: 'parent', label: 'Parent category' }
                     - 'products'
                     - { property: 'slug', template: '@admin/custom-fields/category-link.html.twig', label: 'links.category', route: 'productCategoryList' }
+                    - { property: 'image', type: 'image', base_path: '%ecs.path.default_images%' }
 
             form:
                 fields:
@@ -33,3 +32,5 @@ easy_admin:
                     - { property: 'parent', type: 'easyadmin_autocomplete', label: 'Parent category' }
                     # if you want to add products when creating categories, add the 'by_reference' option
                     - { property: 'products', type_options: { by_reference: false } }
+                    - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: true } }
+

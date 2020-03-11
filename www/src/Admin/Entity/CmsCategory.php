@@ -2,6 +2,7 @@
 
 namespace Admin\Entity;
 
+use Core\Entity\Model\Sluggable;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class CmsCategory.
  *
  * @ORM\Table(name="cms_category")
- * @ORM\Entity(repositoryClass="Admin\Repository\CategoryRepository")
+ * @ORM\Entity(repositoryClass="Admin\Repository\CmsCategoryRepository")
  * @ORM\MappedSuperclass
  */
 class CmsCategory extends AbstractCategory

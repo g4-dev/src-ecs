@@ -27,7 +27,7 @@ class AuthController extends \FrontOffice\Controller\AbstractController
         ]);
         
         if ($this->getUser()) {
-            return $this->redirectToRoute($request->get('_target_path'));
+            return $this->redirectToRoute($request->get('_target_path') ?? 'homepage');
         }
         
         return $this->render('front_office/accounting/login.html.twig', [

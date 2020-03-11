@@ -6,6 +6,7 @@ namespace Admin\Entity;
 use Core\Entity\Model\Sluggable;
 use Core\Entity\Traits;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FrontOffice\Entity\PurchaseItem;
 use Symfony\Component\HttpFoundation\File\File;
@@ -15,20 +16,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class Product.
  *
+ * @ORM\MappedSuperclass
  * @ORM\Entity
  * @ORM\Table(name="product")
  * @ORM\Entity(repositoryClass="Admin\Repository\ProductRepository")
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
  */
-class Product implements Sluggable
+class Product extends AbstractSluggable
 {
-    use Traits\Id;
-    use Traits\Name;
     use Traits\DatesAt;
-    use Traits\Slug;
     use Traits\IsActive;
-    const MAP_TABLE = 'product_images';
     use Traits\ImageCollection;
     
     /**
@@ -94,6 +92,11 @@ class Product implements Sluggable
      * @ORM\Column(type="text")
      */
     private $description;
+    
+    /**
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    private $onHome = false;
 
     /**
      * List of categories where the products is
@@ -115,13 +118,7 @@ class Product implements Sluggable
      * @ORM\OneToMany(targetEntity="FrontOffice\Entity\PurchaseItem", mappedBy="product", cascade={"remove"})
      */
     private $purchasedItems;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Settings", inversedBy="homeProducts", cascade={"persist", "remove"})
-     */
-    private $settingHome;
     
-
     public function __construct()
     {
         $this->productCategories = new ArrayCollection();
@@ -369,14 +366,14 @@ class Product implements Sluggable
         return $this;
     }
 
-    public function getSettingHome(): ?Settings
+    public function getOnHome(): ?bool
     {
-        return $this->settingHome;
+        return $this->onHome;
     }
 
-    public function setSettingHome(?Settings $settingHome): self
+    public function setOnHome(bool $onHome): self
     {
-        $this->settingHome = $settingHome;
+        $this->onHome = $onHome;
 
         return $this;
     }

@@ -10,11 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Category.
  *
- * @ORM\Table(name="product_category")
- * @ORM\Entity(repositoryClass="\Admin\Repository\CategoryRepository")
  * @ORM\MappedSuperclass
+ * @ORM\Table(name="product_category")
+ * @ORM\Entity(repositoryClass="Admin\Repository\ProductCategoryRepository")
  */
-class ProductCategory extends AbstractCategory implements Sluggable
+class ProductCategory extends AbstractCategory
 {
     /**
      * Product in the category.

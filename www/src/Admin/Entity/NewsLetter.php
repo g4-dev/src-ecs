@@ -77,4 +77,11 @@ class NewsLetter
 
         return $this;
     }
+
+    public function setAdmin(?Admin $admin): self
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
 }

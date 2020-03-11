@@ -74,7 +74,8 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
         resolve_target_entities:
-            Core\Entity\Model\Sluggable: Admin\Entity\AbstractCategory
+           Core\Entity\Model\Sluggable: Admin\Entity\AbstractSluggable
+
         mappings:
             Core:
                 is_bundle: false
