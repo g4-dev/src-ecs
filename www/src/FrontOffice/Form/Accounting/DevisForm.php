@@ -11,10 +11,14 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\IsNull;
+
 
 class DevisForm extends AbstractType
 {
@@ -35,7 +39,7 @@ class DevisForm extends AbstractType
                     new NotBlank(),
                 ]
             ])
-            ->add('phoneNumber', TextType::class, [
+            ->add('phoneNumber', TelType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Téléphone', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -69,19 +73,27 @@ class DevisForm extends AbstractType
                     ])
                 ]
             ])
-            ->add('yellowTrashCan', CheckboxType::class, [
-                'label'    => 'Poubelle Jaune',
-                'required' => false,
+            ->add('yellowTrashCan', ChoiceType::class, [
+                'choices'  => [
+                    'Oui' => true,
+                    'Non' => false,
+                ],
+                'expanded' => true,
             ])
-            ->add('blueTrashCan', CheckboxType::class, [
-            'label'    => 'Poubelle Bleu',
-            'required' => false,
+            ->add('blueTrashCan', ChoiceType::class, [
+                'choices'  => [
+                    'Oui' => true,
+                    'Non' => false,
+                ],
+                'expanded' => true,
             ])
-
-           ->add('news_letter', CheckboxType::class, [
-              'required' => false,
-              'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
-           ])
+            ->add('news_letter', ChoiceType::class, [
+                'choices'  => [
+                    'Oui' => true,
+                    'Non' => false,
+                ],
+                'expanded' => true,
+            ])
             ->add('submit', SubmitType::class, ['label' => 'Valider mon inscription',
                 'attr' => [
                     'hidden' => true,

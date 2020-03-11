@@ -31,8 +31,38 @@ class ProController extends AbstractController
         $form = $this->createForm(DevisForm::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $mailer->broadcastToAdmins($mailer->createTwigMessage("Devis", 'front_office/proDevisMailReturned.html.twig'));
-            $this->addFlash('success', 'Envoi du mail effectuer');
+
+            $nom = $request->request->get("devis_form")['name'];
+            $firstName = $request->request->get("devis_form")['firstName'];
+            $phoneNumber = $request->request->get("devis_form")['phoneNumber'];
+            $address = $request->request->get("devis_form")['address'];
+            $companyName = $request->request->get("devis_form")['companyName'];
+            $email = $request->request->get("devis_form")['email'];
+            $yellowTrashCan = $request->request->get("devis_form")['yellowTrashCan'];
+            $blueTrashCan = $request->request->get("devis_form")['blueTrashCan'];
+            $news_letter = $request->request->get("devis_form")['news_letter'];
+            if ($yellowTrashCan == 1){$yellowTrashCan = "Oui";}
+            else{$yellowTrashCan = "Non";}
+            if ($blueTrashCan == 1){$blueTrashCan = "Oui";}
+            else {$blueTrashCan = "Non";}
+            if ($news_letter == 1){$news_letter = "Oui";}
+            else{$news_letter = "Non";}
+
+            $mailer->broadcastToAdmins($mailer->createTwigMessage(
+                "Devis",
+                'mail/devisMail.html.twig',
+                ['name' => $nom,
+                'firstName'=> $firstName,
+                'phoneNumber'=> $phoneNumber,
+                'address'=> $address,
+                'companyName'=> $companyName,
+                'email'=> $email,
+                'yellowTrashCan'=> $yellowTrashCan,
+                'blueTrashCan'=> $blueTrashCan,
+                'news_letter'=> $news_letter,
+                ],
+                ));
+            $this->addFlash('success', 'Envoi du mail effectué');
             return $this->redirectToRoute('proServiceList');
         }
         return $this->render('front_office/proDevis.html.twig', [
