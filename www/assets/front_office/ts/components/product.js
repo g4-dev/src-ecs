@@ -14,13 +14,13 @@ for(let i=0; i<3; i++)
     });
 }
 
-couleur.click(function(this: HTMLElement)
+couleur.click(function()
 {
     $(this).append("<div class='selectCouleur'></div>");
     $(this).attr('select', 'true');
 });
 
-taille.click(function(this: HTMLElement)
+taille.click(function()
 {
     $(this).toggleClass('selectTaille');
 });
