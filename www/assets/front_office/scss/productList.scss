@@ -10,6 +10,17 @@ $widthProduct:330px;
   }
 }
 
+.title-all-products{
+  text-align: center;
+  font-size:$f40;
+  color: $darkGreen;
+  margin:50px 0;
+}
+
+.all-products{
+  flex-wrap: wrap;
+}
+
 .products-list{
   display: flex;
   flex-direction: row;

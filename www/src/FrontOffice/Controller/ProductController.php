@@ -27,7 +27,7 @@ class ProductController extends AbstractController
            ->findAllQueryBuilder();
         $adapter = new DoctrineORMAdapter($qb);
         $pagerfanta = new Pagerfanta($adapter);
-        $pagerfanta->setMaxPerPage(10);
+//        $pagerfanta->setMaxPerPage(10);
         $pagerfanta->setCurrentPage($page);
         
         dump($pagerfanta);
