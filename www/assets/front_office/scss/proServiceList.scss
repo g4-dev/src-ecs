@@ -12,6 +12,8 @@
   color: $darkGrey;
   font-size: 1.8rem;
   display: block;
+  width: 25%;
+  text-align: center;
   margin: 32px 0 0 128px;
 }
 
@@ -139,6 +141,11 @@
     font-size: 2.5rem;
     margin-top: -8px;
   }
+  .devis{
+    width: 40%;
+    text-align: center;
+  }
+
 
 }
 
