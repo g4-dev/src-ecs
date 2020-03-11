@@ -1,78 +1,324 @@
-{% extends '@EasyAdmin/default/layout.html.twig' %}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|split('_')|first|default('en') }}" dir="{{ easyadmin_config('design.rtl') ? 'rtl' : 'ltr' }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noodp, noimageindex, notranslate, nocache" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="generator" content="EasyAdmin" />
+    {% set _content_title = 'Accueil - Tableau de bord' %}
+    <title>{{ _content_title }}</title>
+
+    {% block head_stylesheets %}
+        {% if easydmin_asset_config is defined %}
+            {{ encore_entry_link_tags(easydmin_asset_entry|default('js/app'), null, easydmin_asset_config) }}
+        {% else %}
+            <link rel="stylesheet" href="{{ asset('bundles/easyadmin/app.css') }}">
+        {% endif %}
+    {% endblock %}
+
+    {% block head_custom_stylesheets %}
+        {% for css_asset in easyadmin_config('design.assets.css') %}
+            <link rel="stylesheet" href="{{ asset(css_asset) }}">
+        {% endfor %}
+    {% endblock head_custom_stylesheets %}
+
+    {% if easyadmin_config('design.brand_color') != 'hsl(230, 55%, 60%)' %}
+        <style>
+            :root { --color-primary: {{ easyadmin_config('design.brand_color') }}; }
+        </style>
+    {% endif %}
+
+    {% block head_favicon %}
+        {% set favicon = easyadmin_config('design.assets.favicon') %}
+        <link rel="icon" type="{{ favicon.mime_type }}" href="{{ asset(favicon.path) }}" />
+    {% endblock %}
+
+    {% block head_javascript %}
+        {% if easydmin_asset_config is defined %}
+            {{ encore_entry_script_tags(easydmin_asset_entry|default('js/app'), null, easydmin_asset_config) }}
+        {% else %}
+            <script src="{{ asset('bundles/easyadmin/app.js') }}" type="text/javascript"></script>
+        {% endif %}
+    {% endblock head_javascript %}
+
+    {% if easyadmin_config('design.rtl') %}
+        <link rel="stylesheet" href="{{ asset('easyadmin/app.rtl.css') }}">
+        <link rel="stylesheet" href="{{ asset('easyadmin/app-custom-rtl.css') }}">
+    {% endif %}
+</head>
+
+{% block body %}
+    <body id="{% block body_id %}{% endblock %}" class="easyadmin {% block body_class %}{% endblock %}">
+    <script>
+        document.body.classList.add(
+            'easyadmin-content-width-' + (localStorage.getItem('easyadmin/content/width') || 'normal'),
+            'easyadmin-sidebar-width-' + (localStorage.getItem('easyadmin/sidebar/width') || 'normal')
+        );
+    </script>
+
+    {% block wrapper_wrapper %}
+        <div class="wrapper">
+            {% block wrapper %}
+                <aside class="main-sidebar">
+                    <div class="fixed-menu">
+                        {% block sidebar %}
+                            <nav class="navbar p-0" role="navigation">
+                                <button id="navigation-toggler" type="button" aria-label="Toggle navigation">
+                                    <i class="fa fa-fw fa-bars"></i>
+                                </button>
+                                <div id="header-logo">
+                                    {% block header_logo %}
+                                        <a class="logo {{ easyadmin_config('site_name')|length > 14 ? 'logo-long' }}" title="{{ easyadmin_config('site_name')|striptags }}" href="{{ path('easyadmin') }}">
+                                            {{ easyadmin_config('site_name')|raw }}
+                                        </a>
+                                    {% endblock header_logo %}
+                                </div>
+                                <hr/>
+                            </nav>
+
+                            <section class="sidebar">
+                                {% block main_menu_wrapper %}
+                                    {{ include([
+                                        _entity_config is defined ? _entity_config.templates.menu,
+                                        easyadmin_config('design.templates.menu'),
+                                        '@EasyAdmin/default/menu.html.twig'
+                                    ]) }}
+                                {% endblock main_menu_wrapper %}
+                            </section>
+
+                        {% endblock sidebar %}
+                    </div>
+                </aside>
+
+                <div class="content-wrapper">
+                    {% block flash_messages %}
+                        {{ include(_entity_config is defined ? _entity_config.templates.flash_messages : '@EasyAdmin/default/flash_messages.html.twig') }}
+                    {% endblock flash_messages %}
+
+                    {% block content %}
+                        <div class="content">
+                            <header class="main-header">
+                                {% block header %}
+                                    <div class="content-header-title">
+                                        <h1 class="title">{{ _content_title }}</h1>
+                                    </div>
+                                    {% set _user_name = easyadmin_read_property(app.user, easyadmin_config('user.name_property_path'))|default('user.unnamed'|trans(domain = 'EasyAdminBundle')) %}
+                                    {% set _logout_path = easyadmin_logout_path() %}
+                                    {% set _user_has_logout = _logout_path is not empty %}
+                                    {% set _user_is_impersonated = is_granted('ROLE_PREVIOUS_ADMIN') %}
+                                    {% set _user_menu_content %}
+                                        <div class="popover-content-section user-details {{ _user_has_logout or _user_is_impersonated ? 'user-has-actions' }}">
+                                            <p class="small text-muted mb-0">{{ 'user.logged_in_as'|trans(domain = 'EasyAdminBundle') }}</p>
+                                            <p class="user-details-name">
+                                                {% if app.user|default(false) == false %}
+                                                    {{ 'user.anonymous'|trans(domain = 'EasyAdminBundle') }}
+                                                {% else %}
+                                                    {{ _user_name }}
+                                                {% endif %}
+                                            </p>
+                                        </div>
+
+                                        {% block user_menu %}
+                                            {% if _user_has_logout or _user_is_impersonated %}
+                                                <div class="popover-content-section user-menu">
+                                                    {% if _user_has_logout %}
+                                                        <a class="user-action user-action-logout" href="{{ _logout_path }}">{{ 'user.signout'|trans(domain = 'EasyAdminBundle') }}</a>
+                                                    {% endif %}
+                                                    {% if _user_is_impersonated %}
+                                                        <a class="user-action user-action-exit-impersonation" href="?_switch_user=_exit">{{ 'user.exit_impersonation'|trans(domain = 'EasyAdminBundle') }}</a>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                        {% endblock user_menu %}
+                                    {% endset %}
+
+                                    <div class="content-top navbar-custom-menu">
+                                        {% block header_custom_menu %}
+                                            <div class="user user-menu-wrapper {{ _user_is_impersonated ? 'user-is-impersonated' }}" data-toggle="popover" data-placement="bottom" data-container=".user-menu-wrapper" data-content="{{ _user_menu_content|e('html_attr') }}" data-html="true">
+                                                {% if easyadmin_config('user.display_avatar') %}
+                                                    {% set _avatar_image_path = easyadmin_read_property(app.user, easyadmin_config('user.avatar_property_path')) %}
+                                                    {% if null == _avatar_image_path %}
+                                                        <i class="fa fa-fw {{ app.user is not null ? 'fa-user-circle' : 'fa-user-times' }} user-avatar"></i>
+                                                    {% else %}
+                                                        <img class="user-avatar" src="{{ _avatar_image_path }}" />
+                                                    {% endif %}
+                                                {% endif %}
+                                                {% if easyadmin_config('user.display_name') %}
+                                                    <span class="user-name">{{ _user_name }}</span>
+                                                {% endif %}
+                                            </div>
+                                        {% endblock header_custom_menu %}
+                                    </div>
+                                {% endblock header %}
+                            </header>
+
+                            <section id="main" class="content-body mx-4">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-6 px-0 mr-2">
+                                            <table class="table datagrid mb-2 p-2">
+                                                <thead>
+                                                <tr>
+                                                    <th><a href="#">Produit</a></th>
+                                                    <th><a href="#">Prix</a></th>
+                                                    <th><a href="#">Stock</a></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for product in lastProducts %}
+                                                    <tr>
+                                                        <td class="string">{{ product.name }}</td>
+                                                        <td class="integer">{{ product.price }}</td>
+                                                        <td class="integer">{{ product.stock }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <table class="table datagrid mt-2 p-2">
+                                                <thead>
+                                                <tr>
+                                                    <th><a href="#">Recette</a></th>
+                                                    <th><a href="#">Date</a></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for diy in lastDiy %}
+                                                    <tr>
+                                                        <td class="string">{{ diy.name }}</td>
+                                                        <td class="sorted datetime ">{{ diy.updatedAt|date("d/m/Y") }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-6 px-0 ml-2">
+                                            {#                                            <table class="table datagrid mt-3 p-2">#}
+                                            {#                                                <thead>#}
+                                            {#                                                <tr>#}
+                                            {#                                                    <th><a href="#">Reference</a></th>#}
+                                            {#                                                    <th><a href="#">Total</a></th>#}
+                                            {#                                                    <th><a href="#">Date</a></th>#}
+                                            {#                                                </tr>#}
+                                            {#                                                </thead>#}
+                                            {#                                                <tbody>#}
+                                            {#                                                {% for purchase in lastPurchases %}#}
+                                            {#                                                    <tr>#}
+                                            {#                                                        <td class="string">{{ purchase.name }}</td>#}
+                                            {#                                                        <td class="string">{{ purchase.name }}</td>#}
+                                            {#                                                        <td class="sorted datetime"></td>#}
+                                            {#                                                    </tr>#}
+                                            {#                                                {% endfor %}#}
+                                            {#                                                </tbody>#}
+                                            {#                                            </table>#}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% for product in lastProducts %}
+                                {% endfor %}
+                            </section>
+                        </div>
+                    {% endblock content %}
+                    <div id="content-resizer-handler" class="resizer-handler resizer-handler-right"></div>
+                </div>
+            {% endblock wrapper %}
+        </div>
+    {% endblock wrapper_wrapper %}
+
+    {% block body_javascript %}{% endblock body_javascript %}
+
+    {% block body_custom_javascript %}
+        {% for js_asset in easyadmin_config('design.assets.js') %}
+            <script src="{{ asset(js_asset) }}"></script>
+        {% endfor %}
+    {% endblock body_custom_javascript %}
+
+    </body>
+{% endblock body %}
+</html>
+
+
+{#{% extends '@EasyAdmin/default/layout.html.twig' %}#}
 
 {# TODO: Ici ajouter des bloc correspondants aux dernier produit/commandes et clients #}
 {# Ceci est un fichier d'exemple il faut s'inspirer de ça en reproduisant les maquettes #}
 
-{% set _content_title = 'Admin dashboard' %}
-{% block page_title -%}
-    {{ _content_title }}
-{%- endblock %}
-{% block content_header %}
-    <h1 class="title">{{ _content_title }}</h1>
-{% endblock %}
-{% block main %}
-    <div class="row">
-{#        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Stats</h3>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-group" style="margin-left: 0;">
-                        <li class="list-group-item">
-                            <span class="badge">Show product</span>
-                            {{ dump(Products) }}
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge"></span>
-                            product
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>#}
-        {% if Products|default(false) %}
-            {% dump Products.name %}
-            <div class="col-sm-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"> Tile for Shipment
-                            (example) </h3>
-                    </div>
-                    <div class="panel-body">
-                        <p>
-                            <img src="{{ asset('images/produit.png') }}"/>
-                        </p>
-                        {# TODO probably loop an array of last purchases#}
-                        <p>{{ lastPurchases }}</p>
-                        <a href="{{ path('easyadmin', {entity: 'Product', action: 'show', id: Products.id}) }}"
-                           class="btn btn-primary">
-                            Show details
-                        </a>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
 
-        {% if lastPurchases|default(false) %}
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"> Tile for Shipment (example) </h3>
-                </div>
-                <div class="panel-body">
-                    <p>
-                        <img src="{{ asset('images/produit.png') }}"/>
-                    </p>
-                    {# TODO probably loop an array of last purchases #}
-                    <p>{{ dump(lastPurchases) }}</p>
-                    <a href="{{ path('easyadmin', {entity: 'Purchase', action: 'show', id: lastPurchases.id}) }}"
-                       class="btn btn-primary">
-                        Show details
-                    </a>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-{% endblock %}
+{#{% block page_title -%}#}
+{#    {{ _content_title }}#}
+{#{%- endblock %}#}
+{#{% block content_header %}#}
+{#    <h1 class="title">{{ _content_title }}</h1>#}
+{#{% endblock %}#}
+{#{% block main %}#}
+{#    {% for product in lastProducts %}#}
+{#    {% endfor %}#}
+{#    {% for product in lastProducts %}#}
+{#    {% endfor %}#}
+{#    {% for product in lastProducts %}#}
+{#    {% endfor %}#}
+{#    <div class="row">#}
+{#        <div class="col-sm-4">#}
+{#            <div class="panel panel-primary">#}
+{#                <div class="panel-heading">#}
+{#                    <h3 class="panel-title">Stats</h3>#}
+{#                </div>#}
+{#                <div class="panel-body">#}
+{#                    <ul class="list-group" style="margin-left: 0;">#}
+{#                        <li class="list-group-item">#}
+{#                            <span class="badge">Show product</span>#}
+{#                            {{ dump(Products) }}#}
+{#                        </li>#}
+{#                        <li class="list-group-item">#}
+{#                            <span class="badge"></span>#}
+{#                            product#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% if Products|default(false) %}#}
+{#            {% dump Products.name %}#}
+{#            <div class="col-sm-4">#}
+{#                <div class="panel panel-primary">#}
+{#                    <div class="panel-heading">#}
+{#                        <h3 class="panel-title"> Tile for Shipment#}
+{#                            (example) </h3>#}
+{#                    </div>#}
+{#                    <div class="panel-body">#}
+{#                        <p>#}
+{#                            <img src="{{ asset('images/produit.png') }}"/>#}
+{#                        </p>#}
+{#                        #}{# TODO probably loop an array of last purchases#}
+{#                        <p>{{ lastPurchases }}</p>#}
+{#                        <a href="{{ path('easyadmin', {entity: 'Product', action: 'show', id: Products.id}) }}"#}
+{#                           class="btn btn-primary">#}
+{#                            Show details#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endif %}#}
+
+{#        {% if lastPurchases|default(false) %}#}
+{#        <div class="col-sm-4">#}
+{#            <div class="panel panel-primary">#}
+{#                <div class="panel-heading">#}
+{#                    <h3 class="panel-title"> Tile for Shipment (example) </h3>#}
+{#                </div>#}
+{#                <div class="panel-body">#}
+{#                    <p>#}
+{#                        <img src="{{ asset('images/produit.png') }}"/>#}
+{#                    </p>#}
+{#                    #}{# TODO probably loop an array of last purchases #}
+{#                    <p>{{ dump(lastPurchases) }}</p>#}
+{#                    <a href="{{ path('easyadmin', {entity: 'Purchase', action: 'show', id: lastPurchases.id}) }}"#}
+{#                       class="btn btn-primary">#}
+{#                        Show details#}
+{#                    </a>#}
+{#                </div>#}
+{#            </div>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
