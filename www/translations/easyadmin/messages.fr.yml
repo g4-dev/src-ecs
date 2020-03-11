@@ -12,7 +12,7 @@ menu.admin:        Admin
 menu.purchase:     Ventes
 menu.about:        À propos d'EasyAdmin
 menu.marketing:    Marketing
-menu.articles.list: Listes des pages
+menu.articles.list: Liste des pages
 menu.articles.category: Catégories
 menu.settings: Paramètres
 menu.settings.homepage: Page d'accueil
@@ -24,8 +24,8 @@ menu.proservice.list: Tous les services
 #links to page
 links_to_page: Consulter
 # entity names, labels and titles
-Categories: Categories
-Category: Categorie
+Categories: Catégories
+Category: Catégorie
 Customers: Clients
 Product: Produit
 Products: Produits
@@ -52,7 +52,7 @@ Guid: GUID
 ID: ID
 Image file: Fichier image
 Image: Image
-Is active: Active ?
+Is active: Actif ?
 Label: Titre
 Name: Nom
 Parent category: Catégorie parente
@@ -74,22 +74,22 @@ ean.help_message: Saisissez un code EAN-13 valide. Laissez-le vide si vous n'ave
 'Product %entity_label%': 'Producto %entity_label%'
 
 # misc. messages
-Account Information: Information sur le compte
+Account Information: Informations sur le compte
 Advanced Settings:  Options avancées
-Basic information: Information générale
-Contact Information: Information de contact
+Basic information: Informations générales
+Contact Information: Informations de contact
 Contract file: Fichier de contrat
-Delivery Details: Information de livraison
-Legal Information: Information Légal
-Product Details: Détail produit
+Delivery Details: Informations de livraison
+Legal Information: Informations légales
+Product Details: Détails produit
 Purchase Details: Informations d'achat
-Transactions History: HHistorique des transactions
+Transactions History: Historique des transactions
 
 # settings
 onHome: Affiché sur la page d'accueil
 onHome.help: Ajouter ces pages sur le diaporama de la page d'accueil
 menu.settings.nav: Menu
-settings.product.info_last_if_empty: Laisser vide pour afficher les dernier éléments
+settings.product.info_last_if_empty: Laisser vide pour afficher les derniers éléments
 # Roles
 ROLE_PRO: Professionel
 ROLE_USER: Utilisateur
@@ -103,4 +103,4 @@ one-col: Une colonne
 diy.title: Recettes Diy
 
 #errors
-maximum.error: Vous ne pouvez en ajouter plus
+maximum.error: Vous ne pouvez pas en ajouter plus
