@@ -32,17 +32,7 @@
         <div class="flexStart midWidth LowerHeader LowerHeaderLeft">
             <a href="{{ path('homepage') }}"><h1 class="gel-bold">Eco<br/>service</h1></a>
         </div>
-        <div class="flexEnd midWidth LowerHeader LowerHeaderRight">
-            {#TODO BACK navwalker nav menu#}
-            <a href="#">Catégorie</a>
-            <a href="#">Catégorie</a>
-            <a href="#">Catégorie</a>
-            <a href="#">Catégorie</a>
-            <a href="#">Catégorie</a>
-            <a href="#">Catégorie</a>
-
-            {% include 'svg/search.svg.twig' %}
-        </div>
+        {% include '@fo/partials/menu.html.twig' %}
     </nav>
 </header>
 <header class="centerAround headerMob">

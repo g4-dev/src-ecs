@@ -14,23 +14,24 @@
         </header>
         <div class="row">
             {% for product in products %}
+                {% dump(product) %}
                 <div class="col-md-4">
                     <article class="product-card card border-0 mb-4">
 
                         <div class="image-container">
-                            <a href="/product/{{ product.slug }}">
+                            <a href="{{ path('productShow', { slug: product.slug }) }}">
                                 <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.name }}">
                             </a>
                         </div>
                         <div class="card-body pt-0">
                             <h4 class="product-card__heading">
-                                <a href="/product/{{ product.slug }}" class="product-card__link">
+                                <a href="{{ path('productShow', { slug: product.slug }) }}" class="product-card__link">
                                     {{ product.name }}
                                 </a>
                             </h4>
                             <div class="divider mb-2"></div>
                             <div class="product-card__price text-right">{{ product.price }} €</div>
-                            <a href="{{ path('basketAdd', {'id': product.id }) }}" class="product-add-basket">Ajouter au panier</a>
+                            <a href="{{ path('basketAdd', {'product': product.id }) }}" class="product-add-basket">Ajouter au panier</a>
                         </div>
                     </article>
                 </div>

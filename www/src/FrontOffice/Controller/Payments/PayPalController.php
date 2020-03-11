@@ -85,7 +85,7 @@ class PayPalController extends AbstractController
     /**
      * Actually executes the payment after the customer was redirected back from paypal
      *
-     * @Route("checkout/paypal-payment",name="checkoutPayment")
+     * @Route("checkout/paypal-payment",name="paypalPayment")
      * @param Request $req
      * @param MailerService $mailer
      * @param PurchasefactoryService $orderFactory

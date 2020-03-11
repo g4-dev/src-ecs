@@ -3,6 +3,7 @@
 namespace Fixtures\DataFixtures\Prod;
 
 use Admin\Entity\CmsCategory;
+use Admin\Entity\Nav;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -61,6 +62,10 @@ class LoadCategories extends Fixture implements OrderedFixtureInterface
         }
     
         $manager->flush();
+        
+        foreach (range(0,4) as $i) {
+            $nav = new Nav();
+        }
     }
 
     private function getRandomBody()

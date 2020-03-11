@@ -44,12 +44,13 @@ class CmsController extends AbstractController
         // TODO: prendre le code de easyadmin pour faire la pagination
         // Pagination de tout
         // En ajax si possible
-        $qb = $this->getDoctrine()
+        $category = $this->getDoctrine()
             ->getRepository(CmsCategory::class)
-            ->findOneBySlug($slug)
-            ->getCmsPages();
+            ->findOneBySlug($slug);
         
-        $adapter = new DoctrineCollectionAdapter($qb);
+        $cmsPages = $category->getItems();
+        
+        $adapter = new DoctrineCollectionAdapter($cmsPages);
         $pagerfanta = new Pagerfanta($adapter);
         $pagerfanta->setMaxPerPage(10);
         $pagerfanta->setCurrentPage($page);
@@ -59,6 +60,7 @@ class CmsController extends AbstractController
         //vue temporaire en attendant pour tester l'ajout au panier
         return $this->render('@fo/cms/cmsPagesList.html.twig', [
             'cmsPages' => $pagerfanta,
+            'category' => $category,
             'categorySlug' => $slug
         ]);
     }

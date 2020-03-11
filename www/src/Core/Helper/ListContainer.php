@@ -11,7 +11,7 @@ class ListContainer implements PopulateInterface, ToArrayInterface
     /**
      * @var Collection
      */
-    protected Collection $items;
+    protected $items;
 
     /**
      * @var integer

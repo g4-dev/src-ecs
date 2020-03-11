@@ -1,6 +1,8 @@
 <?php
 namespace Admin\Entity;
 
+use Core\Entity\Image;
+use Core\Entity\Traits\DatesAt;
 use Core\Entity\Traits\ImageGetters;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -13,11 +15,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({
  *     "cms_category" = "CmsCategory",
- *      "product_category" = "ProductCategory"
+ *     "product_category" = "ProductCategory"
  * })
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="Admin\Repository\CategoryRepository")
- * @Vich\Uploadable
  */
 abstract class AbstractCategory extends AbstractSluggable {
     

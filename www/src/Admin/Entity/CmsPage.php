@@ -6,6 +6,7 @@ namespace Admin\Entity;
 use Core\Entity as CoreEn;
 use Core\Entity\Admin;
 use Core\Entity\Model\Sluggable;
+use Core\Entity\Traits\Id;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -22,8 +23,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class CmsPage extends AbstractSluggable
 {
+    use Id;
     use CoreEn\Traits\DatesAt;
     use CoreEn\Traits\IsActive;
+    use CoreEn\Traits\ImageCollection;
     
     /**
      * @ORM\Column(type="text")
@@ -68,10 +71,10 @@ class CmsPage extends AbstractSluggable
      * List of categories where the page is
      *
      * @var CmsCategory[]
-     * @ORM\ManyToMany(targetEntity="CmsCategory", inversedBy="cmsPages")
+     * @ORM\ManyToMany(targetEntity="CmsCategory", inversedBy="items")
      * @ORM\JoinTable(name="cms_categories")
      */
-    private $cmsCategories;
+    private $category;
     
     /**
      * @ORM\Column(type="boolean", options={"default": false})
@@ -89,7 +92,7 @@ class CmsPage extends AbstractSluggable
             $this->_init();
         }
         
-       $this->cmsCategories = new ArrayCollection();
+       $this->category = new ArrayCollection();
     }
     
     public function getBody(): ?string
@@ -139,38 +142,38 @@ class CmsPage extends AbstractSluggable
         return $this;
     }
 
-    public function getCmsCategories(): Collection
+    public function getCategory(): Collection
     {
-        return $this->cmsCategories;
+        return $this->category;
     }
 
-    public function setCmsCategories(?array $cmsCat)
+    public function setCategory(?array $cmsCat)
     {
         // This is the owning side, we have to call remove and add to have change in the category side too.
-       $this->cmsCategories->clear();
-       $this->cmsCategories = new ArrayCollection($cmsCat);
+       $this->category->clear();
+       $this->category = new ArrayCollection($cmsCat);
         
        return $this;
     }
 
-    public function addCmsCategory(CmsCategory $category)
+    public function addCategory(CmsCategory $category)
     {
-        if ($this->cmsCategories->contains($category)) {
+        if ($this->category->contains($category)) {
             return;
         }
         
-        $this->cmsCategories->add($category);
-        $category->addCmsPage($this);
+        $this->category->add($category);
+        $category->addItem($this);
     }
 
-    public function removeCmsCategory(CmsCategory $category)
+    public function removeCategory(CmsCategory $category)
     {
-        if (!$this->cmsCategories->contains($category)) {
+        if (!$this->category->contains($category)) {
             return;
         }
         
-        $this->cmsCategories->removeElement($category);
-        $category->addCmsPage($this);
+        $this->category->removeElement($category);
+        $category->addItem($this);
     }
     
     public function __toString(): string

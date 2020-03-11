@@ -38,8 +38,8 @@ class PaymentService
         $transaction->setAmount($amount);
 
         $redirectUrls = new PayPalApi\RedirectUrls();
-        $redirectUrls->setReturnUrl("http://ecoservice.cum")
-            ->setCancelUrl("http://ecoservice.cum");
+        $redirectUrls->setReturnUrl("http://ecoservice.com")
+            ->setCancelUrl("http://ecoservice.com");
 
         $payment = new PayPalApi\Payment();
         $payment->setIntent('sale')

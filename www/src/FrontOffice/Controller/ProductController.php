@@ -3,7 +3,6 @@
 
 namespace FrontOffice\Controller;
 
-use Admin\Entity\AbstractCategory;
 use Admin\Entity\Product;
 use Admin\Entity\ProductCategory;
 use Pagerfanta\Adapter\DoctrineCollectionAdapter;
@@ -69,7 +68,7 @@ class ProductController extends AbstractController
             ->getRepository(ProductCategory::class)
             ->findOneBySlug($slug);
         
-        $products = $category->getProducts();
+        $products = $category->getItems();
     
         $adapter = new DoctrineCollectionAdapter($products);
         $pagerfanta = new Pagerfanta($adapter);

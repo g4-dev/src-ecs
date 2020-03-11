@@ -28,7 +28,7 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             $item->setPrice($this->getRandomPrice());
             $item->setEan($this->getRandomEan());
             $item->setImage('image'.($i % 10).'.jpg');
-            $item->setProductCategories($this->getRandomCategories());
+            $item->setCategory($this->getRandomCategories());
             $item->setTags($this->getRandomTags());
             $item->setFeatures($this->getRandomFeatures());
             $item->setStock(rand(1, 100));

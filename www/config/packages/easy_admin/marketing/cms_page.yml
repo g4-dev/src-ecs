@@ -17,12 +17,15 @@ easy_admin:
                     - { property: 'name', label: 'Titre' }
                     - { property: body, label: Contenu, type: html }
                     - { property: 'imageFile', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
+                    - { property: 'image', type: 'image', base_path: '%ecs.path.default_images%' }
+
             form:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
-                    - { property: 'cmsCategories', type: 'easyadmin_autocomplete' }
+                    - { property: 'category', type: 'easyadmin_autocomplete' }
                     - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }
+                    - { property: 'images', type: 'collection', type_options: { entry_type: 'Core\Form\ImageType' }}
                     - { property: 'layout', type: 'choice', label: 'Layout', type_options: { multiple: false,
                                                                                              choices: {'two-cols': '2-col','one-col': '1-col' }
                                                                                         }

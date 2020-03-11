@@ -2,27 +2,37 @@
 
 namespace Admin\Entity;
 
+use Core\Entity\Image;
 use Core\Entity\Model\Sluggable;
+use Core\Entity\Traits\DatesAt;
+use Core\Entity\Traits\Id;
 use Core\Generics\Collection\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Class Category.
  *
  * @ORM\MappedSuperclass
  * @ORM\Table(name="product_category")
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="Admin\Repository\ProductCategoryRepository")
+ * @Vich\Uploadable
  */
-class ProductCategory extends AbstractCategory
+class ProductCategory extends AbstractSluggable
 {
+    use Id;
+    use DatesAt;
+    
     /**
      * Product in the category.
      *
      * @var Product[]
-     * @ORM\ManyToMany(targetEntity="Product", mappedBy="productCategories")
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="category")
      **/
-    protected $products;
+    protected $items;
 
     /**
      * The category parent.
@@ -32,10 +42,37 @@ class ProductCategory extends AbstractCategory
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      **/
     protected $parent;
+    
+    /**
+     * It only stores the name of the image associated with the product.
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $image;
+    
+    /**
+     * This unmapped property stores the binary contents of the image file
+     * associated with the product.
+     *
+     * @Vich\UploadableField(mapping="default_images", fileNameProperty="image")
+     *
+     * @var File
+     */
+    private $imageFile;
+    
+    /**
+     * The description of the product.
+     *
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     /**
@@ -57,53 +94,104 @@ class ProductCategory extends AbstractCategory
     {
         return $this->parent;
     }
-
+    
     /**
-     * Return all product associated to the category.
-     *
-     * @return Product[]
+     * @param File|null $image
+     * @return Image
      */
-    public function getProducts()
+    public function setImageFile(File $image = null)
     {
-        return $this->products;
+        $this->imageFile = $image;
+        
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+        
+        return $this;
     }
-
+    
     /**
-     * Set all products in the category.
-     *
-     * @param Product[] $products
+     * @return File
      */
-    public function setProducts($products)
+    public function getImageFile()
     {
-        $this->products->clear();
-        $this->products = new Collection($products);
+        return $this->imageFile;
     }
-
+    
     /**
-     * Add a product in the category.
-     *
-     * @param $product Product The product to associate
+     * @param string $image
+     * @return Image
      */
-    public function addProduct($product)
+    public function setImage($image)
     {
-        if ($this->products->contains($product)) {
+        $this->image = $image;
+        
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+    
+    public function getItems()
+    {
+        return $this->items;
+    }
+    
+    public function setItems($items)
+    {
+        $this->items->clear();
+        $this->items = new ArrayCollection($items);
+    }
+    
+    /**
+     * Add an item in the category.
+     */
+    public function addItem(Product $item)
+    {
+        if ($this->items->contains($item)) {
             return;
         }
-
-        $this->products->add($product);
-        $product->addProductCategory($this);
+        
+        $this->items->add($item);
+        $item->addCategory($this);
     }
-
+    
     /**
-     * @param Product $product
+     * @param Product $item
      */
-    public function removeProduct($product)
+    public function removeItem($item)
     {
-        if (!$this->products->contains($product)) {
+        if (!$this->items->contains($item)) {
             return;
         }
-
-        $this->products->removeElement($product);
-        $product->removeProductCategory($this);
+        
+        $this->items->removeElement($item);
+        $item->removeCategory($this);
+    }
+    
+    
+    /**
+     * Set the description of the product.
+     *
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+    
+    /**
+     * The the full description of the product.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

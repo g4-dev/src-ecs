@@ -6,6 +6,7 @@ namespace Admin\Entity;
 use Core\Entity as CoreEn;
 use Core\Entity\Admin;
 use Core\Entity\Model\Sluggable;
+use Core\Entity\Traits\Id;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -21,6 +22,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Diy extends AbstractSluggable
 {
+    use Id;
     // Name == title
     use CoreEn\Traits\DatesAt;
     use CoreEn\Traits\IsActive;
