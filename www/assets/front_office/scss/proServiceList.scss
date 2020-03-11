@@ -145,8 +145,6 @@
     width: 40%;
     text-align: center;
   }
-
-
 }
 
 @media screen and (max-width: 550px) {
@@ -225,6 +223,19 @@
     padding-left: 16px;
   }
   .formCheckbox{
+    .serviceRadio{
+      margin:32px 0;
+      @include fullCenter;
+      #devis_form_blueTrashCan, #devis_form_yellowTrashCan, #devis_form_news_letter{
+        @include center;
+        .form-check{
+          min-width: unset;
+        }
+        label{
+          min-width: unset;
+        }
+      }
+    }
     .form-check{
       display: flex;
       justify-content: center;

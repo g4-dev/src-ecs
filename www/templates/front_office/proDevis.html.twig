@@ -1,5 +1,5 @@
 {% extends '@fo/layout.html.twig' %}
-
+{% form_theme Pro_Devis 'bootstrap_4_layout.html.twig' %}
 {% block links %}
     {{ encore_entry_link_tags('proServiceList', null, 'front_office') }}
 {% endblock %}
@@ -7,7 +7,7 @@
 {% block main %}
 <hr class="sep-header">
 <h1 class="pop-sBold title">Demander un service</h1>
-<div class="devisForm">
+<div class="devisForm pop">
     {{ form_start(Pro_Devis) }}
     <div class="form_item">
         {{ form_label(Pro_Devis.name, 'Nom') }}
@@ -39,17 +39,17 @@
         {{ form_widget(Pro_Devis.email) }}
     </div>
     <div class="formCheckbox">
-        <div>
+        <div class="serviceRadio">
             {{ form_label(Pro_Devis.blueTrashCan, 'Prestation Poubelle Bleu') }}
             {{ form_widget(Pro_Devis.blueTrashCan) }}
         </div>
 
-        <div>
+        <div class="serviceRadio">
             {{ form_label(Pro_Devis.yellowTrashCan, 'Prestation Poubelle Jaune') }}
             {{ form_widget(Pro_Devis.yellowTrashCan) }}
         </div>
 
-        <div>
+        <div class="serviceRadio">
             {{ form_label(Pro_Devis.news_letter, 'Newsletter') }}
             {{ form_widget(Pro_Devis.news_letter) }}
         </div>
