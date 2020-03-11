@@ -1,0 +1,43 @@
+{% extends '@fo/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('accounting', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+<hr class="sep-header">
+<h1 class="pop-sBold panier_title">Contact</h1>
+<section class="mentions center">
+    <div class="contact fullCenter">
+        <div class="center">
+            <div class="left pop-sBold">
+                <p><strong>Adresse :</strong></p>
+            </div>
+            <div class="right pop">
+                <p>24, avenue Joannes Masset, Lyon 69009</p>
+            </div>
+        </div>
+        <div class="center">
+            <div class="left pop-sBold">
+                <p><strong>Téléphone :</strong></p>
+            </div>
+            <div class="right pop">
+                <p>01 02 03 04 05</p>
+            </div>
+        </div>
+        <div class="center">
+            <div class="left pop-sBold">
+                <p><strong>Email :</strong></p>
+            </div>
+            <div class="right pop">
+                <p>ecoservice@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('accounting', null, 'front_office') }}
+{% endblock %}

@@ -1,17 +1,17 @@
 <footer class="serge">
     <div class="thirdWidth center">
         <ul>
-            <li><a href="#">Mentions légales</a></li>
-            <li><a href="#">Utilisations des données</a></li>
+            <li><a href="{{ path("mentions") }}">Mentions légales</a></li>
+            <li><a href="{{ path("rgpd") }}">Utilisations des données</a></li>
             <li><a href="#">DIY</a></li>
         </ul>
     </div>
     <div class="thirdWidth center footer_logo">
-        <h1 class="gel-bold">Eco<br/>service</h1>
+        <a href="{{ path("homepage") }}"><h1 class="gel-bold">Eco<br/>service</h1></a>
     </div>
     <div class="thirdWidth center">
         <ul>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{{ path("contact") }}">Contact</a></li>
             <li><a href="#">Espace pro</a></li>
             <li><a href="#">Produits</a></li>
         </ul>

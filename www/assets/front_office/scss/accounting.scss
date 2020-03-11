@@ -391,3 +391,64 @@
     }
   }
 }
+
+.mentions {
+  width: 100%;
+  div{
+    p, h1, h2, h3, h4, h5{
+      padding: 8px 0;
+    }
+    color: $darkGrey;
+    margin: 0 64px;
+    @media screen and (max-width: 1024px) {
+      margin: 0 32px;
+    }
+    @media screen and (max-width: 500px) {
+      margin: 0 16px;
+    }
+  }
+  .contact{
+    margin-top: 8px;
+    width: 1000px;
+    font-size: 1.5rem;
+    @media screen and (max-width: 1200px) {
+      width: 500px;
+    }
+    @media screen and (max-width: 700px) {
+      width: 290px;
+      font-size: 1rem;
+    }
+    @media screen and (max-width: 400px) {
+      width: 220px;
+      font-size: 0.8rem;
+    }
+    p{
+      padding: 32px 0;
+    }
+    .left{
+      width: 400px;
+      @media screen and (max-width: 1200px) {
+        width: 200px;
+      }
+      @media screen and (max-width: 700px) {
+        width: 100px;
+      }
+      @media screen and (max-width: 400px) {
+      width: 70px;
+      }
+    }
+    .right{
+      width: 600px;
+      @media screen and (max-width: 1200px) {
+        width: 300px;
+      }
+      @media screen and (max-width: 700px) {
+        width: 190px;
+      }
+      @media screen and (max-width: 400px) {
+        width: 150px;
+      }
+    }
+  }
+
+}
