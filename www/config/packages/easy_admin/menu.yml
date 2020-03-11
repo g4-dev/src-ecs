@@ -15,7 +15,7 @@ easy_admin:
             - label: 'menu.product'
               icon: 'shopping-basket'
               children:
-                  - { entity: 'Product', icon: 'th-list', label: 'menu.product.list', params: { sortField: 'updatedAt' }, default: true }
+                  - { entity: 'Product', icon: 'th-list', label: 'menu.product.list', default: true, roles: ['ROLE_EMPLOYEE'] }
                   - { entity: 'ProductCategory', icon: 'tags', label: 'menu.category' }
                   - { entity: 'Product', icon: 'plus-circle', label: 'menu.product.add', params: { action: 'new' } }
 

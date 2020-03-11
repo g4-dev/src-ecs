@@ -1,7 +1,15 @@
 <div class="flexEnd midWidth LowerHeader LowerHeaderRight">
-{% set menu = navWalker()|raw %}
+    {% set menu = navWalker()|raw %}
     {% dump(menu) %}
-
+    {% for link in menu %}
+        {% if link.routeParams is not null %}
+            <a href="{{ path(link.route, link.routeParams|default({})) }}"
+               title="{{ link.title }}">{{ link.name }}</a>
+        {% else %}
+            <a href="{{ path(link.route) }}"
+               title="{{ link.title|default('no link') }}"> {{ link.name|default('no link') }}</a>
+        {% endif %}
+    {% endfor %}
     {#
         {% include 'svg/search.svg.twig' %}
 #}

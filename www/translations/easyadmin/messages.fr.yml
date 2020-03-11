@@ -30,8 +30,8 @@ Customers: Clients
 Product: Produit
 Products: Produits
 User: Utilisateur
-Articles: Articles
-Article: Article
+CmsPages: Page de contenu
+CmsPage: Page de contenu
 
 # entity properties
 Attachments: Pièces jointes

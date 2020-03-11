@@ -13,6 +13,7 @@ easy_admin:
             controller: FrontOffice\Controller\Shopping\PurchaseController
             disabled_actions: ['delete']
             list:
+                sort: ['createdAt', 'DESC']
                 actions: [ { name: 'show', icon: 'shopping-basket' } ]
                 fields: ['guid', 'buyer', 'deliveryDate', 'deliveryHour', 'billingAddress', 'purchasedItems', 'total']
             form:

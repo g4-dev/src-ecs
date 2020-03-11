@@ -13,6 +13,7 @@ easy_admin:
                     - tags
                     - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.product', route: 'productShow' }
                 filters: ['isActive', 'name', 'price']
+                sort: ['updatedAt', 'DESC']
             show:
                 fields:
                     - id

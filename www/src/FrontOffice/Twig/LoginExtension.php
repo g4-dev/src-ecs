@@ -2,8 +2,12 @@
 
 namespace FrontOffice\Twig;
 
+use Admin\Entity\CmsCategory;
+use Admin\Entity\CmsPage;
+use Admin\Entity\Diy;
+use Admin\Entity\Product;
+use Admin\Entity\ProductCategory;
 use Admin\Repository\NavRepository;
-use Core\Generics\Collection\Collection;
 use FrontOffice\Form\Accounting\LoginForm;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -51,17 +55,51 @@ class LoginExtension extends AbstractExtension
     
     public function navWalker()
     {
-        $collectionMenu = $this->navRepo->findby([], ['position' => 'ASC']);
-        $collec = [];
-        # order with bootstrap
+        $collectionMenu = $this->navRepo->findby([], ['position' => 'ASC']) ?? [];
         
-        foreach ($collectionMenu as $nav) {
-            dump($nav);
-            //$collec[] = $nav
-            //dump($collec);
+        if (!$collectionMenu) {
+            return [
+               'name' => 'not configured menu',
+               'title' => 'configure your menu in /admin',
+               'route' => 'homepage',
+               'routeParams' => null
+            ];
         }
         
-        dump($this->navRepo->findAll());
-        return $this->navRepo->findAll();
+        $navWalked = [];
+        
+        foreach ($collectionMenu as $nav) {
+            $p = $nav->getPage();
+            $route = '';
+            
+            if ($p instanceof ProductCategory) {
+                $route = 'productCategoryList';
+            } else if ($p instanceof CmsCategory) {
+                $route = 'cmsCategoryList';
+            } else if ( $p instanceof CmsPage ) {
+                $route = 'cmsShow';
+            } else if ($p instanceof Diy) {
+                $route = 'diyShow';
+            } else if ($p instanceof Product) {
+                $route = 'productShow';
+            } else {
+                $route = 'homepage';
+            }
+    
+            $routeParams = [
+               'slug' => $p->getSlug() ?? null
+            ];
+            
+            $navWalked[] = [
+               'name' => $nav->getName(),
+               'title' => $p->getName(),
+               'route' => $route,
+               'routeParams' => $routeParams
+            ];
+            
+            
+        }
+        dump($navWalked);
+        return $navWalked;
     }
 }

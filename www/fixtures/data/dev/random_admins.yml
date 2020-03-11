@@ -3,6 +3,6 @@ Core\Entity\Admin:
     name: '<name()>'
     email (unique): '<email()>'
     password_hash: '<userPasswordEncoder("Azerty69")>'
-    isActive: false
+    isActive: true
     roles: ['<randomElement([ROLE_ADMIN,ROLE_MARKETING,ROLE_SUPPORT,ROLE_EMPLOYEE,ROLE_SUPERADMIN])>']
     createdAt: '<dateTimeBetween("-100 days", "now")>'
