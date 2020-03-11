@@ -24,3 +24,25 @@ taille.click(function(this: HTMLElement)
 {
     $(this).toggleClass('selectTaille');
 });
+
+$(document).ready(function(){
+    var moins = $('#moinsProduct');
+    var plus = $('#plusProduct');
+    var quant = $('#quant');
+    var quantite = 0;
+
+
+    $(plus).click(function(){
+       quantite = quantite + 1;
+       quant.html(quantite)
+    });
+
+    $(moins).click(function(){
+        if(quantite === 0){
+            alert('only positive');
+        }else{
+            quantite = quantite - 1;
+            quant.html(quantite);
+        }
+    });
+});
