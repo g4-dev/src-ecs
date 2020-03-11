@@ -65,7 +65,13 @@ class LoadCategories extends Fixture implements OrderedFixtureInterface
         
         foreach (range(0,4) as $i) {
             $nav = new Nav();
+            $nav->setName('category-'.$i);
+            $nav->setPosition($i);
+            $nav->setPage($this->getReference('product-category-'.$i));
+            $manager->persist($nav);
         }
+    
+        $manager->flush();
     }
 
     private function getRandomBody()

@@ -38,7 +38,7 @@ cmake-build-debug/
 www/config/parameters.yaml
 .crons/
 easy-admin-demo/
-./ecommerce/
+ecommerce/
 *.bak
 lemp/
 test-vagrant/
