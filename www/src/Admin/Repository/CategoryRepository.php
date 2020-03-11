@@ -108,7 +108,7 @@ class CategoryRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->select('p')
-            ->orderBy('p.dateCreated', 'DESC')
+            ->orderBy('p.updatedAt', 'DESC')
             ->setMaxResults($maxResults)
             ->getQuery()
             ->getResult();

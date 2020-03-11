@@ -4,6 +4,7 @@
 table.datagrid {
   border-spacing: 0;
   width: 100%;
+  border: 2px solid $red-backoffice;
 }
 .datagrid thead {
   background: var(--form-bg);
@@ -29,7 +30,7 @@ table.datagrid {
   color: $red-backoffice;
 }
 .datagrid thead a, .datagrid thead span {
-  color: var(--text-color-dark);
+  color: $white;
   display: block;
   font-weight: 500;
   line-height: 1.357;

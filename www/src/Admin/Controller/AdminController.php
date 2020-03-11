@@ -35,13 +35,13 @@ class AdminController extends EasyAdminController
         
         $productRepo = $em->getRepository(Product::class);
         $diyRepo = $em->getRepository(Diy::class);
-        $puchaseRepo = $em->getRepository(Purchase::class);
+//        $puchaseRepo = $em->getRepository(Purchase::class);
         
         // TODO: add list of 5-6 data to loop in in template
         return $this->render('@admin/dashboard.html.twig', [
-           'Products' => $productRepo->find(1),
-           'lastDiy' => $diyRepo->find(1),
-           'lastPurchases' => $puchaseRepo ->find(1)
+           'lastProducts' => $productRepo->findLatest(7),
+           'lastDiy' => $diyRepo->findLatest(7),
+//           'lastPurchases' => $puchaseRepo ->findLatest(12),
         ]);
     }
 }

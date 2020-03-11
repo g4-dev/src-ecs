@@ -3,13 +3,11 @@
 
 .content-body form,
 .content-body .form-horizontal {
-    background: var(--form-bg);
-    padding: 18px 20px;
+    padding: 0 20px;
 }
 
 // Base form groups
 .form-group {
-    display: flex;
     flex-wrap: wrap;
     align-items: center;
     padding: 10px 20px;
@@ -44,7 +42,7 @@
     align-items: flex-start;
     flex: 0 0 55%;
     flex-direction: column;
-    padding-left: 5px;
+    padding-left: 2px;
 }
 
 .form-widget .form-help {
@@ -84,9 +82,11 @@
 }
 
 .form-widget select.form-control {
-    box-shadow: 0 0 0 1px rgba(43, 45, 80, .1), 0 2px 5px 0 rgba(43, 45, 80, .08), 0 1px 1.5px 0 rgba(0, 0, 0, .07), 0 1px 2px 0 rgba(0, 0, 0, .08);
+    border: 0px solid $red-backoffice;
     padding-left: 4px;
     padding-right: 4px;
+    color: $red-backoffice;
+    margin-right: 3px;
 }
 
 .form-widget select[multiple].form-control {
@@ -150,11 +150,12 @@
 }
 
 .field-datetime .form-inline {
-    display: flex;
+    padding: 5px 0;
 }
 
 .datetime-widget + .datetime-widget {
-    margin-left: 10px;
+    margin-top: 10px;
+    width: 100%;
 }
 
 .datetime-widget select + select {
@@ -236,6 +237,7 @@ fieldset .form-group .nullable-control label {
     margin-left: 4px;
     position: relative;
     top: 2px;
+    color: $red-backoffice;
 }
 .form-widget-compound > div > .form-group:last-child {
     padding-bottom: 5px;
@@ -281,7 +283,7 @@ fieldset {
 
 fieldset > legend {
     border: 0;
-    font-size: var(--font-size-xl);
+    font-size: 1.2rem;
     font-weight: 500;
     text-transform: uppercase;
     margin: 0 0 5px -5px;
@@ -318,6 +320,14 @@ fieldset .field-checkbox .form-widget {
     flex: 0 0 100%;
     padding-left: 0;
     padding-right: 0;
+}
+
+.form-widget .input-group-text{
+    background-color: #B48B7D;
+    color: white;
+    margin-top: -3px;
+    max-height: 36px;
+    border-radius: 0;
 }
 
 fieldset .field-checkbox .form-widget,

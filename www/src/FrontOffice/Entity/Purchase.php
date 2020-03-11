@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Purchase.
  *
  * @ORM\Table(name="purchase")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="FrontOffice\Repository\PurchaseRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Purchase

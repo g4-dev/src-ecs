@@ -21,23 +21,35 @@
     text-transform: uppercase;
 }
 
+.main-sidebar hr{
+    width: 80%;
+    border: 1px solid #525E36;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
 .sidebar-menu li {
     list-style: none;
     padding: 5px;
 }
 .sidebar-menu>li {
-    padding: 15px 20px;
+    padding: 15px 30px;
 }
 .sidebar-menu li span{
     padding-left: 10px;
 }
 
 .sidebar-menu a {
+    text-decoration: none;
     color: $text-dark-backoffice;
     text-transform: uppercase;
     display: block;
     line-height: 20px;
-    padding: 4px 5px 10px 0;
+    padding: 4px 5px 7px 0;
+}
+
+.sidebar-menu a:hover {
+    font-weight: 600;
 }
 
 .sidebar-menu .fa {
@@ -99,7 +111,7 @@
     transition: transform 0.25s ease;
     width: auto;
     margin-top: 5%;
-    margin-right: 15px;
+    margin-right: 30px;
 }
 
 .treeview.menu-open .treeview-icon {
