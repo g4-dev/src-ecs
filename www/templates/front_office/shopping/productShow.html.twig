@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block main %}
+
     <hr class="sep-header">
     <a class="btn-back pop" href="#">Retour</a>
     <div class="cont-top-produit">
@@ -13,20 +14,25 @@
         </div>
         <div class="cont-top-produit-des">
             <div>
-                <h1 class="gel-bold">Produit</h1>
-                <p class="pop">Catégorie</p>
+{#                {{ dump(product) }}#}
+                <h1 class="gel-bold">{{ product.name }}</h1>
+                <p class="pop">
+{#                {% for categ in  product.productCategories %}#}
+{#                    {{ categ  }}#}
+{#                {% endfor %}#}
+                </p>
             </div>
-            <p class="description pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna. </p>
-            <p class="prix serge-bold">XX,xx €</p>
+            <p class="description pop">{{ product.description|slice(0, 150)}}</p>
+            <p class="prix serge-bold">{{ product.price }} €</p>
         </div>
         <div class="cont-top-produit-spec">
             <div class="int-spec">
                 <div class="spec quantite">
                     <p class="pop">Quantité</p>
                     <div>
-                        <p class="serge">-</p>
+                        <p class="serge" id="moinsProduct">-</p>
                         <p class="serge-bold">0</p>
-                        <p class="serge">+</p>
+                        <p class="serge" id="plusProduct">+</p>
                     </div>
                 </div>
                 <div class="spec taille">

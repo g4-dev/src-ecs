@@ -1,5 +1,6 @@
 import * as $ from "jquery";
 // Ici ce composant product (produit seul) peut être réutilisé dans plusieurs pages
+
 const croix = document.getElementsByClassName('croix');
 const hide = document.getElementsByClassName('hide');
 
