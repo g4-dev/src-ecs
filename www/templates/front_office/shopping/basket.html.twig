@@ -69,12 +69,12 @@
                 <div class="livraison centerBetween">
                     <p class="pop">Livraison</p>
                     {#TODO ADD LIVRAISON PRIX LIVRAISON #}
-                    <p class="serge price">1.99 €</p>
+                    <p class="serge price">0.00 €</p>
                 </div>
                 <hr>
                 <div class="total centerBetween">
                     <p class="serge-bold"><strong>Total</strong></p>
-                    <p class="serge-bold price"><strong>24,98 €</strong></p>
+                    <p class="serge-bold price"><strong>{{ totalPrice }} €</strong></p>
                 </div>
                 <div class="center continue pop">
                     {% if is_granted('ROLE_USER') %}

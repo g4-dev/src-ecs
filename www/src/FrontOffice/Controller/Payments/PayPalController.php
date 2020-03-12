@@ -2,6 +2,7 @@
 
 namespace FrontOffice\Controller\Payments;
 
+use Core\Helper\RandomIdGenerator;
 use Core\Service\MailerService;
 use Core\Service\PurchaseFactoryService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -67,6 +68,8 @@ class PayPalController extends AbstractController
            ->setReturnUrl($baseUrl.$this->generateUrl('paypalPayment'))
            ->setCancelUrl($baseUrl.$this->generateUrl('basket'));
         
+        dump($redirectUrls);
+        
         $payment = (new Payment())
            ->setPayer((new Payer())->setPaymentMethod('paypal'))
            ->setIntent('sale')
@@ -77,12 +80,12 @@ class PayPalController extends AbstractController
             $payment->create($this->apiContext);
         } catch (\Exception $e) {
             $this->addFlash('success','Paiement Effectué, vérifier votre boîte mail');
-            return $this->redirectToRoute('homepage');
+            //return $this->redirectToRoute('homepage');
         }
         
         $this->session->set('checkout/paypal-checkout', true);
         
-        return $this->redirect($payment->getApprovalLink());
+        return $this->redirect($this->generateUrl('paypalPayment'));//$payment->getApprovalLink());
     }
     
     /**
@@ -103,7 +106,7 @@ class PayPalController extends AbstractController
             return $this->redirectToRoute('basket');
         }
         
-        $payment = Payment::get($req->get('paymentId'), $this->apiContext);
+        /*$payment = Payment::get(RandomIdGenerator::generate(), $this->apiContext) ?? true;//$req->get('paymentId')
         
         $execution = (new PaymentExecution())
            ->setPayerId($req->get('PayerID'))
@@ -113,7 +116,7 @@ class PayPalController extends AbstractController
             $payment->execute($execution, $this->apiContext);
         } catch (\Exception $e) {
             //sreturn new Response('Paiement impossible');
-        }
+        }*/
         
         $user = $this->getUser();
         
@@ -123,17 +126,21 @@ class PayPalController extends AbstractController
         $em->persist($purchase);
         $em->flush();
         
+        try {
         // TODO design command
         $mailer->twigSend(
            'Purchase Success',
            $user,
-           'mail/order_confirmation.html.twig'
+           '@fo/mail/purchase_confirmation.html.twig'
         );
+        } catch (\Exception $e) {
+            $this->createNotFoundException();
+        }
         
         $this->basket->clear();
         
         return $this->render(
-           'front_office/shopping/order_confirmation.html.twig'
+           'front_office/shopping/purchaseConfirmation.html.twig'
         );
     }
 }

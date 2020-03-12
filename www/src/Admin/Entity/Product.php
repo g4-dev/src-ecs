@@ -121,6 +121,8 @@ class Product extends AbstractSluggable
      */
     private $purchasedItems;
     
+    private $quantity;
+    
     public function __construct()
     {
         $this->category = new ArrayCollection();
@@ -379,4 +381,27 @@ class Product extends AbstractSluggable
 
         return $this;
     }
+    
+    public function hasStock(): bool
+    {
+        return $this->stock > 0;
+    }
+    
+    public function calcTotalPrice(): float
+    {
+        return $this->quantity * $this->price;
+    }
+    
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+    
+    public function setQuantity(int $quantity): self
+    {
+        $this->quantity = $quantity;
+        
+        return $this;
+    }
+    
 }

@@ -164,4 +164,5 @@ class Basket implements \Countable
     {
         return $this->totalPrice($this->getProducts()); // + $this->getShippingFee();
     }
+
 }

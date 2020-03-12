@@ -20,11 +20,11 @@ class PurchaseFactoryService
         $purchase = new Purchase();
         
         foreach ($basket->getProducts() as $product) {
-            $purchase->addPurchasedItem(new PurchaseItem($product));
+            $purchase->addPurchasedItem(new PurchaseItem($product, $basket->getQuantity($product)));
         }
 
         $shippingAddress = $this->addressRepository->findCurrentWithType($user->getId(), 'shipping');
-        
+
         $totalPrice = $basket->grandTotal();
 
         $purchase->setBuyer($user)

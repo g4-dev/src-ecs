@@ -64,7 +64,7 @@ class Purchase
      * @var string
      * @ORM\OneToOne(targetEntity="Core\Entity\Address", mappedBy="purchaseShipping", cascade={"persist"})
      */
-    protected $shippingAddress;
+    private $shippingAddress;
 
     /**
      * The user who made the purchase.
@@ -72,7 +72,7 @@ class Purchase
      * @var \Core\Entity\User
      * @ORM\ManyToOne(targetEntity="Core\Entity\User", inversedBy="purchases", cascade={"persist"})
      */
-    protected $buyer;
+    private $buyer;
 
     /**
      * Items that have been purchased.
@@ -116,6 +116,8 @@ class Purchase
     public function setBuyer(User $buyer)
     {
         $this->buyer = $buyer;
+        
+        return $this;
     }
 
     /**

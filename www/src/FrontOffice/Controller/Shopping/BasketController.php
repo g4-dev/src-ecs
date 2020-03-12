@@ -38,14 +38,19 @@ class BasketController extends AbstractController
         
         if ($this->basket->hasProducts()) {
             $products = $this->basket->getProducts();
-            $totalPrice = $this->basket->totalPrice($products);
         }
-        
+    
         $productsWithQuantity = [];
+        $totalPrice  = 0;
+    
         foreach ($products as $product) {
+            $qte =$this->basket->getQuantity($product);
+            $totalPrice += $this->basket->totalPrice([$product]) * $qte;
+        
             $productsWithQuantity[] = [
                'product' => $product,
-               'quantity' => $this->basket->getQuantity($product)
+               'quantity' => $qte,
+               'thisPrice' => $this->basket->totalPrice([$product]) * $qte
             ];
         }
         
@@ -91,10 +96,11 @@ class BasketController extends AbstractController
      * @param $id
      * @return RedirectResponse
      */
-    public function removeBasketAction(int $id = -1): RedirectResponse
+    public function removeBasketAction(?int $id = -1): RedirectResponse
     {
-        if ($id === -1) {
+        if ($id === -1 || !$id) {
             $this->basket->clear();
+            return $this->redirectToRoute('basket');
         }
         
         $product = $this->getDoctrine()

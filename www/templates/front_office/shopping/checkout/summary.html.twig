@@ -32,22 +32,22 @@
         {% for product in products %}
             <tr>
                 <td class="table_img">
-                    <a href="/product/{{ product.slug }}">
-                        <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.name }}">
-                        <h2>{{ product.name }}</h2>
+                    <a href="/product/{{ product.product.slug }}">
+                        <img src="{{ vich_uploader_asset(product.product, 'imageFile') }}" alt="{{ product.product.name }}">
+                        <h2>{{ product.product.name }}</h2>
                     </a>
                 </td>
                 <td>
-                    {#{{ product.quantity }}#}
+                    {{ product.quantity }}
                 </td>
                 <td class="total_pc">
-                    {#<p data-target-id="{{ product.id }}">{{ product.calcTotalPrice }} €</p>#}
+                    <p data-target-id="{{ product.product.id }}">{{ product.thisPrice }} €</p>
                 </td>
             </tr>
         {% endfor %}
         <tr class="total_mob">
             <td><p>Total</p></td>
-            <td colspan="3"><p class="price">{#{{ totalPrice }}#} €</p></td>
+            <td colspan="3"><p class="price">{{ totalPrice }} €</p></td>
         </tr>
         </tbody>
     </table>
@@ -56,16 +56,16 @@
         <h3 class="pop">Récapitulatif</h3>
         <div class="sousTot centerBetween">
             <p class="pop">Sous-total</p>
-            <p class="serge price">{#{{ totalPrice }}#} €</p>
+            <p class="serge price">{{ totalPrice }} €</p>
         </div>
-        <div class="sousTot centerBetween">
+{#        <div class="sousTot centerBetween">
             <p class="pop">Dont TVA</p>
-            <p class="serge price">{{ vat_price }} €</p>
-        </div>
+            <p class="serge price"> {{ vatPrice }} €</p>
+        </div>#}
         <hr>
         <div class="total centerBetween">
             <p class="serge-bold"><strong>Total</strong></p>
-            <p class="serge-bold price"><strong>{{grand_total}} €</strong></p>
+            <p class="serge-bold price"><strong>{{ totalPrice }} €</strong></p>
         </div>
         <div class="center continue pop">
             <a href="{{ path('checkoutPayment') }}" class="btn btn-primary">{{ 'Payer'|trans|raw }}</a>

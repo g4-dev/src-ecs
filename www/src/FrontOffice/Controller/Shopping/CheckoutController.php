@@ -107,17 +107,31 @@ class CheckoutController extends AbstractController
         }
         
         $this->session->set('checkout/summary', true);
+    
+        if ($this->basket->hasProducts()) {
+            $products = $this->basket->getProducts();
+        }
+    
+        $productsWithQuantity = [];
+        $totalPrice  = 0;
+    
+        foreach ($products as $product) {
+            $qte =$this->basket->getQuantity($product);
+            $totalPrice += $this->basket->totalPrice([$product]) * $qte;
         
-        $products = $this->basket->getProducts();
-        $totalPrice = $this->basket->totalPrice($products);
-        $vatPrice = $this->basket->vatPrice($this->basket->grandTotal());
-        $grandTotal = $this->basket->grandTotal();
+            $productsWithQuantity[] = [
+               'product' => $product,
+               'quantity' => $qte,
+               'thisPrice' => $this->basket->totalPrice([$product]) * $qte
+            ];
+        }
+        
+        //$vatPrice = $this->basket->vatPrice($this->basket->grandTotal());
+        //$grandTotal = $this->basket->grandTotal();
         
         return $this->render('front_office/shopping/checkout/summary.html.twig', [
-            'products' => $products,
-            'total_price' => $totalPrice,
-            'vat_price' => $vatPrice,
-            'grand_total' => $grandTotal,
+            'products' => $productsWithQuantity,
+            'totalPrice' => $totalPrice
         ]);
     }
     
