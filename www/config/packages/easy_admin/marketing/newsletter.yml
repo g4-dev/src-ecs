@@ -9,7 +9,6 @@ easy_admin:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'createdAt', label: 'Created at', format: 'j / M / Y' }
-                    - { property: isActive, type: 'toggle', label: 'letterStatus'}
                     - { property: admin, label: 'sender' }
                 actions: ['create']
             show:
@@ -17,11 +16,9 @@ easy_admin:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'body', label: Contenu, type: html } #TODO preview
                     - { property: 'createdAt', label: 'Created at', format: 'j / M / Y' }
-                    - { property: 'isActive', type: 'toggle', label: 'letterStatus'}
                     - { property: 'admin', label: 'sender' }
             form:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
-                    - { property: isActive, label: 'letterStatus'}
                     - { property: admin, label: 'sender' }

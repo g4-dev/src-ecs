@@ -91,9 +91,9 @@ class BasketController extends AbstractController
      * @param $id
      * @return RedirectResponse
      */
-    public function removeBasketAction(?int $id = null): RedirectResponse
+    public function removeBasketAction(int $id = -1): RedirectResponse
     {
-        if (!$id) {
+        if ($id === -1) {
             $this->basket->clear();
         }
         

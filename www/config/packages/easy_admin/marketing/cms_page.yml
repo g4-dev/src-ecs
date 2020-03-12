@@ -12,6 +12,7 @@ easy_admin:
                     - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
                     - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.page_cms', route: 'cmsShow' }
                 actions: ['edit', 'delete']
+                sort: ['updatedAt', 'DESC']
             show:
                 fields:
                     - { property: 'name', label: 'Titre' }

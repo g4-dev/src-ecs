@@ -6,6 +6,7 @@ use Core\Entity\Image;
 use Core\Entity\Traits\DatesAt;
 use Core\Entity\Traits\Id;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -131,7 +132,7 @@ class CmsCategory extends AbstractSluggable
     /**
      * @param Product $product
      */
-    public function removeCmsPage(CmsPage $cmsPage)
+    public function removeItem(CmsPage $cmsPage)
     {
         if (!$this->items->contains($cmsPage)) {
             return;

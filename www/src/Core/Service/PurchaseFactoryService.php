@@ -30,7 +30,7 @@ class PurchaseFactoryService
         $purchase->setBuyer($user)
               ->setShippingAddress($shippingAddress)
               ->setStatus('processing')
-              ->setShippingMethod($basket->getShippingMethod())
+              //->setShippingMethod($basket->getShippingMethod())
               ->setTransaction(
                   new \Core\Entity\Transaction(
                       $paymentMethod,

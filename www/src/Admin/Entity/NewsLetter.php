@@ -17,7 +17,6 @@ class NewsLetter
 {
     use Id;
     use Name;
-    use IsActive;
 
     /**
      * @ORM\Column(type="text")
