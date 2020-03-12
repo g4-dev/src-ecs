@@ -48,7 +48,6 @@ class CheckoutController extends AbstractController
             
             return $this->render('front_office/shopping/checkout/address.html.twig', [
                'address_form' => $this->createForm(AddressType::class)->createView(),
-               'return_basket' => true
             ]);
         }
     

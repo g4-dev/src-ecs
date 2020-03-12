@@ -134,13 +134,18 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($form->getData()->setUser($this->getUser()));
             $em->flush();
+            
+            if(true == $this->session->get('checkout/current-checkout')) {
+                $this->session->set('checkout/current-checkout', false);
+                
+                return $this->redirectToRoute('checkoutAddress');
+            }
         }
         
         return $this->render(
            '@fo/accounting/address.html.twig',
            [
               'address_form' => $form->createView(),
-              'return_basket' => $this->session->get('checkout/current-checkout')
            ]
         );
     }

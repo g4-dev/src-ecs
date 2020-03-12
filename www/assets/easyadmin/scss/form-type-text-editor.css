@@ -1,4 +1,4 @@
-@import '~trix/dist/trix.css';
+@import './trix.css';
 
 .easyadmin-text-editor-wrapper {
     background: var(--white);

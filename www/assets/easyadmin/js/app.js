@@ -10,6 +10,7 @@ import 'jquery.are-you-sure';
 import 'featherlight';
 import 'jquery-highlight';
 import 'select2';
+import './form-type-text-editor';
 
 window.addEventListener('load', function() {
     $('[data-toggle="popover"]').popover();

@@ -1,3 +1,3 @@
-require('../css/form-type-text-editor.css');
+require('../scss/form-type-text-editor.css');
 
-import 'trix/dist/trix';
+import './trix';
