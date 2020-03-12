@@ -26,7 +26,7 @@ class PayPalController extends AbstractController
     private $basket;
     private $apiContext;
     private $session;
-    
+
     const CLIENT_ID = 'AddGmlqTUQrRQKC-BmA70jqEaJM7HDgkE22w22QUrDZwQTAXSupw6jtpqHFRiBsd8JoIAxjYqtaxyYDn';
     const CLIENT_SECRET = 'ECGl_NQUdmwneNJq9hYEntmE4XZ_5nkBg4vOVrTzKEyyRwsUuM_DPBVQ5FUvn4zmLcN3COXsLU74S0r4';
     
@@ -67,8 +67,6 @@ class PayPalController extends AbstractController
         $redirectUrls = (new RedirectUrls())
            ->setReturnUrl($baseUrl.$this->generateUrl('paypalPayment'))
            ->setCancelUrl($baseUrl.$this->generateUrl('basket'));
-        
-        dump($redirectUrls);
         
         $payment = (new Payment())
            ->setPayer((new Payer())->setPaymentMethod('paypal'))
@@ -125,18 +123,18 @@ class PayPalController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($purchase);
         $em->flush();
-        
+
         try {
         // TODO design command
-        $mailer->twigSend(
-           'Purchase Success',
-           $user,
-           '@fo/mail/purchase_confirmation.html.twig'
-        );
+            $mailer->twigSendPurchase(
+                'Purchase Success',
+                $user,
+                'mail/order_confirmation.html.twig',
+            );
         } catch (\Exception $e) {
             $this->createNotFoundException();
         }
-        
+
         $this->basket->clear();
         
         return $this->render(

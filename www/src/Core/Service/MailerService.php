@@ -111,4 +111,16 @@ class MailerService
         
         return 'Mail successfully sent';
     }
+
+    public function twigSendPurchase(string $subject, User $user, string $template, $context = [])
+    {
+        try{
+            $message = $this->createTwigMessage($subject, $template, $context);
+            $this->send($message, $user->getEmail());
+        } catch (TransportException | \Exception $e){
+            return $e->getMessage();
+        }
+
+        return 'Mail successfully sent';
+    }
 }
