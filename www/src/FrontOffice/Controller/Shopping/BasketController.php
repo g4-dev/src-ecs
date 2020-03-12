@@ -92,12 +92,16 @@ class BasketController extends AbstractController
     }
     
     /**
-     * @Route("/basket/remove/{id}", name="basketRemove", requirements={"page": "\d+"})
+     * @Route("/basket/remove/{id?}", name="basketRemove", requirements={"page": "\d+"})
      * @param $id
      * @return RedirectResponse
      */
-    public function removeBasketAction(int $id): RedirectResponse
+    public function removeBasketAction(?int $id = null): RedirectResponse
     {
+        if (!$id) {
+            $this->basket->clear();
+        }
+        
         $product = $this->getDoctrine()
            ->getRepository(Product::class)
            ->find($id);
