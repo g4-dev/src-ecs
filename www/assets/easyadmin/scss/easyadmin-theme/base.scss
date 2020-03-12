@@ -64,6 +64,12 @@ body.easyadmin-sidebar-width-compact .wrapper {
         grid-template-columns: 24px auto;
     }
 }
+
+body.new-product .content-wrapper .content .new-form .field-group.col-12.col-sm-8 fieldset .row .col-12:nth-child(3){
+    display: none;
+}
+
+
 .content-wrapper {
     grid-template-columns: none !important;
 }
