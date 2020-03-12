@@ -3,9 +3,10 @@
 
 namespace Admin\Controller;
 
-use Admin\Entity\NewsLetter;
+use Admin\Entity\Letter;
 use AlterPHP\EasyAdminExtensionBundle\Controller\EasyAdminController;
 use Core\Entity\User;
+use Core\Generics\Entity\Entity;
 use Core\Service\MailerService;
 
 class NewsLetterController extends EasyAdminController
@@ -15,27 +16,23 @@ class NewsLetterController extends EasyAdminController
         $this->mailer = $mailer;
     }
 
-     function createNewNewsLetterAction(NewsLetter $newsLetter)
+     public function persistLetterEntity($entity)
     {
-            $title = $newsLetter->getName();
-            $content = $newsLetter->getBody();
+            $user = $this->getDoctrine()->getRepository(User::class)->findBy(['newsLetter' => true]);
 
-            $NewLetter = true;
-            $user = $this->getDoctrine()->getRepository(User::class)->findBy($NewLetter);
-            dd($user);
             foreach ($user as $users) {
-                $this->twigSendPurchase(
+                $this->mailer->twigSendPurchase(
                     'EcoService NewsLetter',
                     $users,
                     'mail/newsLetter.html.twig',
                     [
-                        'Title' => $title,
-                        'Content' => $content,
+                        'Title' => $entity->getName(),
+                        'Content' => $entity->getBody(),
                     ]
                 );
             }
-            $this->em->persist($newsLetter);
-            $this->em->flush();
-            parent::initialise();
-    }
+            
+            $entity->setAdmin($this->getUser());
+            parent::persistEntity($entity);
+        }
 }

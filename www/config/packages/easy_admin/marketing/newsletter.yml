@@ -1,8 +1,9 @@
 easy_admin:
     entities:
-        NewsLetter:
+        Letter:
             # TODO: traductions
-            class: Admin\Entity\NewsLetter
+            class: Admin\Entity\Letter
+            controller: Admin\Controller\NewsLetterController
             disabled_actions: ['delete','edit']
             list:
                 title: 'Newsletter'
@@ -21,4 +22,4 @@ easy_admin:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
-                    - { property: admin, label: 'sender' }
+                    #- { property: admin, label: 'sender' }

@@ -2,21 +2,21 @@
 
 namespace Admin\Repository;
 
-use Admin\Entity\NewsLetter;
+use Admin\Entity\Letter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method NewsLetter|null find($id, $lockMode = null, $lockVersion = null)
- * @method NewsLetter|null findOneBy(array $criteria, array $orderBy = null)
- * @method NewsLetter[]    findAll()
- * @method NewsLetter[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Letter|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Letter|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Letter[]    findAll()
+ * @method Letter[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class NewsLetterRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, NewsLetter::class);
+        parent::__construct($registry, Letter::class);
     }
 
     // /**

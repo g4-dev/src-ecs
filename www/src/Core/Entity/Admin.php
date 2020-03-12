@@ -2,7 +2,7 @@
 
 namespace Core\Entity;
 
-use Admin\Entity\NewsLetter;
+use Admin\Entity\Letter;
 use Core\Entity\Traits\IsActive;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -27,10 +27,10 @@ class Admin extends Model\AbstractUser implements UserInterface
     private array $roles = [self::DEFAULT_ROLE];
 
     /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\NewsLetter", mappedBy="admin")
+     * @ORM\OneToMany(targetEntity="Admin\Entity\Letter", mappedBy="admin")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $newsLetters;
+    private $letters;
     
     use Traits\Roles;
     use Traits\DatesAt;
@@ -41,7 +41,7 @@ class Admin extends Model\AbstractUser implements UserInterface
         if (method_exists($this, '_init')) {
             $this->_init();
         }
-        $this->newsLetters = new ArrayCollection();
+        $this->letters = new ArrayCollection();
     }
     
     public function getUsername()
@@ -65,29 +65,41 @@ class Admin extends Model\AbstractUser implements UserInterface
     }
 
     /**
-     * @return Collection|NewsLetter[]
+     * @return Collection|Letter[]
      */
-    public function getNewsLetters(): Collection
+    public function getLetters(): Collection
     {
         return $this->newsLetters;
     }
 
-    public function addNewsLetter(NewsLetter $newsLetter): self
+    public function addLetter(Letter $newsLetter): self
     {
-        if (!$this->newsLetters->contains($newsLetter)) {
-            $this->newsLetters[] = $newsLetter;
+        if (!$this->letters->contains($newsLetter)) {
+            $this->letters[] = $newsLetter;
             $newsLetter->addAdmin($this);
         }
 
         return $this;
     }
 
-    public function removeNewsLetter(NewsLetter $newsLetter): self
+    public function removeLetter(Letter $newsLetter): self
     {
-        if ($this->newsLetters->contains($newsLetter)) {
-            $this->newsLetters->removeElement($newsLetter);
+        if ($this->letters->contains($newsLetter)) {
+            $this->letters->removeElement($newsLetter);
             $newsLetter->removeAdmin($this);
         }
+
+        return $this;
+    }
+
+    public function getRoles(): ?array
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
