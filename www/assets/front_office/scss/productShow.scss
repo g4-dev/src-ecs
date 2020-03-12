@@ -276,6 +276,10 @@
       transition: all .5s linear;
     }
   }
+
+  .draglist:nth-child(1n+4){
+    display:none;
+  }
 }
 
 .cont-list-comments{
