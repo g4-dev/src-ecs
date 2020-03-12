@@ -330,4 +330,22 @@
 
 .listeCommande{
   margin-top: 50px;
+  table{
+    border: solid 1px $darkGrey;
+    border-collapse:collapse;
+    th{
+      padding: 32px;
+      border-bottom: solid 1px $darkGrey;
+      border-right:1px solid $darkGrey;
+      border-left:1px solid $darkGrey;
+    }
+    td{
+      padding: 32px;
+      text-align: center;
+      border-right:1px solid $darkGrey;
+      border-left:1px solid $darkGrey;
+      border-bottom: solid 1px $darkGrey;
+    }
+  }
+
 }

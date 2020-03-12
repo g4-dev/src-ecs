@@ -10,20 +10,17 @@
 
     <div class="panier_space continueSubmit">
         <div class="fullCenter">
-            <a href="{{ path('accountPurchaseList') }}"  class="continueWhite">Commandes</a>
-        </div>
-        <div class="fullCenter">
-            <a href="{{ path('account') }}"  class="continueWhite">Compte</a>
+            <a href="{{ path('account') }}"  class="continueWhite">Mon compte</a>
         </div>
     </div>
 
-    <div class="card listeCommande">
+    <div class="card listeCommande fullCenter pop">
         <div class="card-body">
             {% if purchases is empty %}
                 <p>Pas de commande pour l'instant.</p>
             {% else %}
                 <table class="table">
-                    <thead>
+                    <thead class="pop-sBold">
                     <tr>
                         <th>#</th>
                         <th>Date</th>
