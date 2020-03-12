@@ -4,8 +4,9 @@ easy_admin:
             # TODO: traductions
             class: Admin\Entity\ProService
             image_base_path: '%kernel.project_dir%/public/uploads/'
+            label: 'Service pro'
             list:
-                title: 'Services Pro'
+                title: 'Services Professionnels'
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'shortDescription', type: 'text', label: 'Brief' }
@@ -23,10 +24,9 @@ easy_admin:
                     - { type: 'group', css_class: 'col-sm-4' }
                     - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
                     - { property: 'name', label: 'Titre' }
-                    - { type: 'section', label: 'Advanced Settings', icon: 'warning', help: 'Reserved for administrators use' }
                     - { property: 'isActive', label: 'Published' }
                     - { type: 'group', css_class: 'col-sm-8' }
                     - { property: 'tags', type_options: { required: true } }
                     - { property: 'shortDescription', type: 'text', label: 'Brief' }
-                    - { property: 'description', type: 'text_editor', label: 'Description', type_options: { trim: true } }
+                    - { property: 'description', type: 'text', label: 'Description', type_options: { trim: true } }
                     - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: true } }

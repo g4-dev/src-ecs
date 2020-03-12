@@ -2,9 +2,9 @@ easy_admin:
     entities:
         CmsCategory:
             class: Admin\Entity\CmsCategory
-            label: 'Categories'
+            label: 'Catégorie'
             list:
-                title: 'Category %%entity_label%%'
+                title: 'Catégories'
                 actions:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
@@ -13,7 +13,7 @@ easy_admin:
                     - 'id'
                     - { property: 'name', label: 'Label' }
                     - { property: 'parent', label: 'Parent category' }
-                    - 'items'
+                    - { property: 'items', label: 'Produits' }
                     - { property: 'slug', template: '@admin/custom-fields/category-link.html.twig', label: 'links.category', route: 'cmsCategoryList' }
 
             show:

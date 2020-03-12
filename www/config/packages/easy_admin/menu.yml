@@ -13,6 +13,7 @@ easy_admin:
         menu:
             - { label: 'Dashboard', icon: 'home', route: 'admin_dashboard', default: true }
             - label: 'menu.product'
+              permission: ['ROLE_MARKETING', 'ROLE_SUBADMIN', 'ROLE_SUPERADMIN']
               icon: 'shopping-basket'
               children:
                   - { entity: 'Product', icon: 'th-list', label: 'menu.product.list', default: true, roles: ['ROLE_EMPLOYEE'] }
@@ -20,24 +21,27 @@ easy_admin:
                   - { entity: 'Product', icon: 'plus-circle', label: 'menu.product.add', params: { action: 'new' } }
 
             - label: 'menu.proservice'
+              permission: ['ROLE_MARKETING', 'ROLE_SUBADMIN', 'ROLE_SUPERADMIN']
               icon: 'building'
               children:
                   - { entity: 'ProService', icon: 'th-list', label: 'menu.proservice.list' }
                   - { entity: 'ProService', icon: 'plus-circle', label: 'menu.proservice.add', params: { action: 'new' } }
 
             - label: 'menu.marketing'
+              permission: ['ROLE_MARKETING', 'ROLE_SUBADMIN', 'ROLE_SUPERADMIN']
               icon: 'newspaper'
               children:
                   - { entity: 'CmsPage', icon: 'th-list', label: 'menu.articles.list', params: { sortField: 'createdAt' }, default: true }
                   - { entity: 'CmsCategory', icon: 'tags', label: 'menu.articles.category' }
                   - { entity: 'Diy', icon: 'recycle', label: 'menu.diy' }
-                  - { entity: 'NewsLetter', icon: 'paper', label: 'menu.newsletter' }
-            - { label: 'menu.customer', entity: 'User', icon: 'users' }
-            - { label: 'menu.purchase', entity: 'Purchase', icon: 'credit-card', params: { sortField: 'deliveryDate' } }
+                  - { entity: 'NewsLetter', icon: 'newspaper', label: 'menu.newsletter' }
+            - { label: 'menu.customer', entity: 'User', icon: 'users', permission: ['ROLE_SUPPORT', 'ROLE_SUBADMIN', 'ROLE_SUPERADMIN'] }
+            - { label: 'menu.purchase', entity: 'Purchase', icon: 'credit-card', params: { sortField: 'deliveryDate' }, permission: ['ROLE_MARKETING', 'ROLE_SUPPORT', 'ROLE_SUBADMIN', 'ROLE_SUPERADMIN'] }
 
             - label: 'menu.settings'
+              permission: ['ROLE_SUBADMIN', 'ROLE_SUPERADMIN']
               icon: 'cogs'
               children:
                   - { icon: 'grip-horizontal', label: 'menu.settings.nav', entity: 'Nav', params: { sortField: 'position' } }
                   #- { icon: 'bars', label: 'menu.settings.homepage', entity: 'Settings', params: { action: 'edit', id: 1 } }
-                  - { icon: 'users', label: 'menu.admin', entity: 'Admin' }
+                  - { icon: 'users', label: 'menu.admin', entity: 'Admin', permission: 'ROLE_SUPERADMIN' }

@@ -2,8 +2,9 @@ easy_admin:
     entities:
         Product:
             class: Admin\Entity\Product
-            label: 'Products'
+            label: 'Product'
             list:
+                title: 'Products'
                 fields:
                     - id
                     - { property: 'isActive', type: 'toggle', label: 'Active?' }
@@ -34,13 +35,11 @@ easy_admin:
                     - { type: 'group', css_class: 'col-sm-8', label: 'Basic information', icon: 'pencil' }
                     - { property: 'name', css_class: 'large' }
                     - { property: 'description', type: 'text' }
-                    - { type: 'divider' }
                     - { property: 'category', type: 'easyadmin_autocomplete', type_options: { attr: { create: true } } }
                     - { type: 'group', css_class: 'col-sm-4', label: 'Product Details', icon: 'cube' }
                     - { property: 'ean', help: 'ean.help_message', type_options: { required: false } }
                     - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
                     - { property: 'stock' }
-                    - { type: 'section', label: 'Advanced Settings', icon: 'warning', help: 'Reserved for administrators use' }
                     - { property: 'isActive' }
                     - { property: 'createdAt' }
                     - { type: 'group', css_class: 'col-sm-8 new-row' }

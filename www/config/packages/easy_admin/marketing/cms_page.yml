@@ -4,8 +4,9 @@ easy_admin:
             # TODO TRAD traductions
             class: Admin\Entity\CmsPage
             image_base_path: '%kernel.project_dir%/public/uploads/'
+            label: 'Page'
             list:
-                title: 'Articles'
+                title: 'Pages'
                 fields:
                     - id
                     - { property: 'name', label: 'Titre' }

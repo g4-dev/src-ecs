@@ -12,8 +12,10 @@ easy_admin:
             class: FrontOffice\Entity\Purchase
             controller: FrontOffice\Controller\Shopping\PurchaseController
             disabled_actions: ['delete']
+            label: Vente
             list:
                 sort: ['createdAt', 'DESC']
+                title: 'Ventes'
                 actions: [ { name: 'show', icon: 'shopping-basket' } ]
                 fields: ['guid', 'buyer', 'deliveryDate', 'deliveryHour', 'billingAddress', 'purchasedItems', 'total']
             form:
@@ -21,10 +23,9 @@ easy_admin:
                     - { type: 'group', label: 'Delivery Details', icon: 'truck', css_class: 'col-sm-6' }
                     - deliveryDate
                     - deliveryHour
-                    - { type: 'divider' }
                     - { type: 'group', label: 'Purchase Details', icon: 'shopping-cart', css_class: 'col-sm-6' }
                     - { property: 'guid', type_options: { 'disabled': true } }
                     - { property: 'buyer', type: 'easyadmin_autocomplete' }
                     - { property: 'status', type: choice, type_options: { multiple: false, choices: {'processing': 'processing','shipped': 'shipped' } } }
                     - { type: 'group', label: 'address.shopping', css_class: 'col-sm-6' }
-                    - { property: 'shippingAddress', type: 'Core\Form\AddressType' }
+                    - { property: 'shippingAddress', label: 'shipping.informations', type: 'Core\Form\AddressType' }

@@ -2,9 +2,9 @@ easy_admin:
     entities:
         Admin:
             class: Core\Entity\Admin
-            label: 'Admins'
+            label: 'Administrateur'
             list:
-                title: 'Admins'
+                title: 'Admininstrateurs'
                 fields:
                     - id
                     - name
@@ -31,7 +31,7 @@ easy_admin:
                     - { property: 'isActive' }
                     - { property: 'passwordHash', type: 'password', label: 'Password' }
                     - { property: 'email', type: 'email' }
-                    - { property: 'roles', type: 'choice', type_options: { multiple: true,
+                    - { property: 'roles', type: 'choice', label: 'roles', type_options: { multiple: true,
                                                                            choices: { 'ROLE_MARKETING': 'ROLE_MARKETING',
                                                                                       'ROLE_EMPLOYEE': 'ROLE_EMPLOYEE',
                                                                                       'ROLE_ADMIN': 'ROLE_SUBADMIN',

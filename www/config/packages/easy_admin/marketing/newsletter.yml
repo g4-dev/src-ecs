@@ -5,7 +5,7 @@ easy_admin:
             class: Admin\Entity\NewsLetter
             disabled_actions: ['delete','edit']
             list:
-                title: 'diy.title'
+                title: 'Newsletter'
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'createdAt', label: 'Created at', format: 'j / M / Y' }

@@ -27,6 +27,7 @@ menu.purchase:     Purchases
 menu.about:        About EasyAdmin
 menu.blog: Blog
 menu.articles.list: Articles list
+menu.newsletter: Newsletter
 
 # We let EasyAdmin generate the rest of the backend labels
 # (they are translated following the 2) method)

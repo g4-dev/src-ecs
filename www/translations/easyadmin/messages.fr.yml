@@ -20,6 +20,10 @@ menu.diy: Recettes DIY
 menu.proservice: B2B
 menu.proservice.add: Ajouter un service
 menu.proservice.list: Tous les services
+menu.newsletter: Newsletter
+links.category: Lien vers la catégorie
+links.page_cms: Liens vers la page
+links.diy: Lien vers la recette
 
 #links to page
 links_to_page: Consulter
@@ -30,6 +34,10 @@ Customers: Clients
 Product: Produit
 Products: Produits
 User: Utilisateur
+Articles: Articles
+Article: Article
+Produits: Produits
+difficulty: Difficulté
 CmsPages: Page de contenu
 CmsPage: Page de contenu
 
@@ -66,12 +74,23 @@ Tags: Étiquettes
 Total: Total
 Username: Nom de l'utilisateur
 url.prefix: Préfixe d'url /
+items.category: Produits de la catégorie
+sender: Expéditeur
+Active?: Actif ?
+processing: En cours de préparation
+shipped: Expédié
+address.shopping: Informations d'expédition
+shipping.informations: Adresse d'expédition
+Password: Mot de passe
+roles: Rôle
 
 # help messages
 ean.help_message: Saisissez un code EAN-13 valide. Laissez-le vide si vous n'avez pas le code.
+help.title.category: Sera affiché sur le site
+help.parent.category: Si la catégorie actuelle est une sous catégorie d'une catégorie déjà créée
 
 # messages that contain variables
-'Product %entity_label%': 'Producto %entity_label%'
+'Product %entity_label%': 'Produit %entity_label%'
 
 # misc. messages
 Account Information: Informations sur le compte
