@@ -20,7 +20,9 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         // PRODUCT
-        foreach (range(0, 29) as $i) {
+
+        //textile
+        foreach (range(0, 14) as $i) {
             $item = new Product();
             $item->setIsActive((rand(1, 1000) % 10) < 7);
             $item->setName($this->getRandomName());
@@ -28,15 +30,88 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             $item->setPrice($this->getRandomPrice());
             $item->setEan($this->getRandomEan());
             $item->setImage('image'.rand(0, 3).'.jpg');
-            $item->setCategory($this->getRandomCategories());
+            $item->setCategory($this->getTextileCategories());
             $item->setTags($this->getRandomTags());
             $item->setFeatures($this->getRandomFeatures());
             $item->setStock(rand(1, 100));
-    
+
             $this->addReference('product-'.$i, $item);
             $manager->persist($item);
         }
-    
+
+        //cuisine
+        foreach (range(15, 29) as $i) {
+            $item = new Product();
+            $item->setIsActive((rand(1, 1000) % 10) < 7);
+            $item->setName($this->getRandomName());
+            $item->setDescription($this->getRandomDescription());
+            $item->setPrice($this->getRandomPrice());
+            $item->setEan($this->getRandomEan());
+            $item->setImage('image'.rand(0, 3).'.jpg');
+            $item->setCategory($this->getCuisineCategories());
+            $item->setTags($this->getRandomTags());
+            $item->setFeatures($this->getRandomFeatures());
+            $item->setStock(rand(1, 100));
+
+            $this->addReference('product-'.$i, $item);
+            $manager->persist($item);
+        }
+
+
+        //jardin
+        foreach (range(30, 37) as $i) {
+            $item = new Product();
+            $item->setIsActive((rand(1, 1000) % 10) < 7);
+            $item->setName($this->getRandomName());
+            $item->setDescription($this->getRandomDescription());
+            $item->setPrice($this->getRandomPrice());
+            $item->setEan($this->getRandomEan());
+            $item->setImage('image'.rand(0, 3).'.jpg');
+            $item->setCategory($this->getJardinageCategories());
+            $item->setTags($this->getRandomTags());
+            $item->setFeatures($this->getRandomFeatures());
+            $item->setStock(rand(1, 100));
+
+            $this->addReference('product-'.$i, $item);
+            $manager->persist($item);
+        }
+
+        //electro
+        foreach (range(38, 53) as $i) {
+            $item = new Product();
+            $item->setIsActive((rand(1, 1000) % 10) < 7);
+            $item->setName($this->getRandomName());
+            $item->setDescription($this->getRandomDescription());
+            $item->setPrice($this->getRandomPrice());
+            $item->setEan($this->getRandomEan());
+            $item->setImage('image'.rand(0, 3).'.jpg');
+            $item->setCategory($this->getElectroCategories());
+            $item->setTags($this->getRandomTags());
+            $item->setFeatures($this->getRandomFeatures());
+            $item->setStock(rand(1, 100));
+
+            $this->addReference('product-'.$i, $item);
+            $manager->persist($item);
+        }
+
+        //maison
+        foreach (range(54, 73) as $i) {
+            $item = new Product();
+            $item->setIsActive((rand(1, 1000) % 10) < 7);
+            $item->setName($this->getRandomName());
+            $item->setDescription($this->getRandomDescription());
+            $item->setPrice($this->getRandomPrice());
+            $item->setEan($this->getRandomEan());
+            $item->setImage('image'.rand(0, 3).'.jpg');
+            $item->setCategory($this->getMaisonCategories());
+            $item->setTags($this->getRandomTags());
+            $item->setFeatures($this->getRandomFeatures());
+            $item->setStock(rand(1, 100));
+
+            $this->addReference('product-'.$i, $item);
+            $manager->persist($item);
+        }
+
         // DIY
         foreach (range(0, 29) as $i) {
             $item = new Diy();
@@ -59,24 +134,24 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
     private function getRandomTags()
     {
         $tags = array(
-            'paper',
-            'special',
-            'Dummy',
-            'Random',
-            'bague',
-            'tiroir',
-            'papier',
-            'Nox',
-            'apsum',
-            'pain',
-            'grille',
-            'amet',
-            'dolor',
-            'Ipsum',
-            'Lorem',
+            'books',
+            'electronics',
+            'GPS',
+            'hardware',
+            'laptops',
+            'monitors',
+            'movies',
+            'music',
+            'printers',
+            'smartphones',
+            'software',
+            'toys',
+            'TV & video',
+            'videogames',
+            'wearables',
         );
 
-        $numTags = rand(5, 7);
+        $numTags = rand(2, 4);
         shuffle($tags);
 
         return array_slice($tags, 0, $numTags - 1);
@@ -107,10 +182,10 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             'Tempus', 'Commodo', 'Mattis', 'Donec', 'Posuere', 'Eleifend',
         );
 
-        $numWords = 1;
+        $numWords = 2;
         shuffle($words);
 
-        return implode(' ', array_slice($words, 0, $numWords));
+        return 'Product '.implode(' ', array_slice($words, 0, $numWords));
     }
 
     private function getRandomPrice()
@@ -171,7 +246,8 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
 
         return array_slice($features, 0, $numFeatures - 1);
     }
-    
+
+
     private function getRandomCategories()
     {
         $categories = array();
@@ -179,15 +255,47 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
         $allCategoryIds = range(1, 30);
         $selectedCategoryIds = array_rand($allCategoryIds, $numCategories);
 
-        foreach ((array) $selectedCategoryIds as $categoryId) {
+        foreach ((array)$selectedCategoryIds as $categoryId) {
             if ($categoryId % 3) {
                 $catType = $categoryId % 2 === true ? 'product-subcategory-' : 'product-category-';
-                $categories[] = $this->getReference($catType.$categoryId);
+                $categories[] = $this->getReference($catType . $categoryId);
             }
         }
-    
 
-        
+    }
+    private function getTextileCategories()
+    {
+        $categories = array();
+        $categories[] = $this->getReference('textile');
+        return $categories;
+    }
+
+
+    private function getCuisineCategories()
+    {
+        $categories = array();
+        $categories[] = $this->getReference('cuisine');
+        return $categories;
+    }
+
+    private function getJardinageCategories()
+    {
+        $categories = array();
+        $categories[] = $this->getReference('jardin');
+        return $categories;
+    }
+
+    private function getElectroCategories()
+    {
+        $categories = array();
+        $categories[] = $this->getReference('electro');
+        return $categories;
+    }
+
+    private function getMaisonCategories()
+    {
+        $categories = array();
+        $categories[] = $this->getReference('maison');
         return $categories;
     }
 }
