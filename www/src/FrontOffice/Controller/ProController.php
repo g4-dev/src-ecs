@@ -40,13 +40,10 @@ class ProController extends AbstractController
             $email = $request->request->get("devis_form")['email'];
             $yellowTrashCan = $request->request->get("devis_form")['yellowTrashCan'];
             $blueTrashCan = $request->request->get("devis_form")['blueTrashCan'];
-            $news_letter = $request->request->get("devis_form")['news_letter'];
             if ($yellowTrashCan == 1){$yellowTrashCan = "Oui";}
             else{$yellowTrashCan = "Non";}
             if ($blueTrashCan == 1){$blueTrashCan = "Oui";}
             else {$blueTrashCan = "Non";}
-            if ($news_letter == 1){$news_letter = "Oui";}
-            else{$news_letter = "Non";}
 
             $mailer->broadcastToAdmins($mailer->createTwigMessage(
                 "Devis",
@@ -59,7 +56,6 @@ class ProController extends AbstractController
                 'email'=> $email,
                 'yellowTrashCan'=> $yellowTrashCan,
                 'blueTrashCan'=> $blueTrashCan,
-                'news_letter'=> $news_letter,
                 ],
                 ));
             $this->addFlash('success', 'Envoi du mail effectué');

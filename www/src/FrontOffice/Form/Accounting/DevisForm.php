@@ -87,13 +87,6 @@ class DevisForm extends AbstractType
                 ],
                 'expanded' => true,
             ])
-            ->add('news_letter', ChoiceType::class, [
-                'choices'  => [
-                    'Oui' => true,
-                    'Non' => false,
-                ],
-                'expanded' => true,
-            ])
             ->add('submit', SubmitType::class, ['label' => 'Valider mon inscription',
                 'attr' => [
                     'hidden' => true,
