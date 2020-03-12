@@ -4,6 +4,8 @@
     {{ encore_entry_link_tags('diyList', null, 'front_office') }}
 {% endblock %}
 
+{% block title %}{{ 'allDiy'|trans|raw }}{% endblock %}
+
 {% block main %}
     {% if  diys.currentPage == 1 %}
     <div class="top-page">

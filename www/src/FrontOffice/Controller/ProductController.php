@@ -17,9 +17,9 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/products/{slug}/{page?1}", name="productList")
+     * @Route("/products/{page?1}", name="productList")
      */
-    public function productList(Request $req, string $slug, ?int $page = 1)
+    public function productList(Request $req, ?int $page = 1)
     {
         // TODO: prendre le code de easyadmin pour faire la pagination
         // Pagination de tout
@@ -29,14 +29,12 @@ class ProductController extends AbstractController
            ->findAllQueryBuilder();
         $adapter = new DoctrineORMAdapter($qb);
         $pagerfanta = new Pagerfanta($adapter);
-//        $pagerfanta->setMaxPerPage(10);
+        $pagerfanta->setMaxPerPage(10);
         $pagerfanta->setCurrentPage($page);
         
-        dump($pagerfanta);
         //vue temporaire en attendant pour tester l'ajout au panier
         return $this->render('@fo/shopping/productAll.html.twig', [
            'products' => $pagerfanta,
-            'slug' => $slug
         ]);
     }
     

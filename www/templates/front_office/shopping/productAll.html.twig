@@ -25,6 +25,8 @@
         {% endfor %}
     </div>
 
+    {{ paginate(products, 'productList', 6)|raw }}
+
 {% endblock %}
 
 {% block scripts %}
