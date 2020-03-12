@@ -87,7 +87,7 @@ class CmsPage extends AbstractSluggable
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Admin\Entity\TitleContent", mappedBy="cmsPage")
+     * @ORM\OneToMany(targetEntity="Admin\Entity\TitleContent", mappedBy="cmsPage")
      */
     private $titleContents;
     

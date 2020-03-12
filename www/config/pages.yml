@@ -12,13 +12,13 @@ parameters:
                 - accounting # Regroupe tous ce qui concerne l'inscription /
                 - shopping
                 - proServiceList
-                - cmsShow # anciennement compAndDechet (supprimer ce commentaire)
+                - cmsShow
                 - cmsList
                 - diyShow
                 - diyList
                 - productList # List == category
                 - productShow
-                - company&zero
+                - company-zero
             defaultExt: ts
             alias: fo
 

@@ -69,8 +69,11 @@ class Address
      */
     private $purchaseShipping;
     
-    public function __construct()
+    public function __construct($name = '', $lastName = '')
     {
+        $this->name = $name;
+        $this->lastName= $lastName;
+        
         if (method_exists($this, '_init')) {
             $this->_init();
         }
@@ -175,7 +178,8 @@ class Address
     public function __toString()
     {
         $D = ' - ';
-        return $this->getUser()->getName().
+        
+        return $this->name.' '.$this->lastName.
            $D.$this->getAddress().$D.$this->getCity().', '.$this->getPostCode();
     }
 }

@@ -35,7 +35,7 @@
                 {% for product in products %}
                     <tr>
                         <td>
-                            <a href="{{ path('basketRemove', { id: product.product.id })}}" class="basket-product__remove" title="Supprimer">
+                            <a href="{{ path('basketRemove', { id: product.product.id }) }}" class="basket-product__remove" title="Supprimer">
                                 {% include "./svg/trash.html.twig" %}
                             </a>
                             <a href="#"></a>
@@ -77,11 +77,7 @@
                     <p class="serge-bold price"><strong>{{ totalPrice }} €</strong></p>
                 </div>
                 <div class="center continue pop">
-                    {% if is_granted('ROLE_USER') %}
-                        <a href="{{ path('checkoutAddress') }}">Commander</a>
-                    {% else %}
-                        <a href="{{ path('accountAddress', {'purchase': true, 'message': 'accounting.register_warning'|trans|raw }) }}">Commander</a>
-                    {% endif %}
+                    <a href="{{ path('checkoutAddress') }}">Commander</a>
                 </div>
             </div>
         </div>

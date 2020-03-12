@@ -14,6 +14,7 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,12 +51,13 @@ class PayPalController extends AbstractController
      * Generates the payment and redirects to the paypal checkout page
      *
      * @Route("checkout/paypal", name="checkoutPaypal")
+     * @IsGranted("ROLE_USER")
      * @param Request $req
      * @return Response
      */
     public function paypalCheckout(Request $req)
     {
-        if (!$this->session->get('checkout/payment')) {
+        if (!$this->session->get('checkout/payment') || !$this->basket->hasProducts()) {
             return $this->redirectToRoute('basket');
         }
         
@@ -81,6 +83,7 @@ class PayPalController extends AbstractController
             //return $this->redirectToRoute('homepage');
         }
         
+        $this->session->remove('checkout/payment');
         $this->session->set('checkout/paypal-checkout', true);
         
         return $this->redirect($this->generateUrl('paypalPayment'));//$payment->getApprovalLink());
@@ -90,6 +93,7 @@ class PayPalController extends AbstractController
      * Actually executes the payment after the customer was redirected back from paypal
      *
      * @Route("checkout/paypal-payment",name="paypalPayment")
+     * @IsGranted("ROLE_USER")
      * @param Request $req
      * @param MailerService $mailer
      * @param PurchasefactoryService $orderFactory
@@ -100,7 +104,7 @@ class PayPalController extends AbstractController
        MailerService $mailer,
        PurchaseFactoryService $purchaseFactory
     ) {
-        if (!$this->session->get('checkout/paypal-checkout')) {
+        if (!$this->session->get('checkout/paypal-checkout') || !$this->basket->hasProducts()) {
             return $this->redirectToRoute('basket');
         }
         
@@ -138,7 +142,8 @@ class PayPalController extends AbstractController
         } catch (\Exception $e) {
             $this->createNotFoundException();
         }
-
+        
+        $this->session->remove('checkout/paypal-checkout');
         $this->basket->clear();
         
         return $this->render(

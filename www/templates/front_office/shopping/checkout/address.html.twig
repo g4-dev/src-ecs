@@ -5,7 +5,7 @@
 {% block breadcrumb %}
 <div class="breadcrumbs">
     <div class="container">
-        <nav aria-label="breadcrumb">
+        <nav class="ecs-breadcrumb">
             <ol class="breadcrumb justify-content-center">
             <li class="breadcrumb-item">Identification</li>
             <li class="breadcrumb-item active" aria-current="page">Adresse</li>
@@ -38,13 +38,13 @@
                     <button type="submit" class="pop continue">{{ 'Continuer'|trans }}</button>
                 </div>
             </div>
+        {{ form_errors(address_choice_form) }}
         {{ form_end(address_choice_form) }}
-        {% else %}
+    {% endif %}
         <div class="panier_space flexStart address_button">
             <div class="fullCenter button pop">
                 <a class="continueWhite" href="{{ path('accountAddress') }}">+ Ajouter une adresse</a>
             </div>
         </div>
-        {% endif %}
     </section>
 {% endblock %}
