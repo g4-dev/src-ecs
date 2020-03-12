@@ -16,7 +16,7 @@
         <div class="products-list products-list-top">
         {% endif %}
 
-            <a href="{{ path('productShow',{ slug: product.slug }) }}" class="product-minia">
+            <a href="{{ path('productShow',{ slug: product.slug, comeFromCategory: slug }) }}" class="product-minia">
                 <div>
                     <img src="{{ vich_uploader_asset(product, 'imageFile')}}">
                     <div class="description">

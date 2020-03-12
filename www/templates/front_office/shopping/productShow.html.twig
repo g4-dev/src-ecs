@@ -7,7 +7,8 @@
 {% block main %}
 
     <hr class="sep-header">
-    <a class="btn-back pop" href="#">Retour</a>
+    {% set returnRoute = if comeFromCategory|default(false)  %}
+    <a class="btn-back pop" href="{{ path(comeFromCategory|default('productCategoryList')) }}">Retour</a>
     {{ form_start(form, {'action': path('basketAdd'), 'method': 'POST', 'attr': { class: 'cont-top-produit'} } ) }}
 {#    <div class="cont-top-produit">#}
         <div class="cont-top-produit-img">
@@ -138,7 +139,7 @@
         </div>
     </div>
 
-    <p class="gel-bold title-suggest">Suggestions</p>
+    <p class="gel-bold title-suggest">{{ 'products.suggered'|trans|raw }}</p>
 
     <div class="cont-item">
         {% for product in lastProducts %}
