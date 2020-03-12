@@ -76,7 +76,7 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             'Lorem',
         );
 
-        $numTags = rand(2, 4);
+        $numTags = rand(5, 7);
         shuffle($tags);
 
         return array_slice($tags, 0, $numTags - 1);
