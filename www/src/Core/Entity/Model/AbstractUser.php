@@ -9,7 +9,6 @@ use Core\Entity\Traits;
 abstract class AbstractUser extends Entity
 {
     use Traits\Id;
-    use Traits\Name;
     use Traits\IsActive;
     use Traits\IsDeleted;
     use Traits\DatesAt;

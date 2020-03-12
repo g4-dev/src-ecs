@@ -18,9 +18,10 @@
     align-self: self-start;
     color: var(--text-color);
     flex: 30% 0 0;
-    font-size: var(--font-size-base);
-    font-weight: 400;
-    margin: 6px 4px;
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    margin: 5px 5px 0 0;
+    text-align: left;
 }
 .form-group .col-form-label {
     padding: 0;

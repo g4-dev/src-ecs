@@ -4,6 +4,8 @@
     {{ encore_entry_link_tags('diyList', null, 'front_office') }}
 {% endblock %}
 
+{% block title %}{{ 'allDiy'|trans|raw }}{% endblock %}
+
 {% block main %}
     {% if  diys.currentPage == 1 %}
     <div class="top-page">
@@ -29,32 +31,10 @@
                 <p class="gel-bold">{{ diy.name }}</p>
             </div>
         {% endfor %}
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
     </div>
-    <a href="{{ path('diyList', { page: diys.currentPage + 1 }) }}" class="btn btn-voir-plus pop">Voir plus</a>
+
+    {{ paginate(diys, 'diyList', 4)|raw }}
+
 {% endblock %}
 
 {% block scripts %}

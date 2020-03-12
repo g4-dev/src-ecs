@@ -16,8 +16,8 @@
 
             {% include 'bundles/EasyAdminBundle/default/flash_messages.html.twig' %}
             <div class="content-account">
-                <p class="serge-bold">Nom : </p> <p class="serge">{{ account.name }}</p>
-                <p class="serge-bold">Prenom : </p> <p class="serge">{{ account.firstName }}</p>
+                <p class="serge-bold">Prénom : </p> <p class="serge">{{ account.name }}</p>
+                <p class="serge-bold">Nom : </p> <p class="serge">{{ account.lastName }}</p>
                 <p class="serge-bold">Téléphone : </p> <p class="serge">{{ account.phoneNumber }}</p>
                 {#<p class="serge-bold">Adresse : </p> <p class="serge">{{ account.addres }}</p>#}
                 <p class="serge-bold">Email : </p> <p class="serge">{{ account.Username }}</p>
@@ -30,8 +30,8 @@
                         {% for address in addresses  %}
                             <div class="bottomMarg blockAddress">
                                 <div class="bottomMob">
-                                    <p>{{ address.firstName }}</p>
-                                    <p>{{ address.firstName }}</p>
+                                    <p>{{ address.name }}</p>
+                                    <p>{{ address.lastName }}</p>
                                     <p>{{ address.address}}</p>
                                 </div>
                                 <a class="a_adressList continueWhite pop" href="{{ path('accountAddress', {'id': address.id } ) }}">Editer l'adresse</a>

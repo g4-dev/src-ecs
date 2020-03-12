@@ -27,10 +27,6 @@ class HomepageController extends AbstractController
         $diys = $this->getDoctrine()->getRepository(Diy::class)
            ->findLatest(4);
         
-        dump($diys);
-        dump($cmsPages);
-        dump($products);
-        
         return $this->render(
            'front_office/homepage.html.twig',
            [

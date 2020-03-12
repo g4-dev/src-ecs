@@ -9,20 +9,24 @@ easy_admin:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
-                    - { property: 'difficulty', label: 'difficulty', type: range}
+                    - { property: 'difficulty', label: 'difficulty' }
                     - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.diy', route: 'diyShow' }
                 actions: ['edit', 'delete']
             show:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: body, label: Contenu, type: html }
-                    - { property: 'difficulty', label: 'difficulty', type: range }
+                    - { property: 'time', label: 'diy.time' }
+                    - { property: 'difficulty', label: 'difficulty' }
                     - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
+                    - { property: 'ingredients', label: 'ingredients' }
                     - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.diy', route: 'diyShow' }
 
             form:
                 fields:
                     - { property: 'name', label: 'Titre' }
+                    - { property: 'time', label: 'diy.time' }
                     - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
-                    - { property: 'difficulty', label: 'difficulty', type: range}
+                    - { property: 'difficulty', label: 'difficulty', type: choice, type_options: { multiple: false, choices: [1,2,3,4] } }
+                    - { property: 'ingredients', label: 'ingredients' }
                     - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }

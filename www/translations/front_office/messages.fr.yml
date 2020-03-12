@@ -5,6 +5,10 @@ previous: Précédent
 remove: Supprimer
 edit: Modifier
 back: retour
+Previous: Précédent
+Next: Suivant
+ConfirmRegister: 'Valider votre addresse mail pour finir votre inscription'
+ConfirmFinishedRegister: 'Vous êtes bien inscrit sur Ecoservice'
 
 accounting.register_warning: Inscrivez vous pour commander
 diy.info.title: Liste DIY
@@ -12,5 +16,8 @@ diy.info.desc: Les Diy description en Français et Lorem Ipsum Sin dolor
 
 empty.product: Il n'y a pas de produit ici...
 products.suggered: Suggestions
+diy.time: Temps de préparation
 # home
 KnowMore: En savoir plus
+allDiy: Toutes les Diys
+allProducts: Toutes les produits

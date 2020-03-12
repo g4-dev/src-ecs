@@ -18,6 +18,8 @@ class Admin extends Model\AbstractUser implements UserInterface
 {
     const DEFAULT_ROLE = 'ROLE_ADMIN';
     
+    use Traits\Name;
+    
     /**
      * @var array
      * @ORM\Column(name="roles", type="array", nullable=false)

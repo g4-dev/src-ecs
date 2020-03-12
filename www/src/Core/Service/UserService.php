@@ -54,13 +54,14 @@ class UserService
 
     public function register(array $data): User
     {
-        $required = ['name', 'email', 'password'];
+        dump($data);
+        $required = ['email', 'password', 'name', 'newsLetter','lastName'];
         foreach ($required as $key) {
             if (!isset($data[$key])) {
                 throw new \RuntimeException("Missing value for key: " . $key);
             }
         }
-        
+        dump($data);
         $this->logger->debug(sprintf('%s: Registering user account, email=%s',
             __METHOD__, $data['email']));
 

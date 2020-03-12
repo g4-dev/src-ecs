@@ -4,6 +4,8 @@
     {{ encore_entry_link_tags('homepage', null, 'front_office') }}
 {% endblock %}
 
+{% block title %} {{ website_name }} {% endblock %}
+
 {% block main %}
 
     {% include '@fo/components/flash-messages.html.twig' %}
@@ -17,7 +19,9 @@
                     <article class="midWidth">
                         <h2 class="gel-sBold">{{ cmsPage.name}}</h2>
                         <p class="pop">{{ cmsPage.description|striptags|slice(0, 175)|raw  }}</p>
-                        <a href="{{ path("company") }} class="btn pop">{{ 'KnowMore'|trans|raw }}</a>
+                        <a class="btn pop" href="{{ path('cmsShow', { slug: cmsPage.slug }) }}">
+                            {{ 'KnowMore'|trans|raw }}
+                        </a>
                     </article>
                     <div class="midWidth">
                         <img src="{{ vich_uploader_asset(cmsPage, 'imageFile') }}" alt="{{ cmsPage.image }}">
@@ -40,31 +44,6 @@
         <p class="gel-bold title-suggest title-suggest-home">Produits</p>
         <div class="fullCenter">
             <div class="produit_space">
-                    {#TODO: Mettre les derniers produits en s'aidant du code ci-dessous (vérifier back)#}
-{#                    <div class="row">
-                        {% for product in latest_products %}
-                            <div class="col-md-4">
-                                <article class="product-card card border-0 mb-4">
-                                    {% set thumb = product.images|first %}
-                                    <div class="image-container">
-                                        <a href="/product/{{ product.slug }}">
-                                            <img src="vich_uploader_asset({{ product.imageFile, product.image }})" alt="{{ product.image }}" class="product-card__image img img-fluid">
-                                        </a>
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <h4 class="product-card__heading">
-                                            <a href="path('product',{{ product.slug }})" class="product-card__link">
-                                                {{ product.name }}
-                                            </a>
-                                        </h4>
-                                        <div class="divider mb-2"></div>
-                                        <div class="product-card__price text-right">{{ product.price }} €</div>
-                                    </div>
-                                </article>
-                            </div>
-                        {% endfor %}
-                    </div>#}
-
                 <div class="cont-item cont-item-home">
                     {% for product in products %}
                         <div>
@@ -78,7 +57,7 @@
             </div>
         </div>
         <div class="center">
-            <a class="btn pop">Voir plus</a>
+            <a class="btn pop" href="{{ path('productList') }}">Voir plus</a>
         </div>
     </section>
 
@@ -91,7 +70,7 @@
         <article class="midWidth fullCenter" id='parti'>
             <h4 class="pop-sBold">Particulier</h4>
             <p class="pop">Trouvez votre bonheur et offrez une seconde chance aux objets du quotidien.</p>
-            <a href="{{ path('productList', { 'slug': "list" }) }}" class="btn pop">Découvrir</a>
+            <a href="{{ path('productList') }}" class="btn pop">Découvrir</a>
         </article>
     </section>
 

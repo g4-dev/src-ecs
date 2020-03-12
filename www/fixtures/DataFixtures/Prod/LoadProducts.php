@@ -43,6 +43,7 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             $item->setIsActive((rand(1, 1000) % 10) < 7);
             $item->setName($this->getRandomName());
             $item->setBody($this->getRandomDescription());
+            $item->setIngredients($this->getRandomTags());
             $item->setSummary($this->getRandomDescription());
             $item->setDifficulty(rand(1,4));
             $item->setTime(rand(1,4).'m');
@@ -58,24 +59,24 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
     private function getRandomTags()
     {
         $tags = array(
-            'books',
-            'electronics',
-            'GPS',
-            'hardware',
-            'laptops',
-            'monitors',
-            'movies',
-            'music',
-            'printers',
-            'smartphones',
-            'software',
-            'toys',
-            'TV & video',
-            'videogames',
-            'wearables',
+            'paper',
+            'special',
+            'Dummy',
+            'Random',
+            'bague',
+            'tiroir',
+            'papier',
+            'Nox',
+            'apsum',
+            'pain',
+            'grille',
+            'amet',
+            'dolor',
+            'Ipsum',
+            'Lorem',
         );
 
-        $numTags = rand(2, 4);
+        $numTags = rand(5, 7);
         shuffle($tags);
 
         return array_slice($tags, 0, $numTags - 1);
@@ -170,7 +171,7 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
 
         return array_slice($features, 0, $numFeatures - 1);
     }
-
+    
     private function getRandomCategories()
     {
         $categories = array();
@@ -179,8 +180,10 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
         $selectedCategoryIds = array_rand($allCategoryIds, $numCategories);
 
         foreach ((array) $selectedCategoryIds as $categoryId) {
-            $catType = $categoryId % 2 === true ? 'product-subcategory-' : 'product-category-';
-            $categories[] = $this->getReference($catType.$categoryId);
+            if ($categoryId % 3) {
+                $catType = $categoryId % 2 === true ? 'product-subcategory-' : 'product-category-';
+                $categories[] = $this->getReference($catType.$categoryId);
+            }
         }
     
 

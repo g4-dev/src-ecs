@@ -7,7 +7,12 @@
 {% block main %}
 
     <hr class="sep-header">
-    <a class="btn-back pop" href="#">Retour</a>
+{#
+    {% set returnRoute = if comeFromCategory|default(false)  %}
+#}
+{#
+    <a class="btn-back pop" href="{{ path(comeFromCategory|default('productCategoryList')) }}">Retour</a>
+#}
     {{ form_start(form, {'action': path('basketAdd'), 'method': 'POST', 'attr': { class: 'cont-top-produit'} } ) }}
 {#    <div class="cont-top-produit">#}
         <div class="cont-top-produit-img">
@@ -17,9 +22,7 @@
             <div>
                 <h1 class="gel-bold">{{ product.name }}</h1>
                 <p class="pop">
-                {% for categ in  product.category %}
-                    {{ categ|slice(4,20) }}
-                {% endfor %}
+                    {{ product.category|join|slice(0,10) }}
                 </p>
             </div>
             <p class="description pop">{{ product.description|slice(0, 150)}}</p>
@@ -68,20 +71,21 @@
         {{ form_row(form.product_id) }}
     {{ form_end(form) }}
     <div class="cont cont-draglist-product">
+        {% dump(product.tags) %}
+        {% dump(product.features) %}
+
         {% for feature in product.features %}
-            {% for tag in product.tags %}
-                <div class="draglist">
-                    <div class="croix">
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <p class="title pop">{{ tag }}</p>
-                    <div class="hide">
-                        <p class="title-hide pop-bold">{{ tag }}</p>
-                        <p class="pop">{{ feature }}</p>
-                    </div>
+            <div class="draglist">
+                <div class="croix">
+                    <div></div>
+                    <div></div>
                 </div>
-            {% endfor %}
+                <p class="title pop">{{ product.tags[loop.index-1]|default('') }}</p>
+                <div class="hide">
+                    <p class="title-hide pop-bold">{{ product.tags[loop.index-1]|default('') }}</p>
+                    <p class="pop">{{ feature }}</p>
+                </div>
+            </div>
         {% endfor %}
     </div>
     <div class="cont cont-list-comments">
@@ -138,7 +142,7 @@
         </div>
     </div>
 
-    <p class="gel-bold title-suggest">Suggestions</p>
+    <p class="gel-bold title-suggest">{{ 'products.suggered'|trans|raw }}</p>
 
     <div class="cont-item">
         {% for product in lastProducts %}

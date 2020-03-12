@@ -5,8 +5,6 @@ namespace Admin\Controller;
 use Admin\Entity\Diy;
 use Admin\Entity\Product;
 use FrontOffice\Entity\Purchase;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AlterPHP\EasyAdminExtensionBundle\Controller\EasyAdminController;

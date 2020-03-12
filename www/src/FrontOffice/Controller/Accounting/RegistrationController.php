@@ -42,6 +42,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userService->register($form->getData());
+            $this->addFlash('success', $this->get('translator')->trans('ConfirmRegister'));
             
             return $this->redirectToRoute('homepage');
         }
@@ -65,7 +66,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         if ($user->getToken() == $token) {
             $this->userService->activate($user);
             
-            $this->addFlash('success', 'User successfully created');
+            $this->addFlash('success', $this->get('translator')->trans('ConfirmFinishedRegister'));
             
             return $this->redirectToRoute('homepage');
         }

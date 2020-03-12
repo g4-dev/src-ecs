@@ -4,7 +4,7 @@
     background: $lightGrey;
   }
 
-  .UpperHeader{
+  .UpperHeader {
     padding: 8px $basicPadding/2;
 
     a{
@@ -21,7 +21,7 @@
     }
   }
 
-  nav{
+  nav {
     font-size: 1.1rem;
     h1{
       color: $darkGreen;
@@ -30,7 +30,7 @@
       line-height: 3rem;
     }
 
-    .LowerHeader{
+    .LowerHeader {
       padding: 0 $basicPadding;
 
       svg{
@@ -43,7 +43,7 @@
       }
     }
 
-    .LowerHeaderRight{
+    .LowerHeaderRight, .linkNav {
       margin-top: 64px;
 
       a{
@@ -299,12 +299,19 @@ footer{
 
 .linkNav{
   width: 70%;
-  .allProd{
-    margin-top: 64px;
-    padding-bottom: 5px;
+  > a {
+    padding: 0 18px;
   }
 }
 
 .buttonLogin{
   font-size: 1.2rem;
+}
+
+.alert-danger {
+  color: $danger;
+}
+
+.w-100 {
+  width: 100%;
 }

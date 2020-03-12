@@ -11,7 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Class pro.
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Admin\Repository\ProServiceRepository")
  * @ORM\Table(name="pro_service")
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable

@@ -1,7 +1,13 @@
-{#TODO FRONT create a generic pagination used to list categories / cmsPage / product/... #}
-{# SHOW
-    - list
-    - pages and button next/previous
-    - tiles
-    - filters (see specs)
-#}
+{% if pag.currentPage > 1 %}
+    <div class="paginator">
+        {% if (pag.currentPage * pag.maxPerPage) < pag.nbResults %}
+            <a href="{{ path(route, { page: pag.currentPage + 1 }) }}" class="btn pop page-next">{{ 'Next'|trans|raw }}</a>
+        {% endif %}
+        <div class="page btn pop">{{ pag.currentPage }} </div>
+        <a href="{{ path(route, { page: pag.currentPage - 1 }) }}" class="btn pop page-previous">{{ 'Previous'|trans|raw }}</a>
+    </div>
+{% elseif pag.nbResults > firstPageResults|default(4) %}
+    <div class="paginator">
+        <a href="{{ path(route, { page: pag.currentPage + 1 }) }}" class="btn pop">{{ 'KnowMore'|trans|raw }}</a>
+    </div>
+{% endif %}
