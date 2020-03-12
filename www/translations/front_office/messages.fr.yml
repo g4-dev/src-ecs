@@ -5,6 +5,8 @@ previous: Précédent
 remove: Supprimer
 edit: Modifier
 back: retour
+Previous: Précédent
+Next: Suivant
 
 accounting.register_warning: Inscrivez vous pour commander
 diy.info.title: Liste DIY
@@ -12,5 +14,6 @@ diy.info.desc: Les Diy description en Français et Lorem Ipsum Sin dolor
 
 empty.product: Il n'y a pas de produit ici...
 products.suggered: Suggestions
+diy.time: Temps de préparation
 # home
 KnowMore: En savoir plus

@@ -38,6 +38,7 @@ class MenuExtension extends AbstractExtension
         return [
            new TwigFunction('popLogin', [$this, 'popLogin']),
            new TwigFunction('navWalker', [$this, 'navWalker']),
+           new TwigFunction('paginate', [$this, 'paginate']),
         ];
     }
     
@@ -101,5 +102,13 @@ class MenuExtension extends AbstractExtension
         }
         
         return $navWalked;
+    }
+    
+    public function paginate($paginable, $route, $firstPageResults = null) {
+        return $this->twig->render('front_office/components/pagination.html.twig', [
+           'pag' => $paginable,
+           'route' => $route,
+           'firstPageResults' => $firstPageResults ?? 4
+        ]);
     }
 }

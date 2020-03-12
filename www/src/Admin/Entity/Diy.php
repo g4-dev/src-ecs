@@ -27,6 +27,7 @@ class Diy extends AbstractSluggable
     use CoreEn\Traits\DatesAt;
     use CoreEn\Traits\IsActive;
     use CoreEn\Traits\ImageCollection;
+    use CoreEn\Traits\Name;
     
     /**
      * @ORM\Column(type="text")
@@ -42,6 +43,14 @@ class Diy extends AbstractSluggable
      * @ORM\Column(type="integer")
      */
     private $difficulty;
+    
+    /**
+     * List of tags associated to the product.
+     *
+     * @var string[]
+     * @ORM\Column(type="simple_array")
+     */
+    private $ingredients = array();
     
     /**
      * @var CoreEn\Admin
@@ -192,6 +201,18 @@ class Diy extends AbstractSluggable
     public function setOnHome(bool $onHome): self
     {
         $this->onHome = $onHome;
+
+        return $this;
+    }
+
+    public function getIngredients(): ?array
+    {
+        return $this->ingredients;
+    }
+
+    public function setIngredients(array $ingredients): self
+    {
+        $this->ingredients = $ingredients;
 
         return $this;
     }

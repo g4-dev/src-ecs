@@ -1,14 +1,18 @@
-<div class="flexEnd midWidth LowerHeader LowerHeaderRight">
-    {% for link in navWalker()|raw %}
-        {% if link.routeParams is not null %}
-            <a href="{{ path(link.route, link.routeParams|default({})) }}"
-               title="{{ link.title }}">{{ link.name }}</a>
-        {% else %}
-            <a href="{{ path(link.route) }}"
-               title="{{ link.title|default('no link') }}"> {{ link.name|default('no link') }}</a>
-        {% endif %}
-    {% endfor %}
+{% for link in navWalker()|raw %}
+    {% if link.routeParams is not null %}
+        <a href="{{ path(link.route, link.routeParams|default({})) }}"
+           title="{{ link.title }}"
+           {% if class|default(false) %}
+           class="{{ class }}"
+           {% endif %}
+        >
+            {{ link.name }}
+        </a>
+    {% else %}
+        <a href="{{ path(link.route) }}"
+           title="{{ link.title|default('no link') }}"> {{ link.name|default('no link') }}</a>
+    {% endif %}
+{% endfor %}
     {#
         {% include 'svg/search.svg.twig' %}
 #}
-</div>

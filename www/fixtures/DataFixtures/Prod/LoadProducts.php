@@ -43,6 +43,7 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             $item->setIsActive((rand(1, 1000) % 10) < 7);
             $item->setName($this->getRandomName());
             $item->setBody($this->getRandomDescription());
+            $item->setIngredients($this->getRandomTags());
             $item->setSummary($this->getRandomDescription());
             $item->setDifficulty(rand(1,4));
             $item->setTime(rand(1,4).'m');
@@ -58,21 +59,21 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
     private function getRandomTags()
     {
         $tags = array(
-            'books',
-            'electronics',
-            'GPS',
-            'hardware',
-            'laptops',
-            'monitors',
-            'movies',
-            'music',
-            'printers',
-            'smartphones',
-            'software',
-            'toys',
-            'TV & video',
-            'videogames',
-            'wearables',
+            'paper',
+            'special',
+            'Dummy',
+            'Random',
+            'bague',
+            'tiroir',
+            'papier',
+            'Nox',
+            'apsum',
+            'pain',
+            'grille',
+            'amet',
+            'dolor',
+            'Ipsum',
+            'Lorem',
         );
 
         $numTags = rand(2, 4);
