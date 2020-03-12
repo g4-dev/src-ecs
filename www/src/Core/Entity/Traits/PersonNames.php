@@ -7,10 +7,10 @@ trait PersonNames
 {
     /**
      * @var string
-     * @ORM\Column(name="first_name", type="string", length=32, nullable=false, unique=false)
+     * @ORM\Column(name="name", type="string", length=32, nullable=false, unique=false)
      * @Assert\NotBlank()
      */
-    private $firstName;
+    private $name;
     
     /**
      * @var string
@@ -19,14 +19,14 @@ trait PersonNames
      */
     private $lastName;
     
-    public function getFirstName(): ?string
+    public function getName(): ?string
     {
-        return $this->firstName;
+        return $this->name;
     }
     
-    public function setFirstName(?string $firstName): self
+    public function setName(?string $firstName): self
     {
-        $this->firstName = $firstName;
+        $this->name = $firstName;
         
         return $this;
     }

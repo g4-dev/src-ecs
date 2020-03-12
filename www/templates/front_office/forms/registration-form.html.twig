@@ -3,7 +3,7 @@
 <div class="formTheme">
   {{ form_start(form) }}
   <div class="form_item">
-    {{ form_label(form.name, 'Nom') }}
+    {{ form_label(form.name, 'Prénom') }}
     <div class="errorInput">
       {{ form_widget(form.name) }}
       {{ form_errors(form.name) }}
@@ -11,10 +11,10 @@
   </div>
 
   <div class="form_item">
-    {{ form_label(form.firstName, 'Prénom') }}
+    {{ form_label(form.lastName, 'Nom') }}
     <div class="errorInput">
-      {{ form_widget(form.firstName) }}
-      {{ form_errors(form.firstName) }}
+      {{ form_widget(form.lastName) }}
+      {{ form_errors(form.lastName) }}
     </div>
   </div>
 
@@ -68,10 +68,10 @@
 
   <div class="formCheckbox">
     <div>
-      {{ form_label(form.news_letter, 'Newsletter') }}
+      {{ form_label(form.newsLetter, 'Newsletter') }}
       <div class="errorInput">
-        {{ form_widget(form.news_letter) }}
-        {{ form_errors(form.news_letter) }}
+        {{ form_widget(form.newsLetter) }}
+        {{ form_errors(form.newsLetter) }}
       </div>
     </div>
   </div>

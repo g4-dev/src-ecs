@@ -1,7 +1,6 @@
 Core\Entity\User:
   user:
-    name: 'test'
-    first_name: 'user'
+    name: 'user'
     last_name: 'test'
     phone_number: '0667899023'
     uniqueId (unique): '<userUniqueId()>'

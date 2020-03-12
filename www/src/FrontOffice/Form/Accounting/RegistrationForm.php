@@ -27,7 +27,7 @@ class RegistrationForm extends AbstractType
                     new NotBlank(),
                 ]
             ])
-            ->add('firstName', TextType::class, [
+            ->add('lastName', TextType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Prenom', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -82,7 +82,7 @@ class RegistrationForm extends AbstractType
                     'constraints' => [new NotBlank(), new Length(['min' => 8])]
                 ]
             ])
-           ->add('news_letter', CheckboxType::class, [
+           ->add('newsLetter', CheckboxType::class, [
               'required' => true,
               'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
               'constraints' => [

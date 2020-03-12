@@ -171,7 +171,7 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
 
         return array_slice($features, 0, $numFeatures - 1);
     }
-
+    
     private function getRandomCategories()
     {
         $categories = array();
@@ -180,8 +180,10 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
         $selectedCategoryIds = array_rand($allCategoryIds, $numCategories);
 
         foreach ((array) $selectedCategoryIds as $categoryId) {
-            $catType = $categoryId % 2 === true ? 'product-subcategory-' : 'product-category-';
-            $categories[] = $this->getReference($catType.$categoryId);
+            if ($categoryId % 3) {
+                $catType = $categoryId % 2 === true ? 'product-subcategory-' : 'product-category-';
+                $categories[] = $this->getReference($catType.$categoryId);
+            }
         }
     
 

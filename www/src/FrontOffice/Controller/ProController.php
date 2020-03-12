@@ -3,6 +3,7 @@
 
 namespace FrontOffice\Controller;
 
+use Admin\Entity\ProService;
 use FrontOffice\Form\Accounting\DevisForm;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,13 @@ class ProController extends AbstractController
      */
     public function index()
     {
-        return $this->render('front_office/proServiceList.html.twig');
+        $proServices = $this->getDoctrine()
+           ->getRepository(ProService::class)
+           ->findAll();
+        
+        return $this->render('front_office/proServiceList.html.twig',[
+           'proServices' => $proServices
+        ]);
     }
 
     /**

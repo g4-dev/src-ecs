@@ -7,6 +7,8 @@ edit: Modifier
 back: retour
 Previous: Précédent
 Next: Suivant
+ConfirmRegister: 'Valider votre addresse mail pour finir votre inscription'
+ConfirmFinishedRegister: 'Vous êtes bien inscrit sur Ecoservice'
 
 accounting.register_warning: Inscrivez vous pour commander
 diy.info.title: Liste DIY
