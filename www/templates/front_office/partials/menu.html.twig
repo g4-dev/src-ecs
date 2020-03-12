@@ -1,7 +1,5 @@
 <div class="flexEnd midWidth LowerHeader LowerHeaderRight">
-    {% set menu = navWalker()|raw %}
-    {% dump(menu) %}
-    {% for link in menu %}
+    {% for link in navWalker()|raw %}
         {% if link.routeParams is not null %}
             <a href="{{ path(link.route, link.routeParams|default({})) }}"
                title="{{ link.title }}">{{ link.name }}</a>

@@ -18,17 +18,17 @@ class LoadCategories extends Fixture implements OrderedFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        foreach (range(0, 9) as $i) {
+        foreach (range(0, 31) as $i) {
             $category = new ProductCategory();
             $category->setName('ProductCategory #'.$i);
-
+            $category->setDescription($this->getRandomBody());
             $this->addReference('product-category-'.$i, $category);
             $manager->persist($category);
         }
 
         $manager->flush();
 
-        foreach (range(0, 99) as $i) {
+        foreach (range(0, 31) as $i) {
             $category = new ProductCategory();
             $category->setName('ProductSubcategory #'.$i);
             $category->setParent($this->getReference('product-category-'.($i % 10)));
@@ -44,14 +44,15 @@ class LoadCategories extends Fixture implements OrderedFixtureInterface
         foreach (range(0, 9) as $i) {
             $category = new CmsCategory();
             $category->setName('CmsCategory #'.$i);
-        
+            $category->setDescription($this->getRandomBody());
+            
             $this->addReference('cms-category-'.$i, $category);
             $manager->persist($category);
         }
     
         $manager->flush();
     
-        foreach (range(0, 99) as $i) {
+        foreach (range(0, 30) as $i) {
             $category = new CmsCategory();
             $category->setName('CmsSubcategory #'.$i);
             $category->setParent($this->getReference('cms-category-'.($i % 10)));
@@ -63,7 +64,7 @@ class LoadCategories extends Fixture implements OrderedFixtureInterface
     
         $manager->flush();
         
-        foreach (range(0,4) as $i) {
+        foreach (range(27,31) as $i) {
             $nav = new Nav();
             $nav->setName('category-'.$i);
             $nav->setPosition($i);

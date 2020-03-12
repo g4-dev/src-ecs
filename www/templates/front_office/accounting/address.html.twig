@@ -16,6 +16,11 @@
             <div class="fullCenter">
                 <a class="pop add_adress" href="{{ path('account') }}">{{ 'Revenir à mon compte'|trans }}</a>
             </div>
+            {% if return_basket == true %}
+                <div class="fullCenter">
+                    <a class="pop add_adress" href="{{ path('checkoutAddress') }}">{{ 'Revenir à mon compte'|trans }}</a>
+                </div>
+            {% endif %}
         </div>
     </section>
 

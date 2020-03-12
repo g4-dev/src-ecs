@@ -26,7 +26,7 @@
                 <div class="cont-item-img">
                     <a href="{{ path('diyShow', { slug: diy.slug}) }}"><img src="{{ vich_uploader_asset(diy, 'imageFile') }}" alt="{{ diy.image }}"></a>
                 </div>
-                <p class="gel-bold">{{ diy.summary }}</p>
+                <p class="gel-bold">{{ diy.name }}</p>
             </div>
         {% endfor %}
         <div>

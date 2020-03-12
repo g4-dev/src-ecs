@@ -101,7 +101,7 @@ class LoadCmsPages extends Fixture implements OrderedFixtureInterface
     {
         $categories = array();
         $numCategories = rand(1, 4);
-        $allCategoryIds = range(1, 100);
+        $allCategoryIds = range(1, 28);
         $selectedCategoryIds = array_rand($allCategoryIds, $numCategories);
 
         foreach ((array) $selectedCategoryIds as $categoryId) {

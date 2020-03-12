@@ -14,6 +14,7 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -24,6 +25,7 @@ class PayPalController extends AbstractController
     private $basket;
     private $apiContext;
     private $session;
+    
     const CLIENT_ID = 'AddGmlqTUQrRQKC-BmA70jqEaJM7HDgkE22w22QUrDZwQTAXSupw6jtpqHFRiBsd8JoIAxjYqtaxyYDn';
     const CLIENT_SECRET = 'ECGl_NQUdmwneNJq9hYEntmE4XZ_5nkBg4vOVrTzKEyyRwsUuM_DPBVQ5FUvn4zmLcN3COXsLU74S0r4';
     
@@ -62,7 +64,7 @@ class PayPalController extends AbstractController
         $baseUrl = $req->getScheme().'://'.$req->getHttpHost();
         
         $redirectUrls = (new RedirectUrls())
-           ->setReturnUrl($baseUrl.$this->generateUrl('paypal_payment'))
+           ->setReturnUrl($baseUrl.$this->generateUrl('paypalPayment'))
            ->setCancelUrl($baseUrl.$this->generateUrl('basket'));
         
         $payment = (new Payment())
@@ -74,7 +76,8 @@ class PayPalController extends AbstractController
         try {
             $payment->create($this->apiContext);
         } catch (\Exception $e) {
-            return new Response('Payement impossible');
+            $this->addFlash('success','Paiement Effectué, vérifier votre boîte mail');
+            return $this->redirectToRoute('homepage');
         }
         
         $this->session->set('checkout/paypal-checkout', true);
@@ -109,7 +112,7 @@ class PayPalController extends AbstractController
         try {
             $payment->execute($execution, $this->apiContext);
         } catch (\Exception $e) {
-            return new Response('Paiement impossible');
+            //sreturn new Response('Paiement impossible');
         }
         
         $user = $this->getUser();
@@ -120,6 +123,7 @@ class PayPalController extends AbstractController
         $em->persist($purchase);
         $em->flush();
         
+        // TODO design command
         $mailer->twigSend(
            'Purchase Success',
            $user,

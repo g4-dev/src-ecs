@@ -24,6 +24,8 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
      */
     protected UserService $userService;
     
+    protected $session;
+    
     public function __construct(UserService $userService, SessionInterface $session)
     {
         $this->userService = $userService;
@@ -136,6 +138,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
            '@fo/accounting/address.html.twig',
            [
               'address_form' => $form->createView(),
+              'return_basket' => $this->session->get('checkout/current-checkout')
            ]
         );
     }

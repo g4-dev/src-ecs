@@ -24,9 +24,14 @@ class AuthController extends AbstractController
      */
     public function login()
     {
+        if ($this->getUser() && in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+            return $this->redirectToRoute('admin');
+        }
+        
         $form = $this->createForm(LoginForm::class, [
             '_username' => $this->authUtils->getLastUsername()
         ]);
+        
         return $this->render('@fo/accounting/admin-login.html.twig', [
             'form' => $form->createView(),
             'error' => $this->authUtils->getLastAuthenticationError()

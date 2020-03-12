@@ -8,19 +8,15 @@
 
     <hr class="sep-header">
     <a class="btn-back pop" href="#">Retour</a>
-    <div class="cont-top-produit">
+    {{ form_start(form, {'action': path('basketAdd', {'id': product.id }), 'method': 'POST', 'attr': { class: 'cont-top-produit'} } ) }}
+{#    <div class="cont-top-produit">#}
         <div class="cont-top-produit-img">
             <img src="{{ vich_uploader_asset(product, 'imageFile') }}">
         </div>
         <div class="cont-top-produit-des">
             <div>
-{#                {{ dump(product) }}#}
                 <h1 class="gel-bold">{{ product.name }}</h1>
-                <p class="pop">
-{#                {% for categ in  product.productCategories %}#}
-{#                    {{ categ  }}#}
-{#                {% endfor %}#}
-                </p>
+                <p class="pop"></p>
             </div>
             <p class="description pop">{{ product.description|slice(0, 150)}}</p>
             <p class="prix serge-bold">{{ product.price }} €</p>
@@ -59,9 +55,12 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn-ajouter pop-bold">Ajouter</a>
+            <button type="submit" class="btn-ajouter pop-bold">Ajouter</button>
         </div>
-    </div>
+        <div class="errors">
+            {{ form_errors(form) }}
+        </div>
+    {{ form_end(form) }}
     <div class="cont cont-draglist-product">
         <div class="draglist">
             <div class="croix">
@@ -151,33 +150,19 @@
         </div>
     </div>
 
-    <p class="gel-bold title-suggest">Suggestions</p>
+    <p class="gel-bold title-suggest">{{ 'products.suggered'|trans|raw }}</p>
 
     <div class="cont-item">
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
+        {% for product in lastProducts %}
+            <div>
+                <div class="cont-item-img">
+                    <a href="{{ path(currentRoute, { slug: product.slug }) }}">
+                        <img src="{{ vich_uploader_asset(product, 'imageFile')}}" alt="{{ product.image }}">
+                    </a>
+                </div>
+                <p class="gel-bold">{{ product.name }}</p>
             </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/produit.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

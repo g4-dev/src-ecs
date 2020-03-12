@@ -11,12 +11,15 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class Basket implements \Countable
 {
     private $session;
+    
+    protected $expiration;
 
     private $objectManager;
 
     public function __construct(EntityManagerInterface $objectManager = null)
     {
         $this->session = new Session();
+        $this->expiration = time() + (0 * 0 * 15 * 0);
         $this->objectManager = $objectManager;
     }
 
@@ -139,10 +142,10 @@ class Basket implements \Countable
         return round($vatPrice, 2);
     }
 
-    public function addShippingMethod($shippingMethod)
+/*    public function addShippingMethod($shippingMethod)
     {
         $this->session->set('shipping', $shippingMethod);
-    }
+    }*/
 
 /*    public function getShippingFee(): float
     {

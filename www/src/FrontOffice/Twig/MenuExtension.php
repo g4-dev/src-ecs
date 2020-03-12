@@ -15,7 +15,7 @@ use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class LoginExtension extends AbstractExtension
+class MenuExtension extends AbstractExtension
 {
     protected $authUtils;
     protected $factory;
@@ -99,7 +99,7 @@ class LoginExtension extends AbstractExtension
             
             
         }
-        dump($navWalked);
+        
         return $navWalked;
     }
 }

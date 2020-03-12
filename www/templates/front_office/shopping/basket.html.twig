@@ -35,23 +35,21 @@
                 {% for product in products %}
                     <tr>
                         <td>
-                            <a href="/basket/remove/{{ product.id }}" class="basket-product__remove" title="Supprimer">
+                            <a href="{{ path('basketRemove', { id: product.product.id })}}" class="basket-product__remove" title="Supprimer">
                                 {% include "./svg/trash.html.twig" %}
                             </a>
                             <a href="#"></a>
                         </td>
                         <td class="table_img">
-                            <a href="/product/{{ product.slug }}">
-                                <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.name }}">
+                            <a href="{{ path('productShow', { slug: product.product.slug }) }}">
+                                <img src="{{ vich_uploader_asset(product.product, 'imageFile') }}" alt="{{ product.product.name }}">
                             </a>
                         </td>
                         <td>
-                            {# ADD INPUT NUMBER CONTROL#}
-                            {# <input class="basket-product__quantity form-control" type="number" name="quantity"
-                            data-target-id="{{ product.id }}" min="1" value="{{ product.quantity }}"> #}
+                            {{ product.quantity }}
                         </td>
                         <td class="total_pc">
-                            <p data-target-id="{{ product.id }}">{{ product.price}} €</p>
+                            <p data-target-id="{{ product.product.id }}">{{ product.product.price}} €</p>
                         </td>
                     </tr>
                 {% endfor %}

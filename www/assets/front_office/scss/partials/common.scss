@@ -39,3 +39,7 @@
 .thirdWidth{
   @include thirdWidth;
 }
+
+.v-hide {
+  visibility: hidden;
+}

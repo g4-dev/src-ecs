@@ -68,7 +68,6 @@ services:
     FrontOffice\Repository\:
         resource: '../src/FrontOffice/Repository/*'
         tags: ['doctrine.repository_service']
-        public: true
 
     Admin\Command\InitSettingsCommand:
         arguments:
@@ -81,7 +80,12 @@ services:
         autowire: true
         tags: ['form.type']
 
-    FrontOffice\Twig\LoginExtension:
-        class: FrontOffice\Twig\LoginExtension
+    fo.add_to_basket.form_type:
+        class: FrontOffice\Form\Shopping\AddToBasketType
+        autowire: true
+        tags: ['form.type']
+
+    FrontOffice\Twig\MenuExtension:
+        class: FrontOffice\Twig\MenuExtension
         autowire: true
         tags: ['twig.extension']

@@ -6,81 +6,35 @@
 
 {% block main %}
     <div class="top-category">
-        {% include "@fo/partials/category-header.html.twig" with { 'description': category.description, 'image': category.image } %}
+        {% include "@fo/partials/category-header.html.twig" with { 'name': category.name ,'description': category.description, 'image': category.image } %}
 
+    {% if products|length < 1 %}
+        <div>{{ 'empty.product'|trans|raw }}</div>
+    {% endif %}
+    {% for product in products %}
+        {% if loop.index == 1 %}
         <div class="products-list products-list-top">
-            {% for product in products %}
+        {% endif %}
+
             <a href="{{ path('productShow',{ slug: product.slug }) }}" class="product-minia">
                 <div>
-                    <img src="{{ asset('images/produit.png') }}">
+                    <img src="{{ vich_uploader_asset(product, 'imageFile')}}">
                     <div class="description">
-                        <h2 class="gel-bold">Lorem</h2>
-                        <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h2 class="gel-bold">{{ product.name }}</h2>
+                        <p class="pop">{{ product.description }}</p>
                     </div>
                 </div>
-                <h2 class="gel-bold">Lorem</h2>
-                <p class="pop">XX.xx €</p>
+                <h2 class="gel-bold">{{ product.name }}</h2>
+                <p class="pop">{{ product.price }} €</p>
             </a>
-            {% endfor %}
-            <a href="#" class="product-minia">
-                <div>
-                    <img src="{{ asset('images/produit.png') }}">
-                    <div class="description">
-                        <h2 class="gel-bold">Lorem</h2>
-                        <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </div>
-                <h2 class="gel-bold">Lorem</h2>
-                <p class="pop">XX.xx €</p>
-            </a>
+            {% if loop.index == 2 %}
         </div>
     </div>
-    <div class="products-list">
-        <a href="#" class="product-minia">
-            <div>
-                <img src="{{ asset('images/produit.png') }}">
-                <div class="description">
-                    <h2 class="gel-bold">Lorem</h2>
-                    <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <h2 class="gel-bold">Lorem</h2>
-            <p class="pop">XX.xx €</p>
-        </a>
-        <a href="#" class="product-minia">
-            <div>
-                <img src="{{ asset('images/produit.png') }}">
-                <div class="description">
-                    <h2 class="gel-bold">Lorem</h2>
-                    <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <h2 class="gel-bold">Lorem</h2>
-            <p class="pop">XX.xx €</p>
-        </a>
-        <a href="#" class="product-minia">
-            <div>
-                <img src="{{ asset('images/produit.png') }}">
-                <div class="description">
-                    <h2 class="gel-bold">Lorem</h2>
-                    <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <h2 class="gel-bold">Lorem</h2>
-            <p class="pop">XX.xx €</p>
-        </a>
-        <a href="#" class="product-minia">
-            <div>
-                <img src="{{ asset('images/produit.png') }}">
-                <div class="description">
-                    <h2 class="gel-bold">Lorem</h2>
-                    <p class="pop">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <h2 class="gel-bold">Lorem</h2>
-            <p class="pop">XX.xx €</p>
-        </a>
-    </div>
+        <div class="products-list">
+            {% endif %}
+        {% endfor %}
+        </div>
+
 {% endblock %}
 
 {% block scripts %}

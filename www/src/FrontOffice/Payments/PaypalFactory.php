@@ -27,10 +27,10 @@ class PaypalFactory
 
         foreach ($products as $product) {
             $item = (new Item())
-                 ->setName($product->getProductName())
+                 ->setName($product->getName())
                  ->setCurrency('EUR')
-                 ->setQuantity($product->getUnit())
-                 ->setPrice($product->getPricePerUnit());
+                 ->setQuantity($basket->getQuantity($product))
+                 ->setPrice($product->getPrice());
             
             $itemList->addItem($item);
         }
@@ -38,7 +38,7 @@ class PaypalFactory
         $subTotal = $basket->totalPrice($products);
 
         $details = (new Details())
-            ->setShipping($basket->getShippingFee())
+            //->setShipping($basket->getShippingFee())
             //->setTax()
             ->setSubtotal($subTotal);
 

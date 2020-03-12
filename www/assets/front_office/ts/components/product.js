@@ -32,17 +32,21 @@ $(document).ready(function(){
     var quantite = 0;
 
 
+
+
     $(plus).click(function(){
        quantite = quantite + 1;
        quant.html(quantite)
+        $('.quantity-input').val(quantite)
     });
 
     $(moins).click(function(){
         if(quantite === 0){
-            alert('only positive');
+            return false;
         }else{
             quantite = quantite - 1;
             quant.html(quantite);
+            $('.quantity-input').val(quantite)
         }
     });
 });
