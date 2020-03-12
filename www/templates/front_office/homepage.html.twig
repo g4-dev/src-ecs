@@ -17,7 +17,7 @@
                     <article class="midWidth">
                         <h2 class="gel-sBold">{{ cmsPage.name}}</h2>
                         <p class="pop">{{ cmsPage.description|striptags|slice(0, 175)|raw  }}</p>
-                        <a class="btn pop">{{ 'KnowMore'|trans|raw }}</a>
+                        <a href="{{ path("company") }} class="btn pop">{{ 'KnowMore'|trans|raw }}</a>
                     </article>
                     <div class="midWidth">
                         <img src="{{ vich_uploader_asset(cmsPage, 'imageFile') }}" alt="{{ cmsPage.image }}">
@@ -91,7 +91,7 @@
         <article class="midWidth fullCenter" id='parti'>
             <h4 class="pop-sBold">Particulier</h4>
             <p class="pop">Trouvez votre bonheur et offrez une seconde chance aux objets du quotidien.</p>
-            <a href="#" class="btn pop">Découvrir</a>
+            <a href="{{ path('productList', { 'slug': "list" }) }}" class="btn pop">Découvrir</a>
         </article>
     </section>
 
@@ -112,7 +112,7 @@
             </div>
         </div>
         <div class="center">
-            <a href="{{ path('diyList') }}" class="btn pop">Voir plus</a>
+            <a href="{{ path('diyList') }} class="btn pop">Voir plus</a>
         </div>
     </section>
 {% endblock %}

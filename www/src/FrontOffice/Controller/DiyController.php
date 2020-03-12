@@ -44,7 +44,6 @@ class DiyController extends AbstractController
            ->findOneBySlug($slug);
     
         if (!$diy) {
-            $this->addFlash('error','Il n\'y a pas de DIY avec la page '. $slug);
             return $this->redirectToRoute('diyList');
         }
         return $this->render('front_office/cms/diyShow.html.twig', [
