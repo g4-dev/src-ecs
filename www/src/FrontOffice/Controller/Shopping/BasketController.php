@@ -59,27 +59,22 @@ class BasketController extends AbstractController
     }
     
     /**
-     * @Route("/basket/add/{id}", name="basketAdd", requirements={"id": "\d+"})
-     * @param $id
+     * @Route("/basket/add/", name="basketAdd")
      * @return RedirectResponse
      */
     public function addBasket(Request $req)
     {
-        try {
-            $id = $req->get('id');
-            $quantity = $req->get('quantity');
-        } catch (\Exception $e) {
-            $this->createNotFoundException();
+        $payload = $req->get('add_to_basket');
+        $id = (int) $payload['product_id'];
+        $quantity = (int) $payload['quantity'];
+        
+        if(!$id && $quantity < 1) {
+          $this->createNotFoundException();
         }
         
-        dump($this->productRepository);
         $product = $this->productRepository->find($id);
-        
-        if (!$product) {
-            throw $this->createNotFoundException();
-        }
-        
-        foreach (range(0, $quantity) as $i) {
+    
+        foreach (range(1, $quantity) as $i) {
             if ($product->getStock() > 1) {
                 $this->basket->add($product);
             } else {
@@ -87,7 +82,7 @@ class BasketController extends AbstractController
                 break;
             }
         }
-        
+
         return $this->redirectToRoute('basket');
     }
     

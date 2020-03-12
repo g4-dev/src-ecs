@@ -104,6 +104,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         $form = $this->createForm(AccountUpdateForm::class, $user);
         
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userService->update($user, $form->getData()->toArray());
             

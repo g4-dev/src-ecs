@@ -8,7 +8,7 @@
 
     <hr class="sep-header">
     <a class="btn-back pop" href="#">Retour</a>
-    {{ form_start(form, {'action': path('basketAdd', {'id': product.id }), 'method': 'POST', 'attr': { class: 'cont-top-produit'} } ) }}
+    {{ form_start(form, {'action': path('basketAdd'), 'method': 'POST', 'attr': { class: 'cont-top-produit'} } ) }}
 {#    <div class="cont-top-produit">#}
         <div class="cont-top-produit-img">
             <img src="{{ vich_uploader_asset(product, 'imageFile') }}">
@@ -60,6 +60,8 @@
         <div class="errors">
             {{ form_errors(form) }}
         </div>
+        {{ form_row(form.quantity) }}
+        {{ form_row(form.product_id) }}
     {{ form_end(form) }}
     <div class="cont cont-draglist-product">
         <div class="draglist">

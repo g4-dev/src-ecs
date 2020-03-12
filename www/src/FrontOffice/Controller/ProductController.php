@@ -5,6 +5,7 @@ namespace FrontOffice\Controller;
 
 use Admin\Entity\Product;
 use Admin\Entity\ProductCategory;
+use FrontOffice\Controller\Shopping\BasketController;
 use FrontOffice\Form\Shopping\AddToBasketType;
 use Pagerfanta\Adapter\DoctrineCollectionAdapter;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +45,7 @@ class ProductController extends AbstractController
      * @param $slug
      * @return Response
      */
-    public function productShow(string $slug)
+    public function productShow(Request $request, string $slug)
     {
         $productRepo = $this->getDoctrine()
            ->getRepository(Product::class);
@@ -55,9 +56,15 @@ class ProductController extends AbstractController
         if (!$product) {
             throw $this->createNotFoundException();
         }
+        
+        dump($product->getId());
     
-        $form = $this->createForm(AddToBasketType::class, null);
-    
+        $form = $this->createForm(AddToBasketType::class, [
+           'product_id' => $product->getId()
+        ]);
+        
+        $form->handleRequest($request);
+        
         // TODO: afficher le produit dans les vues twig
         return $this->render('front_office/shopping/productShow.html.twig', [
            'product' => $product,
