@@ -26,7 +26,7 @@ class PayPalController extends AbstractController
     private $basket;
     private $apiContext;
     private $session;
-
+    
     const CLIENT_ID = 'AddGmlqTUQrRQKC-BmA70jqEaJM7HDgkE22w22QUrDZwQTAXSupw6jtpqHFRiBsd8JoIAxjYqtaxyYDn';
     const CLIENT_SECRET = 'ECGl_NQUdmwneNJq9hYEntmE4XZ_5nkBg4vOVrTzKEyyRwsUuM_DPBVQ5FUvn4zmLcN3COXsLU74S0r4';
     
@@ -67,7 +67,7 @@ class PayPalController extends AbstractController
         $redirectUrls = (new RedirectUrls())
            ->setReturnUrl($baseUrl.$this->generateUrl('paypalPayment'))
            ->setCancelUrl($baseUrl.$this->generateUrl('basket'));
-        
+
         $payment = (new Payment())
            ->setPayer((new Payer())->setPaymentMethod('paypal'))
            ->setIntent('sale')
@@ -127,9 +127,13 @@ class PayPalController extends AbstractController
         try {
         // TODO design command
             $mailer->twigSendPurchase(
-                'Purchase Success',
+                'Purchase on ecoservice.com',
                 $user,
                 'mail/order_confirmation.html.twig',
+                [
+                    'User'=> $purchase->getBuyer()->getName(),
+                    'PriceTotal'=> $purchase->getTotal(),
+                ]
             );
         } catch (\Exception $e) {
             $this->createNotFoundException();
