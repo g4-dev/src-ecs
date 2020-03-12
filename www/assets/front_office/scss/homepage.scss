@@ -253,9 +253,8 @@ main{
   #pro_parti {
     margin-top: 2rem;
     color: $lightGrey;
-
+    max-width: 100%;
     article {
-      padding: 64px $basicPadding*5;
       height: 60vh;
 
       h4 {
@@ -268,6 +267,7 @@ main{
         font-size: 1.5rem;
         text-align: center;
         line-height: 30px;
+        padding: 64px 64px;
       }
 
       a {
@@ -288,6 +288,7 @@ main{
       url("../images/pro.jpg");
       background-size: cover;
       background-position: center;
+      min-width: 50%;
     }
 
     #parti {
@@ -295,30 +296,15 @@ main{
       url("../images/parti.jpg");
       background-size: cover;
       background-position: center;
+      min-width: 50%;
     }
 
-    /* Desktop */
-    @media screen and (max-width: 1300px) {
-      article {
-        padding: 64px $basicPadding*3;
-      }
-    }
-
-    @media screen and (max-width: 1050px) {
-      article {
-        padding: 64px $basicPadding*2;
-      }
-    }
     /* Fin Desktop */
 
     @media screen and (max-width: 1024px) {
       article {
         h4 {
           font-size: 2rem;
-        }
-
-        p {
-          font-size: 1.5rem;
         }
 
         button {
@@ -357,6 +343,7 @@ main{
 
         p {
           font-size: 1.8rem;
+          padding: 64px 32px;
         }
 
         button {
