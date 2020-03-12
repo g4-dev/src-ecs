@@ -51,3 +51,14 @@ if(burgerIco !==null) {
         rotate();
     });
 }
+
+let flash = document.getElementById("alert");
+let buttonFlash = document.getElementById("removeButton");
+if(buttonFlash !== null) {
+    buttonFlash.addEventListener('click', function () {
+        if(flash !== null) {
+            flash.style.display = "none";
+        }
+    });
+}
+
