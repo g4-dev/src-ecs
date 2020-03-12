@@ -20,8 +20,7 @@
     flex: 30% 0 0;
     font-size: var(--font-size-base);
     font-weight: 400;
-    margin: 5px 5px 0 0;
-    text-align: right;
+    margin: 6px 4px;
 }
 .form-group .col-form-label {
     padding: 0;
@@ -96,12 +95,11 @@
 // Checkbox widgets
 .field-checkbox .form-widget,
 .form-group.field-collection-action {
-    margin-left: calc(30% + 5px);
     margin-bottom: 0;
     margin-top: 0;
 }
-.form-group.field-collection-action {
-    margin-left: 30%;
+.form-group.field-collection-action a {
+    color: $red-backoffice;
 }
 
 .field-checkbox .form-check {
@@ -409,6 +407,10 @@ fieldset .legend-help {
 .form-actions .btn {
     margin-left: 10px;
     border-radius: 0;
+}
+.form-actions .btn.btn-link {
+    padding: 3px 10px;
+    padding-right: 10px !important;
 }
 
 // Form errors

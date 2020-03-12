@@ -11,7 +11,7 @@ table.datagrid {
 }
 .datagrid thead th {
   border: 0;
-  padding: 0;
+  padding: 5px;
 }
 .datagrid thead th a {
   text-transform: uppercase;
@@ -25,19 +25,21 @@ table.datagrid {
 .datagrid tbody tr:nth-child(odd) {
   background-color: $gray-backoffice;
 }
-.datagrid tbody tr td a{
+.datagrid tbody tr td.text a{
   text-transform: uppercase;
   color: $red-backoffice;
   text-decoration: none;
 }
+.datagrid tbody tr td a{
+  color: $red-backoffice;
+  text-decoration: none;
+}
 .datagrid thead a, .datagrid thead span {
-  color: $white;
-  display: block;
+  text-transform: uppercase;
+  font-size: smaller;
   font-weight: 500;
-  line-height: 1.357;
-  padding: 8px;
-  text-align: left;
-  white-space: nowrap;
+  color: $white;
+  text-decoration: none;
 }
 .datagrid th:first-child a, .datagrid th:first-child span, .datagrid td:first-child {
   padding-left: 20px;

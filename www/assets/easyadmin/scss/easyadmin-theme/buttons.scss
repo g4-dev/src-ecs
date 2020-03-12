@@ -14,12 +14,13 @@
     max-height: 34px;
     padding-top:4px;
 }
-.btn:not(:disabled):not(.disabled):not(.btn-link):hover,
-.btn:not(:disabled):not(.disabled):not(.btn-link):active,
-.btn:not(:disabled):not(.disabled):not(.btn-link):focus,
-.btn:not(:disabled):not(.disabled):not(.btn-link):active:focus {
-    // needed because $btn-focus-box-shadow and $btn-active-box-shadow are ignored for .btn-primary, .btn-info, etc.
-    box-shadow: 0 0 0 1px rgba(43, 45, 80, .1), 0 2px 5px 0 rgba(43, 45, 80, .1), 0 3px 9px 0 rgba(43, 45, 80, .08), 0 1px 1.5px 0 rgba(0, 0, 0, .08), 0 1px 2px 0 rgba(0, 0, 0, .08);
+.btn:hover{
+    color: #3D3D3D;
+    border-color: #3D3D3D;
+    background-color: $white;
+}
+.btn-group:hover, .btn-group:hover i{
+    color: #3D3D3D;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):focus, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled):active:focus {

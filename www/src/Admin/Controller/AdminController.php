@@ -41,7 +41,7 @@ class AdminController extends EasyAdminController
         return $this->render('@admin/dashboard.html.twig', [
            'lastProducts' => $productRepo->findLatest(7),
            'lastDiy' => $diyRepo->findLatest(7),
-           'lastPurchases' => $puchaseRepo ->findLatest(12),
+           'lastPurchases' => $puchaseRepo ->findLatest(15),
         ]);
     }
 }

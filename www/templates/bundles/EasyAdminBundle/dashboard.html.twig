@@ -156,7 +156,7 @@
                             <section id="main" class="content-body mx-4">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-6 px-0 mr-2">
+                                        <div class="col-6 pl-0 pr-1">
                                             <table class="table datagrid mb-2 p-2">
                                                 <thead>
                                                 <tr>
@@ -192,25 +192,24 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="col-6 px-0 ml-2">
-                                            {#                                            <table class="table datagrid mt-3 p-2">#}
-                                            {#                                                <thead>#}
-                                            {#                                                <tr>#}
-                                            {#                                                    <th><a href="#">Reference</a></th>#}
-                                            {#                                                    <th><a href="#">Total</a></th>#}
-                                            {#                                                    <th><a href="#">Date</a></th>#}
-                                            {#                                                </tr>#}
-                                            {#                                                </thead>#}
-                                            {#                                                <tbody>#}
-                                            {#                                                {% for purchase in lastPurchases %}#}
-                                            {#                                                    <tr>#}
-                                            {#                                                        <td class="string">{{ purchase.name }}</td>#}
-                                            {#                                                        <td class="string">{{ purchase.name }}</td>#}
-                                            {#                                                        <td class="sorted datetime"></td>#}
-                                            {#                                                    </tr>#}
-                                            {#                                                {% endfor %}#}
-                                            {#                                                </tbody>#}
-                                            {#                                            </table>#}
+                                        <div class="col-6 pr-0 pl-1">
+                                            <table class="table datagrid mb-2 p-2">
+                                                <thead>
+                                                <tr>
+                                                    <th><a href="#">Commande</a></th>
+                                                    <th><a href="#">Date</a></th>
+                                                    <th><a href="#">Total</a></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for purchase in lastPurchases %}
+                                                    <tr>
+                                                        <td class="string">{{ purchase.trackingNumber }}</td>
+                                                        <td class="integer">{{ purchase.createdAt|date("d/m/Y") }}</td>
+                                                        <td class="integer"></td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
                                         </div>
                                     </div>
                                 </div>
