@@ -14,18 +14,29 @@ for(let i=0; i<3; i++)
     });
 }
 
-couleur.click(function()
-{
-    $(this).append("<div class='selectCouleur'></div>");
-    $(this).attr('select', 'true');
-});
-
-taille.click(function()
-{
-    $(this).toggleClass('selectTaille');
-});
-
 $(document).ready(function(){
+    var select = couleur.attr('select');
+    var tab = new Array();
+
+    if(select === "false"){
+        couleur.click(function()
+        {
+            // tab.forEach(couleur){
+            //     tab[i] = couleur.attr(select);
+            // }
+
+            $(this).append("<div class='selectCouleur'></div>");
+            select = "true";
+            $(this).attr('select', select);
+        });
+    }
+
+
+    taille.click(function()
+    {
+        $(this).toggleClass('selectTaille');
+    });
+
     var moins = $('#moinsProduct');
     var plus = $('#plusProduct');
     var quant = $('#quant');

@@ -24,6 +24,7 @@ easy_admin:
                     - 'items'
                     - { property: 'slug', template: '@admin/custom-fields/category-link.html.twig', label: 'links.category', route: 'productCategoryList' }
                     - { property: 'image', type: 'image', base_path: '%ecs.path.default_images%' }
+                    - { property: 'description', type: 'textarea' }
 
             form:
                 fields:
@@ -33,4 +34,5 @@ easy_admin:
                     # if you want to add products when creating categories, add the 'by_reference' option
                     - { property: 'items', label: 'items.category', type_options: { by_reference: false } }
                     - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }
-
+                    - { type: 'group' , css_class: 'col'}
+                    - { property: 'description', type: 'textarea' }

@@ -21,7 +21,7 @@
                     <img src="{{ vich_uploader_asset(product, 'imageFile')}}">
                     <div class="description">
                         <h2 class="gel-bold">{{ product.name }}</h2>
-                        <p class="pop">{{ product.description }}</p>
+                        <p class="pop">{{ product.description|slice(0, 50)}}...</p>
                     </div>
                 </div>
                 <h2 class="gel-bold">{{ product.name }}</h2>
