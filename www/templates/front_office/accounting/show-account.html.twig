@@ -30,8 +30,8 @@
                         {% for address in addresses  %}
                             <div class="bottomMarg blockAddress">
                                 <div class="bottomMob">
-                                    <p>{{ address.firstName }}</p>
-                                    <p>{{ address.firstName }}</p>
+                                    <p>{{ address.name }}</p>
+                                    <p>{{ address.lastName }}</p>
                                     <p>{{ address.address}}</p>
                                 </div>
                                 <a class="a_adressList continueWhite pop" href="{{ path('accountAddress', {'id': address.id } ) }}">Editer l'adresse</a>

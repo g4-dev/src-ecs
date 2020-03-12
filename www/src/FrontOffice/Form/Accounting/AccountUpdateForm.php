@@ -20,7 +20,7 @@ class AccountUpdateForm extends AbstractType
                     new NotBlank(),
                 ]
             ])
-            ->add('firstName', TextType::class, [
+            ->add('lastName', TextType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Prenom', 'class' => 'form-control-lg'],
                 'constraints' => [

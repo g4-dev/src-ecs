@@ -51,6 +51,8 @@ class CheckoutController extends AbstractController
                'return_basket' => true
             ]);
         }
+    
+        $this->session->set('checkout/address-current-basket', true);
         
         $form = $this->createForm(SelectAddressType::class, null, ['addresses' => $addresses] );
         
