@@ -107,10 +107,10 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             'Tempus', 'Commodo', 'Mattis', 'Donec', 'Posuere', 'Eleifend',
         );
 
-        $numWords = 2;
+        $numWords = 1;
         shuffle($words);
 
-        return 'Product '.implode(' ', array_slice($words, 0, $numWords));
+        return implode(' ', array_slice($words, 0, $numWords));
     }
 
     private function getRandomPrice()
