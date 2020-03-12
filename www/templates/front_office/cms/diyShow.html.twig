@@ -66,30 +66,15 @@
     {#    <section id="produit">#}
     <p class="gel-bold title-suggest">Nous proposons</p>
     <div class="cont-item">
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
+
+        {% for d in lastDiys %}
+            <div>
+                <div class="cont-item-img">
+                    <a href="{{ path('diyShow', { slug: d.slug })  }}"><img src="{{ vich_uploader_asset(d, 'imageFile') }}"></a>
+                </div>
+                <p class="gel-bold">{{ d.name }}</p>
             </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/recette.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
+        {% endfor %}
     </div>
     {#    </section>#}
 {% endblock %}

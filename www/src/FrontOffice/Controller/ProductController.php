@@ -54,8 +54,6 @@ class ProductController extends AbstractController
         if (!$product) {
             throw $this->createNotFoundException();
         }
-        
-        dump($product->getId());
     
         $form = $this->createForm(AddToBasketType::class, [
            'product_id' => $product->getId()

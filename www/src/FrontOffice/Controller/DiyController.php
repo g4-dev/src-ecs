@@ -26,9 +26,7 @@ class DiyController extends AbstractController
         $pagerfanta = new Pagerfanta($adapter);
         $pagerfanta->setMaxPerPage(1 === $page ? 4 : 10);
         $pagerfanta->setCurrentPage($page);
-        dump($pagerfanta->getIterator());
         //TODO : remove
-        dump($pagerfanta);
         
         return $this->render('front_office/cms/diyList.html.twig',[
             'diys' => $pagerfanta
@@ -39,15 +37,17 @@ class DiyController extends AbstractController
      */
     public function showAction($slug)
     {
-        $diy = $this->getDoctrine()
-           ->getRepository(Diy::class)
-           ->findOneBySlug($slug);
+        $diyRepo = $this->getDoctrine()
+           ->getRepository(Diy::class);
+        $diy = $diyRepo->findOneBySlug($slug);
+        $lastDiys = $diyRepo->findLatest(4);
     
         if (!$diy) {
             return $this->redirectToRoute('diyList');
         }
         return $this->render('front_office/cms/diyShow.html.twig', [
-           'diy' => $diy
+           'diy' => $diy,
+           'lastDiys' => $lastDiys
         ]);
     }
 }
