@@ -1,0 +1,12 @@
+{% for link in navWalker()|raw %}
+    {% if link.routeParams is not null %}
+        <div><a class="nav_green_color" href="{{ path(link.route, link.routeParams|default({})) }}"
+           title="{{ link.title }}">{{ link.name }}</a></div>
+    {% else %}
+        <div><a class="nav_green_color" href="{{ path(link.route) }}"
+           title="{{ link.title|default('no link') }}"> {{ link.name|default('no link') }}</a></div>
+    {% endif %}
+{% endfor %}
+{#
+    {% include 'svg/search.svg.twig' %}
+#}

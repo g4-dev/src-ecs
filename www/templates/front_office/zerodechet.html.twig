@@ -1,0 +1,36 @@
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('company&zero', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    <div class="top-page">
+        <div class="green-top-page fullCenter alignInit">
+            <h1 class="gel-bold">Zéro Déchet</h1>
+            <p class="gel">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.</p>
+        </div>
+        <div>
+            <img src="{{ asset('images/dechet.jpg') }}">
+        </div>
+    </div>
+    <h2 class="gel-bold title-company">Lorem</h2>
+    <div class="article-company">
+        <img src="{{ asset('images/box-company.png') }}">
+        <div class="cont-txt-company">
+            <h3 class="pop-bold">Lorem ipsum dolor sit amet</h3>
+            <p class="pop">Etiam ut orci in nibh viverra pellentesque. Nulla risus ante, consectetur et eleifend vel, fringilla vitae. Sed luctus dolor at mi lobortis, non tincidunt odio molestie. Duis nibh nisl, dapibus nec diam finibus, consequat tempor.</p>
+        </div>
+    </div>
+    <div class="article-company article-company-2">
+        <div class="cont-txt-company">
+            <h3 class="pop-bold">Lorem ipsum dolor sit amet</h3>
+            <p class="pop">Etiam ut orci in nibh viverra pellentesque. Nulla risus ante, consectetur et eleifend vel, fringilla vitae. Sed luctus dolor at mi lobortis, non tincidunt odio molestie. Duis nibh nisl, dapibus nec diam finibus, consequat tempor.</p>
+        </div>
+        <img src="{{ asset('images/box-company.png') }}">
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('company&zero', null, 'front_office') }}
+{% endblock %}

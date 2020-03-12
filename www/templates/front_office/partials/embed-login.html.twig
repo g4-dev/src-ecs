@@ -1,12 +1,13 @@
-<div class="pop-up-connection ">
+<div class="pop-up-connection pop">
     <h2 class="pop-sBold">Se connecter</h2>
     <form class="form" action="{{ path('login') }}" novalidate="" autocomplete="off" method="POST">
-        <input type="email" class="{% if error %}is-invalid{% endif %}" name="login_form[_username]" placeholder="Your email address" required />
-        <input type="password" class="{% if error %}is-invalid{% endif %}" name="login_form[_password]" placeholder="Password" required/>
+        <input type="email" class="{% if error %}is-invalid{% endif %}" name="login_form[_username]" placeholder="Email" required />
+        <input type="password" class="{% if error %}is-invalid{% endif %}" name="login_form[_password]" placeholder="Mot de passe" required/>
         <input type="hidden" name="_target_path" value="{{ targetPath|default('homepage') }}"/>
-        <div class="links text-center">
-            <a href="{{ path('registration') }}">Register new account</a> |
-            <a href="{{ path('passwordReminder') }}">Lost password</a>
+        <div class="links text-center center">
+            <a href="{{ path('registration') }}">S'inscrire</a>
+            <a>|</a>
+            <a href="{{ path('passwordReminder') }}">Mot de passer perdu</a>
         </div>
         {% if error %}
             <div class="form-group">
@@ -15,6 +16,6 @@
                 </div>
             </div>
         {% endif %}
-        <button class="pop" type="submit">Se connecter</button>
+        <button class="pop buttonLogin" type="submit">Se connecter</button>
     </form>
 </div>

@@ -6,8 +6,6 @@
 
 {% block body %}
 
-  {% dump(error) %}
-
   <!-- Admin login -->
   <div class="fullCenter admin">
     <h1 class="gel-bold">Connexion au panel d'administration</h1>
@@ -29,7 +27,7 @@
         </div>
       </div>
       <div class="center continueSubmit">
-        <button type="submit" class="continue pop">{{ 'Connect'|trans|raw }}</button>
+        <button type="submit" class="continue pop">Se connecter</button>
       </div>
       <div class="center">
         <a href="{{ path('homepage') }}" class="btn btn-default">{{ 'Revenir à l\'accueil'|trans|raw }}</a>

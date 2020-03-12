@@ -1,8 +1,8 @@
 <header class="fullCenter headerDesk pop">
     <div class="centerBetween fullWidth headerBackground">
         <div class="flexStart midWidth UpperHeader">
-            <a href="#">Contact</a>
-            <a href="{{ path('diyList') }}">DIY</a>
+            <a href="{{ path('contact') }}">Contact</a>
+            <a href="#">DIY</a>
         </div>
         <div class="flexEnd midWidth UpperHeader">
             <a class="pro" href="{{ path('proServiceList') }}">Espace pro</a>
@@ -32,8 +32,10 @@
         <div class="flexStart midWidth LowerHeader LowerHeaderLeft">
             <a href="{{ path('homepage') }}"><h1 class="gel-bold">Eco<br/>service</h1></a>
         </div>
-        {% include '@fo/partials/menu.html.twig' %}
-        <a href="#">Tous les produits</a>
+        <div class="center linkNav">
+            {% include '@fo/partials/menu.html.twig' %}
+            <a class="allProd" href="{{ path('productList', { 'slug': "list" }) }}">Tous les produits</a>
+        </div>
     </nav>
 </header>
 <header class="centerAround headerMob">
@@ -41,7 +43,7 @@
         {% include 'svg/mobile-menu.svg.twig' %}
     </div>
     <div class="thirdWidth center">
-        <h1 class="gel-bold">Eco<br/>service</h1>
+        <a href="{{ path('homepage') }}"><h1 class="gel-bold">Eco<br/>service</h1></a>
     </div>
     <div class="thirdWidth icoPlaceMobRight">
         <div class="burger">
@@ -61,13 +63,8 @@
             </div>
             <div><a>Espace pro</a></div>
             <hr>
-            <div><a class="nav_green_color">Recherche</a></div>
-            <div><a class="nav_green_color">Catégorie 1</a></div>
-            <div><a class="nav_green_color">Catégorie 1</a></div>
-            <div><a class="nav_green_color">Catégorie 1</a></div>
-            <div><a class="nav_green_color">Catégorie 1</a></div>
-            <div><a class="nav_green_color">Catégorie 1</a></div>
-            <div><a class="nav_green_color">Catégorie 1</a></div>
+            <div><a class="allProd nav_green_color" href="{{ path('productList', { 'slug': "list" }) }}">Tout les produits</a></div>
+            {% include '@fo/partials/menuMobile.html.twig' %}
             <hr>
             <div><a>DIY</a></div>
             <div><a>Contact</a></div>

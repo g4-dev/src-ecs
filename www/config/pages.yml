@@ -18,6 +18,7 @@ parameters:
                 - diyList
                 - productList # List == category
                 - productShow
+                - company&zero
             defaultExt: ts
             alias: fo
 
