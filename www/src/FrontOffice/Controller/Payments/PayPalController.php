@@ -14,9 +14,8 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -57,7 +56,7 @@ class PayPalController extends AbstractController
      */
     public function paypalCheckout(Request $req)
     {
-        if (!$this->session->get('checkout/payment') || !$this->basket->hasProducts()) {
+        if (false == $this->session->get('checkout/payment')) {
             return $this->redirectToRoute('basket');
         }
         
@@ -83,7 +82,6 @@ class PayPalController extends AbstractController
             //return $this->redirectToRoute('homepage');
         }
         
-        $this->session->remove('checkout/payment');
         $this->session->set('checkout/paypal-checkout', true);
         
         return $this->redirect($this->generateUrl('paypalPayment'));//$payment->getApprovalLink());
@@ -104,7 +102,7 @@ class PayPalController extends AbstractController
        MailerService $mailer,
        PurchaseFactoryService $purchaseFactory
     ) {
-        if (!$this->session->get('checkout/paypal-checkout') || !$this->basket->hasProducts()) {
+        if (false == $this->session->get('checkout/paypal-checkout')) {
             return $this->redirectToRoute('basket');
         }
         
@@ -142,9 +140,10 @@ class PayPalController extends AbstractController
         } catch (\Exception $e) {
             $this->createNotFoundException();
         }
-        
-        $this->session->remove('checkout/paypal-checkout');
+
         $this->basket->clear();
+        $this->session->set('checkout/paypal-checkout', false);
+        $this->session->set('checkout/payment', false);
         
         return $this->render(
            'front_office/shopping/purchaseConfirmation.html.twig'

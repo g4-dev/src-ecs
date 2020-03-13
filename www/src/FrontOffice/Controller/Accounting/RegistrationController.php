@@ -135,7 +135,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
             $em->persist($form->getData()->setUser($this->getUser()));
             $em->flush();
             
-            if (true == $this->session->get('checkout/current-checkout')) {
+            if(true == $this->session->get('checkout/current-checkout')) {
                 $this->session->set('checkout/current-checkout', false);
                 
                 return $this->redirectToRoute('checkoutAddress');

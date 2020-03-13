@@ -5,6 +5,8 @@ namespace FrontOffice\Controller;
 
 use Admin\Entity\ProService;
 use FrontOffice\Form\Accounting\DevisForm;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Core\Service\MailerService;
@@ -15,23 +17,34 @@ use Core\Service\MailerService;
 class ProController extends AbstractController
 {
     /**
-     * @Route("/services-pro", name="proServiceList")
+     * @Route("/services-pro/{page?1}", name="proServiceList")
      */
-    public function index()
+    public function index(?int $page = 1)
     {
-        $proServices = $this->getDoctrine()
+        $qb = $this->getDoctrine()
            ->getRepository(ProService::class)
-           ->findAll();
+           ->findAllQueryBuilder();
+    
+        $adapter = new DoctrineORMAdapter($qb);
+        $pagerfanta = new Pagerfanta($adapter);
+        $pagerfanta->setMaxPerPage(10);
+        $pagerfanta->setCurrentPage($page);
+        dump($pagerfanta);
+        
+        try {
+            $pagerfanta->setCurrentPage($page);
+        } catch (\Exception $e) {
+            $pagerfanta = null;
+        }
         
         return $this->render('front_office/proServiceList.html.twig',[
-           'proServices' => $proServices
+           'proServices' => $pagerfanta
         ]);
     }
 
     /**
      * @Route("/services-pro/devis", name="proDevis")
      * @param MailerService $mailer
-     * @return Response
      */
     public function devis(Request $request, MailerService $mailer )
     {

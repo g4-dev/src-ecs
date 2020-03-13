@@ -41,5 +41,13 @@
 }
 
 .v-hide {
+  height:0;
+  width:0;
   visibility: hidden;
+
+  & > label, & > input {
+    height:0;
+    width:0;
+    visibility: hidden;
+  }
 }

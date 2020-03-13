@@ -346,18 +346,17 @@ button{
     }
   }
 }
-.alert-accepté{
-  background: rgba(73, 115, 33, 0.8);
-}
-.alert-success{
-  background: rgba(73, 115, 33, 0.8);
-}
-.alert-info{
-  background: rgba(73, 115, 33, 0.8);
-}
-.alert-danger{
-  background: rgba(224, 0, 0, 0.8);
-}
-.alert-warning{
-  background: rgba(255, 71, 71, 0.8);
+.alertSymfo {
+  &.alert-success{
+    background: rgba(73, 115, 33, 0.8);
+  }
+  &.alert-info{
+    background: rgba(73, 115, 33, 0.8);
+  }
+  &.alert-danger{
+    background: rgba(224, 0, 0, 0.8);
+  }
+  &.alert-warning{
+    background: rgba(255, 71, 71, 0.8);
+  }
 }

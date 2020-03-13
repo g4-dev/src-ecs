@@ -42,4 +42,16 @@ function controls() {
             .addClass("active");
     });
 }
+
+const resp = () => {
+    $('.slideshow-container').height($('.slideshow-container .slide.active').height())
+}
+
+resp()
+
+$(window).on('resize', (e) => {
+    console.log(e);
+    resp()
+})
+
 controls();

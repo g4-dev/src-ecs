@@ -26,10 +26,10 @@ class ProService
     /**
      * List of tags associated to the product.
      *
-     * @var string[]
-     * @ORM\Column(type="simple_array")
+     * @var \int
+     * @ORM\Column(type="bigint")
      */
-    private $tags = array();
+    private $reference;
 
     /**
      * It only stores the name of the image associated with the product.
@@ -156,21 +156,21 @@ class ProService
     /**
      * Set the list of the tags.
      *
-     * @param \string[] $tags
+     * @param \int $reference
      */
-    public function setTags($tags)
+    public function setReference($reference)
     {
-        $this->tags = $tags;
+        $this->reference = $reference;
     }
 
     /**
      * Get the list of tags associated to the product.
      *
-     * @return \string[]
+     * @return \int
      */
-    public function getTags()
+    public function getReference()
     {
-        return $this->tags;
+        return $this->reference;
     }
     
     /**

@@ -58,13 +58,17 @@ $(document).ready(function(){
 
 
 
-    $(plus).click(function(){
+    $(plus).click(function(e){
+       e.preventDefault();
+
        quantite = quantite + 1;
        quant.html(quantite)
         $('.quantity-input').val(quantite)
     });
 
-    $(moins).click(function(){
+    $(moins).click(function(e){
+        e.preventDefault();
+
         if(quantite === 0){
             return false;
         }else{

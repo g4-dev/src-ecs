@@ -3,11 +3,11 @@
 namespace Fixtures\DataFixtures\Prod;
 
 use Admin\Entity\Diy;
-use Core\Helper\Slugger;
+use Admin\Entity\Product;
+use Admin\Entity\ProService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Admin\Entity\Product;
 
 class LoadProducts extends Fixture implements OrderedFixtureInterface
 {
@@ -16,7 +16,7 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
     {
         return 50;
     }
-
+    
     public function load(ObjectManager $manager)
     {
         // PRODUCT
@@ -89,10 +89,12 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             $item->setTags($this->getRandomTags());
             $item->setFeatures($this->getRandomFeatures());
             $item->setStock(rand(1, 100));
+            
 
             $this->addReference('product-'.$i, $item);
             $manager->persist($item);
         }
+        
 
         //maison
         foreach (range(54, 73) as $i) {
@@ -120,59 +122,85 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             $item->setBody($this->getRandomDescription());
             $item->setIngredients($this->getRandomTags());
             $item->setSummary($this->getRandomDescription());
-            $item->setDifficulty(rand(1,4));
-            $item->setTime(rand(1,4).'m');
+            $item->setDifficulty(rand(1, 4));
+            $item->setTime(rand(1, 4).'m');
             $item->setImage('image-diy-0.png');
-        
+            
             $this->addReference('diy-'.$i, $item);
             $manager->persist($item);
         }
-
+        
+        // Pro
+        $colors = ['bleue', 'jaune', 'verte'];
+        foreach (range(0, 2) as $i) {
+            $item = new ProService();
+            $item->setIsActive(true);
+            $item->setName($this->getRandomName());
+            $item->setPrice(rand(130, 180));
+            $item->setReference($this->getRandomEan(1000, 2000));
+            $item->setDescription($this->getRandomDescPro($colors[$i]));
+            $item->setShortDescription($this->getRandomMiniDescPro($colors[$i]));
+            $item->setImage('pro-'.$i.'.png');
+    
+            $manager->persist($item);
+        }
+        
         $manager->flush();
     }
-
+    
+    private function getRandomMiniDescPro($color = 'bleue')
+    {
+        return 'Cette poubelle '.$color.' bleu permet de recycler les produits en plastiques';
+    }
+    
+    private function getRandomDescPro($color = 'bleue')
+    {
+        return 'Nous mettons à disposition des poubelles '.$color.' pour le recyclage des produits en cartons.<
+                    Toutes les semaines une personnes est chargée de venir vider les poubelles.';
+    }
+    
     private function getRandomTags()
     {
         $tags = array(
-            'books',
-            'electronics',
-            'GPS',
-            'hardware',
-            'laptops',
-            'monitors',
-            'movies',
-            'music',
-            'printers',
-            'smartphones',
-            'software',
-            'toys',
-            'TV & video',
-            'videogames',
-            'wearables',
+           'paper',
+           'special',
+           'Dummy',
+           'Random',
+           'bague',
+           'tiroir',
+           'papier',
+           'Nox',
+           'apsum',
+           'pain',
+           'grille',
+           'amet',
+           'dolor',
+           'Ipsum',
+           'Lorem',
         );
-
-        $numTags = rand(2, 4);
+        
+        $numTags = rand(5, 7);
         shuffle($tags);
-
+        
         return array_slice($tags, 0, $numTags - 1);
     }
-
-    private function getRandomEan()
+    
+    private function getRandomEan($start = null, $end = null)
     {
-        $start = 100000;
-        $end = 999999;
-
+        $start = $start ?? 100000;
+        $end = $end ?? 999999;
+        
         $ean13 = mt_rand($start, $end).mt_rand($start, $end);
-
+        
         $checksum = 0;
         foreach (str_split(strrev($ean13)) as $pos => $val) {
             $checksum += $val * (3 - 2 * ($pos % 2));
         }
         $checksum = ((10 - ($checksum % 10)) % 10);
-
+        
         return $ean13.$checksum;
     }
-
+    
     private function getRandomName()
     {
         $words = array(
@@ -183,18 +211,20 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
         );
 
         $numWords = 2;
+        
+        $numWords = 1;
         shuffle($words);
-
-        return 'Product '.implode(' ', array_slice($words, 0, $numWords));
+        
+        return implode(' ', array_slice($words, 0, $numWords));
     }
-
+    
     private function getRandomPrice()
     {
         $cents = array('00', '29', '39', '49', '99');
-
-        return (float) rand(2, 79).'.'.$cents[array_rand($cents)];
+        
+        return (float)rand(2, 79).'.'.$cents[array_rand($cents)];
     }
-
+    
     private function getRandomDescription()
     {
         $phrases = array(
@@ -216,34 +246,34 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             'Nunc viverra elit ac laoreet suscipit.',
             'Pellentesque et sapien pulvinar, consectetur eros ac, vehicula odio.',
         );
-
+        
         $numPhrases = rand(5, 10);
         shuffle($phrases);
-
+        
         return implode(' ', array_slice($phrases, 0, $numPhrases - 1));
     }
-
+    
     private function getRandomFeatures()
     {
         $features = array(
-            'Feature Aenean vel mauris quis erat volutpat placerat.',
-            'Feature Sed at est non nisl mattis semper.',
-            'Feature Morbi vehicula magna sed vestibulum congue.',
-            'Feature Quisque id enim in neque condimentum accumsan.',
-            'Feature Pellentesque ornare enim vel lacus euismod, a finibus nibh facilisis.',
-            'Feature Vestibulum laoreet erat a porttitor pharetra.',
-            'Feature Ut tincidunt diam eu risus commodo posuere.',
-            'Feature Curabitur vitae nulla eu orci elementum semper in lacinia lacus.',
-            'Feature Proin nec nunc condimentum, tristique lorem in, sollicitudin lectus.',
-            'Feature Duis lobortis orci vel velit molestie mattis eu a nisi.',
-            'Feature Fusce luctus metus et interdum malesuada.',
-            'Feature Nam ut nulla placerat, egestas neque in, maximus dui.',
-            'Feature Morbi rutrum augue nec purus fringilla bibendum ac id risus.',
+           'Feature Aenean vel mauris quis erat volutpat placerat.',
+           'Feature Sed at est non nisl mattis semper.',
+           'Feature Morbi vehicula magna sed vestibulum congue.',
+           'Feature Quisque id enim in neque condimentum accumsan.',
+           'Feature Pellentesque ornare enim vel lacus euismod, a finibus nibh facilisis.',
+           'Feature Vestibulum laoreet erat a porttitor pharetra.',
+           'Feature Ut tincidunt diam eu risus commodo posuere.',
+           'Feature Curabitur vitae nulla eu orci elementum semper in lacinia lacus.',
+           'Feature Proin nec nunc condimentum, tristique lorem in, sollicitudin lectus.',
+           'Feature Duis lobortis orci vel velit molestie mattis eu a nisi.',
+           'Feature Fusce luctus metus et interdum malesuada.',
+           'Feature Nam ut nulla placerat, egestas neque in, maximus dui.',
+           'Feature Morbi rutrum augue nec purus fringilla bibendum ac id risus.',
         );
-
+        
         $numFeatures = rand(3, 6);
         shuffle($features);
-
+        
         return array_slice($features, 0, $numFeatures - 1);
     }
 
@@ -256,11 +286,15 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
         $selectedCategoryIds = array_rand($allCategoryIds, $numCategories);
 
         foreach ((array)$selectedCategoryIds as $categoryId) {
+        
+        foreach ((array)$selectedCategoryIds as $categoryId) {
             if ($categoryId % 3) {
                 $catType = $categoryId % 2 === true ? 'product-subcategory-' : 'product-category-';
                 $categories[] = $this->getReference($catType . $categoryId);
             }
         }
+        
+        
 
     }
     private function getTextileCategories()

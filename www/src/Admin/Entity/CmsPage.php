@@ -27,6 +27,7 @@ class CmsPage extends AbstractSluggable
     use CoreEn\Traits\DatesAt;
     use CoreEn\Traits\IsActive;
     use CoreEn\Traits\ImageCollection;
+    use CoreEn\Traits\TitleContents;
     
     /**
      * @ORM\Column(type="text")
@@ -85,15 +86,14 @@ class CmsPage extends AbstractSluggable
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Admin\Entity\TitleContent", mappedBy="cmsPage")
-     */
-    private $titleContents;
     
     public function __construct()
     {
         if (method_exists($this, '_init')) {
+            $this->_init();
+        }
+    
+        if (method_exists($this, '_initTitleContents')) {
             $this->_init();
         }
         
@@ -181,11 +181,6 @@ class CmsPage extends AbstractSluggable
         $this->category->removeElement($category);
         $category->addItem($this);
     }
-    
-    public function __toString(): string
-    {
-        return (string) $this->getName();
-    }
 
     public function getLayout(): ?string
     {
@@ -222,32 +217,9 @@ class CmsPage extends AbstractSluggable
 
         return $this;
     }
-
-    /**
-     * @return Collection|TitleContent[]
-     */
-    public function getTitleContents(): Collection
+    
+    public function __toString(): string
     {
-        return $this->titleContents;
-    }
-
-    public function addTitleContent(TitleContent $titleContent): self
-    {
-        if (!$this->titleContents->contains($titleContent)) {
-            $this->titleContents[] = $titleContent;
-            $titleContent->addCmsPage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTitleContent(TitleContent $titleContent): self
-    {
-        if ($this->titleContents->contains($titleContent)) {
-            $this->titleContents->removeElement($titleContent);
-            $titleContent->removeCmsPage($this);
-        }
-
-        return $this;
+        return (string) $this->getName();
     }
 }

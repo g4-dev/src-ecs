@@ -3,7 +3,6 @@
 
 main{
 
-
   .homePage {
     background: $lightGrey;
     article{
@@ -117,7 +116,7 @@ main{
     }
 
     @media screen and (max-width: 820px) {
-      div{
+      .slide-row img {
         display: none;
       }
       article{
@@ -134,7 +133,7 @@ main{
           font-size: 1rem;
           width: 60%;
         }
-        button{
+        a.btn {
           margin: 32px 0px;
           color: $lightGrey;
           border-color: $lightGrey;
@@ -160,6 +159,16 @@ main{
     }
   }
 
+  .slide-row {
+    background-size: cover;
+    background-position: center;
+    @media screen and (min-width: 820px) {
+      background: rgba(0,0,0,0) !important;
+    }
+
+  }
+
+  /*
   @media screen and (max-width: 820px) {
     #entreprise{
       background-image:
@@ -177,10 +186,15 @@ main{
       background-position: center;
     }
   }
+  */
 
   /*Suggest item*/
   .title-suggest-home{
     margin-bottom: 30px;
+
+    @media screen and (max-width:820px) {
+      margin-top: 10rem;
+    }
   }
 
   .cont-item-home{

@@ -163,6 +163,7 @@
                                                     <th><a href="#">Produit</a></th>
                                                     <th><a href="#">Prix</a></th>
                                                     <th><a href="#">Stock</a></th>
+                                                    <th></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -171,6 +172,14 @@
                                                         <td class="string">{{ product.name }}</td>
                                                         <td class="integer">{{ product.price }}</td>
                                                         <td class="integer">{{ product.stock }}</td>
+                                                        <td>
+                                                            <a href="{{ path('easyadmin', {
+                                                                'action': 'show',
+                                                                'entity': 'Product',
+                                                                'id': product.id
+                                                            }) }}"> {{ 'links_to_page'|trans|raw }}
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 {% endfor %}
                                                 </tbody>
@@ -180,6 +189,7 @@
                                                 <tr>
                                                     <th><a href="#">Recette</a></th>
                                                     <th><a href="#">Date</a></th>
+                                                    <th></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -187,6 +197,14 @@
                                                     <tr>
                                                         <td class="string">{{ diy.name }}</td>
                                                         <td class="sorted datetime ">{{ diy.updatedAt|date("d/m/Y") }}</td>
+                                                        <td>
+                                                            <a href="{{ path('easyadmin', {
+                                                                'action': 'show',
+                                                                'entity': 'Diy',
+                                                                'id': diy.id
+                                                            }) }}"> {{ 'links_to_page'|trans|raw }}
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 {% endfor %}
                                                 </tbody>
@@ -199,6 +217,7 @@
                                                     <th><a href="#">Acheteur</a></th>
                                                     <th><a href="#">Date de la commande</a></th>
                                                     <th><a href="#">Total</a></th>
+                                                    <th></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -207,9 +226,18 @@
                                                         <td class="string">{{ purchase.buyer }}</td>
                                                         <td class="integer">{{ purchase.createdAt|date("d/m/Y") }}</td>
                                                         <td class="integer">{{ purchase.total }}</td>
+                                                        <td>
+                                                            <a href="{{ path('easyadmin', {
+                                                                 'action': 'show',
+                                                                 'entity': 'Purchase',
+                                                                 'id': purchase.id
+                                                                }) }}"> {{ 'links_to_page'|trans|raw }}
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 {% endfor %}
                                                 </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

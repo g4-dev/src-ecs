@@ -13,7 +13,7 @@ easy_admin:
                     - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.blog_covers%' }
                     - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.page_cms', route: 'cmsShow' }
                 actions: ['edit', 'delete']
-                sort: ['updatedAt', 'DESC']
+                sort: ['updatedAt', 'DESC', 'id', 'ASC']
             show:
                 fields:
                     - { property: 'name', label: 'Titre' }
@@ -27,7 +27,11 @@ easy_admin:
                     - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
                     - { property: 'category', type: 'easyadmin_autocomplete' }
                     - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }
+                    - { type: 'group', css_class: 'col-sm-6' }
                     - { property: 'images', type: 'collection', type_options: { entry_type: 'Core\Form\ImageType' }}
+                    - { type: 'group', css_class: 'col-sm-6' }
+                    - { property: 'titleContents', type: 'collection', type_options: { entry_type: 'Core\Form\ContentType' }}
+                    - { type: 'group', css_class: 'col-12 m-auto' }
                     - { property: 'layout', type: 'choice', label: 'Layout', type_options: { multiple: false,
                                                                                              choices: {'two-cols': '2-col','one-col': '1-col' }
                                                                                         }

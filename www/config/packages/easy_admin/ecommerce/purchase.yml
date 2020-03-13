@@ -28,4 +28,4 @@ easy_admin:
                     - { property: 'buyer', type: 'easyadmin_autocomplete' }
                     - { property: 'status', type: choice, type_options: { multiple: false, choices: {'processing': 'processing','shipped': 'shipped' } } }
                     - { type: 'group', label: 'address.shopping', css_class: 'col-sm-6' }
-                    - { property: 'shippingAddress', label: 'shipping.informations', type: 'Core\Form\AddressType' }
+                    - { property: 'shippingAddress', label: 'shipping.informations', type: 'Core\Form\AddressType', type_options: {required: true } }

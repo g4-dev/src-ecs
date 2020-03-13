@@ -14,8 +14,10 @@
         <div class="{% if slider %}slideshow{% endif %}">
             {% for cmsPage in cmsPages %}
 
+            {% set image = vich_uploader_asset(cmsPage, 'imageFile') %}
+
             <section class="homePage {% if slider %}slide{% endif %} {% if loop.index == 1 %} active{% endif %}">
-                <div class="slide-row centerBetween fullWidth alignInit ">
+                <div class="slide-row centerBetween fullWidth alignInit " style="background: url({{ image }})">
                     <article class="midWidth">
                         <h2 class="gel-sBold">{{ cmsPage.name}}</h2>
                         <p class="pop">{{ cmsPage.description|striptags|slice(0, 175)|raw  }}</p>
@@ -24,7 +26,7 @@
                         </a>
                     </article>
                     <div class="midWidth">
-                        <img src="{{ vich_uploader_asset(cmsPage, 'imageFile') }}" alt="{{ cmsPage.image }}">
+                        <img src="{{ image }}" alt="{{ cmsPage.image }}">
                     </div>
                 </div>
             </section>

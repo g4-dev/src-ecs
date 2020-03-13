@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table()
  * @ORM\Entity()
  */
 class TitleContent
@@ -22,12 +23,6 @@ class TitleContent
      * @ORM\Column(type="text")
      */
     private $body;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="CmsPage", inversedBy="titleContents")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $cmsPage;
 
     public function __construct()
     {
@@ -45,16 +40,9 @@ class TitleContent
 
         return $this;
     }
-
-    public function getCmsPage(): ?CmsPage
+    
+    public function __toString()
     {
-        return $this->cmsPage;
-    }
-
-    public function setCmsPage(?CmsPage $cmsPage): self
-    {
-        $this->cmsPage = $cmsPage;
-
-        return $this;
+        return (string) $this->getName();
     }
 }

@@ -12,13 +12,12 @@ easy_admin:
                     - { property: 'shortDescription', type: 'text', label: 'Brief' }
                     - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.product_images%' }
                 actions: ['edit', 'delete','show']
-                filters: ['tags']
             show:
                 fields:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'shortDescription', type: 'text', label: 'Brief' }
                     - { property: 'image', label: 'Cover', type: 'image', base_path: '%ecs.path.product_images%' }
-                    - tags
+                    - reference
             form:
                 fields:
                     - { type: 'group', css_class: 'col-sm-4' }
@@ -26,7 +25,7 @@ easy_admin:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'isActive', label: 'Published' }
                     - { type: 'group', css_class: 'col-sm-8' }
-                    - { property: 'tags', type_options: { required: true } }
+                    - { property: 'reference' }
                     - { property: 'shortDescription', type: 'text', label: 'Brief' }
                     - { property: 'description', type: 'text', label: 'Description', type_options: { trim: true } }
                     - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: true } }

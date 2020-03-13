@@ -19,7 +19,7 @@ class ProServiceRepository extends ServiceEntityRepository
         parent::__construct($registry, ProService::class);
     }
     
-    use Common;
     use DuplicateSlugTrait;
-
+    use Common;
+    
 }

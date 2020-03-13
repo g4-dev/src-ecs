@@ -13,8 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\Translation\Translator;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CheckoutController extends AbstractController
 {
@@ -22,60 +20,46 @@ class CheckoutController extends AbstractController
     private $basket;
 
     private $session;
-    
-    private $translator;
 
-    public function __construct(EntityManagerInterface $objectManager, TranslatorInterface $translator)
+    public function __construct(EntityManagerInterface $objectManager)
     {
         $this->basket = new Basket($objectManager);
         $this->session = new Session();
-        $this->translator = $translator;
     }
 
     /**
      * @Route("checkout/address", name="checkoutAddress")
+     * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return Response
     */
     public function checkoutAddress(Request $req, AddressRepository $addressRepository): Response
     {
-        if (!$this->basket->hasProducts() || !$this->getUser()) {
-            !$this->getUser() ?
-               $this->addFlash('alert', $this->translator->trans('accounting.register_warning'))
-               : false;
-            
-            return $this->redirectToRoute(!$this->getUser() ? 'login' : 'basket' );
+        if (!$this->basket->hasProducts()) {
+            return $this->redirectToRoute('basket');
         }
     
         $addresses = $addressRepository->findBy(['user' => $this->getUser()]);
         
         if (!$addresses){
-            $this->addFlash('alert', 'Veuillez renseigner une adresse de livraison avant de continuer');
+            $this->addFlash('info', 'Veuillez renseigner une adresse de livraison avant de continuer');
+            $this->session->set('checkout/current-checkout', true);
             
-            $form = $this->createForm(AddressType::class, new Address());
-            $form->handleRequest($req);
-            
-            if ($form->isSubmitted() && $form->isValid()) {
-                $address = $form->getData();
-                $address->setUser($this->getUser());
-                $this->getDoctrine()->getManager()->persist($address);
-            } else {
-                
-                return $this->render('front_office/shopping/checkout/address.html.twig', [
-                   'address_form' => $form->createView()
-                ]);
-            }
+            return $this->render('front_office/shopping/checkout/address.html.twig', [
+               'address_form' => $this->createForm(AddressType::class)->createView(),
+            ]);
         }
     
         $this->session->set('checkout/address-current-basket', true);
+        
         $form = $this->createForm(SelectAddressType::class, null, ['addresses' => $addresses] );
+        
         $form->handleRequest($req);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $this->session->set('checkout/address', true);
-            $this->session->remove('checkout/current-checkout');
-    
+            
             return $this->redirectToRoute('checkoutSummary');
         }
 
@@ -114,6 +98,7 @@ class CheckoutController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("checkout/summary", name="checkoutSummary")
      */
     public function summary()
@@ -141,8 +126,7 @@ class CheckoutController extends AbstractController
                'thisPrice' => $this->basket->totalPrice([$product]) * $qte
             ];
         }
-    
-        $this->session->remove('checkout/address');
+        
         //$vatPrice = $this->basket->vatPrice($this->basket->grandTotal());
         //$grandTotal = $this->basket->grandTotal();
         
@@ -153,6 +137,7 @@ class CheckoutController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("checkout/payment", name="checkoutPayment")
      */
     public function payment()
