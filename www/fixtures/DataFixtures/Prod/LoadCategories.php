@@ -74,7 +74,7 @@ class LoadCategories extends Fixture implements OrderedFixtureInterface
         $manager->flush();
     
         // Cms categories creation
-        foreach (range(0, 9) as $i) {
+        foreach (range(0, 6) as $i) {
             $category = new CmsCategory();
             $category->setName('CmsCategory #'.$i);
             $category->setDescription($this->getRandomBody());
@@ -86,7 +86,7 @@ class LoadCategories extends Fixture implements OrderedFixtureInterface
 
         $manager->flush();
 
-        foreach (range(0, 30) as $i) {
+        foreach (range(0, 4) as $i) {
             $category = new CmsCategory();
             $category->setName('CmsSubcategory #'.$i);
             $category->setParent($this->getReference('cms-category-'.($i % 10)));

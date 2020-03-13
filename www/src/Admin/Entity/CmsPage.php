@@ -94,7 +94,11 @@ class CmsPage extends AbstractSluggable
         }
     
         if (method_exists($this, '_initTitleContents')) {
-            $this->_init();
+            $this->_initTitleContents();
+        }
+    
+        if (method_exists($this, '_initImages')) {
+            $this->_initImages();
         }
         
        $this->category = new ArrayCollection();

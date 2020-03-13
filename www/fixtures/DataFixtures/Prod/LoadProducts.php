@@ -209,8 +209,6 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
             'Eros', 'Diam', 'Egestas', 'Libero', 'Platea', 'Dictumst',
             'Tempus', 'Commodo', 'Mattis', 'Donec', 'Posuere', 'Eleifend',
         );
-
-        $numWords = 2;
         
         $numWords = 1;
         shuffle($words);
@@ -276,27 +274,8 @@ class LoadProducts extends Fixture implements OrderedFixtureInterface
         
         return array_slice($features, 0, $numFeatures - 1);
     }
-
-
-    private function getRandomCategories()
-    {
-        $categories = array();
-        $numCategories = rand(1, 30);
-        $allCategoryIds = range(1, 30);
-        $selectedCategoryIds = array_rand($allCategoryIds, $numCategories);
-
-        foreach ((array)$selectedCategoryIds as $categoryId) {
-        
-        foreach ((array)$selectedCategoryIds as $categoryId) {
-            if ($categoryId % 3) {
-                $catType = $categoryId % 2 === true ? 'product-subcategory-' : 'product-category-';
-                $categories[] = $this->getReference($catType . $categoryId);
-            }
-        }
-        
-        
-
-    }
+    
+    
     private function getTextileCategories()
     {
         $categories = array();
