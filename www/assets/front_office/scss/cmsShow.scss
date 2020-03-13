@@ -1,10 +1,15 @@
 @import 'app.scss';
+@import "./partials/layouts/1-cols";
 
 .title-company{
   font-size: $f50;
   color:$darkGreen;
   padding-left:70px;
   margin:75px 0;
+}
+
+.green-top-page {
+  width: 50% !important;
 }
 
 .article-company{
@@ -50,8 +55,16 @@
       margin-bottom: 25px;
     }
 
-    p{
+    section{
       line-height:70px;
+      color: $darkGreen;
+      font-size: 20px;
+    }
+
+    .cms-sub__img {
+      height: auto;
+      width: 100%;
+      max-width: 400px;
     }
   }
 }
@@ -82,7 +95,6 @@
   .top-page{
 
     .green-top-page{
-
       h1{
         font-size:3rem;
       }

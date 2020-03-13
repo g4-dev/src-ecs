@@ -40,7 +40,7 @@ class LoadCmsPages extends Fixture implements OrderedFixtureInterface
             $cmsPage->setImage('image'.($i % 10).'.jpg');
             $cmsPage->setImages([$tImages[1]]);
             $cmsPage->setCategory($this->getRandomCategories());
-            $cmsPage->setBody("<div><h1>DUMMY CONTENT ".$i."</h1>".$this->getRandomBody()."</div>");
+            $cmsPage->setLayout(rand(1,2).'-col');
     
             $this->addReference('cmsPage-'.$i, $cmsPage);
             $manager->persist($cmsPage);
@@ -53,9 +53,8 @@ class LoadCmsPages extends Fixture implements OrderedFixtureInterface
         $cmsPage->setImage('entreprise.jpg');
         $cmsPage->setImages($tImages);
         $cmsPage->setCategory($this->getRandomCategories());
-        $cmsPage->setBody("<div><h1>DUMMY CONTENT ".$i."</h1>".$this->getRandomBody()."</div>");
         $cmsPage->setOnHome(true);
-
+        $cmsPage->setLayout('2-col');
         
         $cmsPage->setTitleContents($tContents);
         $manager->persist($cmsPage);
@@ -66,13 +65,12 @@ class LoadCmsPages extends Fixture implements OrderedFixtureInterface
         $cmsPage->setDescription($this->getRandomBody());
         $cmsPage->setImage('dechet.jpg');
         $cmsPage->setCategory($this->getRandomCategories());
-        $cmsPage->setBody("<div><h1>DUMMY CONTENT ".$i."</h1>".$this->getRandomBody()."</div>");
         $cmsPage->setOnHome(true);
         $cmsPage->setTitleContents($tContents);
         $cmsPage->setImages($tImages);
+        $cmsPage->setLayout('1-col');
         
         $manager->persist($cmsPage);
-
         $manager->flush();
     }
 

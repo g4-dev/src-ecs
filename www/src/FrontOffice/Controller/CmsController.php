@@ -25,7 +25,6 @@ class CmsController extends AbstractController
            ->getRepository(CmsPage::class)
            ->findOneBySlug($slug);
         
-        // TODO: show an article identified by his slug and inject correct data in the template
         return $this->render('front_office/cms/cmsPageShow.html.twig', [
            'cmsPage' => $cmsPage,
             'layout' => $cmsPage->getLayout()

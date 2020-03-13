@@ -30,11 +30,6 @@ class CmsPage extends AbstractSluggable
     use CoreEn\Traits\TitleContents;
     
     /**
-     * @ORM\Column(type="text")
-     */
-    private $body;
-    
-    /**
      * @ORM\ManyToOne(targetEntity="Core\Entity\Admin")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="admin_id", referencedColumnName="id")
@@ -103,17 +98,6 @@ class CmsPage extends AbstractSluggable
         
        $this->category = new ArrayCollection();
        $this->titleContents = new ArrayCollection();
-    }
-    
-    public function getBody(): ?string
-    {
-        return $this->body;
-    }
-    
-    public function setBody(string $body): self
-    {
-        $this->body = $body;
-        return $this;
     }
     
     public function getAuthor(): ?CoreEn\Admin
