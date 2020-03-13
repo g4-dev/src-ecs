@@ -317,7 +317,7 @@ class Purchase
     public function create(Basket $basket)
     {
         foreach ($basket->getProducts() as $product) {
-            $this->addPurchasedItem(new PurchaseItem($product));
+            $this->addPurchasedItem(new PurchaseItem($product, $basket->getQuantity($product)));
         }
     }
     

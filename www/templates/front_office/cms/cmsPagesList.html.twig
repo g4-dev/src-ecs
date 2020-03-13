@@ -5,58 +5,34 @@
 {% endblock %}
 
 {% block main %}
-    {% dump(cmsPages) %}
     {% if  cmsPages.currentPage == 1 %}
-
         <div class="top-page">
             <div class="green-top-page">
-                <h1 class="gel-bold">{{ 'diy.info.title'|trans }}</h1>
-                <p class="gel">{{ 'diy.info.desc'|trans }}</p>
+                <h1 class="gel-bold">{{ category.name }}</h1>
+                <p class="gel">{{ category.description }}</p>
             </div>
-            <div>
-                <img src="{{ asset('images/dechet.png') }}">
-            </div>
+            {% if category.image|default(false) %}
+                <div>
+                    <img src="{{ vich_uploader_asset(category, 'imageFile')}}">
+                </div>
+            {% endif %}
         </div>
     {% endif %}
-    <form class="search-diy">
-        <input type="text" class="diy-bar" placeholder="Recherche">
-        <input type="submit" class="input-diy pop-bold">
-    </form>
+
     <div class="cont-item">
         {% for cmsPage in cmsPages %}
+            {% dump(cmsPage) %}
             <div>
                 <div class="cont-item-img">
                     <a href="{{ path('cmsShow',{ slug: cmsPage.slug }) }}"><img src="{{ vich_uploader_asset(cmsPage, 'imageFile') }}" alt="{{ cmsPage.image }}"></a>
                 </div>
-                <p class="gel-bold">{{ cmsPage.description }}</p>
+                <p class="gel-bold">{{ cmsPage.name }}</p>
             </div>
         {% endfor %}
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/dechet.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/dechet.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/dechet.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
-        <div>
-            <div class="cont-item-img">
-                <a href="#"><img src="{{ asset('images/dechet.png') }}"></a>
-            </div>
-            <p class="gel-bold">Lorem</p>
-        </div>
     </div>
-    <a href="{{ path('cmsCategoryList', { slug: categorySlug, page: cmsPages.currentPage + 1}) }}" class="btn btn-voir-plus pop">Voir plus</a>
+
+    {{ paginate(cmsPages, 'cmsCategoryList', 4)|raw }}
+
 {% endblock %}
 
 {% block scripts %}

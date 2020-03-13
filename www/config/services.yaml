@@ -90,3 +90,9 @@ services:
         class: FrontOffice\Twig\MenuExtension
         autowire: true
         tags: ['twig.extension']
+
+    #ecs.validator.entity_not_exist:
+    #    class: 'Core\Validator\Constraints\EntityNotExistsValidator'
+    #    autowire: true
+    #    tags:
+    #        - { name: validator.constraint_validator, alias: entity_not_exist }

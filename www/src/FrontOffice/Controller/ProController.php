@@ -17,9 +17,9 @@ use Core\Service\MailerService;
 class ProController extends AbstractController
 {
     /**
-     * @Route("/services-pro/{page?1}", name="proServiceList")
+     * @Route("/services-pro/list/{page?1}", name="proServiceList")
      */
-    public function index(?int $page = 1)
+    public function index($page = 1)
     {
         $qb = $this->getDoctrine()
            ->getRepository(ProService::class)
@@ -29,8 +29,7 @@ class ProController extends AbstractController
         $pagerfanta = new Pagerfanta($adapter);
         $pagerfanta->setMaxPerPage(10);
         $pagerfanta->setCurrentPage($page);
-        dump($pagerfanta);
-        
+
         try {
             $pagerfanta->setCurrentPage($page);
         } catch (\Exception $e) {

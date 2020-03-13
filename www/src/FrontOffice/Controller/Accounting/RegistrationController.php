@@ -42,7 +42,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userService->register($form->getData());
-            $this->addFlash('success', $this->get('translator')->trans('ConfirmRegister'));
+            $this->addFlash('success', 'Validez votre addresse mail pour finir votre inscription');
             
             return $this->redirectToRoute('homepage');
         }

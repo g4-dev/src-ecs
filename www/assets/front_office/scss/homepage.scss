@@ -2,6 +2,9 @@
 @import 'components/slider';
 
 main{
+  .cont-item {
+    margin-bottom: 200px;
+  }
 
   .homePage {
     background: $lightGrey;
@@ -269,7 +272,7 @@ main{
     color: $lightGrey;
     max-width: 100%;
     article {
-      height: 60vh;
+      height: 70vh;
 
       h4 {
         font-size: 3rem;

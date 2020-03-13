@@ -4,6 +4,17 @@
 @import "./partials/common.scss";
 @import "./partials/layout.scss";
 
+/*
+.sf-toolbar.sf-display-none{
+  display: none !important;
+}
+*/
+
+svg, svg path, svg::before, svg path::before {
+  -webkit-box-sizing: unset !important;
+  box-sizing: unset !important;
+}
+
 main {
   position: relative;
   width: 100%;
@@ -138,7 +149,6 @@ button{
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 200px;
 
   div{
     height:360px;
@@ -351,7 +361,7 @@ button{
     background: rgba(73, 115, 33, 0.8);
   }
   &.alert-info{
-    background: rgba(73, 115, 33, 0.8);
+    background: rgba(92, 220, 237, 0.8);
   }
   &.alert-danger{
     background: rgba(224, 0, 0, 0.8);
@@ -359,4 +369,12 @@ button{
   &.alert-warning{
     background: rgba(255, 71, 71, 0.8);
   }
+}
+
+.order-1 {
+  order:1
+}
+
+.order-2 {
+  order:1
 }

@@ -43,6 +43,7 @@ class AccountUpdateForm extends AbstractType
             ])
             ->add('newsLetter', CheckboxType::class, [
                 'attr' => ['placeholder' => 'Newsletter'],
+               'required' => false,
             ])
             ;
     }

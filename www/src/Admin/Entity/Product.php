@@ -50,7 +50,7 @@ class Product extends AbstractSluggable
     /**
      * It only stores the name of the image associated with the product.
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
@@ -75,7 +75,7 @@ class Product extends AbstractSluggable
      * )</pre>.
      *
      * @var array
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable=true)
      */
     private $features = array();
 
@@ -84,6 +84,7 @@ class Product extends AbstractSluggable
      *
      * @var float
      * @ORM\Column(type="float")
+     * @Assert\NotBlank()
      */
     private $price = 0.0;
 
@@ -91,7 +92,7 @@ class Product extends AbstractSluggable
      * The description of the product.
      *
      * @var string
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
     

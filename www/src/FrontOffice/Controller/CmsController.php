@@ -47,14 +47,17 @@ class CmsController extends AbstractController
             ->getRepository(CmsCategory::class)
             ->findOneBySlug($slug);
         
+        if (!$category) {
+            $this->createNotFoundException();
+        }
+        
         $cmsPages = $category->getItems();
         
         $adapter = new DoctrineCollectionAdapter($cmsPages);
         $pagerfanta = new Pagerfanta($adapter);
         $pagerfanta->setMaxPerPage(10);
         $pagerfanta->setCurrentPage($page);
-    
-        dump($pagerfanta);
+        
         
         //vue temporaire en attendant pour tester l'ajout au panier
         return $this->render('@fo/cms/cmsPagesList.html.twig', [

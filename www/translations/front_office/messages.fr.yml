@@ -21,3 +21,5 @@ diy.time: Temps de préparation
 KnowMore: En savoir plus
 allDiy: Toutes les Diys
 allProducts: Toutes les produits
+
+error.not_blank: Ce champs doit être rempli

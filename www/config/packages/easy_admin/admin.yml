@@ -29,7 +29,7 @@ easy_admin:
                 fields:
                     - name
                     - { property: 'isActive' }
-                    - { property: 'passwordHash', type: 'password', label: 'Password' }
+                    - { property: 'passwordHash', type: 'password', label: 'Password', type_options: { required: false } }
                     - { property: 'email', type: 'email' }
                     - { property: 'roles', type: 'choice', label: 'roles', type_options: { multiple: true,
                                                                            choices: { 'ROLE_MARKETING': 'ROLE_MARKETING',

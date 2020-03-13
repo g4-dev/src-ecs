@@ -67,7 +67,7 @@ class CmsPage extends AbstractSluggable
      * List of categories where the page is
      *
      * @var CmsCategory[]
-     * @ORM\ManyToMany(targetEntity="CmsCategory", inversedBy="items")
+     * @ORM\ManyToMany(targetEntity="CmsCategory", inversedBy="items", cascade={"persist"})
      * @ORM\JoinTable(name="cms_categories")
      */
     private $category;

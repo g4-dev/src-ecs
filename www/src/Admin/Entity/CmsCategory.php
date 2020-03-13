@@ -6,7 +6,6 @@ use Core\Entity\Image;
 use Core\Entity\Traits\DatesAt;
 use Core\Entity\Traits\Id;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -202,5 +201,10 @@ class CmsCategory extends AbstractSluggable
     public function getDescription()
     {
         return $this->description;
+    }
+    
+    public function __toString(): string
+    {
+        return (string) $this->getName();
     }
 }

@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block main %}
-    <div class="top-category">
+    <div class="top-category" style="margin-bottom: 3rem;">
         {% include "@fo/partials/category-header.html.twig" with { 'name': category.name ,'description': category.description, 'image': category.image } %}
 
     {% if products|length < 1 %}
