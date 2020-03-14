@@ -14,7 +14,7 @@ class FooterController extends AbstractController
     public function mentions()
     {
         return $this->render(
-           'front_office/legalPage/mentions.html.twig'
+            'front_office/legalPage/mentions.html.twig'
         );
     }
 

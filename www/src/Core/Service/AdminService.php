@@ -28,8 +28,8 @@ class AdminService
 
     public function __construct(
         EntityManagerInterface $entityManager,
-        UserPasswordEncoderInterface $passwordEncoder)
-    {
+        UserPasswordEncoderInterface $passwordEncoder
+    ) {
         $this->entityManager = $entityManager;
         $this->passwordEncoder = $passwordEncoder;
         $this->repository = $this->entityManager->getRepository(Admin::class);
@@ -41,8 +41,7 @@ class AdminService
         return $admin
             ->setEmail($email)
             ->setPasswordHash($this->passwordEncoder->encodePassword($admin, $password))
-            ->setCreatedAt(new \DateTime())
-            ;
+            ->setCreatedAt(new \DateTime());
     }
 
     public function save(Admin $admin)
@@ -95,11 +94,13 @@ class AdminService
         return $this->passwordEncoder->isPasswordValid($admin, $password);
     }
 
-    public function listAdmins(ListParams $params = null): ListContainer
+    public function listAdmins(ListParams $params = null, ?array $roles = null): ListContainer
     {
-        return new ListContainer($this->repository
-            ->buildAdminListQuery($params)
-            ->getQuery()
-            ->getResult());
+        return new ListContainer(
+            $this->repository
+                ->buildAdminListQuery($params, $roles)
+                ->getQuery()
+                ->getResult()
+        );
     }
 }

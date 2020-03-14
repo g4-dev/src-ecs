@@ -30,10 +30,10 @@ class CheckoutController extends AbstractController
     /**
      * @Route("checkout/address", name="checkoutAddress")
      * @IsGranted("ROLE_USER")
-     * @param Request $request
-     * @param EntityManagerInterface $em
-     * @return Response
-    */
+     * @param                     Request                $request
+     * @param                     EntityManagerInterface $em
+     * @return                    Response
+     */
     public function checkoutAddress(Request $req, AddressRepository $addressRepository): Response
     {
         if (!$this->basket->hasProducts()) {
@@ -42,30 +42,34 @@ class CheckoutController extends AbstractController
     
         $addresses = $addressRepository->findBy(['user' => $this->getUser()]);
         
-        if (!$addresses){
+        if (!$addresses) {
             $this->session->set('checkout/current-checkout', true);
             $this->addFlash('danger', 'Veuillez renseigner une adresse de livraison avant de continuer');
     
-            return $this->render('front_office/shopping/checkout/address.html.twig', [
-               'address_form' => $this->createForm(AddressType::class)->createView(),
-            ]);
+            return $this->render(
+                'front_office/shopping/checkout/address.html.twig', [
+                'address_form' => $this->createForm(AddressType::class)->createView(),
+                ]
+            );
         }
     
         $this->session->set('checkout/address-current-basket', true);
         
-        $form = $this->createForm(SelectAddressType::class, null, ['addresses' => $addresses] );
+        $form = $this->createForm(SelectAddressType::class, null, ['addresses' => $addresses]);
         
         $form->handleRequest($req);
         
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             $this->session->set('checkout/address', true);
             
             return $this->redirectToRoute('checkoutSummary');
         }
 
-        return $this->render('front_office/shopping/checkout/address.html.twig', [
+        return $this->render(
+            'front_office/shopping/checkout/address.html.twig', [
             'address_choice_form' => $form->createView(),
-        ]);
+            ]
+        );
     }
     
     /**
@@ -74,7 +78,7 @@ class CheckoutController extends AbstractController
      */
     public function shipping()//Request $req)
     {
-/*        if (!$this->session->get('checkout/address')) {
+        /*        if (!$this->session->get('checkout/address')) {
             return $this->redirectToRoute('basket');
         }
 
@@ -103,16 +107,17 @@ class CheckoutController extends AbstractController
      */
     public function summary()
     {
+        if (!$this->basket->hasProducts()) {
+            return $this->redirectToRoute('basket');
+        }
+        
         if (!$this->session->get('checkout/address')) {
             return $this->redirectToRoute('checkoutAddress');
         }
         
         $this->session->set('checkout/summary', true);
     
-        if ($this->basket->hasProducts()) {
-            $products = $this->basket->getProducts();
-        }
-    
+        $products = $this->basket->getProducts();
         $productsWithQuantity = [];
         $totalPrice  = 0;
     
@@ -130,10 +135,12 @@ class CheckoutController extends AbstractController
         //$vatPrice = $this->basket->vatPrice($this->basket->grandTotal());
         //$grandTotal = $this->basket->grandTotal();
         
-        return $this->render('front_office/shopping/checkout/summary.html.twig', [
+        return $this->render(
+            'front_office/shopping/checkout/summary.html.twig', [
             'products' => $productsWithQuantity,
             'totalPrice' => $totalPrice
-        ]);
+            ]
+        );
     }
     
     /**
@@ -143,14 +150,16 @@ class CheckoutController extends AbstractController
     public function payment()
     {
         if (!$this->session->get('checkout/summary')) {
-            return $this->redirectToRoute('basket');
+            return $this->redirectToRoute('checkoutSummary');
         }
         
         $this->session->remove('checkout/summary');
         $this->session->set('checkout/payment', true);
 
-        return $this->render('front_office/shopping/checkout/payment.html.twig', [
+        return $this->render(
+            'front_office/shopping/checkout/payment.html.twig', [
             'total_price' => $this->basket->grandTotal(),
-        ]);
+            ]
+        );
     }
 }

@@ -4,6 +4,7 @@ namespace Core\Service;
 
 use Core\Entity\User;
 use Core\Entity\Admin;
+use Core\Helper\ListParams;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\MailerInterface;
@@ -13,6 +14,7 @@ use Symfony\Component\Mime\Address;
 
 class MailerService
 {
+    const COMMERCIAL_ROLE = 'ROLE_COMMERCIAL';
     /**
      * @var LoggerInterface
      */
@@ -44,13 +46,12 @@ class MailerService
     protected $adminService;
 
     public function __construct(LoggerInterface $logger,
-                                MailerInterface $mailer,
-                                \Twig\Environment $twig,
-                                string $emailFrom,
-                                string $emailName,
-                                AdminService $adminService
-    )
-    {
+        MailerInterface $mailer,
+        \Twig\Environment $twig,
+        string $emailFrom,
+        string $emailName,
+        AdminService $adminService
+    ) {
         $this->logger = $logger;
         $this->mailer = $mailer;
         $this->twig = $twig;
@@ -82,10 +83,13 @@ class MailerService
         return $this->mailer->send($message);
     }
 
-    public function broadcastToAdmins(Email $message)
+    public function broadcastToAdmins(Email $message, ?array $roles = null)
     {
-        $list = $this->adminService->listAdmins();
-        /** @var Admin $admin */
+        $list = $this->adminService->listAdmins(null, $roles);
+        dd($list);
+        /**
+ * @var Admin $admin 
+*/
         foreach ($list->getItems() as $admin) {
             $message->to($admin->getEmail());
             $this->send($message);
@@ -94,10 +98,12 @@ class MailerService
 
     public function createEventMessage($subject, $payload): Email
     {
-        return $this->createTwigMessage($subject,'mail/event.html.twig', [
+        return $this->createTwigMessage(
+            $subject, 'mail/event.html.twig', [
             'subject' => $subject,
             'payload' => $payload
-        ]);
+            ]
+        );
     }
 
     public function twigSend(string $subject, User $user, string $template)

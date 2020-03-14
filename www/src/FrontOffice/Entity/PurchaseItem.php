@@ -16,8 +16,8 @@ class PurchaseItem
     /**
      * The identifier of the image.
      *
-     * @var int
-     * @ORM\Column(name="id", type="integer")
+     * @var                                 int
+     * @ORM\Column(name="id",               type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -26,7 +26,7 @@ class PurchaseItem
     /**
      * The ordered quantity.
      *
-     * @var int
+     * @var                         int
      * @ORM\Column(type="smallint")
      */
     protected $quantity = 1;
@@ -34,23 +34,23 @@ class PurchaseItem
     /**
      * The tax rate to apply on the product.
      *
-     * @var string
+     * @var                        string
      * @ORM\Column(type="decimal", name="tax_rate")
      */
-    protected $taxRate = 0.21;
+    protected $taxRate = 0;
 
     /**
      * The ordered product.
      *
-     * @var \Admin\Entity\Product
+     * @var                                                \Admin\Entity\Product
      * @ORM\ManyToOne(targetEntity="Admin\Entity\Product", inversedBy="purchasedItems")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="product_id",                  referencedColumnName="id")
      */
     protected $product;
 
     /**
      * @ORM\ManyToOne(targetEntity="Purchase", inversedBy="purchasedItems", cascade={"persist"})
-     * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="purchase_id",     referencedColumnName="id")
      */
     protected $purchase;
     
@@ -132,7 +132,9 @@ class PurchaseItem
         return $this->id;
     }
 
-    /** {@inheritdoc} */
+    /**
+     * {@inheritdoc} 
+     */
     public function __toString()
     {
         return $this->getProduct()->getName().' [x'.$this->getQuantity().']: '.$this->getTotalPrice();
@@ -145,6 +147,8 @@ class PurchaseItem
      */
     public function getTotalPrice()
     {
-        return $this->product->getPrice() * $this->quantity * (1 + $this->taxRate);
+        $taxRate = $this->taxRate ?? 0;
+        
+        return $this->product->getPrice() * $this->quantity * (1 + $taxRate);
     }
 }

@@ -6,7 +6,8 @@ trait PopulateTrait
 {
     /**
      * Populate object.
-     * @param mixed $collection
+     *
+     * @param  mixed $collection
      * @return PopulateTrait
      */
     public function populate($collection)

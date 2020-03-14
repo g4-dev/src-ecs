@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait IsDeleted
 {
     /**
-     * @var bool
+     * @var                           bool
      * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
      */
     protected $isDeleted = false;

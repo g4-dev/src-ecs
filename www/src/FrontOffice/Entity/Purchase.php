@@ -29,7 +29,7 @@ class Purchase
     /**
      * The Unique id of the purchase.
      *
-     * @var string
+     * @var                     string
      * @ORM\Column(type="guid")
      */
     protected $guid = null;
@@ -37,7 +37,7 @@ class Purchase
     /**
      * The date of the delivery (it doesn't include the time).
      *
-     * @var \DateTime
+     * @var                     \DateTime
      * @ORM\Column(type="date")
      */
     protected $deliveryDate = null;
@@ -45,7 +45,7 @@ class Purchase
     /**
      * The shipping information.
      *
-     * @var Shipment
+     * @var                       Shipment
      * @ORM\Column(type="object")
      */
     protected $shipping = null;
@@ -53,7 +53,7 @@ class Purchase
     /**
      * The customer preferred time of the day for the delivery.
      *
-     * @var \DateTime|null
+     * @var                     \DateTime|null
      * @ORM\Column(type="time", nullable=true)
      */
     protected $deliveryHour = null;
@@ -61,7 +61,7 @@ class Purchase
     /**
      * The customer shipping address.
      *
-     * @var string
+     * @var                                              string
      * @ORM\OneToOne(targetEntity="Core\Entity\Address", mappedBy="purchaseShipping", cascade={"persist"})
      */
     private $shippingAddress;
@@ -69,7 +69,7 @@ class Purchase
     /**
      * The user who made the purchase.
      *
-     * @var \Core\Entity\User
+     * @var                                            \Core\Entity\User
      * @ORM\ManyToOne(targetEntity="Core\Entity\User", inversedBy="purchases", cascade={"persist"})
      */
     private $buyer;
@@ -77,7 +77,7 @@ class Purchase
     /**
      * Items that have been purchased.
      *
-     * @var PurchaseItem[]
+     * @var                                        PurchaseItem[]
      * @ORM\OneToMany(targetEntity="PurchaseItem", mappedBy="purchase", cascade={"persist"})
      */
     protected $purchasedItems;
@@ -239,7 +239,7 @@ class Purchase
     }
     
     /**
-     * @param mixed $trackingNumber
+     * @param  mixed $trackingNumber
      * @return Purchase
      */
     public function setTrackingNumber($trackingNumber)
@@ -259,7 +259,9 @@ class Purchase
         return preg_replace('/[^0-9]/i', '', sprintf('%d%d%03d%s', $storeId, date('Y'), date('z'), microtime()));
     }
 
-    /** {@inheritdoc} */
+    /**
+     * {@inheritdoc} 
+     */
     public function __toString()
     {
         return 'Purchase #'.$this->getId();
@@ -294,7 +296,7 @@ class Purchase
     }
     
     /**
-     * @param mixed $status
+     * @param  mixed $status
      * @return Purchase
      */
     public function setStatus($status)
@@ -324,11 +326,11 @@ class Purchase
     public function getTotal()
     {
         $total = 0.0;
-
+        
         foreach ($this->getPurchasedItems() as $item) {
             $total += $item->getTotalPrice();
         }
-
+        
         return $total;
     }
 

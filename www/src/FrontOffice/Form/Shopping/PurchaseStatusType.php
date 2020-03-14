@@ -13,20 +13,24 @@ class PurchaseStatusType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('status', ChoiceType::class, [
+            ->add(
+                'status', ChoiceType::class, [
                 'choices' => Purchase::STATUSES,
                 'choice_label' => function ($status) {
                     return $status;
                 }
-            ])
+                ]
+            )
             ->add('trackingNumber', TextType::class);
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Purchase::class
-        ]);
+            ]
+        );
     }
 }

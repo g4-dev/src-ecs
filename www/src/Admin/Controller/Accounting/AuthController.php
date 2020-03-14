@@ -28,14 +28,18 @@ class AuthController extends AbstractController
             return $this->redirectToRoute('admin');
         }
         
-        $form = $this->createForm(LoginForm::class, [
+        $form = $this->createForm(
+            LoginForm::class, [
             '_username' => $this->authUtils->getLastUsername()
-        ]);
+            ]
+        );
         
-        return $this->render('@fo/accounting/admin-login.html.twig', [
+        return $this->render(
+            '@fo/accounting/admin-login.html.twig', [
             'form' => $form->createView(),
             'error' => $this->authUtils->getLastAuthenticationError()
-        ]);
+            ]
+        );
     }
 
     /**

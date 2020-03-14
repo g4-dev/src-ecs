@@ -15,19 +15,22 @@ class PasswordReminderForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, [
+            ->add(
+                'email', EmailType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Adresse email', 'class' => 'form-control-lg'],
                 'constraints' => [
                     new NotBlank(),
                     new Email(['message' => "The '{{ value }}' is not a valid email!"]),
-                    new EntityExists([
+                    new EntityExists(
+                        [
                         'entityClass' => User::class,
                         'field' => 'email',
                         'message' => 'Email {{ value }} has not been found!'
-                    ])
+                        ]
+                    )
                 ]
-            ])
-            ;
+                ]
+            );
     }
 }

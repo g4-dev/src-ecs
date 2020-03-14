@@ -6,7 +6,8 @@ class ArrayUtils
 {
     /**
      * Convert an array to an stdClass object.
-     * @param array $array
+     *
+     * @param  array $array
      * @return \stdClass
      */
     public static function arrayToStdClass(array $array)
@@ -22,7 +23,8 @@ class ArrayUtils
     
     /**
      * Convert array element.
-     * @param mixed $v
+     *
+     * @param  mixed $v
      * @return array|type
      */
     protected static function _arrayElementValue($v)
@@ -44,7 +46,8 @@ class ArrayUtils
     
     /**
      * Check if array is an associative one.
-     * @param array $array
+     *
+     * @param  array $array
      * @return boolean
      */
     public static function isAssocArray(array $array)

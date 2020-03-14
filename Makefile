@@ -2,6 +2,7 @@ SHELL := /bin/bash
 projectname ?= ecs
 D ?= /data
 WWW ?= $(D)/$(projectname)/www
+SRC = $(WWW)/src
 CONSOLE = php $(WWW)/bin/console
 migration_dir = $(WWW)/migrations
 VBIN = $(WWW)/vendor/bin
@@ -12,10 +13,6 @@ KERNEL_CLASS := \\Core\\Kernel
 # DATABASES OPERATIONS
 local_script = $(D)/$(projectname)/$(projectname).sql
 remote_script = $(D)/$(projectname)/remote_.sql
-
-# Be careful with this command (nfs / shared folder should be disabled)
-clean_vagrant:
-	/bin/bash /tmp/cleaner.sh
 
 # Mettre à jour notre base de donnée locale avec celles de l'externe
 db_soft:
@@ -53,17 +50,21 @@ new_en:
 	$(CONSOLE) make:entity "$(COMMAND_ARGS)\\Entity\\$(EN)"
 	echo "Don‘t forget to download updated files"
 
-# tests
-test_install:
-	ln -sf $(VBIN)/paratest $(BIN)
-	ln -sf $(VBIN)/phpunit $(BIN)
+cs_fix:
+	$(VBIN)/phpcbf --standard=$(WWW)/phpcs.xml.dist --ignore=$(SRC)/Migrations/**,$(SRC)/Core/Kernel.php $(SRC)/
+
+cs_check:
+	$(VBIN)/phpcs --standard=$(WWW)/phpcs.xml.dist --ignore=$(SRC)/Migrations/**,src/Kernel.php $(SRC)/
+
+phpstan:
+	$(VBIN)/phpstan analyse -l 0 -c $(WWW)/phpstan.neon --no-progress -vvv --memory-limit=1024M  $(SRC)/
 
 tests:
 	APP_ENV=test php $(VBIN)/paratest -p$(NPROC) -f --phpunit=$(VBIN)/phpunit --colors $(WWW)/tests
 
 warmed_test:
 	APP_ENV=test $(CONSOLE) cache:clear && $(CONSOLE) cache:warmup && \
-	php $(VBIN)/paratest -p$(NPROC) -f --phpunit=$(VBIN)/phpunit --colors $(WWW)/tests
+	php $(VBIN)/paratest -p$(NPROC) -f --phpunit=$(VBIN)/simple-phpunit --colors $(WWW)/tests
 
 # Synchronise your files automaticly (daemonized)
 sync:
@@ -75,3 +76,9 @@ stop_sync :
 	pgrep -f vagrant rsync | xargs kill -9
 	pgrep -f vagrant rsync-auto | xargs kill -9
 	pgrep -f rsync-auto | xargs kill -9
+
+# Be careful with this command (nfs / shared folder should be disabled)
+clean_vagrant:
+	/bin/bash /tmp/cleaner.sh
+
+

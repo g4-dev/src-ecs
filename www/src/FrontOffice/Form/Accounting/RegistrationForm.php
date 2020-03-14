@@ -20,92 +20,125 @@ class RegistrationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, [
+            ->add(
+                'name', TextType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
                 'constraints' => [
-                    new NotBlank([
-                       'message' => 'error.not_blank'
-                    ]),
+                    new NotBlank(
+                        [
+                        'message' => 'error.not_blank'
+                        ]
+                    ),
                 ]
-            ])
-            ->add('lastName', TextType::class, [
+                ]
+            )
+            ->add(
+                'lastName', TextType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Prenom', 'class' => 'form-control-lg'],
                 'constraints' => [
-                    new NotBlank([
-                       'message' => 'error.not_blank'
-                    ]),
+                    new NotBlank(
+                        [
+                        'message' => 'error.not_blank'
+                        ]
+                    ),
                 ]
-            ])
-            ->add('phoneNumber', TextType::class, [
+                ]
+            )
+            ->add(
+                'phoneNumber', TextType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Téléphone', 'class' => 'form-control-lg'],
                 'constraints' => [
-                    new NotBlank([
-                       'message' => 'error.not_blank'
-                    ]),
-                   new EntityNotExists([
+                    new NotBlank(
+                        [
+                        'message' => 'error.not_blank'
+                        ]
+                    ),
+                new EntityNotExists(
+                    [
                       'entityClass' => User::class,
                       'field' => 'phoneNumber',
                       'message' => 'Le téléphone {{ value }} déja utilisé!'
-                   ])
+                       ]
+                )
                 ]
-            ])
-            ->add('address', TextType::class, [
+                ]
+            )
+            ->add(
+                'address', TextType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Adresse', 'class' => 'form-control-lg'],
                 'constraints' => [
-                    new NotBlank([
-                       'message' => 'error.not_blank'
-                    ]),
+                    new NotBlank(
+                        [
+                        'message' => 'error.not_blank'
+                        ]
+                    ),
                 ]
-            ])
-            ->add('companyName', TextType::class, [
+                ]
+            )
+            ->add(
+                'companyName', TextType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Entreprise', 'class' => 'form-control-lg'],
                 'constraints' => [
-                    new NotBlank([
-                       'message' => 'error.not_blank'
-                    ]),
+                    new NotBlank(
+                        [
+                        'message' => 'error.not_blank'
+                        ]
+                    ),
                 ]
-            ])
-            ->add('email', EmailType::class, [
+                ]
+            )
+            ->add(
+                'email', EmailType::class, [
                 'required' => true,
                 'attr' => ['placeholder' => 'Your email address', 'class' => 'form-control-lg'],
                 'constraints' => [
                     new NotBlank(),
                     new Email(['message' => "The '{{ value }}' is not a valid email!"]),
-                    new EntityNotExists([
+                    new EntityNotExists(
+                        [
                         'entityClass' => User::class,
                         'field' => 'email',
                         'message' => 'L\'Email {{ value }} déja utilisé!'
-                    ])
+                        ]
+                    )
                 ]
-            ])
-            ->add('password', RepeatedType::class, [
+                ]
+            )
+            ->add(
+                'password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'required' => true,
                 'first_name' => 'first',
                 'first_options' => [
                     'attr' => ['placeholder' => 'Password', 'class' => 'form-control-lg'],
-                    'constraints' => [new NotBlank([
-                       'message' => 'error.not_blank'
-                    ]), new Length(['min' => 8])]
+                    'constraints' => [new NotBlank(
+                        [
+                        'message' => 'error.not_blank'
+                        ]
+                    ), new Length(['min' => 8])]
                 ],
                 'second_name' => 'second',
                 'second_options' => [
                     'attr' => ['placeholder' => 'Repeat password', 'class' => 'form-control-lg'],
-                    'constraints' => [new NotBlank([
-                       'message' => 'error.not_blank'
-                    ]), new Length(['min' => 8])]
+                    'constraints' => [new NotBlank(
+                        [
+                        'message' => 'error.not_blank'
+                        ]
+                    ), new Length(['min' => 8])]
                 ]
-            ])
-           ->add('newsLetter', CheckboxType::class, [
-              'required' => false,
-              'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
+                ]
+            )
+            ->add(
+                'newsLetter', CheckboxType::class, [
+                'required' => false,
+                'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
               
-           ])
-            ;
+                ]
+            );
     }
 }

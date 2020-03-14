@@ -25,13 +25,13 @@ class User extends Model\AbstractUser implements UserInterface
     use Traits\UniqueId;
     
     /**
-     * @var string
+     * @var                       string
      * @ORM\Column(type="string", length=32, nullable=true, unique=false)
      */
     protected $token;
     
     /**
-     * @var array
+     * @var                      array
      * @ORM\Column(type="array", nullable=false)
      */
     private array $roles = [self::DEFAULT_ROLE];
@@ -40,13 +40,13 @@ class User extends Model\AbstractUser implements UserInterface
     use Traits\PersonNames;
     
     /**
-     * @var string
+     * @var                       string
      * @ORM\Column(type="string", length=50, nullable=true, unique=false)
      */
     private $companyName;
 
     /**
-     * @var string
+     * @var                       string
      * @ORM\Column(type="string", length=10, nullable=true, unique=true)
      */
     private $phoneNumber;
@@ -59,13 +59,13 @@ class User extends Model\AbstractUser implements UserInterface
     private $purchases;
     
     /**
-     * @var Address[]
+     * @var                                               Address[]
      * @ORM\OneToMany(targetEntity="Core\Entity\Address", mappedBy="user", orphanRemoval=true, cascade={"remove"})
      */
     private $addresses;
     
     /**
-     * @var boolean
+     * @var                        boolean
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $newsLetter;

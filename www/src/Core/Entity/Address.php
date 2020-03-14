@@ -11,7 +11,7 @@ use Core\Validator\Constraints\EntityNotExists;
 /**
  * @ORM\Entity(repositoryClass="Core\Repository\AddressRepository")
  * @ORM\Table(name="user_addresses")
- * @ORM\HasLifecycleCallbacks
+ * @ORM\HasLifecycleCallbacks()
  */
 class Address
 {
@@ -51,16 +51,16 @@ class Address
     private $country;
     
     /**
-     * @var string
-     * @ORM\Column(name="phone_number", type="string", length=10, nullable=true, unique=true)
+     * @var                                                string
+     * @ORM\Column(name="phone_number",                    type="string", length=10, nullable=true, unique=true)
      * @Assert\NotBlank()
-     * @EntityNotExists(entityClass = "User", field="phoneNumber")
+     * @EntityNotExists(entityClass="Core\Entity\Address", field="phoneNumber")
      */
     private $phoneNumber;
 
     /**
      * @ORM\ManyToOne(targetEntity="Core\Entity\User", inversedBy="addresses")
-     * @ORM\JoinColumn(name="user_id", nullable=true)
+     * @ORM\JoinColumn(name="user_id",                 nullable=true)
      */
     private $user;
     

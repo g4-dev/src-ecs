@@ -18,7 +18,7 @@ class PurchaseFactoryService
     public function create(Basket $basket, User $user, string $paymentMethod)
     {
         $purchase = new Purchase();
-        
+
         foreach ($basket->getProducts() as $product) {
             $purchase->addPurchasedItem(new PurchaseItem($product, $basket->getQuantity($product)));
         }
@@ -28,15 +28,15 @@ class PurchaseFactoryService
         $totalPrice = $basket->grandTotal();
 
         $purchase->setBuyer($user)
-              ->setShippingAddress($shippingAddress)
-              ->setStatus('processing')
+            ->setShippingAddress($shippingAddress)
+            ->setStatus('processing')
               //->setShippingMethod($basket->getShippingMethod())
-              ->setTransaction(
-                  new \Core\Entity\Transaction(
-                      $paymentMethod,
-                      $totalPrice
-                  )
-              );
+            ->setTransaction(
+                new \Core\Entity\Transaction(
+                    $paymentMethod,
+                    $totalPrice
+                )
+            );
 
         return $purchase;
     }

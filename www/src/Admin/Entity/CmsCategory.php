@@ -12,6 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Class CmsCategory.
+ *
  * @ORM\MappedSuperclass
  * @ORM\Table(name="cms_category")
  * @ORM\Entity(repositoryClass="Admin\Repository\CmsCategoryRepository")
@@ -26,7 +27,7 @@ class CmsCategory extends AbstractSluggable
     /**
      * Product in the category.
      *
-     * @var CmsPage[]
+     * @var                                    CmsPage[]
      * @ORM\ManyToMany(targetEntity="CmsPage", mappedBy="category")
      **/
     protected $items;
@@ -34,9 +35,9 @@ class CmsCategory extends AbstractSluggable
     /**
      * The category parent.
      *
-     * @var CmsCategory
+     * @var                                       CmsCategory
      * @ORM\ManyToOne(targetEntity="CmsCategory")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="parent_id",          referencedColumnName="id", nullable=true)
      **/
     protected $parent;
     
@@ -62,7 +63,7 @@ class CmsCategory extends AbstractSluggable
     /**
      * The description of the product.
      *
-     * @var string
+     * @var                     string
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
@@ -142,7 +143,7 @@ class CmsCategory extends AbstractSluggable
     }
     
     /**
-     * @param File|null $image
+     * @param  File|null $image
      * @return Image
      */
     public function setImageFile(File $image = null)
@@ -165,7 +166,7 @@ class CmsCategory extends AbstractSluggable
     }
     
     /**
-     * @param string $image
+     * @param  string $image
      * @return Image
      */
     public function setImage($image)

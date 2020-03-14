@@ -15,6 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * CmsPage
+ *
  * @ORM\MappedSuperclass
  * @ORM\Table(name="cms_page")
  * @ORM\Entity(repositoryClass="Admin\Repository\CmsPageRepository")
@@ -32,7 +33,7 @@ class CmsPage extends AbstractSluggable
     /**
      * @ORM\ManyToOne(targetEntity="Core\Entity\Admin")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="admin_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="admin_id",                 referencedColumnName="id")
      * })
      */
     private $author;
@@ -66,7 +67,7 @@ class CmsPage extends AbstractSluggable
     /**
      * List of categories where the page is
      *
-     * @var CmsCategory[]
+     * @var                                        CmsCategory[]
      * @ORM\ManyToMany(targetEntity="CmsCategory", inversedBy="items", cascade={"persist"})
      * @ORM\JoinTable(name="cms_categories")
      */
@@ -96,8 +97,8 @@ class CmsPage extends AbstractSluggable
             $this->_initImages();
         }
         
-       $this->category = new ArrayCollection();
-       $this->titleContents = new ArrayCollection();
+        $this->category = new ArrayCollection();
+        $this->titleContents = new ArrayCollection();
     }
     
     public function getAuthor(): ?CoreEn\Admin
@@ -144,10 +145,10 @@ class CmsPage extends AbstractSluggable
     public function setCategory(?array $cmsCat)
     {
         // This is the owning side, we have to call remove and add to have change in the category side too.
-       $this->category->clear();
-       $this->category = new ArrayCollection($cmsCat);
+        $this->category->clear();
+        $this->category = new ArrayCollection($cmsCat);
         
-       return $this;
+        return $this;
     }
 
     public function addCategory(CmsCategory $category)

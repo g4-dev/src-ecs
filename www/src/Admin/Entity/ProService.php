@@ -26,7 +26,7 @@ class ProService
     /**
      * List of tags associated to the product.
      *
-     * @var \int
+     * @var                       \int
      * @ORM\Column(type="bigint")
      */
     private $reference;
@@ -53,7 +53,7 @@ class ProService
     /**
      * The price of the product.
      *
-     * @var float
+     * @var                      float
      * @ORM\Column(type="float")
      */
     private $price = 0.0;
@@ -61,7 +61,7 @@ class ProService
     /**
      * The description of the product.
      *
-     * @var string
+     * @var                     string
      * @ORM\Column(type="text")
      */
     private $description;
@@ -69,7 +69,7 @@ class ProService
     /**
      * The description of the product.
      *
-     * @var string
+     * @var                     string
      * @ORM\Column(type="text")
      */
     private $shortDescription;
@@ -182,7 +182,7 @@ class ProService
     }
     
     /**
-     * @param string $shortDescription
+     * @param  string $shortDescription
      * @return ProService
      */
     public function setShortDescription(?string $shortDescription): ProService

@@ -21,8 +21,8 @@ class BasketController extends AbstractController
     private $productRepository;
     
     public function __construct(
-       EntityManagerInterface $objectManager,
-       ProductRepository $productRepository
+        EntityManagerInterface $objectManager,
+        ProductRepository $productRepository
     ) {
         $this->basket = new Basket($objectManager);
         $this->productRepository = $productRepository;
@@ -55,17 +55,17 @@ class BasketController extends AbstractController
         }
         
         return $this->render(
-           'front_office/shopping/basket.html.twig',
-           [
+            'front_office/shopping/basket.html.twig',
+            [
               'products' => $productsWithQuantity,
               'totalPrice' => $totalPrice,
-           ]
+            ]
         );
     }
     
     /**
      * @Route("/basket/add/", name="basketAdd")
-     * @return RedirectResponse
+     * @return                RedirectResponse
      */
     public function addBasket(Request $req)
     {
@@ -74,7 +74,7 @@ class BasketController extends AbstractController
         $quantity = (int) $payload['quantity'];
         
         if(!$id && $quantity < 1) {
-          $this->createNotFoundException();
+            $this->createNotFoundException();
         }
         
         $product = $this->productRepository->find($id);
@@ -93,8 +93,8 @@ class BasketController extends AbstractController
     
     /**
      * @Route("/basket/remove/{id?}", name="basketRemove", requirements={"page": "\d+"})
-     * @param $id
-     * @return RedirectResponse
+     * @param                         $id
+     * @return                        RedirectResponse
      */
     public function removeBasketAction(?int $id = -1): RedirectResponse
     {
@@ -104,8 +104,8 @@ class BasketController extends AbstractController
         }
         
         $product = $this->getDoctrine()
-           ->getRepository(Product::class)
-           ->find($id);
+            ->getRepository(Product::class)
+            ->find($id);
         
         if (!$product) {
             throw $this->createNotFoundException();
@@ -118,8 +118,8 @@ class BasketController extends AbstractController
     
     /**
      * @Route("/basket/update", name="basketUpdate")
-     * @param Request $req
-     * @return JsonResponse
+     * @param                   Request $req
+     * @return                  JsonResponse
      */
     public function updateAction(Request $req)
     {
@@ -128,8 +128,8 @@ class BasketController extends AbstractController
         $quantity = (int)$data['quantity'];
         
         $product = $this->getDoctrine()
-           ->getRepository(Product::class)
-           ->find($id);
+            ->getRepository(Product::class)
+            ->find($id);
         
         if (!$product) {
             throw $this->createNotFoundException();
@@ -141,10 +141,10 @@ class BasketController extends AbstractController
         $totalPrice = $this->basket->totalPrice($products);
         
         return new JsonResponse(
-           [
+            [
               'price' => $product->calcTotalPrice(),
               'totalPrice' => $totalPrice,
-           ]
+            ]
         );
     }
     

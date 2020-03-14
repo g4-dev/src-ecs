@@ -16,7 +16,7 @@ class PaypalFactory
     /**
      * Creates a paypal transaction from the basket
      *
-     * @param Basket $basket
+     * @param  Basket $basket
      * @return Transaction
      */
     public static function create(Basket $basket): Transaction
@@ -27,10 +27,10 @@ class PaypalFactory
 
         foreach ($products as $product) {
             $item = (new Item())
-                 ->setName($product->getName())
-                 ->setCurrency('EUR')
-                 ->setQuantity($basket->getQuantity($product))
-                 ->setPrice($product->getPrice());
+                ->setName($product->getName())
+                ->setCurrency('EUR')
+                ->setQuantity($basket->getQuantity($product))
+                ->setPrice($product->getPrice());
             
             $itemList->addItem($item);
         }

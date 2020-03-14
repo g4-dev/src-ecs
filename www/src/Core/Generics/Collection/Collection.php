@@ -9,6 +9,7 @@ class Collection implements CollectionInterface
 
     /**
      * Prepare collection.
+     *
      * @param array|object $collection
      */
     public function __construct($collection = null)
@@ -20,7 +21,8 @@ class Collection implements CollectionInterface
 
     /**
      * Add a value at the end of collection.
-     * @param mixed $value
+     *
+     * @param  mixed $value
      * @return CollectionInterface
      */
     public function add($value)
@@ -30,8 +32,9 @@ class Collection implements CollectionInterface
 
     /**
      * Set collection element.
-     * @param mixed $name
-     * @param mixed $value
+     *
+     * @param  mixed $name
+     * @param  mixed $value
      * @return Collection
      */
     public function set($name, $value)
@@ -46,7 +49,8 @@ class Collection implements CollectionInterface
 
     /**
      * Get collection element.
-     * @param mixed $name
+     *
+     * @param  mixed $name
      * @throws \UnexpectedValueException
      * @return mixed:
      */
@@ -60,7 +64,8 @@ class Collection implements CollectionInterface
 
     /**
      * Check if collection has an element.
-     * @param mixed $name
+     *
+     * @param  mixed $name
      * @return boolean
      */
     public function has($name)
@@ -70,7 +75,8 @@ class Collection implements CollectionInterface
 
     /**
      * Remove an element from the collection.
-     * @param mixed $name
+     *
+     * @param  mixed $name
      * @return Collection
      */
     public function remove($name)
@@ -81,6 +87,7 @@ class Collection implements CollectionInterface
 
     /**
      * Get collection items.
+     *
      * @return array
      */
     public function items()
@@ -90,6 +97,7 @@ class Collection implements CollectionInterface
 
     /**
      * Alias to getAll.
+     *
      * @return array
      */
     public function toArray()
@@ -112,6 +120,7 @@ class Collection implements CollectionInterface
 
     /**
      * Clear collection.
+     *
      * @return Collection
      */
     public function clear()
@@ -122,6 +131,7 @@ class Collection implements CollectionInterface
 
     /**
      * Convert collection to single string.
+     *
      * @return string
      */
     public function __toString()
@@ -131,7 +141,8 @@ class Collection implements CollectionInterface
 
     /**
      * ArrayAccess
-     * @param mixed $offset
+     *
+     * @param  mixed $offset
      * @return boolean
      */
     public function offsetExists($offset)
@@ -141,7 +152,8 @@ class Collection implements CollectionInterface
 
     /**
      * ArrayAccess
-     * @param mixed $offset
+     *
+     * @param  mixed $offset
      * @return mixed
      */
     public function offsetGet($offset)
@@ -151,6 +163,7 @@ class Collection implements CollectionInterface
 
     /**
      * ArrayAccess
+     *
      * @param mixed $offset
      * @param mixed $value
      */
@@ -161,6 +174,7 @@ class Collection implements CollectionInterface
 
     /**
      * ArrayAccess
+     *
      * @param mixed $offset
      */
     public function offsetUnset($offset)
@@ -170,6 +184,7 @@ class Collection implements CollectionInterface
 
     /**
      * Countable
+     *
      * @return int
      */
     public function count()
@@ -179,6 +194,7 @@ class Collection implements CollectionInterface
 
     /**
      * Serializable
+     *
      * @return string
      */
     public function serialize()
@@ -188,6 +204,7 @@ class Collection implements CollectionInterface
 
     /**
      * Serializable
+     *
      * @param string $serialized
      */
     public function unserialize($serialized)
@@ -197,6 +214,7 @@ class Collection implements CollectionInterface
 
     /**
      * IteratorAggregate
+     *
      * @return \ArrayIterator
      */
     public function getIterator()
@@ -206,7 +224,8 @@ class Collection implements CollectionInterface
 
     /**
      * Populate.
-     * @param array|object $collection
+     *
+     * @param  array|object $collection
      * @return Collection
      */
     public function populate($collection)
@@ -233,6 +252,7 @@ class Collection implements CollectionInterface
 
     /**
      * Reset pointer.
+     *
      * @return \Axon\Generics\Collection\Collection
      */
     public function reset()
@@ -243,6 +263,7 @@ class Collection implements CollectionInterface
 
     /**
      * Get first element.
+     *
      * @return mixed
      */
     public function first()
@@ -252,6 +273,7 @@ class Collection implements CollectionInterface
 
     /**
      * Get last element.
+     *
      * @return mixed
      */
     public function last()
@@ -261,6 +283,7 @@ class Collection implements CollectionInterface
 
     /**
      * Get current element.
+     *
      * @return mixed
      */
     public function current()
@@ -270,6 +293,7 @@ class Collection implements CollectionInterface
 
     /**
      * Get next element.
+     *
      * @return mixed
      */
     public function next()
@@ -279,6 +303,7 @@ class Collection implements CollectionInterface
 
     /**
      * Get previous element.
+     *
      * @return mixed
      */
     public function prev()

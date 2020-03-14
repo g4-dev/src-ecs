@@ -15,16 +15,22 @@ class ChangePassword
     {
         $metadata->addPropertyConstraint(
             'oldPassword',
-            new SecurityAssert\UserPassword([
+            new SecurityAssert\UserPassword(
+                [
                 'message' => 'Mot de passe invalide'
-            ])
+                ]
+            )
         );
-        $metadata->addPropertyConstraint('newPassword', new Assert\Length([
-            'min' => 5,
-            'max' => 50,
-            'minMessage' => 'Le mot de passe doit faire au minimum 5 caractères',
-            'maxMessage' => 'Le mot de passe doit faire au maximum 50 caractères'
-        ]));
+        $metadata->addPropertyConstraint(
+            'newPassword', new Assert\Length(
+                [
+                'min' => 5,
+                'max' => 50,
+                'minMessage' => 'Le mot de passe doit faire au minimum 5 caractères',
+                'maxMessage' => 'Le mot de passe doit faire au maximum 50 caractères'
+                ]
+            )
+        );
     }
 
     public function getOldPassword(): ?string

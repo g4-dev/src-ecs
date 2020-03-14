@@ -16,31 +16,31 @@ abstract class AbstractUser extends Entity
     /**
      * TODO: Assert unique
      *
-     * @var string
+     * @var                      string
      * @ORM\Column(name="email", type="string", length=128, nullable=false, unique=true)
      */
     protected $email;
 
     /**
-     * @var string
+     * @var                              string
      * @ORM\Column(name="password_hash", type="string", length=128, nullable=false)
      */
     protected $passwordHash;
 
     /**
-     * @var \DateTime
+     * @var                              \DateTime
      * @ORM\Column(name="last_login_at", type="datetime", nullable=true)
      */
     protected $lastLoginAt;
 
     /**
-     * @var string
+     * @var                              string
      * @ORM\Column(name="last_login_ip", type="string", length=32, nullable=true)
      */
     protected $lastLoginIp;
 
     /**
-     * @var string
+     * @var                                string
      * @ORM\Column(name="last_user_agent", type="string", length=255, nullable=true)
      */
     protected $lastUserAgent;

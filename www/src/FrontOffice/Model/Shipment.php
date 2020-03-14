@@ -6,7 +6,6 @@ namespace FrontOffice\Model;
 /**
  * Class Shipment.
  * Define a simple PHP class.
- *
  */
 class Shipment
 {
@@ -74,7 +73,9 @@ class Shipment
         return $this->transporter;
     }
 
-    /** {@inheritdoc} */
+    /**
+     * {@inheritdoc} 
+     */
     public function __toString()
     {
         return $this->getTransporter().': '.$this->getCost();

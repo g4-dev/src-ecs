@@ -21,7 +21,7 @@ class Admin extends Model\AbstractUser implements UserInterface
     use Traits\Name;
     
     /**
-     * @var array
+     * @var                      array
      * @ORM\Column(name="roles", type="array", nullable=false)
      */
     private array $roles = [self::DEFAULT_ROLE];

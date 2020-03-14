@@ -24,29 +24,28 @@ class SelectAddressType extends AbstractType
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $addresses = $options['addresses'];
-    
-        if ($addresses) {
-            $builder->add('address', EntityType::class, [
-               'class' => Address::class,
-               'placeholder' => 'Choisissez une adresse',
-               'choices' => $addresses,
-               'choice_label' => function (Address $address) {
-                   return $address->__toString();
-               },
-               'required' => true,
-               'multiple' => false,
-               'expanded' => true
-            ]);
-        }
+        $builder->add(
+            'address', ChoiceType::class, [
+            'placeholder' => 'Choisissez une adresse',
+            'choices' => $options['addresses'],
+            'choice_label' => function (Address $address) {
+                return $address->__toString();
+            },
+            'required' => true,
+            'multiple' => false,
+            'expanded' => true
+            ]
+        );
     }
     
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-           'data_class' => null,
-           'addresses' => null,
-        ]);
+        $resolver->setDefaults(
+            [
+            'data_class' => null,
+            'addresses' => null,
+            ]
+        );
     
         // you can also define the allowed types, allowed values and
         // any other feature supported by the OptionsResolver component

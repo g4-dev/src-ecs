@@ -1,6 +1,6 @@
 @import "./partials/reset.scss";
-@import "./partials/_variables.scss";
-@import "./partials/_font.scss";
+@import "./partials/variables.scss";
+@import "./partials/font.scss";
 @import "./partials/common.scss";
 @import "./partials/layout.scss";
 
@@ -10,30 +10,26 @@
 }
 */
 
-svg, svg path, svg::before, svg path::before {
-  -webkit-box-sizing: unset !important;
-  box-sizing: unset !important;
-}
-
 main {
   position: relative;
   width: 100%;
   height: 100%;
-  flex-grow:1;
+  flex-grow: 1;
 }
-body{
+
+body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-a{
+a {
   text-decoration: none;
   color: $darkGrey;
   cursor: pointer;
 }
 
-button{
+button {
   border: none;
   margin: 0;
   padding: 0;
@@ -42,55 +38,55 @@ button{
   cursor: pointer;
 }
 
-.headerMob{
-  z-index:1000;
+.headerMob {
+  z-index: 1000;
 }
 
-.cont{
-  padding:0 70px;
+.cont {
+  padding: 0 70px;
   position: relative;
 }
 
-.sep-header{
-  width:80%;
+.sep-header {
+  width: 80%;
   height: .5px;
   background: $darkGreen;
   margin: 16px auto 32px auto;
 }
 
-.btn-back{
-  color:$dark;
+.btn-back {
+  color: $dark;
   position: relative;
   display: inline-block;
   left: 5%;
 
-  &::after{
+  &::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    height:2px;
-    width:0;
+    height: 2px;
+    width: 0;
     background: $darkGreen;
-    transition:width .5s ease-in-out;
+    transition: width .5s ease-in-out;
   }
 
-  &:hover::after{
-    transition:width .5s ease-in-out;
-    width:100%;
+  &:hover::after {
+    transition: width .5s ease-in-out;
+    width: 100%;
   }
 }
 
-.top-page{
-  width:100%;
+.top-page {
+  width: 100%;
   display: flex;
   flex-direction: row;
   overflow: hidden;
 
-  div:nth-child(2){
-    width:70%;
+  div:nth-child(2) {
+    width: 70%;
 
-    img{
+    img {
       object-fit: cover;
       width: 100%;
       height: 100%;
@@ -98,73 +94,73 @@ button{
   }
 }
 
-.green-top-page{
-  width:30%;
-  background:$lightGreen;
+.green-top-page {
+  width: 30%;
+  background: $lightGreen;
   padding: 70px;
 
-  h1{
-    color:$darkGreen;
-    font-size:$f77;
+  h1 {
+    color: $darkGreen;
+    font-size: $f77;
     padding-bottom: 10px;
-    border-bottom:solid 2px;
+    border-bottom: solid 2px;
     margin-bottom: 15px;
   }
 
-  p{
+  p {
     font-size: $f40;
     line-height: $inter80;
-    color:$darkGreen;
+    color: $darkGreen;
   }
 }
 
 /*Btn général*/
-.btn{
+.btn {
   border: solid 1px $darkGreen;
   width: 200px;
-  color:$darkGreen;
-  font-size:20px;
+  color: $darkGreen;
+  font-size: 20px;
   text-align: center;
-  padding:15px 20px;
+  padding: 15px 20px;
   transition: all .35s linear;
 
-  &:hover{
+  &:hover {
     background: $darkGreen;
-    color:$white;
+    color: $white;
     transition: all .35s linear;
   }
 }
 
 /*Suggestions de produits*/
-.title-suggest{
+.title-suggest {
   margin-top: 75px;
   color: $darkGrey;
   margin-left: 70px;
-  font-size:$f40;
+  font-size: $f40;
 }
 
-.cont-item{
-  width:100%;
+.cont-item {
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 
-  div{
-    height:360px;
-    width:280px;
+  div {
+    height: 360px;
+    width: 280px;
 
-    .cont-item-img{
+    .cont-item-img {
       width: 280px;
       height: 280px;
       overflow: hidden;
 
-      a{
-        height:100%;
-        width:100%;
+      a {
+        height: 100%;
+        width: 100%;
         margin-bottom: 20px;
 
-        img{
+        img {
           object-fit: cover;
           height: 100%;
           width: 100%;
@@ -172,8 +168,8 @@ button{
           transition: all .5s ease-in-out;
         }
 
-        &:hover{
-          img{
+        &:hover {
+          img {
             transform: scale(1.2);
             transition: all .5s ease-in-out;
           }
@@ -181,29 +177,29 @@ button{
       }
     }
 
-    p{
+    p {
       margin-top: 15px;
       font-size: 25px;
-      z-index:100;
+      z-index: 100;
       color: $darkGrey;
     }
   }
 }
 
 /*PopUp connection*/
-.pop-up-connection{
+.pop-up-connection {
   position: absolute;
-  width:300px;
+  width: 300px;
   background: $white;
   border-radius: 25px;
   top: 70px;
   right: 40px;
-  z-index:9999;
-  box-shadow: 5px 5px 20px rgba(0,0,0,.4);
+  z-index: 9999;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, .4);
   display: none;
 
-  &:before{
-    content:'';
+  &:before {
+    content: '';
     position: absolute;
     left: 60%;
     transform: translateX(-50%) rotate(45deg);
@@ -213,14 +209,14 @@ button{
     width: 20px;
   }
 
-  h2{
-    color:$darkGreen;
+  h2 {
+    color: $darkGreen;
     text-align: center;
     margin-top: 25px;
     font-size: 25px;
   }
 
-  form{
+  form {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
@@ -228,15 +224,15 @@ button{
     input[type="text"],
     input[type="email"],
     input[type="password"] {
-      padding:10px 0;
+      padding: 10px 0;
       border: solid 1px $darkGreen;
       margin-bottom: 15px;
       width: 80%;
       margin-left: 10%;
 
-      &::placeholder{
+      &::placeholder {
         padding-left: 10px;
-        color:$darkGreen;
+        color: $darkGreen;
       }
     }
 
@@ -250,91 +246,96 @@ button{
       border: none;
       transition: all .5s ease-in-out;
 
-      &:hover{
-        background:#435E36;
+      &:hover {
+        background: #435E36;
         transition: all .5s ease-in-out;
       }
     }
 
-    a{
+    a {
       color: $darkGreen;
       margin-left: 5%;
-      font-size:13px;
+      font-size: 13px;
       margin-bottom: 15px;
     }
   }
 }
 
-.showPop{
+.showPop {
   display: block;
 }
 
-@media screen and (max-width:1025px){
-  .cont-item-img{
+@media screen and (max-width: 1025px) {
+  .cont-item-img {
     margin-bottom: 30px;
   }
 }
 
-@media screen and (max-width:1500px){
-  .green-top-page{
-    h1{
-      font-size:3.5rem;
+@media screen and (max-width: 1500px) {
+  .green-top-page {
+    h1 {
+      font-size: 3.5rem;
     }
-    p{
+
+    p {
       font-size: 30px;
     }
   }
 }
 
-@media screen and (max-width:1025px){
-  .top-page{
+@media screen and (max-width: 1025px) {
+  .top-page {
     flex-direction: column;
 
     .green-top-page {
       padding: 70px 0;
 
-      h1{
+      h1 {
         border-bottom: none !important;
-        padding:0 30px;
+        padding: 0 30px;
       }
 
-      p{
-        padding:0 30px;
+      p {
+        padding: 0 30px;
       }
     }
-    div{
-      width:100% !important;
+
+    div {
+      width: 100% !important;
     }
   }
 }
 
-.paginator{
+.paginator {
   display: flex;
   justify-content: center;
-  @media screen and (max-width:500px){
+  @media screen and (max-width: 500px) {
     flex-direction: column;
     align-items: center;
-    a{
+    a {
       margin: 16px 0;
     }
-    div{
+    div {
       margin: 16px 0;
     }
   }
-  .previous{
+
+  .previous {
     margin: 0 16px;
     order: 1;
   }
-  .current{
+
+  .current {
     order: 2;
   }
-  .next{
+
+  .next {
     order: 3;
     margin: 0 16px;
   }
 }
 
-.alertSymfo{
+.alertSymfo {
   padding: 16px 32px;
   color: $white;
   font-size: 1.5rem !important;
@@ -345,36 +346,46 @@ button{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  p{
+
+  p {
     margin-left: 16px;
   }
-  button{
+
+  button {
     padding: 8px;
-    span{
+
+    span {
       font-size: 2.5rem;
       color: white;
     }
   }
 }
+
 .alertSymfo {
-  &.alert-success{
+  &.alert-primary {
+    background: rgba($darkGrey, .6)
+  }
+  &.alert-success {
     background: rgba(73, 115, 33, 0.8);
   }
-  &.alert-info{
+
+  &.alert-info {
     background: rgba(92, 220, 237, 0.8);
   }
-  &.alert-danger{
+
+  &.alert-danger {
     background: rgba(224, 0, 0, 0.8);
   }
-  &.alert-warning{
+
+  &.alert-warning {
     background: rgba(255, 71, 71, 0.8);
   }
 }
 
 .order-1 {
-  order:1
+  order: 1
 }
 
 .order-2 {
-  order:1
+  order: 1
 }

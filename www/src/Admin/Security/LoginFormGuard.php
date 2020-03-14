@@ -43,11 +43,11 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
     private $router;
 
     public function __construct(
-            AdminService $adminService,
-            FormFactoryInterface $formFactory,
-            RouterInterface $router,
-            SessionInterface $session)
-    {
+        AdminService $adminService,
+        FormFactoryInterface $formFactory,
+        RouterInterface $router,
+        SessionInterface $session
+    ) {
         $this->adminService = $adminService;
         $this->formFactory = $formFactory;
         $this->router = $router;
@@ -83,7 +83,9 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        /** @var Admin $user */
+        /**
+ * @var Admin $user 
+*/
         $admin = $token->getUser();
         if (!($admin instanceof Admin)) {
             throw new \RuntimeException("That's unexpected");

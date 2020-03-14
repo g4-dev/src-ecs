@@ -41,3 +41,14 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+svg,
+svg path,
+svg::before,
+path::before,
+path::after,
+svg::after,
+canvas {
+  -webkit-box-sizing: unset !important;
+  box-sizing: unset !important;
+}

@@ -142,12 +142,12 @@ class Basket implements \Countable
         return round($vatPrice, 2);
     }
 
-/*    public function addShippingMethod($shippingMethod)
+    /*    public function addShippingMethod($shippingMethod)
     {
         $this->session->set('shipping', $shippingMethod);
     }*/
 
-/*    public function getShippingFee(): float
+    /*    public function getShippingFee(): float
     {
         return $this->session->get('shipping')->getFee();
     }

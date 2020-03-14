@@ -46,12 +46,12 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
     protected $eventDispatcher;
 
     public function __construct(
-            UserService $userService,
-            FormFactoryInterface $formFactory,
-            RouterInterface $router,
-            LoggerInterface $logger,
-            EventDispatcherInterface $eventDispatcher)
-    {
+        UserService $userService,
+        FormFactoryInterface $formFactory,
+        RouterInterface $router,
+        LoggerInterface $logger,
+        EventDispatcherInterface $eventDispatcher
+    ) {
         $this->userService = $userService;
         $this->formFactory = $formFactory;
         $this->router = $router;
@@ -91,10 +91,16 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        $this->logger->info(sprintf("%s: Successful authentication of user %s",
-            __METHOD__, $token->getUsername()));
+        $this->logger->info(
+            sprintf(
+                "%s: Successful authentication of user %s",
+                __METHOD__, $token->getUsername()
+            )
+        );
 
-        /** @var User $user */
+        /**
+ * @var User $user 
+*/
         $user = $token->getUser();
         $user->setLastLoginAt(new \DateTime());
         $user->setLastLoginIp($request->getClientIp());
@@ -103,7 +109,7 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
         }
         $this->userService->save($user);
 
-        $this->eventDispatcher->dispatch(new UserAccountEvent($user),UserAccountEvent::LOGIN);
+        $this->eventDispatcher->dispatch(new UserAccountEvent($user), UserAccountEvent::LOGIN);
 
         //return new RedirectResponse($this->router->generate('homepage'));
     }

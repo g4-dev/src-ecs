@@ -26,8 +26,8 @@ class ProductRepository extends ServiceEntityRepository
     public function countCurrentlySelling()
     {
         return $this->createQueryBuilder('p')
-           ->select('count(p.id)')
-           ->getQuery()
-           ->getSingleScalarResult();
+            ->select('count(p.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }

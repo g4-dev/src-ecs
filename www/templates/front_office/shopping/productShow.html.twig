@@ -8,12 +8,9 @@
 {% block main %}
 
     <hr class="sep-header">
-{#
-    {% set returnRoute = if comeFromCategory|default(false)  %}
-#}
-{#
-    <a class="btn-back pop" href="{{ path(comeFromCategory|default('productCategoryList')) }}">Retour</a>
-#}
+    {% if comeFromCategory is not null%}
+            <a class="btn-back pop" href="{{ path(comeFromCategory|default('productCategoryList')) }}">Retour</a>
+    {% endif %}
     {{ form_start(form, {'action': path('basketAdd'), 'method': 'POST', 'attr': { class: 'cont-top-produit'} } ) }}
 {#    <div class="cont-top-produit">#}
         <div class="cont-top-produit-img">

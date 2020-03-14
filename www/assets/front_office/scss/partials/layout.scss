@@ -1,20 +1,27 @@
-.headerDesk{
+img[src] {
+  background: url("#fo/images/empty.png"), linear-gradient(46deg, $lightGrey, $white);
+  border: unset;
+}
+
+.headerDesk {
   width: 100%;
-  .headerBackground{
+
+  .headerBackground {
     background: $lightGrey;
   }
 
   .UpperHeader {
     padding: 8px $basicPadding/2;
 
-    a{
+    a {
       padding: 0 $basicPadding/2;
     }
 
-    svg{
+    svg {
       padding: 0 $basicPadding/2;
       width: 2rem;
-      path{
+
+      path {
         cursor: pointer;
         fill: $dark;
       }
@@ -23,7 +30,8 @@
 
   nav {
     font-size: 1.1rem;
-    h1{
+
+    h1 {
       color: $darkGreen;
       padding: 32px 0;
       font-size: 3.5rem;
@@ -33,10 +41,11 @@
     .LowerHeader {
       padding: 0 $basicPadding;
 
-      svg{
+      svg {
         width: 2rem;
         padding-left: $basicPadding/2;
-        path{
+
+        path {
           fill: $dark;
           cursor: pointer;
         }
@@ -46,43 +55,43 @@
     .LowerHeaderRight, .linkNav {
       margin-top: 64px;
 
-      a{
+      a {
         padding: 0 $basicPadding/2;
         position: relative;
         display: inline-block;
         padding-bottom: 5px;
 
-        &::after{
+        &::after {
           content: '';
           position: absolute;
           bottom: 0;
           left: 10%;
-          height:2px;
-          width:0;
+          height: 2px;
+          width: 0;
           background: $darkGreen;
-          transition:width .5s ease-in-out;
+          transition: width .5s ease-in-out;
         }
 
-        &:hover::after{
-          transition:width .5s ease-in-out;
-          width:80%;
+        &:hover::after {
+          transition: width .5s ease-in-out;
+          width: 80%;
         }
       }
     }
 
     /* Desktop */
     @media screen and (max-width: 1550px) {
-      .LowerHeaderLeft{
+      .LowerHeaderLeft {
         width: 20%;
       }
-      .LowerHeaderRight{
+      .LowerHeaderRight {
         max-width: 100%;
         padding-left: 0;
       }
     }
 
-    @media screen and (max-width: 1070px) and (min-width: 1024px){
-      .LowerHeaderRight{
+    @media screen and (max-width: 1070px) and (min-width: 1024px) {
+      .LowerHeaderRight {
         font-size: 1rem !important;
       }
     }
@@ -90,18 +99,21 @@
   }
 }
 
-.headerMob{
+.headerMob {
   display: none;
-  h1{
+
+  h1 {
     padding: 16px 0;
     color: $darkGreen;
     font-size: 3rem;
     line-height: 2.5rem;
   }
-  svg{
+
+  svg {
     z-index: 9999;
     width: 14%;
-    path{
+
+    path {
       fill: $dark;
     }
   }
@@ -122,12 +134,14 @@
     position: relative;
     width: 100%;
     text-align: center;
-    hr{
+
+    hr {
       background: $darkGreen;
       width: 60%;
       height: 2.5px;
     }
-    .nav_green_color{
+
+    .nav_green_color {
       color: $darkGreen;
     }
   }
@@ -144,7 +158,7 @@
 
   @media screen and (max-height: 650px) {
     .overlay-content {
-      hr{
+      hr {
         height: 2px;
       }
     }
@@ -155,7 +169,7 @@
 
   @media screen and (max-height: 500px) {
     .overlay-content {
-      hr{
+      hr {
         height: 2px;
       }
     }
@@ -172,21 +186,25 @@
     }
   }
 
-  .burger{
+  .burger {
     cursor: pointer;
     z-index: 9999;
-    .change{
-      .bar1{
-        transform:rotate(-45deg) translate(-7.5px,8px)
+
+    .change {
+      .bar1 {
+        transform: rotate(-45deg) translate(-7.5px, 8px)
       }
-      .bar2{
-        opacity:0
+
+      .bar2 {
+        opacity: 0
       }
-      .bar3{
-        transform:rotate(45deg) translate(-7.5px,-8px)
+
+      .bar3 {
+        transform: rotate(45deg) translate(-7.5px, -8px)
       }
     }
-    .bar1, .bar2, .bar3{
+
+    .bar1, .bar2, .bar3 {
       width: 35px;
       height: 5px;
       background: black;
@@ -194,33 +212,34 @@
       transition: .4s;
     }
   }
-  .icoPlaceMobLeft, .icoPlaceMobRight{
+
+  .icoPlaceMobLeft, .icoPlaceMobRight {
     @include center;
   }
 
   @media screen and (max-width: 700px) {
-    .icoPlaceMobLeft{
+    .icoPlaceMobLeft {
       @include flexStart;
     }
-    .icoPlaceMobRight{
+    .icoPlaceMobRight {
       @include flexEnd;
     }
-    .icoPlaceMobLeft, .icoPlaceMobRight{
+    .icoPlaceMobLeft, .icoPlaceMobRight {
       padding: 0 $basicPadding;
     }
-    svg{
+    svg {
       width: 24%;
     }
   }
 
   @media screen and (max-width: 550px) {
-    svg{
+    svg {
       width: 40px;
     }
   }
 
   @media screen and (max-width: 400px) {
-    h1{
+    h1 {
       font-size: 2.5rem;
     }
   }
@@ -228,32 +247,35 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .headerDesk{
+  .headerDesk {
     display: none;
   }
-  .headerMob{
+  .headerMob {
     display: flex;
     position: sticky;
-    top:0px;
+    top: 0px;
     background: white;
   }
 }
 
-footer{
+footer {
   font-size: 1.1rem;
   margin-top: 2rem;
   background: $lightGrey;
   width: 100%;
   margin-bottom: 0px;
   @include centerAround;
-  ul{
+
+  ul {
     list-style: none;
     margin: 0;
-    li{
+
+    li {
       padding: 12px 0;
     }
   }
-  h1{
+
+  h1 {
     color: $darkGreen;
     padding: 48px 0;
     font-size: 2.5rem;
@@ -262,49 +284,51 @@ footer{
   }
 
   @media screen and (max-width: 1024px) {
-    ul{
-      li{
+    ul {
+      li {
         padding: 6px 0;
       }
     }
-    h1{
+    h1 {
       padding: 32px 0;
     }
   }
 
   @media screen and (max-width: 700px) {
     @include fullCenter;
-    div{
+    div {
       width: 100% !important;
     }
 
-    .footer_logo{
+    .footer_logo {
       order: -1;
     }
 
-    ul{
+    ul {
       text-align: center;
       padding: 0;
-      li{
+
+      li {
         padding: 12px 0;
       }
     }
 
     div:last-child {
-      padding-bottom:32px ;
+      padding-bottom: 32px;
     }
     font-size: 1.2rem;
   }
 }
 
-.linkNav{
+.linkNav {
   width: 70%;
+
   > a {
     padding: 0 18px;
   }
 }
 
-.buttonLogin{
+.buttonLogin {
   font-size: 1.2rem;
 }
 

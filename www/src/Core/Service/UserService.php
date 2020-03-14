@@ -43,8 +43,8 @@ class UserService
         LoggerInterface $logger,
         EventDispatcherInterface $eventDispatcher,
         EntityManagerInterface $entityManager,
-        UserPasswordEncoderInterface $passwordEncoder)
-    {
+        UserPasswordEncoderInterface $passwordEncoder
+    ) {
         $this->logger = $logger;
         $this->eventDispatcher = $eventDispatcher;
         $this->entityManager = $entityManager;
@@ -62,18 +62,21 @@ class UserService
             }
         }
         dump($data);
-        $this->logger->debug(sprintf('%s: Registering user account, email=%s',
-            __METHOD__, $data['email']));
+        $this->logger->debug(
+            sprintf(
+                '%s: Registering user account, email=%s',
+                __METHOD__, $data['email']
+            )
+        );
 
         $user = $this->create($data['email'], $data['password']);
         $user
             ->setIsActive(false)
             ->setToken(RandomStringGenerator::generate(32))
-            ->populate($data)
-            ;
+            ->populate($data);
         $this->save($user);
 
-        $this->userEvent($user, UserAccountEvent::REGISTERED );
+        $this->userEvent($user, UserAccountEvent::REGISTERED);
 
         return $user;
     }
@@ -190,7 +193,8 @@ class UserService
         return $this->passwordEncoder->isPasswordValid($user, $password);
     }
     
-    private function userEvent($user, $eventName){
+    private function userEvent($user, $eventName)
+    {
         $this->eventDispatcher->dispatch(new UserAccountEvent($user), $eventName);
     }
 }

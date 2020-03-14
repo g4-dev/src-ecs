@@ -47,7 +47,7 @@ class Diy extends AbstractSluggable
     /**
      * List of tags associated to the product.
      *
-     * @var string[]
+     * @var                             string[]
      * @ORM\Column(type="simple_array")
      */
     private $ingredients = array();
@@ -128,7 +128,7 @@ class Diy extends AbstractSluggable
     }
     
     /**
-     * @param string $image
+     * @param  string $image
      * @return CmsPage
      */
     public function setImage(?string $image): self
@@ -147,7 +147,7 @@ class Diy extends AbstractSluggable
     }
     
     /**
-     * @param File $imageFile
+     * @param  File $imageFile
      * @return CmsPage
      */
     public function setImageFile(?File $imageFile): self

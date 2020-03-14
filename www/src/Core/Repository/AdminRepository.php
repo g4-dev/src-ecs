@@ -13,15 +13,22 @@ class AdminRepository extends EntityRepository
 
     static private $sorting = [];
 
-    public function buildAdminListQuery(ListParams $params = null): QueryBuilder
+    public function buildAdminListQuery(ListParams $params = null, ?array $roles = null): QueryBuilder
     {
         $qb = $this->getEntityManager()
             ->createQueryBuilder()
             ->select('a')
             ->from(Admin::class, 'a')
-            ->where('a.isDeleted = false')
-            ->andWhere('a.isActive = true')
-        ;
+            ->where('a.isDeleted = false');
+        
+        if($roles) {
+            $qb->where('a.isActive = true')
+                ->where('a.roles IN (:roles)')
+                ->setParameter('roles', $roles);
+        } else {
+            $qb->andWhere('a.isActive = true');
+        }
+        
         return $this->applyListParamsOnQueryBuilder($qb, $params);
     }
 }

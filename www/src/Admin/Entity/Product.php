@@ -34,7 +34,7 @@ class Product extends AbstractSluggable
     /**
      * List of tags associated to the product.
      *
-     * @var string[]
+     * @var                             string[]
      * @ORM\Column(type="simple_array", nullable=true)
      */
     private $tags = array();
@@ -42,7 +42,7 @@ class Product extends AbstractSluggable
     /**
      * The EAN 13 of the product. (type set to string in PHP due to 32 bit limitation).
      *
-     * @var string
+     * @var                       string
      * @ORM\Column(type="bigint", nullable=true)
      */
     private $ean;
@@ -74,7 +74,7 @@ class Product extends AbstractSluggable
      *     'bluetooth' => '4.1'
      * )</pre>.
      *
-     * @var array
+     * @var                      array
      * @ORM\Column(type="array", nullable=true)
      */
     private $features = array();
@@ -82,7 +82,7 @@ class Product extends AbstractSluggable
     /**
      * The price of the product.
      *
-     * @var float
+     * @var                      float
      * @ORM\Column(type="float")
      * @Assert\NotBlank()
      */
@@ -91,7 +91,7 @@ class Product extends AbstractSluggable
     /**
      * The description of the product.
      *
-     * @var string
+     * @var                     string
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
@@ -105,7 +105,7 @@ class Product extends AbstractSluggable
      * List of categories where the products is
      * (Owning side).
      *
-     * @var ProductCategory[]
+     * @var                                            ProductCategory[]
      * @ORM\ManyToMany(targetEntity="ProductCategory", inversedBy="items")
      * @ORM\JoinTable(name="product_categories")
      */
@@ -117,7 +117,7 @@ class Product extends AbstractSluggable
     private $stock;
     
     /**
-     * @var \FrontOffice\Entity\PurchaseItem[]
+     * @var                                                           \FrontOffice\Entity\PurchaseItem[]
      * @ORM\OneToMany(targetEntity="FrontOffice\Entity\PurchaseItem", mappedBy="product", cascade={"remove"})
      */
     private $purchasedItems;

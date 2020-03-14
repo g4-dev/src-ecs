@@ -43,9 +43,11 @@ class PasswordResetController extends \FrontOffice\Controller\AbstractController
             }
         }
 
-        return $this->render('front_office/accounting/password-reminder.html.twig', [
+        return $this->render(
+            'front_office/accounting/password-reminder.html.twig', [
             'form' => $form->createView()
-        ])->setStatusCode($statusCode);
+            ]
+        )->setStatusCode($statusCode);
     }
 
     /**
@@ -81,9 +83,11 @@ class PasswordResetController extends \FrontOffice\Controller\AbstractController
             }
         }
 
-        return $this->render('front_office/accounting/password-reset.html.twig', [
+        return $this->render(
+            'front_office/accounting/password-reset.html.twig', [
             'user' => $user,
             'form' => $form->createView()
-        ])->setStatusCode($statusCode);
+            ]
+        )->setStatusCode($statusCode);
     }
 }

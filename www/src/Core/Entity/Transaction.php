@@ -16,7 +16,7 @@ class Transaction
     use Id;
     
     /**
-     * @var \DateTime
+     * @var                           \DateTime
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     protected $createdAt = null;
@@ -33,7 +33,7 @@ class Transaction
 
     /**
      * @ORM\OneToOne(targetEntity="FrontOffice\Entity\Purchase", inversedBy="transaction", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="purchase_id",                       referencedColumnName="id", nullable=false)
      */
     private $purchase;
 

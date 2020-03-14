@@ -22,13 +22,15 @@ class CmsController extends AbstractController
     public function cmsShow(string $slug)
     {
         $cmsPage = $this->getDoctrine()
-           ->getRepository(CmsPage::class)
-           ->findOneBySlug($slug);
+            ->getRepository(CmsPage::class)
+            ->findOneBySlug($slug);
         
-        return $this->render('front_office/cms/cmsPageShow.html.twig', [
-           'cmsPage' => $cmsPage,
+        return $this->render(
+            'front_office/cms/cmsPageShow.html.twig', [
+            'cmsPage' => $cmsPage,
             'layout' => $cmsPage->getLayout()
-        ]);
+            ]
+        );
     }
     
     /**
@@ -60,10 +62,12 @@ class CmsController extends AbstractController
         
         
         //vue temporaire en attendant pour tester l'ajout au panier
-        return $this->render('@fo/cms/cmsPagesList.html.twig', [
+        return $this->render(
+            '@fo/cms/cmsPagesList.html.twig', [
             'cmsPages' => $pagerfanta,
             'category' => $category,
             'categorySlug' => $slug
-        ]);
+            ]
+        );
     }
 }

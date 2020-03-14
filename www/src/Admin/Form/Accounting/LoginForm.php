@@ -12,7 +12,6 @@ class LoginForm extends AbstractType
     {
         $builder
             ->add('_username')
-            ->add('_password', PasswordType::class)
-            ;
+            ->add('_password', PasswordType::class);
     }
 }

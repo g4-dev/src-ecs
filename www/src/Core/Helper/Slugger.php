@@ -7,10 +7,9 @@ class Slugger
 {
 
     /**
-     *
      * Create slug for an entity
      *
-     * @param Sluggable $entity
+     * @param  Sluggable $entity
      * @return string
      */
     public static function slugify(Sluggable $entity): string

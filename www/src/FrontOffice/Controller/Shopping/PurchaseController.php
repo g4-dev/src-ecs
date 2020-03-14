@@ -24,8 +24,7 @@ class PurchaseController extends EasyAdminController
             ->join('entity.buyer', 'buyer')
             ->orWhere('LOWER(buyer.username) LIKE :query')
             ->orWhere('LOWER(buyer.email) LIKE :query')
-            ->setParameter('query', '%'.strtolower($searchQuery).'%')
-        ;
+            ->setParameter('query', '%'.strtolower($searchQuery).'%');
 
         if (!empty($dqlFilter)) {
             $queryBuilder->andWhere($dqlFilter);

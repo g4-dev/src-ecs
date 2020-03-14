@@ -111,14 +111,13 @@ const getWorkspaces = function getWorkspaces(entry = null) {
 
 		config.name = name
 		config.resolve.alias = aliases(config, alias ? alias : null)
-
-		workspaces.push(config)
+		workspaces.push(config);
 
 		Encore.reset()
-	};
+	}
 
 	if(!Encore.isProduction() && regenDist) {
-		const fs = require("fs")
+		const fs = require("fs");
 		fs.writeFile("./webpack.config.dist.json", "module.exports = "+JSON.stringify(workspaces[0]), function(err) {
 			if(err) {
 				throw new Error(err);

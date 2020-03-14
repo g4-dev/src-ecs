@@ -23,9 +23,9 @@ class MenuExtension extends AbstractExtension
     protected $navRepo;
     
     public function __construct(
-       Environment $twig, AuthenticationUtils $authUtils,
-       FormFactoryInterface $factory,
-       NavRepository $navRepository
+        Environment $twig, AuthenticationUtils $authUtils,
+        FormFactoryInterface $factory,
+        NavRepository $navRepository
     ) {
         $this->authUtils = $authUtils;
         $this->factory = $factory;
@@ -42,16 +42,21 @@ class MenuExtension extends AbstractExtension
         ];
     }
     
-    public function popLogin(string $target) {
-        $form = $this->factory->create(LoginForm::class, [
-           '_username' => $this->authUtils->getLastUsername()
-        ]);
+    public function popLogin(string $target)
+    {
+        $form = $this->factory->create(
+            LoginForm::class, [
+            '_username' => $this->authUtils->getLastUsername()
+            ]
+        );
         
-        return $this->twig->render('front_office/partials/embed-login.html.twig', [
-           'form' => $form->createView(),
-           'error' => $this->authUtils->getLastAuthenticationError(),
-           'targetPath' => $target
-        ]);
+        return $this->twig->render(
+            'front_office/partials/embed-login.html.twig', [
+            'form' => $form->createView(),
+            'error' => $this->authUtils->getLastAuthenticationError(),
+            'targetPath' => $target
+            ]
+        );
     }
     
     public function navWalker()
@@ -77,7 +82,7 @@ class MenuExtension extends AbstractExtension
                 $route = 'productCategoryList';
             } else if ($p instanceof CmsCategory) {
                 $route = 'cmsCategoryList';
-            } else if ( $p instanceof CmsPage ) {
+            } else if ($p instanceof CmsPage ) {
                 $route = 'cmsShow';
             } else if ($p instanceof Diy) {
                 $route = 'diyShow';
@@ -104,11 +109,14 @@ class MenuExtension extends AbstractExtension
         return $navWalked;
     }
     
-    public function paginate($paginable, $route, $firstPageResults = null) {
-        return $this->twig->render('front_office/components/pagination.html.twig', [
-           'pag' => $paginable,
-           'route' => $route,
-           'firstPageResults' => $firstPageResults ?? 4
-        ]);
+    public function paginate($paginable, $route, $firstPageResults = null)
+    {
+        return $this->twig->render(
+            'front_office/components/pagination.html.twig', [
+            'pag' => $paginable,
+            'route' => $route,
+            'firstPageResults' => $firstPageResults ?? 4
+            ]
+        );
     }
 }

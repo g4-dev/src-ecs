@@ -22,8 +22,8 @@ class ProController extends AbstractController
     public function index($page = 1)
     {
         $qb = $this->getDoctrine()
-           ->getRepository(ProService::class)
-           ->findAllQueryBuilder();
+            ->getRepository(ProService::class)
+            ->findAllQueryBuilder();
     
         $adapter = new DoctrineORMAdapter($qb);
         $pagerfanta = new Pagerfanta($adapter);
@@ -36,54 +36,42 @@ class ProController extends AbstractController
             $pagerfanta = null;
         }
         
-        return $this->render('front_office/proServiceList.html.twig',[
-           'proServices' => $pagerfanta
-        ]);
+        return $this->render(
+            'front_office/proServiceList.html.twig', [
+            'proServices' => $pagerfanta
+            ]
+        );
     }
 
     /**
      * @Route("/services-pro/devis", name="proDevis")
-     * @param MailerService $mailer
+     * @param                        MailerService $mailer
      */
     public function devis(Request $request, MailerService $mailer )
     {
         $form = $this->createForm(DevisForm::class);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $nom = $request->request->get("devis_form")['name'];
-            $firstName = $request->request->get("devis_form")['firstName'];
-            $phoneNumber = $request->request->get("devis_form")['phoneNumber'];
-            $address = $request->request->get("devis_form")['address'];
-            $companyName = $request->request->get("devis_form")['companyName'];
-            $email = $request->request->get("devis_form")['email'];
-            $yellowTrashCan = $request->request->get("devis_form")['yellowTrashCan'];
-            $blueTrashCan = $request->request->get("devis_form")['blueTrashCan'];
-            if ($yellowTrashCan == 1){$yellowTrashCan = "Oui";}
-            else{$yellowTrashCan = "Non";}
-            if ($blueTrashCan == 1){$blueTrashCan = "Oui";}
-            else {$blueTrashCan = "Non";}
-
-            $mailer->broadcastToAdmins($mailer->createTwigMessage(
-                "Devis",
-                'mail/devisMail.html.twig',
-                ['name' => $nom,
-                'firstName'=> $firstName,
-                'phoneNumber'=> $phoneNumber,
-                'address'=> $address,
-                'companyName'=> $companyName,
-                'email'=> $email,
-                'yellowTrashCan'=> $yellowTrashCan,
-                'blueTrashCan'=> $blueTrashCan,
-                ],
-                ));
+            
+            $mailer->broadcastToAdmins(
+                $mailer->createTwigMessage(
+                    "Devis",
+                    'mail/devisMail.html.twig',
+                    $form->getData(),
+                ),
+                ['ROLE_COMMERCIAL']
+            );
             $this->addFlash('success', 'Envoi du mail effectué');
             return $this->redirectToRoute('proServiceList');
         }
-        return $this->render('front_office/proDevis.html.twig', [
+        return $this->render(
+            'front_office/proDevis.html.twig', [
             'controller_name' => 'ProContoller',
             'active' => 'Pro-Devis',
-            'Pro_Devis' => $form->createView(), ]);
+            'Pro_Devis' => $form->createView(),
+            ]
+        );
     }
 }
 

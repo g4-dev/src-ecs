@@ -48,10 +48,10 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         }
         
         return $this->render(
-           '@fo/accounting/registration.html.twig',
-           [
+            '@fo/accounting/registration.html.twig',
+            [
               'form' => $form->createView(),
-           ]
+            ]
         );
     }
     
@@ -76,7 +76,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
     
     /**
      * @Route("/account", name="account")
-     * @return Response
+     * @return            Response
      */
     public function showAccountAction(): Response
     {
@@ -84,20 +84,20 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         $user = $this->getUser();
         
         return $this->render(
-           'front_office/accounting/show-account.html.twig',
-           [
+            'front_office/accounting/show-account.html.twig',
+            [
               'controller_name' => 'RegistrationController',
               'account' => $user,
               'addresses' => $user->getAddresses()
-           ]
+            ]
         );
     }
     
     /**
      * @Route("/account/update", name="accountUpdate")
-     * @param Request $request
-     * @param EntityManagerInterface $em
-     * @return RedirectResponse|Response
+     * @param                    Request                $request
+     * @param                    EntityManagerInterface $em
+     * @return                   RedirectResponse|Response
      */
     public function editAccountAction(Request $request)
     {
@@ -115,10 +115,10 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         }
         
         return $this->render(
-           '@fo/accounting/account-update.html.twig',
-           [
+            '@fo/accounting/account-update.html.twig',
+            [
               'form' => $form->createView(),
-           ]
+            ]
         );
     }
     
@@ -143,10 +143,10 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         }
         
         return $this->render(
-           '@fo/accounting/address.html.twig',
-           [
+            '@fo/accounting/address.html.twig',
+            [
               'address_form' => $form->createView(),
-           ]
+            ]
         );
     }
 
@@ -164,7 +164,7 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
     
     /**
      * @Route("/account/purchases", name="accountPurchaseList")
-     * @return Response
+     * @return                      Response
      */
     public function listPurchasesAction(): Response
     {
@@ -172,33 +172,34 @@ class RegistrationController extends \FrontOffice\Controller\AbstractController
         $purchases = $this->getUser()->getPurchases();
         
         return $this->render(
-           'front_office/shopping/purchaseList.html.twig',
-           [
+            'front_office/shopping/purchaseList.html.twig',
+            [
               'purchases' => $purchases,
-           ]
+            ]
         );
     }
     
     /**
      * @Route("/account/purchase/{id}", name="accountPuchaseShow")
-     * @param int $id
-     * @param PurchaseRepository $purchaseRepository
-     * @return Response
+     * @param                           int                $id
+     * @param                           PurchaseRepository $purchaseRepository
+     * @return                          Response
      */
-    public function showPurchaseAction(int $id, PurchaseRepository $purchaseRepository): Response {
+    public function showPurchaseAction(int $id, PurchaseRepository $purchaseRepository): Response
+    {
         // TODO: Ajaxify this method
         $purchase = $purchaseRepository
-           ->findOneByIdAndUser($id, $this->getUser()->getId());
+            ->findOneByIdAndUser($id, $this->getUser()->getId());
         
         if (!$purchase) {
             throw $this->createNotFoundException();
         }
         
         return $this->render(
-           'front_office/shopping/purchaseShow.html.twig',
-           [
+            'front_office/shopping/purchaseShow.html.twig',
+            [
               'purchase' => $purchase
-           ]
+            ]
         );
     }
 }

@@ -5,7 +5,7 @@ namespace Core\Entity\Traits;
 trait UniqueId
 {
     /**
-     * @var string
+     * @var                          string
      * @ORM\Column(name="unique_id", type="string", length=64, nullable=false, unique=true)
      */
     protected $uniqueId;

@@ -11,7 +11,7 @@ use Core\Helper\Slugger;
 trait Slug
 {
     /**
-     * @var string
+     * @var                     string
      * @ORM\Column(type="text", length=32, unique=true, nullable=true)
      */
     private $slug;
@@ -33,7 +33,7 @@ trait Slug
      */
     public function appendIdToSlug(LifecycleEventArgs $en)
     {
-        if($this->getId() && !$this->slug){
+        if($this->getId() && !$this->slug) {
             $this->setSlug($this->getId().'-'.Slugger::slugify($this));
             $en->getEntityManager()->persist($this);
         }

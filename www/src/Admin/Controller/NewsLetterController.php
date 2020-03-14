@@ -16,23 +16,23 @@ class NewsLetterController extends EasyAdminController
         $this->mailer = $mailer;
     }
 
-     public function persistLetterEntity($entity)
+    public function persistLetterEntity($entity)
     {
-            $user = $this->getDoctrine()->getRepository(User::class)->findBy(['newsLetter' => true]);
+           $user = $this->getDoctrine()->getRepository(User::class)->findBy(['newsLetter' => true]);
 
-            foreach ($user as $users) {
-                $this->mailer->twigSendPurchase(
-                    'EcoService NewsLetter',
-                    $users,
-                    'mail/newsLetter.html.twig',
-                    [
-                        'Title' => $entity->getName(),
-                        'Content' => $entity->getBody(),
-                    ]
-                );
-            }
-            
-            $entity->setAdmin($this->getUser());
-            parent::persistEntity($entity);
+        foreach ($user as $users) {
+            $this->mailer->twigSendPurchase(
+                'EcoService NewsLetter',
+                $users,
+                'mail/newsLetter.html.twig',
+                [
+                  'Title' => $entity->getName(),
+                  'Content' => $entity->getBody(),
+                ]
+            );
         }
+            
+           $entity->setAdmin($this->getUser());
+           parent::persistEntity($entity);
+    }
 }

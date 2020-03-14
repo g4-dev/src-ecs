@@ -13,10 +13,12 @@ class CompanyController extends AbstractController
     public function company()
     {
         $content = "never do a thing like that (be generic)";
-        return $this->render('front_office/cms/cmsShow.html.twig',
-           [
+        return $this->render(
+            'front_office/cms/cmsShow.html.twig',
+            [
               "content" => $content,
                "layout" => 'two-cols'
-           ]);
+            ]
+        );
     }
 }

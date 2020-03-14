@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 trait Id
 {
     /**
-     * @var int
+     * @var                                 int
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",               type="integer")
      */
     protected $id = null;
 

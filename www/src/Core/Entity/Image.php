@@ -38,7 +38,7 @@ class Image
     private $imageFile;
     
     /**
-     * @param File|null $image
+     * @param  File|null $image
      * @return Image
      */
     public function setImageFile(File $image = null)
@@ -61,7 +61,7 @@ class Image
     }
     
     /**
-     * @param string $image
+     * @param  string $image
      * @return Image
      */
     public function setImage($image)

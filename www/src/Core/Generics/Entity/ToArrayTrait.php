@@ -29,8 +29,9 @@ trait ToArrayTrait
                     $propertyName = $property->getName();
                     $objectClass = get_class($value);
                     throw new \UnexpectedValueException(
-                            "Property {$propertyName}: ".
-                            "Nested object of type {$objectClass} does not have toArray method");
+                        "Property {$propertyName}: ".
+                        "Nested object of type {$objectClass} does not have toArray method"
+                    );
                 }
             }
             $array[$property->getName()] = $value;

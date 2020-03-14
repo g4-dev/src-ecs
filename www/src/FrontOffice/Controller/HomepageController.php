@@ -19,22 +19,22 @@ class HomepageController extends AbstractController
         $purchase = $req->get('purchase');
         
         $cmsPages = $this->getDoctrine()->getRepository(CmsPage::class)
-           ->findBy(['onHome' => true],null,5);
+            ->findBy(['onHome' => true], null, 5);
     
         $products = $this->getDoctrine()->getRepository(Product::class)
-           ->findLatest(4);
+            ->findLatest(4);
     
         $diys = $this->getDoctrine()->getRepository(Diy::class)
-           ->findLatest(4);
+            ->findLatest(4);
         
         return $this->render(
-           'front_office/homepage.html.twig',
-           [
+            'front_office/homepage.html.twig',
+            [
               'purchase' => $purchase,
               'products' => $products,
               'cmsPages' => $cmsPages,
               'diys' => $diys
-           ]
+            ]
         );
     }
     

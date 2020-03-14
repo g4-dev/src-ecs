@@ -14,16 +14,19 @@ class UserContactType extends AbstractType
         $builder
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-            ->add('address', \Core\Form\AddressType::class, [
+            ->add(
+                'address', \Core\Form\AddressType::class, [
                 'error_bubbling' => true,
-            ])
-        ;
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => UserContact::class,
-        ]);
+            ]
+        );
     }
 }
