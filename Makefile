@@ -54,7 +54,7 @@ cs_fix:
 	$(VBIN)/phpcbf --standard=$(WWW)/phpcs.xml.dist --ignore=$(SRC)/Migrations/**,$(SRC)/Core/Kernel.php $(SRC)/
 
 cs_check:
-	$(VBIN)/phpcs --standard=$(WWW)/phpcs.xml.dist --ignore=$(SRC)/Migrations/**,src/Kernel.php $(SRC)/
+	$(VBIN)/phpcs --standard=$(WWW)/phpcs.xml.dist --ignore=$(SRC)/Migrations/**,src/Core/Kernel.php $(SRC)/
 
 phpstan:
 	$(VBIN)/phpstan analyse -l 0 -c $(WWW)/phpstan.neon --no-progress -vvv --memory-limit=1024M  $(SRC)/
