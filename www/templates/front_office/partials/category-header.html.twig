@@ -2,8 +2,10 @@
     <h1 class="gel-bold">{{ name }}</h1>
     <p class="gel">{{ description|striptags|slice(0, 200)|raw }}</p>
 </div>
-{% if image|default(false) %}
-    <div>
+<div>
+    {% if image|default(false) %}
         <img src="{{ vich_uploader_asset(image.obj, 'imageFile') }}" alt="{{ image.raw }}">
-    </div>
-{% endif %}
+    {% elseif with_default|default(false) %}
+        {% include '@fo/components/no-image.html.twig' %}
+    {% endif %}
+</div>

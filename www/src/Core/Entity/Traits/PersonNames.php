@@ -1,6 +1,7 @@
 <?php
 
 namespace Core\Entity\Traits;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 trait PersonNames

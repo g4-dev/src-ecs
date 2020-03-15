@@ -2,7 +2,6 @@
 
 namespace Core\Entity\Model;
 
-
 interface Sluggable
 {
     public function getName();

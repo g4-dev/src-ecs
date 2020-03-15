@@ -3,7 +3,6 @@
 
 namespace Admin\Repository;
 
-
 use Admin\Entity\CmsPage;
 use Core\Repository\DuplicateSlugTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

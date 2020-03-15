@@ -13,7 +13,9 @@ class LoginForm extends AbstractType
     {
         $builder
             ->add(
-                '_username', TextType::class, [
+                '_username',
+                TextType::class,
+                [
                 'required' => true,
                 'label' => false,
                 'attr' => [
@@ -22,7 +24,9 @@ class LoginForm extends AbstractType
                 ]
             )
             ->add(
-                '_password', PasswordType::class, [
+                '_password',
+                PasswordType::class,
+                [
                 'required' => true,
                 'label' => false,
                 'attr' => [

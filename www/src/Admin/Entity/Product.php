@@ -404,5 +404,4 @@ class Product extends AbstractSluggable
         
         return $this;
     }
-    
 }

@@ -33,7 +33,7 @@ trait Slug
      */
     public function appendIdToSlug(LifecycleEventArgs $en)
     {
-        if($this->getId() && !$this->slug) {
+        if ($this->getId() && !$this->slug) {
             $this->setSlug($this->getId().'-'.Slugger::slugify($this));
             $en->getEntityManager()->persist($this);
         }

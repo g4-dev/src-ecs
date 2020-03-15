@@ -22,7 +22,8 @@ class ChangePassword
             )
         );
         $metadata->addPropertyConstraint(
-            'newPassword', new Assert\Length(
+            'newPassword',
+            new Assert\Length(
                 [
                 'min' => 5,
                 'max' => 50,

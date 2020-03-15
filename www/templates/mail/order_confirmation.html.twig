@@ -1,23 +1,29 @@
 <h1>Bonjour {{ User }},</h1>
 <p>Nous vous remercions pour l'achat effectuer sur le site ecoservice.com.</p>
-<h3>Pour un prix total de {{ PriceTotal }}€</h3>
+<h3>Total de la commande : {{ PriceTotal }}€</h3>
 <h3>Les informations sur les details de la livraison serons envoyer par mail.</h3>
+<br>
+<hr>
+<br>
 <table>
-    <tr style="width: 90px">
-        <th style="width: 30px">Produit</th>
-        <th style="width: 30px">Quantité</th>
-        <th style="width: 30px">Total</th>
+    <tr style="width: 300px; height:30px;text-align: left;">
+        <th style="width: 80px">Produit</th>
+        <th style="width: 80px">Quantité</th>
+        <th style="width: 80px">Total</th>
     </tr>
     {% for item in purchase.purchasedItems %}
         <tr>
-            <td>{{ item.name }}</td>
+            <td>{{ item.product.name }}</td>
             <td>{{ item.quantity }}</td>
             <td>{{ item.totalPrice }}</td>
         </tr>
     {% endfor %}
 </table>
+<br>
 <h3>Cordialement</h3>
-<span style="text-align: center; height:100px; color: darkolivegreen; font-weight: 800; font-size: 3.2rem;">
-    <a href="{{ path('homepage') }}">ecoservice.com</a>
+<br>
+<hr>
+<span style="text-align: center; height:100px; font-weight: 800; font-size: 3.2rem;">
+    <a style="color: darkolivegreen; text-decoration: unset;" href="{{ path('homepage') }}">ecoservice.com</a>
 </span>
 

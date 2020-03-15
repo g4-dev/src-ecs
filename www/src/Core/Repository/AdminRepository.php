@@ -11,7 +11,7 @@ class AdminRepository extends EntityRepository
 {
     use ListTrait;
 
-    static private $sorting = [];
+    private static $sorting = [];
 
     public function buildAdminListQuery(ListParams $params = null, ?array $roles = null): QueryBuilder
     {
@@ -21,7 +21,7 @@ class AdminRepository extends EntityRepository
             ->from(Admin::class, 'a')
             ->where('a.isDeleted = false');
         
-        if($roles) {
+        if ($roles) {
             $qb->where('a.isActive = true')
                 ->where('a.roles IN (:roles)')
                 ->setParameter('roles', $roles);

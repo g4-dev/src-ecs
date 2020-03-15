@@ -11,9 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Core\Service\MailerService;
 
-
-
-
 class ProController extends AbstractController
 {
     /**
@@ -37,7 +34,8 @@ class ProController extends AbstractController
         }
         
         return $this->render(
-            'front_office/proServiceList.html.twig', [
+            'front_office/proServiceList.html.twig',
+            [
             'proServices' => $pagerfanta
             ]
         );
@@ -47,13 +45,12 @@ class ProController extends AbstractController
      * @Route("/services-pro/devis", name="proDevis")
      * @param                        MailerService $mailer
      */
-    public function devis(Request $request, MailerService $mailer )
+    public function devis(Request $request, MailerService $mailer)
     {
         $form = $this->createForm(DevisForm::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $mailer->broadcastToAdmins(
                 $mailer->createTwigMessage(
                     "Devis",
@@ -66,7 +63,8 @@ class ProController extends AbstractController
             return $this->redirectToRoute('proServiceList');
         }
         return $this->render(
-            'front_office/proDevis.html.twig', [
+            'front_office/proDevis.html.twig',
+            [
             'controller_name' => 'ProContoller',
             'active' => 'Pro-Devis',
             'Pro_Devis' => $form->createView(),
@@ -74,4 +72,3 @@ class ProController extends AbstractController
         );
     }
 }
-

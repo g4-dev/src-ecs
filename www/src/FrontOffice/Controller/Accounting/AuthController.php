@@ -23,7 +23,8 @@ class AuthController extends \FrontOffice\Controller\AbstractController
     public function login(Request $request)
     {
         $form = $this->createForm(
-            LoginForm::class, [
+            LoginForm::class,
+            [
             '_username' => $this->authUtils->getLastUsername()
             ]
         );
@@ -33,7 +34,8 @@ class AuthController extends \FrontOffice\Controller\AbstractController
         }
         
         return $this->render(
-            'front_office/accounting/login.html.twig', [
+            'front_office/accounting/login.html.twig',
+            [
             'form' => $form->createView(),
             'error' => $this->authUtils->getLastAuthenticationError()
             ]

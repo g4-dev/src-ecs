@@ -3,7 +3,6 @@
 
 namespace Admin\Repository;
 
-
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 trait Common

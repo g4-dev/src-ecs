@@ -14,7 +14,9 @@ class PurchaseStatusType extends AbstractType
     {
         $builder
             ->add(
-                'status', ChoiceType::class, [
+                'status',
+                ChoiceType::class,
+                [
                 'choices' => Purchase::STATUSES,
                 'choice_label' => function ($status) {
                     return $status;

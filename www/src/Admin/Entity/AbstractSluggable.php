@@ -3,7 +3,6 @@
 
 namespace Admin\Entity;
 
-
 use Core\Entity\Model\Sluggable;
 use Core\Entity\Traits\Id;
 use Core\Entity\Traits\Name;

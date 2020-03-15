@@ -21,7 +21,6 @@
 
     <div class="cont-item">
         {% for cmsPage in cmsPages %}
-            {% dump(cmsPage) %}
             <div>
                 <div class="cont-item-img">
                     <a href="{{ path('cmsShow',{ slug: cmsPage.slug }) }}"><img src="{{ vich_uploader_asset(cmsPage, 'imageFile') }}" alt="{{ cmsPage.image }}"></a>

@@ -37,7 +37,8 @@ class AdminController extends EasyAdminController
         
         // TODO: add list of 5-6 data to loop in in template
         return $this->render(
-            '@admin/dashboard.html.twig', [
+            '@admin/dashboard.html.twig',
+            [
             'lastProducts' => $productRepo->findLatest(7),
             'lastDiy' => $diyRepo->findLatest(7),
             'lastPurchases' => $puchaseRepo ->findLatest(15),

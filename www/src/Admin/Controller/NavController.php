@@ -3,7 +3,6 @@
 
 namespace Admin\Controller;
 
-
 use AlterPHP\EasyAdminExtensionBundle\Controller\EasyAdminController;
 
 class NavController extends EasyAdminController

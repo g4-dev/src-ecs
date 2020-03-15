@@ -14,7 +14,9 @@ class AccountUpdateForm extends AbstractType
     {
         $builder
             ->add(
-                'name', TextType::class, [
+                'name',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -23,7 +25,9 @@ class AccountUpdateForm extends AbstractType
                 ]
             )
             ->add(
-                'lastName', TextType::class, [
+                'lastName',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Prenom', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -32,7 +36,9 @@ class AccountUpdateForm extends AbstractType
                 ]
             )
             ->add(
-                'phoneNumber', TextType::class, [
+                'phoneNumber',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Téléphone', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -41,7 +47,9 @@ class AccountUpdateForm extends AbstractType
                 ]
             )
             ->add(
-                'companyName', TextType::class, [
+                'companyName',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Entreprise', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -50,7 +58,9 @@ class AccountUpdateForm extends AbstractType
                 ]
             )
             ->add(
-                'newsLetter', CheckboxType::class, [
+                'newsLetter',
+                CheckboxType::class,
+                [
                 'attr' => ['placeholder' => 'Newsletter'],
                 'required' => false,
                 ]

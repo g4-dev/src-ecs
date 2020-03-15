@@ -37,14 +37,14 @@ class PasswordResetController extends \FrontOffice\Controller\AbstractController
                 $this->userService->requestPassword($user);
                 $this->addFlash('success', 'Check your mailbox.');
                 $statusCode = Response::HTTP_ACCEPTED;
-
             } else {
                 $statusCode = Response::HTTP_BAD_REQUEST;
             }
         }
 
         return $this->render(
-            'front_office/accounting/password-reminder.html.twig', [
+            'front_office/accounting/password-reminder.html.twig',
+            [
             'form' => $form->createView()
             ]
         )->setStatusCode($statusCode);
@@ -77,14 +77,14 @@ class PasswordResetController extends \FrontOffice\Controller\AbstractController
                 $this->userService->changePassword($user, $form['password']->getData());
                 $this->addFlash('success', 'Your password has been changed, you can sign in now.');
                 return $this->redirectToRoute('homepage');
-
             } else {
                 $statusCode = Response::HTTP_BAD_REQUEST;
             }
         }
 
         return $this->render(
-            'front_office/accounting/password-reset.html.twig', [
+            'front_office/accounting/password-reset.html.twig',
+            [
             'user' => $user,
             'form' => $form->createView()
             ]

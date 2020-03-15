@@ -94,12 +94,13 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
         $this->logger->info(
             sprintf(
                 "%s: Successful authentication of user %s",
-                __METHOD__, $token->getUsername()
+                __METHOD__,
+                $token->getUsername()
             )
         );
 
         /**
- * @var User $user 
+ * @var User $user
 */
         $user = $token->getUser();
         $user->setLastLoginAt(new \DateTime());

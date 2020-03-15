@@ -260,7 +260,7 @@ class Purchase
     }
 
     /**
-     * {@inheritdoc} 
+     * {@inheritdoc}
      */
     public function __toString()
     {

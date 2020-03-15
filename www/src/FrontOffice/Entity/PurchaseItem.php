@@ -133,7 +133,7 @@ class PurchaseItem
     }
 
     /**
-     * {@inheritdoc} 
+     * {@inheritdoc}
      */
     public function __toString()
     {

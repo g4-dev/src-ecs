@@ -16,7 +16,7 @@
       "paths": {
         "@core": ["assets/core/*"],
         "@admin": ["assets/easyadmin/*"],
-        "@fo": ["assets/fron_office/*"]
+        "@fo": ["assets/front_office/*"]
       }
     },
     "types": ["jest"],

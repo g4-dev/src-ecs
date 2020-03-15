@@ -21,5 +21,4 @@ class ProServiceRepository extends ServiceEntityRepository
     
     use DuplicateSlugTrait;
     use Common;
-    
 }

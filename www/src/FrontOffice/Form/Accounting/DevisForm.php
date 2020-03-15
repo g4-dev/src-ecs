@@ -19,14 +19,15 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\IsNull;
 
-
 class DevisForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add(
-                'name', TextType::class, [
+                'name',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -35,7 +36,9 @@ class DevisForm extends AbstractType
                 ]
             )
             ->add(
-                'firstName', TextType::class, [
+                'firstName',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Prenom', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -44,7 +47,9 @@ class DevisForm extends AbstractType
                 ]
             )
             ->add(
-                'phoneNumber', TelType::class, [
+                'phoneNumber',
+                TelType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Téléphone', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -53,7 +58,9 @@ class DevisForm extends AbstractType
                 ]
             )
             ->add(
-                'address', TextType::class, [
+                'address',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Adresse', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -62,7 +69,9 @@ class DevisForm extends AbstractType
                 ]
             )
             ->add(
-                'companyName', TextType::class, [
+                'companyName',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Entreprise', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -71,7 +80,9 @@ class DevisForm extends AbstractType
                 ]
             )
             ->add(
-                'email', EmailType::class, [
+                'email',
+                EmailType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'exemple@exemple.com', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -88,7 +99,9 @@ class DevisForm extends AbstractType
                 ]
             )
             ->add(
-                'yellowTrashCan', ChoiceType::class, [
+                'yellowTrashCan',
+                ChoiceType::class,
+                [
                 'choices'  => [
                     'Oui' => true,
                     'Non' => false,
@@ -97,7 +110,9 @@ class DevisForm extends AbstractType
                 ]
             )
             ->add(
-                'blueTrashCan', ChoiceType::class, [
+                'blueTrashCan',
+                ChoiceType::class,
+                [
                 'choices'  => [
                     'Oui' => true,
                     'Non' => false,
@@ -106,7 +121,9 @@ class DevisForm extends AbstractType
                 ]
             )
             ->add(
-                'submit', SubmitType::class, ['label' => 'Valider mon inscription',
+                'submit',
+                SubmitType::class,
+                ['label' => 'Valider mon inscription',
                 'attr' => [
                     'hidden' => true,
                 ],

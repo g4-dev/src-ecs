@@ -12,7 +12,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotNull;
 
-
 class SelectAddressType extends AbstractType
 {
     private $objectManager;
@@ -25,7 +24,9 @@ class SelectAddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
-            'address', ChoiceType::class, [
+            'address',
+            ChoiceType::class,
+            [
             'placeholder' => 'Choisissez une adresse',
             'choices' => $options['addresses'],
             'choice_label' => function (Address $address) {

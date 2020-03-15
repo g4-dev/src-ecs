@@ -22,4 +22,3 @@ class CompanyZeroController extends AbstractController
         return $this->render('front_office/zerodechet.html.twig');
     }
 }
-

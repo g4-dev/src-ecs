@@ -34,7 +34,8 @@ class ProductController extends AbstractController
         
         //vue temporaire en attendant pour tester l'ajout au panier
         return $this->render(
-            '@fo/shopping/productAll.html.twig', [
+            '@fo/shopping/productAll.html.twig',
+            [
             'products' => $pagerfanta,
             ]
         );
@@ -59,7 +60,8 @@ class ProductController extends AbstractController
         }
     
         $form = $this->createForm(
-            AddToBasketType::class, [
+            AddToBasketType::class,
+            [
             'product_id' => $product->getId()
             ]
         );
@@ -68,7 +70,8 @@ class ProductController extends AbstractController
         
         // TODO: afficher le produit dans les vues twig
         return $this->render(
-            'front_office/shopping/productShow.html.twig', [
+            'front_office/shopping/productShow.html.twig',
+            [
             'product' => $product,
             'lastProducts' => $lastProducts,
             'form' => $form->createView(),
@@ -80,7 +83,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/category/products/{slug}/{page?1}", name="productCategoryList", requirements={"slug"="^[A-Za-z0-9-]*$"})
      */
-    public function productCategoryList(Request $req, string $slug,  ?int $page = 1)
+    public function productCategoryList(Request $req, string $slug, ?int $page = 1)
     {
         // Pagination de tout
         $category = $this->getDoctrine()
@@ -96,7 +99,8 @@ class ProductController extends AbstractController
         
         //vue temporaire en attendant pour tester l'ajout au panier
         return $this->render(
-            '@fo/shopping/productList.html.twig', [
+            '@fo/shopping/productList.html.twig',
+            [
             'products' => $pagerfanta,
             'category' => $category,
             'slug' => $slug

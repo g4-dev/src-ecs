@@ -50,7 +50,9 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
         $this->logger->info(
             sprintf(
                 '%s: User #%d registered account, email=%s',
-                __METHOD__, $user->getId(), $user->getEmail()
+                __METHOD__,
+                $user->getId(),
+                $user->getEmail()
             )
         );
         $this->sendWelcomeEmail($user);
@@ -63,7 +65,9 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
         $this->logger->info(
             sprintf(
                 '%s: User #%d activated account',
-                __METHOD__, $user->getId(), $user->getEmail()
+                __METHOD__,
+                $user->getId(),
+                $user->getEmail()
             )
         );
     }
@@ -73,7 +77,8 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
         $this->logger->info(
             sprintf(
                 '%s: User #%d logged in',
-                __METHOD__, $event->getUser()->getId()
+                __METHOD__,
+                $event->getUser()->getId()
             )
         );
     }
@@ -83,7 +88,8 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
         $this->logger->info(
             sprintf(
                 '%s: User #%d logged out',
-                __METHOD__, $event->getUser()->getId()
+                __METHOD__,
+                $event->getUser()->getId()
             )
         );
     }
@@ -93,7 +99,8 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
         $this->logger->info(
             sprintf(
                 '%s: User #%d modified account details',
-                __METHOD__, $event->getUser()->getId()
+                __METHOD__,
+                $event->getUser()->getId()
             )
         );
     }
@@ -103,7 +110,8 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
         $this->logger->info(
             sprintf(
                 '%s: User #%d changed password',
-                __METHOD__, $event->getUser()->getId()
+                __METHOD__,
+                $event->getUser()->getId()
             )
         );
     }
@@ -113,7 +121,8 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
         $this->logger->info(
             sprintf(
                 '%s: User #%d requested password change',
-                __METHOD__, $event->getUser()->getId()
+                __METHOD__,
+                $event->getUser()->getId()
             )
         );
         $this->sendPasswordResetEmail($event->getUser());
@@ -155,7 +164,8 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
 
         $this->mailer->broadcastToAdmins(
             $this->mailer->createEventMessage(
-                sprintf('User #%d registered account', $user->getId()), $payload
+                sprintf('User #%d registered account', $user->getId()),
+                $payload
             )
         );
     }

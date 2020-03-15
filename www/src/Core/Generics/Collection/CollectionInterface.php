@@ -5,14 +5,13 @@ namespace Core\Generics\Collection;
 use Core\Generics\Entity\PopulateInterface;
 use Core\Generics\Entity\ToArrayInterface;
 
-interface CollectionInterface
-    extends
-        PopulateInterface,
-        ToArrayInterface,
-        \ArrayAccess,
-        \Countable,
-        \Serializable,
-        \IteratorAggregate
+interface CollectionInterface extends
+    PopulateInterface,
+    ToArrayInterface,
+    \ArrayAccess,
+    \Countable,
+    \Serializable,
+    \IteratorAggregate
 {
     /**
      * Clear items.

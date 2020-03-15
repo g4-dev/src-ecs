@@ -5,6 +5,8 @@
     <arg name="parallel" value="16"/>
     <arg name="colors"/>
 
+    <rule ref="PSR2"/>
+
     <!-- Ignore warnings, show progress of the run and show sniff names -->
     <arg value="nps"/>
 
@@ -13,15 +15,6 @@
     <file>tests</file>
 
     <exclude-pattern>tests/dependencies/*</exclude-pattern>
-
-    <!-- Include full Doctrine Coding Standard -->
-    <rule ref="Doctrine">
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix"/>
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix"/>
-        <exclude name="Squiz.Commenting.FunctionComment.InvalidNoReturn" />
-        <exclude name="Generic.Formatting.MultipleStatementAlignment" />
-    </rule>
 
     <ruleset name="ecs">
         <description>ecs project rule standard</description>
@@ -41,12 +34,5 @@
     </rule>
     <rule ref="Squiz.Commenting.FunctionComment.SpacingAfterParamType">
         <severity>0</severity>
-    </rule>
-
-    <!-- Require no space before colon in return types -->
-    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing">
-        <properties>
-            <property name="spacesCountBeforeColon" value="0"/>
-        </properties>
     </rule>
 </ruleset>

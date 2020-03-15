@@ -23,7 +23,8 @@ class MenuExtension extends AbstractExtension
     protected $navRepo;
     
     public function __construct(
-        Environment $twig, AuthenticationUtils $authUtils,
+        Environment $twig,
+        AuthenticationUtils $authUtils,
         FormFactoryInterface $factory,
         NavRepository $navRepository
     ) {
@@ -45,13 +46,15 @@ class MenuExtension extends AbstractExtension
     public function popLogin(string $target)
     {
         $form = $this->factory->create(
-            LoginForm::class, [
+            LoginForm::class,
+            [
             '_username' => $this->authUtils->getLastUsername()
             ]
         );
         
         return $this->twig->render(
-            'front_office/partials/embed-login.html.twig', [
+            'front_office/partials/embed-login.html.twig',
+            [
             'form' => $form->createView(),
             'error' => $this->authUtils->getLastAuthenticationError(),
             'targetPath' => $target
@@ -82,7 +85,7 @@ class MenuExtension extends AbstractExtension
                 $route = 'productCategoryList';
             } else if ($p instanceof CmsCategory) {
                 $route = 'cmsCategoryList';
-            } else if ($p instanceof CmsPage ) {
+            } else if ($p instanceof CmsPage) {
                 $route = 'cmsShow';
             } else if ($p instanceof Diy) {
                 $route = 'diyShow';
@@ -102,8 +105,6 @@ class MenuExtension extends AbstractExtension
                'route' => $route,
                'routeParams' => $routeParams
             ];
-            
-            
         }
         
         return $navWalked;
@@ -112,7 +113,8 @@ class MenuExtension extends AbstractExtension
     public function paginate($paginable, $route, $firstPageResults = null)
     {
         return $this->twig->render(
-            'front_office/components/pagination.html.twig', [
+            'front_office/components/pagination.html.twig',
+            [
             'pag' => $paginable,
             'route' => $route,
             'firstPageResults' => $firstPageResults ?? 4

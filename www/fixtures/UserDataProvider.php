@@ -16,7 +16,7 @@ class UserDataProvider
         $this->container = $container;
     }
 
-    public function userPasswordEncoder( $password)
+    public function userPasswordEncoder($password)
     {
         /** @var PasswordEncoderInterface $encoder */
         $encoder = $this->container->get('security.password_encoder');
@@ -26,5 +26,16 @@ class UserDataProvider
     public function userUniqueId()
     {
         return RandomIdGenerator::generate();
+    }
+    
+    public function concat()
+    {
+        $result = '';
+        
+        foreach (func_get_args() as $string) {
+            $result .= str_replace('..','',strtolower($string));
+        }
+        
+        return str_replace(' ', '', $result);
     }
 }

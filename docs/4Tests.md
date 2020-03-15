@@ -5,7 +5,7 @@
 ### Comptes utilisateurs
 
 Pour se connecter sur le back office [/admin](ecoservice.coom/admin) avec les ids
-`admin@domain.tld` / `s3cr3t`
+`admin-ecs@domain.tld` / `Azerty69`
 
 Pour les utilisateurs front office créer le votre avec un faux mail
 

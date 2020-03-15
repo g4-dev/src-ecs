@@ -14,7 +14,7 @@ class DiyController extends AbstractController
     /**
      * @Route("/diy/list/{page?1}", name="diyList", requirements={"slug"="^[A-Za-z0-9-]*$"})
      */
-    public function listAction(int $page = 1) : Response
+    public function listAction(int $page = 1): Response
     {
         // TODO: prendre le code de easyadmin pour faire la pagination
         // Pagination de tout
@@ -29,7 +29,8 @@ class DiyController extends AbstractController
         //TODO : remove
         
         return $this->render(
-            'front_office/cms/diyList.html.twig', [
+            'front_office/cms/diyList.html.twig',
+            [
             'diys' => $pagerfanta
             ]
         );
@@ -48,7 +49,8 @@ class DiyController extends AbstractController
             return $this->redirectToRoute('diyList');
         }
         return $this->render(
-            'front_office/cms/diyShow.html.twig', [
+            'front_office/cms/diyShow.html.twig',
+            [
             'diy' => $diy,
             'lastDiys' => $lastDiys
             ]

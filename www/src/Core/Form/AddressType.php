@@ -17,47 +17,63 @@ class AddressType extends AbstractType
     {
         $builder
             ->add(
-                'name', TextType::class, ['label' => 'Prénom' ,'attr' => [
+                'name',
+                TextType::class,
+                ['label' => 'Prénom' ,'attr' => [
                 'placeholder' => "Prénom"
                 ]
                 ]
             )
             ->add(
-                'lastName', TextType::class, ['label' => 'Nom', 'attr' => [
+                'lastName',
+                TextType::class,
+                ['label' => 'Nom', 'attr' => [
                 'placeholder' => "Nom"
                 ]
                 ]
             )
             ->add(
-                'address', TextType::class, ['label' => 'Adresse', 'attr' => [
+                'address',
+                TextType::class,
+                ['label' => 'Adresse', 'attr' => [
                 'placeholder' => "Adresse"
                 ]
                 ]
             )
             ->add(
-                'addressComplement', TextType::class, ['label' => 'Complément d\'adresse', 'attr' => [
+                'addressComplement',
+                TextType::class,
+                ['label' => 'Complément d\'adresse', 'attr' => [
                 'placeholder' => "Complément d'adresse"
                 ]
                 ]
             )
             ->add(
-                'postCode', NumberType::class, ['label' => 'Code postal', 'attr' => [
+                'postCode',
+                NumberType::class,
+                ['label' => 'Code postal', 'attr' => [
                 'placeholder' => "Code postal"
                 ]
                 ]
             )
             ->add(
-                'city', TextType::class, ['label' => 'Ville', 'attr' => [
+                'city',
+                TextType::class,
+                ['label' => 'Ville', 'attr' => [
                 'placeholder' => "Ville"
                 ]]
             )
             ->add(
-                'country', TextType::class, ['label' => 'Pays', 'attr' => [
+                'country',
+                TextType::class,
+                ['label' => 'Pays', 'attr' => [
                 'placeholder' => "Pays"
                 ]]
             )
             ->add(
-                'phoneNumber', TelType::class, ['label' => 'Téléphone', 'attr' => [
+                'phoneNumber',
+                TelType::class,
+                ['label' => 'Téléphone', 'attr' => [
                 'placeholder' => "Téléphone"
                 ]]
             );

@@ -62,7 +62,8 @@ trait DatesAt
     
     public function setUpdatedAt(?\DateTime $datetime)
     {
-        $this->updatedAt = $datetime ?? new \DateTime('now');;
+        $this->updatedAt = $datetime ?? new \DateTime('now');
+        ;
         
         return $this;
     }

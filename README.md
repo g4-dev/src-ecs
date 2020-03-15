@@ -45,7 +45,7 @@
 ## Tests / debug
 
 Pour se connecter sur le back office [/admin](ecoservice.coom/admin) avec les ids
-`admin@domain.tld` / `s3cr3t`
+`admin-ecs@yopmail.com` / `Azerty69`
 
 Pour les utilisateurs front office: `test-ecs@yopmail.com` `Azerty69`
 

@@ -15,7 +15,9 @@ class PasswordResetForm extends AbstractType
     {
         $builder
             ->add(
-                'password', RepeatedType::class, [
+                'password',
+                RepeatedType::class,
+                [
                 'type' => PasswordType::class,
                 'required' => true,
                 'first_name' => 'first',

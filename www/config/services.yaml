@@ -57,9 +57,6 @@ services:
     front_office.security.login_form_guard:
         class: 'FrontOffice\Security\LoginFormGuard'
 
-    Admin\Event\EasyAdminSubscriber\:
-        resource: '../src/Admin/Event/EasyAdminSubscriber.php'
-
     Admin\Repository\:
         resource: '../src/Admin/Repository/*'
         tags: ['doctrine.repository_service']

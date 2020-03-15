@@ -51,8 +51,7 @@ class Address
     private $country;
     
     /**
-     * @var                                                string
-     * @ORM\Column(name="phone_number",                    type="string", length=10, nullable=true, unique=true)
+     * @ORM\Column(name="phone_number", type="string", length=10, nullable=true, unique=true)
      * @Assert\NotBlank()
      * @EntityNotExists(entityClass="Core\Entity\Address", field="phoneNumber")
      */
@@ -60,7 +59,7 @@ class Address
 
     /**
      * @ORM\ManyToOne(targetEntity="Core\Entity\User", inversedBy="addresses")
-     * @ORM\JoinColumn(name="user_id",                 nullable=true)
+     * @ORM\JoinColumn(name="user_id", nullable=true)
      */
     private $user;
     

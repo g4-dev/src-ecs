@@ -18,14 +18,18 @@ class AddToBasketType extends AbstractType
     {
         $builder
             ->add(
-                'quantity', IntegerType::class, [
+                'quantity',
+                IntegerType::class,
+                [
                 'attr' => ['class' => 'quantity-input'],
                 'row_attr' => ['class' => 'v-hide'],
                 'empty_data' => 1
                 ]
             )
             ->add(
-                'product_id', HiddenType::class, [
+                'product_id',
+                HiddenType::class,
+                [
                 'empty_data' => $options['product_id']
                 ]
             )

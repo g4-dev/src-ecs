@@ -26,7 +26,8 @@ class CmsController extends AbstractController
             ->findOneBySlug($slug);
         
         return $this->render(
-            'front_office/cms/cmsPageShow.html.twig', [
+            'front_office/cms/cmsPageShow.html.twig',
+            [
             'cmsPage' => $cmsPage,
             'layout' => $cmsPage->getLayout()
             ]
@@ -63,7 +64,8 @@ class CmsController extends AbstractController
         
         //vue temporaire en attendant pour tester l'ajout au panier
         return $this->render(
-            '@fo/cms/cmsPagesList.html.twig', [
+            '@fo/cms/cmsPagesList.html.twig',
+            [
             'cmsPages' => $pagerfanta,
             'category' => $category,
             'categorySlug' => $slug

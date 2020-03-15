@@ -105,11 +105,11 @@ class PayPalController extends AbstractController
         }
         
         /*$payment = Payment::get(RandomIdGenerator::generate(), $this->apiContext) ?? true;//$req->get('paymentId')
-        
+
         $execution = (new PaymentExecution())
            ->setPayerId($req->get('PayerID'))
            ->setTransactions($payment->getTransactions());
-        
+
         try {
             $payment->execute($execution, $this->apiContext);
         } catch (\Exception $e) {
@@ -129,7 +129,8 @@ class PayPalController extends AbstractController
             $mailer->twigSendPurchase(
                 'Purchase on ecoservice.com',
                 $user,
-                'mail/order_confirmation.html.twig', [
+                'mail/order_confirmation.html.twig',
+                [
                     'User'=> $purchase->getBuyer()->getName(),
                     'PriceTotal'=> $purchase->getTotal(),
                     'purchase' => $purchase

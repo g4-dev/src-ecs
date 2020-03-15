@@ -3,7 +3,6 @@
 
 namespace Core\Repository;
 
-
 use Admin\Entity\AbstractSluggable;
 
 trait DuplicateSlugTrait

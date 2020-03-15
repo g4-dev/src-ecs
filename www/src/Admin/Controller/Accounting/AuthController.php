@@ -29,13 +29,15 @@ class AuthController extends AbstractController
         }
         
         $form = $this->createForm(
-            LoginForm::class, [
+            LoginForm::class,
+            [
             '_username' => $this->authUtils->getLastUsername()
             ]
         );
         
         return $this->render(
-            '@fo/accounting/admin-login.html.twig', [
+            '@fo/accounting/admin-login.html.twig',
+            [
             'form' => $form->createView(),
             'error' => $this->authUtils->getLastAuthenticationError()
             ]

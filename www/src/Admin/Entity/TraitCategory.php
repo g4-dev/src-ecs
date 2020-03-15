@@ -1,7 +1,6 @@
 <?php
 namespace Admin\Entity;
 
-use Core\Entity\Image;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -13,7 +12,7 @@ trait TraitCategory
     /**
      * It only stores the name of the image associated with the product.
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */

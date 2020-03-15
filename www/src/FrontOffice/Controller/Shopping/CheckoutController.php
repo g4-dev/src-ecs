@@ -47,7 +47,8 @@ class CheckoutController extends AbstractController
             $this->addFlash('danger', 'Veuillez renseigner une adresse de livraison avant de continuer');
     
             return $this->render(
-                'front_office/shopping/checkout/address.html.twig', [
+                'front_office/shopping/checkout/address.html.twig',
+                [
                 'address_form' => $this->createForm(AddressType::class)->createView(),
                 ]
             );
@@ -66,7 +67,8 @@ class CheckoutController extends AbstractController
         }
 
         return $this->render(
-            'front_office/shopping/checkout/address.html.twig', [
+            'front_office/shopping/checkout/address.html.twig',
+            [
             'address_choice_form' => $form->createView(),
             ]
         );
@@ -88,7 +90,7 @@ class CheckoutController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $shippingMethod = $form->getData()['shippingMethod'];
-            
+
             $this->basket->addShippingMethod($shippingMethod);
 
             $this->session->set('checkout/shipping', true);
@@ -136,7 +138,8 @@ class CheckoutController extends AbstractController
         //$grandTotal = $this->basket->grandTotal();
         
         return $this->render(
-            'front_office/shopping/checkout/summary.html.twig', [
+            'front_office/shopping/checkout/summary.html.twig',
+            [
             'products' => $productsWithQuantity,
             'totalPrice' => $totalPrice
             ]
@@ -157,7 +160,8 @@ class CheckoutController extends AbstractController
         $this->session->set('checkout/payment', true);
 
         return $this->render(
-            'front_office/shopping/checkout/payment.html.twig', [
+            'front_office/shopping/checkout/payment.html.twig',
+            [
             'total_price' => $this->basket->grandTotal(),
             ]
         );

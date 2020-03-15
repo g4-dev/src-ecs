@@ -21,7 +21,9 @@ class RegistrationForm extends AbstractType
     {
         $builder
             ->add(
-                'name', TextType::class, [
+                'name',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -34,7 +36,9 @@ class RegistrationForm extends AbstractType
                 ]
             )
             ->add(
-                'lastName', TextType::class, [
+                'lastName',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Prenom', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -47,7 +51,9 @@ class RegistrationForm extends AbstractType
                 ]
             )
             ->add(
-                'phoneNumber', TextType::class, [
+                'phoneNumber',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Téléphone', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -67,7 +73,9 @@ class RegistrationForm extends AbstractType
                 ]
             )
             ->add(
-                'address', TextType::class, [
+                'address',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Adresse', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -80,7 +88,9 @@ class RegistrationForm extends AbstractType
                 ]
             )
             ->add(
-                'companyName', TextType::class, [
+                'companyName',
+                TextType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Entreprise', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -93,7 +103,9 @@ class RegistrationForm extends AbstractType
                 ]
             )
             ->add(
-                'email', EmailType::class, [
+                'email',
+                EmailType::class,
+                [
                 'required' => true,
                 'attr' => ['placeholder' => 'Your email address', 'class' => 'form-control-lg'],
                 'constraints' => [
@@ -110,7 +122,9 @@ class RegistrationForm extends AbstractType
                 ]
             )
             ->add(
-                'password', RepeatedType::class, [
+                'password',
+                RepeatedType::class,
+                [
                 'type' => PasswordType::class,
                 'required' => true,
                 'first_name' => 'first',
@@ -134,7 +148,9 @@ class RegistrationForm extends AbstractType
                 ]
             )
             ->add(
-                'newsLetter', CheckboxType::class, [
+                'newsLetter',
+                CheckboxType::class,
+                [
                 'required' => false,
                 'attr' => ['placeholder' => 'Nom', 'class' => 'form-control-lg'],
               

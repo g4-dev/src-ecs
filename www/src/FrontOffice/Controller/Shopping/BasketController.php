@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class BasketController extends AbstractController
 {
     private Basket $basket;
@@ -73,7 +72,7 @@ class BasketController extends AbstractController
         $id = (int) $payload['product_id'];
         $quantity = (int) $payload['quantity'];
         
-        if(!$id && $quantity < 1) {
+        if (!$id && $quantity < 1) {
             $this->createNotFoundException();
         }
         

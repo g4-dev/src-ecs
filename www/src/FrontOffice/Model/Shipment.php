@@ -74,7 +74,7 @@ class Shipment
     }
 
     /**
-     * {@inheritdoc} 
+     * {@inheritdoc}
      */
     public function __toString()
     {

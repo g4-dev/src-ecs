@@ -33,17 +33,15 @@ class UploadNamer implements DirectoryNamerInterface
         $this->doctrine = $doctrine;
         $this->user = $tokenStorage->getToken()->getUser();
         $this->session = $session;
-    
     }
     
     public function directoryName($object, PropertyMapping $mapping): string
     {
         $userDirId = explode("@", $this->user->getEmail())[0];
-        $directoryName = sprintf('%s/%s', $userDirId, $this->getShortClassName($object));
-        dump($directoryName);
+
         //$this->session->set('full_temp_path', $directoryName);
         
-        return $directoryName;
+        return sprintf('%s/%s', $userDirId, $this->getShortClassName($object));
     }
     
     /**

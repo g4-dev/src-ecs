@@ -2,14 +2,9 @@
 
 namespace Admin\Entity;
 
-use Core\Entity\Image;
-use Core\Entity\Model\Sluggable;
 use Core\Entity\Traits\DatesAt;
 use Core\Entity\Traits\Id;
-use Core\Generics\Collection\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -30,17 +25,17 @@ class ProductCategory extends AbstractSluggable
     /**
      * Product in the category.
      *
-     * @var                                    Product[]
+     * @var Product[]
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="category")
      **/
     protected $items;
-
+    
     /**
      * The category parent.
      *
-     * @var                                           ProductCategory
+     * @var ProductCategory
      * @ORM\ManyToOne(targetEntity="ProductCategory")
-     * @ORM\JoinColumn(name="parent_id",              referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      **/
     protected $parent;
 }

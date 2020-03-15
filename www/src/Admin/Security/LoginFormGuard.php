@@ -84,7 +84,7 @@ class LoginFormGuard extends AbstractFormLoginAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         /**
- * @var Admin $user 
+ * @var Admin $user
 */
         $admin = $token->getUser();
         if (!($admin instanceof Admin)) {

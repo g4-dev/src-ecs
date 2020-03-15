@@ -247,7 +247,6 @@ class Collection implements CollectionInterface
             $this->set($name, $value);
         }
         return $this;
-
     }
 
     /**
@@ -330,5 +329,4 @@ class Collection implements CollectionInterface
     {
         $this->remove($key);
     }
-
 }

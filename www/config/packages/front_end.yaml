@@ -6,6 +6,7 @@ twig:
         website_name: '%website_name%'
         easydmin_asset_config: 'admin'
         easydmin_asset_entry: 'js/app'
+        default_img: 'static/empty.png'
     paths:
         'templates': '%front_end.default_path%'
         '%front_end.admin%': 'admin'

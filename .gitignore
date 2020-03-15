@@ -7,8 +7,7 @@
 ###< ecs specific ###
 *_debug*
 *playbook*/
-vm_config.yaml
-
+e-commerce-pomp/
 ###<vagrant ###
 /.vagrant/
 
@@ -25,10 +24,11 @@ symfony-boilerplate/
 
 # User-specific stuff:
 .idea/
+vm_config.yaml
+easy-admin-demo/
 
 # CMake
 cmake-build-debug/
-
 # Mongo Explorer plugin:
 .idea/**/mongoSettings.xml
 
@@ -37,7 +37,7 @@ cmake-build-debug/
 
 www/config/parameters.yaml
 .crons/
-easy-admin-demo/
+
 *.bak
 lemp/
 test-vagrant/
@@ -45,4 +45,4 @@ test-vagrant/
 www/bin/.phpunit
 docs/*.pfx
 docs/*.pem
-e-commerce-pomp/
+

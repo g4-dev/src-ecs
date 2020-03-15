@@ -22,7 +22,9 @@ class ShippingMethodForm extends AbstractType
     {
         $builder
             ->add(
-                'shippingMethod', EntityType::class, [
+                'shippingMethod',
+                EntityType::class,
+                [
                 'class' => ShippingMethod::class,
                 'expanded' => true,
                 'choices' => $this->objectManager
