@@ -11,7 +11,7 @@ easy_admin:
                     - { property: 'name', label: 'Titre' }
                     - { property: 'createdAt', label: 'Created at', format: 'j / M / Y' }
                     - { property: admin, label: 'sender' }
-                actions: ['create']
+                actions: ['show']
             show:
                 fields:
                     - { property: 'name', label: 'Titre' }

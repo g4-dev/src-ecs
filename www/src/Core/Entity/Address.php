@@ -51,7 +51,7 @@ class Address
     private $country;
     
     /**
-     * @ORM\Column(name="phone_number", type="string", length=10, nullable=true, unique=true)
+     * @ORM\Column(name="phone_number", type="string", length=10, nullable=true, unique=false)
      * @Assert\NotBlank()
      * @EntityNotExists(entityClass="Core\Entity\Address", field="phoneNumber")
      */

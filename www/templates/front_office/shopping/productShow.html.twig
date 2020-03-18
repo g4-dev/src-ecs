@@ -9,8 +9,9 @@
 
     <hr class="sep-header">
     {% if comeFromCategory is not null%}
-            <a class="btn-back pop" href="{{ path(comeFromCategory|default('productCategoryList')) }}">Retour</a>
+        {% set returnUrl = path('productCategoryList', { slug: comeFromCategory}) %}
     {% endif %}
+        <a class="btn-back pop" href="{{ returnUrl|default(path('productList')) }}">Retour</a>
     {{ form_start(form, {'action': path('basketAdd'), 'method': 'POST', 'attr': { class: 'cont-top-produit'} } ) }}
 {#    <div class="cont-top-produit">#}
         <div class="cont-top-produit-img">
@@ -69,8 +70,6 @@
         {{ form_row(form.product_id) }}
     {{ form_end(form) }}
     <div class="cont cont-draglist-product">
-        {% dump(product.tags) %}
-        {% dump(product.features) %}
 
         {% for feature in product.features %}
             <div class="draglist">

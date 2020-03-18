@@ -18,7 +18,7 @@ class NewsLetterController extends EasyAdminController
 
     public function persistLetterEntity($entity)
     {
-           $user = $this->getDoctrine()->getRepository(User::class)->findBy(['newsLetter' => true]);
+        $user = $this->getDoctrine()->getRepository(User::class)->findBy(['newsLetter' => true]);
 
         foreach ($user as $users) {
             $this->mailer->twigSendPurchase(

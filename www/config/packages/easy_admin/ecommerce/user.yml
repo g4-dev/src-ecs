@@ -11,7 +11,8 @@ easy_admin:
                 - username
                 - email
                 - purchases
-                - { property: 'contract', template: '@admin/custom-fields/contract.html.twig', base_path: '%ecs.path.user_contracts%' }
+                - newsLetter
+                #- { property: 'contract', template: '@admin/custom-fields/contract.html.twig', base_path: '%ecs.path.user_contracts%' }
             show:
                 fields:
                 - 'id'
@@ -20,6 +21,7 @@ easy_admin:
                 - 'email'
                 - 'purchases'
                 - 'companyName'
+                - 'newsLetter'
                 - { property: 'isActive', type: 'toggle', label: 'Active?' }
                 - { property: 'roles', type: 'array' }
                 - { property: 'contract', template: '@admin/custom-fields/contract.html.twig', base_path: '%ecs.path.user_contracts%' }

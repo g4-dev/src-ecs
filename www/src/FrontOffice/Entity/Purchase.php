@@ -77,7 +77,7 @@ class Purchase
     /**
      * Items that have been purchased.
      *
-     * @var                                        PurchaseItem[]
+     * @var PurchaseItem[]
      * @ORM\OneToMany(targetEntity="PurchaseItem", mappedBy="purchase", cascade={"persist"})
      */
     protected $purchasedItems;
@@ -149,24 +149,31 @@ class Purchase
      */
     public function setPurchasedItems($purchasedItems)
     {
-        $this->purchasedItems = $purchasedItems;
+        foreach ($purchasedItems as $item) {
+            $this->addPurchasedItem($item);
+        }
     }
     
     /**
      * @param PurchaseItem $purchasedItems
      */
-    public function addPurchasedItem($purchasedItem)
+    public function addPurchasedItem(PurchaseItem $purchasedItem)
     {
-        $this->purchasedItems[] = $purchasedItem;
+
+        if ($this->purchasedItems->contains($purchasedItem)) {
+            return;
+        }
+        $this->purchasedItems->add($purchasedItem);
+        $purchasedItem->setPurchase($this);
     }
     
-    public function removePurchasedItem(PurchaseItem $product): self
+    public function removePurchasedItem(PurchaseItem $purchaseItem): self
     {
-        if ($this->purchasedItems->contains($product)) {
-            $this->purchasedItems->removeElement($product);
+        if ($this->purchasedItems->contains($purchaseItem)) {
+            $this->purchasedItems->removeElement($purchaseItem);
             // set the owning side to null (unless already changed)
-            if ($product->getPurchase() === $this) {
-                $product->setPurchase(null);
+            if ($purchaseItem->getPurchase() === $this) {
+                $purchaseItem->setPurchase(null);
             }
         }
         

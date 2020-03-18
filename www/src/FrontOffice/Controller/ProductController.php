@@ -48,7 +48,7 @@ class ProductController extends AbstractController
      */
     public function productShow(Request $request, string $slug)
     {
-        $comeFromCategory = $request->request->get('category_slug') ?? null;
+        $comeFromCategory = $request->query->get('from_category') ?? null;
         $productRepo = $this->getDoctrine()
             ->getRepository(Product::class);
         
@@ -67,8 +67,7 @@ class ProductController extends AbstractController
         );
         
         $form->handleRequest($request);
-        
-        // TODO: afficher le produit dans les vues twig
+
         return $this->render(
             'front_office/shopping/productShow.html.twig',
             [

@@ -3,7 +3,8 @@
     <form class="form" action="{{ path('login') }}" novalidate="" autocomplete="off" method="POST">
         <input type="email" class="{% if error %}is-invalid{% endif %}" name="login_form[_username]" placeholder="Email" required />
         <input type="password" class="{% if error %}is-invalid{% endif %}" name="login_form[_password]" placeholder="Mot de passe" required/>
-        <input type="hidden" name="_target_path" value="{{ targetPath|default('homepage') }}"/>
+        <input type="hidden" name="login_form[_target_path]" value="{{ targetPath }}"/>
+        {{ form_widget(form._token) }}
         <div class="links text-center center">
             <a href="{{ path('registration') }}">S'inscrire</a>
             <a>|</a>

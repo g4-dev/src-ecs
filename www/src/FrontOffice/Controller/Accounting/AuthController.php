@@ -23,19 +23,23 @@ class AuthController extends \FrontOffice\Controller\AbstractController
     public function login(Request $request)
     {
         $form = $this->createForm(
-            LoginForm::class,
-            [
-            '_username' => $this->authUtils->getLastUsername()
+            LoginForm::class, [
+                '_username' => $this->authUtils->getLastUsername()
             ]
         );
         
         if ($this->getUser()) {
-            return $this->redirectToRoute($request->get('_target_path') ?? 'homepage');
+            $redirectUrl = $request->request->get('login_form')['_target_path'] ?? null;
+            
+            if ($redirectUrl) {
+                return $this->redirect($redirectUrl);
+            }
+            
+            return $this->redirectToRoute("homepage");
         }
         
         return $this->render(
-            'front_office/accounting/login.html.twig',
-            [
+            'front_office/accounting/login.html.twig', [
             'form' => $form->createView(),
             'error' => $this->authUtils->getLastAuthenticationError()
             ]

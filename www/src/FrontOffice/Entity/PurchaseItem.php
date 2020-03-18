@@ -42,17 +42,17 @@ class PurchaseItem
     /**
      * The ordered product.
      *
-     * @var                                                \Admin\Entity\Product
+     * @var \Admin\Entity\Product
      * @ORM\ManyToOne(targetEntity="Admin\Entity\Product", inversedBy="purchasedItems")
-     * @ORM\JoinColumn(name="product_id",                  referencedColumnName="id")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     protected $product;
 
     /**
      * @ORM\ManyToOne(targetEntity="Purchase", inversedBy="purchasedItems", cascade={"persist"})
-     * @ORM\JoinColumn(name="purchase_id",     referencedColumnName="id")
+     * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id")
      */
-    protected $purchase;
+    private $purchase;
     
     public function __construct(Product $product, $quantity)
     {

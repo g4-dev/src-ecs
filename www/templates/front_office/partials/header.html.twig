@@ -73,5 +73,5 @@
 </header>
 
 {% if is_granted('ROLE_USER') == false %}
-    {{ popLogin(currentRoute)|raw}}
+    {{ popLogin(currentPath)|raw}}
 {% endif %}

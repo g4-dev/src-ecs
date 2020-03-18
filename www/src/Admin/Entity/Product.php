@@ -105,7 +105,7 @@ class Product extends AbstractSluggable
      * List of categories where the products is
      * (Owning side).
      *
-     * @var                                            ProductCategory[]
+     * @var ProductCategory[]
      * @ORM\ManyToMany(targetEntity="ProductCategory", inversedBy="items")
      * @ORM\JoinTable(name="product_categories")
      */
@@ -117,7 +117,7 @@ class Product extends AbstractSluggable
     private $stock;
     
     /**
-     * @var                                                           \FrontOffice\Entity\PurchaseItem[]
+     * @var \FrontOffice\Entity\PurchaseItem[]
      * @ORM\OneToMany(targetEntity="FrontOffice\Entity\PurchaseItem", mappedBy="product", cascade={"remove"})
      */
     private $purchasedItems;

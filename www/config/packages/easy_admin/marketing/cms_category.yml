@@ -30,7 +30,7 @@ easy_admin:
                     - { type: 'group', css_class: 'col-sm-4' }
                     - { property: 'name', label: 'Label', css_class: 'large', help: 'As displayed on the website (the slug is auto-generated)' }
                     - { property: 'parent', type: 'easyadmin_autocomplete', label: 'Parent category' }
-                    - { property: 'items', type: 'easyadmin_autocomplete', label: 'CmsPages' }
+                    - { property: 'items', type: 'easyadmin_autocomplete', label: 'CmsPages', type_options: { by_reference: false }}
                     - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }
 
                     # if you want to add cmsPages when creating categories, add the 'by_reference' option

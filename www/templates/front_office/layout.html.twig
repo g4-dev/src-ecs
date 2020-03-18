@@ -1,6 +1,6 @@
 {%- set currentRoute = app.request.attributes.get('_route') -%}
-{% set currentRouteParams = app.request.attributes.get('_route_params') %}
-{% set currentPath = path(currentRoute, currentRouteParams ) %}
+{%- set currentRouteParams = app.request.attributes.get('_route_params') -%}
+{%- set currentPath = path(currentRoute, currentRouteParams ) -%}
 
 <!DOCTYPE html>
 <html lang="FR">
@@ -19,7 +19,7 @@
 <body>
 
 {% block body %}
-  {% include '@fo/partials/header.html.twig' with { currentRoute: currentRoute} %}
+  {% include '@fo/partials/header.html.twig' %}
 
   {% include '@fo/components/flash-messages.html.twig' %}
 

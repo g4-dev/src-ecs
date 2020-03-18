@@ -6,7 +6,6 @@ namespace Admin\Entity;
 use Core\Entity\Traits;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="Admin\Repository\NavRepository")
@@ -19,7 +18,7 @@ class Nav
     
     /**
      * @ORM\OneToOne(targetEntity="Core\Entity\Model\Sluggable", orphanRemoval=true, fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="page_id",                           referencedColumnName="id")
+     * @ORM\JoinColumn(name="page_id", referencedColumnName="id")
      * @Assert\NotBlank()
      */
     private $page;

@@ -1,1 +1,3 @@
-<a href="{{ field_options.base_path ~ '/' ~ value }}">View contract (PDF)</a>
+{% if value|default(false) %}
+    <a href="{{ field_options.base_path ~ '/' ~ value }}">View contract (PDF)</a>
+{% endif %}

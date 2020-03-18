@@ -3,6 +3,7 @@
 namespace FrontOffice\Form\Accounting;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,6 +35,7 @@ class LoginForm extends AbstractType
                 ]
 
                 ]
-            );
+            )
+            ->add('_target_path', HiddenType::class);
     }
 }
