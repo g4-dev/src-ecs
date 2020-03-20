@@ -1,0 +1,103 @@
+{% extends '@fo/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('homepage', null, 'front_office') }}
+{% endblock %}
+
+{% block title %} {{ website_name }} {% endblock %}
+
+{% block main %}
+
+    {% include '@fo/components/flash-messages.html.twig' %}
+    <div class="slideshow-container">
+        {% set slider = cmsPages|length > 1 %}
+        <div class="{% if slider %}slideshow{% endif %}">
+            {% for cmsPage in cmsPages %}
+
+            {% set image = vich_uploader_asset(cmsPage, 'imageFile') %}
+
+            <section class="homePage {% if slider %}slide{% endif %} {% if loop.index == 1 %} active{% endif %}">
+                <div class="slide-row centerBetween fullWidth alignInit " style="background: url({{ image }})">
+                    <article class="midWidth">
+                        <h2 class="gel-sBold">{{ cmsPage.name}}</h2>
+                        <p class="pop">{{ cmsPage.description|striptags|slice(0, 175)|raw  }}</p>
+                        <a class="btn pop" href="{{ path('cmsShow', { slug: cmsPage.slug }) }}">
+                            {{ 'KnowMore'|trans|raw }}
+                        </a>
+                    </article>
+                    <div class="midWidth">
+                        <img src="{{ image }}" alt="{{ cmsPage.image }}">
+                    </div>
+                </div>
+            </section>
+            {% endfor %}
+        </div>
+        {% if slider %}
+            <div class="controls">
+                <a class="next" id="slideforward">&#10095;</a>
+                <a class="prev" id="slideback">&#10094;</a>
+            </div>
+        {% endif %}
+    </div>
+
+
+
+    <section id="produit">
+        <p class="gel-bold title-suggest title-suggest-home">Produits</p>
+        <div class="fullCenter">
+            <div class="produit_space">
+                <div class="cont-item cont-item-home">
+                    {% for product in products %}
+                        <div>
+                            <div class="cont-item-img">
+                                <a href="{{ path('productShow', { slug: product.slug}) }}"><img src="{{ vich_uploader_asset(product, 'imageFile')}}"></a>
+                            </div>
+                            <p class="gel-bold">{{ product.name }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <a class="btn pop" href="{{ path('productList') }}">Voir plus</a>
+        </div>
+    </section>
+
+    <section class="fullWidth" id="pro_parti">
+        <article class="fullCenter" id='pro'>
+            <h4 class="pop-sBold">Professionnel</h4>
+            <p class="pop">Découvrez nos solutions adaptées à votre entreprise.</p>
+            <a href="{{ path('proServiceList') }}" class="btn pop">En savoir plus</a>
+        </article>
+        <article class="fullCenter" id='parti'>
+            <h4 class="pop-sBold">Particulier</h4>
+            <p class="pop">Trouvez votre bonheur et offrez une seconde chance aux objets du quotidien.</p>
+            <a href="{{ path('productList') }}" class="btn pop">Découvrir</a>
+        </article>
+    </section>
+
+    <section class="" id="recette">
+        <p class="gel-bold title-suggest title-suggest-home">Recettes</p>
+        <div class="fullCenter">
+            <div class="produit_space">
+                <div class="cont-item cont-item-home">
+                    {% for diy in diys %}
+                        <div>
+                            <div class="cont-item-img">
+                                <a href="{{ path('diyShow', { slug: diy.slug}) }}"><img src="{{ vich_uploader_asset(diy, 'imageFile')}}"></a>
+                            </div>
+                            <p class="gel-bold">{{ diy.name }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <a href="{{ path('diyList') }}" class="btn pop">Voir plus</a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('homepage', null, 'front_office') }}
+{% endblock %}

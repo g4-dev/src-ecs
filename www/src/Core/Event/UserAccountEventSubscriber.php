@@ -18,9 +18,15 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
      * @var MailerService
      */
     protected $mailer;
+    
+    /**
+     * @var string
+     */
+    protected $emailFrom;
 
-    public function __construct(LoggerInterface $logger, MailerService $mailer)
+    public function __construct(string $emailFrom, LoggerInterface $logger, MailerService $mailer)
     {
+        $this->emailFrom = $emailFrom;
         $this->logger = $logger;
         $this->mailer = $mailer;
     }
@@ -41,8 +47,14 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
     public function onRegistered(UserAccountEvent $event)
     {
         $user = $event->getUser();
-        $this->logger->info(sprintf('%s: User #%d registered account, email=%s',
-            __METHOD__, $user->getId(), $user->getEmail()));
+        $this->logger->info(
+            sprintf(
+                '%s: User #%d registered account, email=%s',
+                __METHOD__,
+                $user->getId(),
+                $user->getEmail()
+            )
+        );
         $this->sendWelcomeEmail($user);
         $this->notifyAdminsAboutRegisteredAccount($user);
     }
@@ -50,38 +62,69 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
     public function onActivated(UserAccountEvent $event)
     {
         $user = $event->getUser();
-        $this->logger->info(sprintf('%s: User #%d activated account',
-            __METHOD__, $user->getId(), $user->getEmail()));
+        $this->logger->info(
+            sprintf(
+                '%s: User #%d activated account',
+                __METHOD__,
+                $user->getId(),
+                $user->getEmail()
+            )
+        );
     }
 
     public function onLogin(UserAccountEvent $event)
     {
-        $this->logger->info(sprintf('%s: User #%d logged in',
-            __METHOD__, $event->getUser()->getId()));
+        $this->logger->info(
+            sprintf(
+                '%s: User #%d logged in',
+                __METHOD__,
+                $event->getUser()->getId()
+            )
+        );
     }
 
     public function onLogout(UserAccountEvent $event)
     {
-        $this->logger->info(sprintf('%s: User #%d logged out',
-            __METHOD__, $event->getUser()->getId()));
+        $this->logger->info(
+            sprintf(
+                '%s: User #%d logged out',
+                __METHOD__,
+                $event->getUser()->getId()
+            )
+        );
     }
 
     public function onModified(UserAccountEvent $event)
     {
-        $this->logger->info(sprintf('%s: User #%d modified account details',
-            __METHOD__, $event->getUser()->getId()));
+        $this->logger->info(
+            sprintf(
+                '%s: User #%d modified account details',
+                __METHOD__,
+                $event->getUser()->getId()
+            )
+        );
     }
 
     public function onPasswordChanged(UserAccountEvent $event)
     {
-        $this->logger->info(sprintf('%s: User #%d changed password',
-            __METHOD__, $event->getUser()->getId()));
+        $this->logger->info(
+            sprintf(
+                '%s: User #%d changed password',
+                __METHOD__,
+                $event->getUser()->getId()
+            )
+        );
     }
 
     public function onPasswordRequested(UserAccountEvent $event)
     {
-        $this->logger->info(sprintf('%s: User #%d requested password change',
-            __METHOD__, $event->getUser()->getId()));
+        $this->logger->info(
+            sprintf(
+                '%s: User #%d requested password change',
+                __METHOD__,
+                $event->getUser()->getId()
+            )
+        );
         $this->sendPasswordResetEmail($event->getUser());
     }
 
@@ -119,7 +162,11 @@ class UserAccountEventSubscriber implements EventSubscriberInterface
             }
         }
 
-        $this->mailer->broadcastToAdmins($this->mailer->createEventMessage(
-            sprintf('User #%d registered account', $user->getId()), $payload));
+        $this->mailer->broadcastToAdmins(
+            $this->mailer->createEventMessage(
+                sprintf('User #%d registered account', $user->getId()),
+                $payload
+            )
+        );
     }
 }

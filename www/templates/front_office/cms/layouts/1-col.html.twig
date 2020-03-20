@@ -1,0 +1,21 @@
+<div class="container text-center">
+    {% for content in cmsPage.titleContents %}
+        <h2 class="gel-bold title-company"></h2>
+        <div class="article card">
+            {% if cmsPage.images[loop.index-1]|default(false) %}
+            <div class="text-center d-table w-100">
+                <img class="d-table-cell cms-sub__img m-auto" src="{{ vich_uploader_asset(cmsPage.images[loop.index-1], 'imageFile') }}">
+            </div>
+            {% endif %}
+            <div class="cont-txt">
+                {% if content.name|default(false) %}
+                    <h3 class="pop-bold my-3">{{ content.name }}</h3>
+                {% endif %}
+
+                {% if content.body|default(false)  %}
+                    <section class="pop text-card">{{ content.body|raw }}</section>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

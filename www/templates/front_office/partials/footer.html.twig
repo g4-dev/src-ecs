@@ -1,0 +1,19 @@
+<footer class="serge">
+    <div class="thirdWidth center">
+        <ul>
+            <li><a href="{{ path("mentions") }}">Mentions légales</a></li>
+            <li><a href="{{ path("rgpd") }}">Utilisations des données</a></li>
+            <li><a href="{{ path('diyList') }}">DIY</a></li>
+        </ul>
+    </div>
+    <div class="thirdWidth center footer_logo">
+        <a href="{{ path("homepage") }}"><h1 class="gel-bold">Eco<br/>service</h1></a>
+    </div>
+    <div class="thirdWidth center">
+        <ul>
+            <li><a href="{{ path("contact") }}">Contact</a></li>
+            <li><a href="{{  path('proServiceList') }}">Espace pro</a></li>
+            <li><a href="{{ path('productList', { 'slug': "list" }) }}">Produits</a></li>
+        </ul>
+    </div>
+</footer>

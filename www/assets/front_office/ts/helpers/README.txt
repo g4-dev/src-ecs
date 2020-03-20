@@ -1,0 +1,1 @@
+Functions à inclure dans plusieurs classes typescript

@@ -3,7 +3,7 @@ admin:
     type: annotation
     prefix: /admin
 
-portal:
-    resource: ../../src/Portal/Controller/
+front_office:
+    resource: ../../src/FrontOffice/Controller/
     type: annotation
 

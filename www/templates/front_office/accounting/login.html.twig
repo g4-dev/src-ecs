@@ -1,0 +1,23 @@
+{% extends '@fo/layout.html.twig' %}
+{% block title %}Connexion{% endblock %}
+
+{% block links %}
+  {{ encore_entry_link_tags('accounting', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+  <hr class="sep-header">
+  <h1 class="pop-sBold panier_title">Connexion</h1>
+
+  <section class="formTheme pop">
+    {% include '@fo/forms/login-form.html.twig' %}
+  </section>
+  <div class="login_links text-center pop">
+    <a class="link" href="{{ path('registration') }}">S'inscrire</a>
+    <a class="link" href="{{ path('passwordReminder') }}">Mot de passe perdu</a>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ encore_entry_script_tags('accounting', null, 'front_office') }}
+{% endblock %}

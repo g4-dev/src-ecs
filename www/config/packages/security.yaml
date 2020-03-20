@@ -1,7 +1,6 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-
         admin_provider:
             entity:
                 class: Core\Entity\Admin
@@ -12,6 +11,17 @@ security:
                 class: Core\Entity\User
                 property: email
 
+    role_hierarchy:
+        ROLE_PRO: [ROLE_USER]
+        ROLE_ADMIN: [ROLE_USER, ROLE_ADMIN]
+        ROLE_MARKETING: [ROLE_ADMIN]
+        ROLE_EMPLOYEE: [ROLE_ADMIN]
+        ROLE_SUPPORT: [ROLE_ADMIN]
+        ROLE_COMMERCIAL: [ROLE_ADMIN]
+        ROLE_SUBADMIN: [ROLE_ADMIN, ROLE_MARKETING, ROLE_SUPPORT, ROLE_EMPLOYEE]
+        ROLE_SUPERADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_MARKETING, ROLE_SUPPORT, ROLE_EMPLOYEE, ROLE_COMMERCIAL]
+
+    # bcrypt use unique_id of user to encrypt password in db
     encoders:
         Core\Entity\Admin: bcrypt
         Core\Entity\User: bcrypt
@@ -32,20 +42,24 @@ security:
                 path: /admin/logout
                 target: /admin
 
-        portal:
+        front_office:
             pattern: ^/
             anonymous: ~
             provider: user_provider
             guard:
                 authenticators:
-                    - portal.security.login_form_guard
+                    - front_office.security.login_form_guard
             logout:
                 path: /logout
                 target: /
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
+    # these aren't real roles (just defaults symfony session flag)
     access_control:
-        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, role: ROLE_ADMIN }
-        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/account, roles: ROLE_USER }
+        - { path: ^/services-pro, roles: ROLE_PRO }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

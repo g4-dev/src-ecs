@@ -1,0 +1,31 @@
+twig:
+    default_path: '%front_end.default_path%'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    globals:
+        website_name: '%website_name%'
+        easydmin_asset_config: 'admin'
+        easydmin_asset_entry: 'js/app'
+        default_img: 'static/empty.png'
+    paths:
+        'templates': '%front_end.default_path%'
+        '%front_end.admin%': 'admin'
+        '%front_end.fo%': 'fo'
+    # TODO: mettre en place les form_themes https://symfony.com/doc/current/form/form_themes.html
+    form_themes:
+        - 'bootstrap_4_layout.html.twig'
+
+webpack_encore:
+    # The path where Encore is building the assets.
+    # This should match Encore.setOutputPath() in webpack.config.js.
+    output_path: false
+    builds:
+        front_office: '%front_end.fo_build%'
+        admin: '%front_end.admin_build%'
+
+        # if using Encore.enableIntegrityHashes() specify the crossorigin attribute value (default: false, or use 'anonymous' or 'use-credentials')
+        # crossorigin: 'anonymous'
+
+        # Cache the entrypoints.json (rebuild Symfony's cache when entrypoints.json changes)
+        # Available in version 1.2
+        cache: '%kernel.debug%'

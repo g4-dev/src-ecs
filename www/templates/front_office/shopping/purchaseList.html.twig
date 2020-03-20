@@ -1,0 +1,62 @@
+{% extends '@fo/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('shopping', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    <hr class="sep-header">
+    <h1 class="pop-sBold panier_title">Mes commandes</h1>
+
+    <div class="panier_space continueSubmit">
+        <div class="fullCenter">
+            <a href="{{ path('account') }}"  class="continueWhite pop">Mon compte</a>
+        </div>
+    </div>
+
+    <div class="card listeCommande fullCenter pop">
+        <div class="card-body">
+            {% if purchases is empty %}
+                <p>Pas de commande pour l'instant.</p>
+            {% else %}
+                <table class="table">
+                    <thead class="pop-sBold">
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Statut</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for purchase in purchases %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('accountPuchaseShow', { 'id': purchase.id }) }}">{{ purchase.id }}</a>
+                            </td>
+                            <td>
+                                {{ purchase.createdAt|date() }}
+                            </td>
+                            <td>
+                                <div class="badge badge-primary p-2">
+                                    {{ purchase.status }}
+                                </div>
+                            </td>
+                            {% if purchase.transaction is defined %}
+                                <td>
+                                    {{ purchase.transaction.total }} €
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('shopping', null, 'front_office') }}
+{% endblock %}

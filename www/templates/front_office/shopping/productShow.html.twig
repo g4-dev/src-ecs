@@ -1,0 +1,161 @@
+{% extends '@fo/layout.html.twig' %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block links %}
+    {{ encore_entry_link_tags('productShow', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+
+    <hr class="sep-header">
+    {% if comeFromCategory is not null%}
+        {% set returnUrl = path('productCategoryList', { slug: comeFromCategory}) %}
+    {% endif %}
+        <a class="btn-back pop" href="{{ returnUrl|default(path('productList')) }}">Retour</a>
+    {{ form_start(form, {'action': path('basketAdd'), 'method': 'POST', 'attr': { class: 'cont-top-produit'} } ) }}
+{#    <div class="cont-top-produit">#}
+        <div class="cont-top-produit-img">
+            <img src="{{ vich_uploader_asset(product, 'imageFile') }}">
+        </div>
+        <div class="cont-top-produit-des">
+            <div>
+                <h1 class="gel-bold">{{ product.name }}</h1>
+                <p class="pop">
+                    {{ product.category|join|slice(0,10) }}
+                </p>
+            </div>
+            <p class="description pop">{{ product.description|slice(0, 150)}}</p>
+            <p class="prix serge-bold">{{ product.price }} €</p>
+        </div>
+        <div class="cont-top-produit-spec">
+            <div class="int-spec">
+                <div class="spec quantite">
+                    <p class="pop">Quantité</p>
+                    <div>
+                        <p class="serge" id="moinsProduct">-</p>
+                        <p class="serge-bold" id="quant">0</p>
+                        <p class="serge" id="plusProduct">+</p>
+                    </div>
+                </div>
+                <div class="spec taille">
+                    <p class="pop">Taille</p>
+                    <div>
+                        <ul>
+                            <li class="serge">S</li>
+                            <li class="serge">M</li>
+                            <li class="serge">L</li>
+                            <li class="serge">XL</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="spec couleur">
+                    <p class="pop">Couleur</p>
+                    <div>
+                        <ul>
+                            <li select="false"></li>
+                            <li select="false"></li>
+                            <li select="false"></li>
+                            <li select="false"></li>
+                            <li select="false"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn-ajouter pop-bold">Ajouter</button>
+        </div>
+        <div class="errors">
+            {{ form_errors(form) }}
+        </div>
+        {{ form_row(form.quantity) }}
+        {{ form_row(form.product_id) }}
+    {{ form_end(form) }}
+    <div class="cont cont-draglist-product">
+
+        {% for feature in product.features %}
+            <div class="draglist">
+                <div class="croix">
+                    <div></div>
+                    <div></div>
+                </div>
+                <p class="title pop">{{ product.tags[loop.index-1]|default('') }}</p>
+                <div class="hide">
+                    <p class="title-hide pop-bold">{{ product.tags[loop.index-1]|default('') }}</p>
+                    <p class="pop">{{ feature }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="cont cont-list-comments">
+        <div class="cont-comment">
+            <div class="cont-title">
+                <p class="pop-bold">Lorem</p>
+                <div class="cont-stars">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                </div>
+                <p class="pop date">01/01/2020</p>
+            </div>
+            <p class="pop comment">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+                Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+            </p>
+        </div>
+        <div class="cont-comment">
+            <div class="cont-title">
+                <p class="pop-bold">Lorem</p>
+                <div class="cont-stars">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                </div>
+                <p class="pop date">01/01/2020</p>
+            </div>
+            <p class="pop comment">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+                Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+            </p>
+        </div>
+        <div class="cont-comment">
+            <div class="cont-title">
+                <p class="pop-bold">Lorem</p>
+                <div class="cont-stars">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-full" src="{{  asset('images/star-full.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                    <img class="star-empty" src="{{  asset('images/star-empty.svg') }}">
+                </div>
+                <p class="pop date">01/01/2020</p>
+            </div>
+            <p class="pop comment">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+                Mauris ligula tellus, varius eu velit eu, pellentesque fringilla urna.
+            </p>
+        </div>
+    </div>
+
+    <p class="gel-bold title-suggest">{{ 'products.suggered'|trans|raw }}</p>
+
+    <div class="cont-item">
+        {% for product in lastProducts %}
+            <div>
+                <div class="cont-item-img">
+                    <a href="{{ path(currentRoute, { slug: product.slug }) }}">
+                        <img src="{{ vich_uploader_asset(product, 'imageFile')}}" alt="{{ product.image }}">
+                    </a>
+                </div>
+                <p class="gel-bold">{{ product.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('productShow', null, 'front_office') }}
+{% endblock %}

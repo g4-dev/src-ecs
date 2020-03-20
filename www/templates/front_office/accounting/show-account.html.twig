@@ -1,0 +1,54 @@
+{% extends '@fo/layout.html.twig' %}
+{% block title %}Mon compte{% endblock %}
+
+{% block links %}
+    {{ encore_entry_link_tags('accounting', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    <hr class="sep-header">
+    <h1 class="pop-sBold panier_title">Mon compte</h1>
+    <div class="container-account">
+        <div class="container-info">
+            <div class="btn-contain">
+                <a class="continueWhite pop" href="{{ path('accountPurchaseList') }}">Commandes</a>
+                <a class="continueWhite pop" href="{{ path('accountUpdate') }}">Editer mon compte</a>
+            </div>
+
+            {% include 'bundles/EasyAdminBundle/default/flash_messages.html.twig' %}
+            <div class="content-account">
+                <p class="serge-bold">Prénom : </p> <p class="serge">{{ account.name }}</p>
+                <p class="serge-bold">Nom : </p> <p class="serge">{{ account.lastName }}</p>
+                <p class="serge-bold">Téléphone : </p> <p class="serge">{{ account.phoneNumber }}</p>
+                {#<p class="serge-bold">Adresse : </p> <p class="serge">{{ account.addres }}</p>#}
+                <p class="serge-bold">Email : </p> <p class="serge">{{ account.Username }}</p>
+                <p class="serge-bold">Entreprise : </p> <p class="serge">{{ account.companyName }}</p>
+            </div>
+
+            <div class="btn-contain adressList">
+                {% if addresses is defined %}
+                    <div class="fullcenter_mob pop">
+                        {% for address in addresses  %}
+                            <div class="bottomMarg blockAddress">
+                                <div class="bottomMob">
+                                    <p>{{ address.name }}</p>
+                                    <p>{{ address.lastName }}</p>
+                                    <p>{{ address.address}}</p>
+                                </div>
+                                <a class="a_adressList continueWhite pop" href="{{ path('accountAddress', {'id': address.id } ) }}">Editer l'adresse</a>
+                                <a class="a_adressList continueWhite pop" href="{{ path('removeAddress', {'address':
+                                    address.id } ) }}">Supprimmer l'addresse</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <a class="continueWhite pop showAddAddress" href="{{ path('accountAddress') }}">Ajouter une addresse</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('accounting', null, 'front_office') }}
+{% endblock %}

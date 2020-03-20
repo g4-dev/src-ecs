@@ -1,0 +1,40 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{{ form_start(form) }}
+
+<div class="nameAndFirst">
+  <div class="form_item">
+    {{ form_label(form.name)}}
+    {{ form_widget(form.name)}}
+  </div>
+  <div class="form_item secondItem">
+    {{ form_label(form.lastName)}}
+    {{ form_widget(form.lastName)}}
+  </div>
+</div>
+
+<div class="form_item">
+  {{ form_label(form.phoneNumber)}}
+  {{ form_widget(form.phoneNumber)}}
+</div>
+
+<div class="form_item">
+  {{ form_label(form.companyName)}}
+  {{ form_widget(form.companyName)}}
+</div>
+
+<div class="formCheckbox">
+  <div>
+    {{ form_label(form.newsLetter, 'Newsletter') }}
+    <div class="errorInput debugCheck">
+      {{ form_widget(form.newsLetter) }}
+    </div>
+  </div>
+</div>
+
+<div class="panier_space continueSubmit">
+  <div class="fullCenter">
+    <button class="pop continue" type="submit">Mettre à jour mon compte</button>
+  </div>
+</div>
+{{ form_end(form) }}

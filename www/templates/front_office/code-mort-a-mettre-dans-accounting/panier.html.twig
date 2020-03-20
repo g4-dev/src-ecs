@@ -1,0 +1,34 @@
+{% extends '@fo/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('shopping', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+    <hr class="sep-header">
+    <p class="pop-sBold panier_title">Panier</p>
+    <div class="panier_space flexStart pop">
+        <div class="center path">
+            <a href="#">Mon panier</a>
+            <p>></p>
+            <a href="#">Livraison</a>
+            <p>></p>
+            <a href="#">Paiement</a>
+            <p>></p>
+            <a href="#">Récapitulatif</a>
+        </div>
+    </div>
+    {#{% include 'front_office/panier/mypanier.html.twig' %}#}
+    {#{% include 'front_office/panier/adress.html.twig' %}#}
+    {#{% include 'front_office/panier/paiement.html.twig' %}#}
+
+    {#Attention cette vue est à part, elle a juste besoin du header, du footer et du HR et du P (Adresse de livraison à la place de Panier) de cette page, je te laisse gérer son placement @Loic#}
+    {#{% include 'front_office/panier/adressUpdate.html.twig' %}#}
+
+    {#Attention cette vue est à part, elle a juste besoin du header, du footer et du HR et du P de cette page#}
+    {% include '@fo/panier/confirmation.html.twig' %}
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('shopping', null, 'front_office') }}
+{% endblock %}

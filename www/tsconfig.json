@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "baseUrl": "assets",
       "allowSyntheticDefaultImports": true,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
@@ -11,11 +12,18 @@
       "noLib": false,
       "strict": true,
       "suppressImplicitAnyIndexErrors": true,
-      "target": "es5"
+      "target": "es5",
+      "paths": {
+        "@core": ["assets/core/*"],
+        "@admin": ["assets/easyadmin/*"],
+        "@fo": ["assets/front_office/*"]
+      }
     },
     "types": ["jest"],
-    "compileOnSave": false,
-    "include": ["./src/**/*.ts"], 
+    "compileOnSave": true,
+    "include": [
+      "./**/*.ts"
+    ],
     "exclude": [
       "**/build/", 
       "node_modules", 

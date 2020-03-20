@@ -20,6 +20,8 @@ trait UserServiceTrait
         $service = $this->getUserService();
         $user = $service->create(Constants::FAKE_USER_EMAIL, Constants::FAKE_USER_PASS);
         $user->setName(Constants::FAKE_USER_NAME);
+        $user->setLastName(Constants::FAKE_USER_NAME);
+        $user->setFirstName(Constants::FAKE_USER_NAME);
         $service->save($user);
         return $user;
     }

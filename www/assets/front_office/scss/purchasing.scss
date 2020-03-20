@@ -1,0 +1,355 @@
+@import '#core/ecsFormTheme';
+@import 'app.scss';
+
+.panier_title{
+  margin-left: 32px;
+  margin-bottom: 32px;
+  font-size: 2.5rem;
+  color: $darkGrey;
+  @media screen and (max-width: 500px) {
+    margin-left: 16px;
+  }
+}
+
+.basket-empty{
+  margin: 4rem 0;
+  p{
+    padding: 5rem;
+  }
+}
+
+.empty{
+  font-size: 1.2rem;
+}
+
+.continueWhite{
+  font-size: 1.2rem;
+  margin: 8px 0;
+  padding: 16px 16px;
+  width: 200px;
+  text-align: center;
+  border: 2px solid $darkGrey;
+}
+
+.continueWhite:hover {
+  background: $darkGreen;
+  color: white;
+  border: 2px $darkGrey solid;
+  transition: .4s ease;
+}
+
+.panier_space {
+  width: 100%;
+  color: $darkGrey;
+}
+
+.mon_panier{
+  .total_pc {
+    border-right: 1px solid;
+  }
+
+  .panier{
+    svg{
+      width: 32px;
+      path{
+        fill: $darkGrey;
+      }
+    }
+    @include centerBetween;
+    @media screen and (max-width: 1550px) {
+      @include fullCenter;
+    }
+  }
+  .total_mob{
+    .price{
+      text-align: right;
+    }
+    font-size: 1.2rem;
+    text-align: left !important;
+  }
+  @media screen and (max-width: 1024px) {
+    .total_mob{
+      display: table-row;
+    }
+    .total_pc{
+      display: none;
+    }
+  }
+  table{
+    margin: 0 0 0 128px;
+    border: solid 1px $darkGrey;
+    text-align: center;
+    thead{
+      border-bottom: solid 1px $darkGrey;
+      th{
+        padding: 16px;
+        @media screen and (max-width: 430px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    tbody{
+      .table_img{
+        padding: 32px 128px;
+        border: 0;
+        a{
+          img {
+            max-width: 250px;
+          }
+          h2{
+            margin-left: 16px;
+          }
+          @include centerAround;
+          @media screen and (max-width: 1550px){
+            h2{
+              margin-left: 0;
+              margin-bottom: 16px;
+            }
+            @include fullCenter;
+            h2{
+              order: 1;
+            }
+            img{
+              order: 2;
+            }
+          }
+        }
+        @media screen and (max-width: 1200px) {
+          padding: 32px 64px;
+        }
+        @media screen and (max-width: 850px) {
+          padding: 32px 32px;
+        }
+        @media screen and (max-width: 630px) {
+          padding: 16px 16px;
+          img {
+            max-width: 200px;
+          }
+        }
+        @media screen and (max-width: 510px) {
+          padding: 16px 16px;
+          img {
+            max-width: 150px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          padding: 16px 16px;
+          img {
+            max-width: 100px;
+          }
+        }
+      }
+      td{
+        vertical-align: middle;
+        padding: 16px;
+        @media screen and (max-width: 430px) {
+          padding: 16px 8px;
+        }
+        border: solid 1px $darkGrey;
+
+      }
+      font-size: 1.5rem;
+    }
+    @media screen and (max-width: 1700px) {
+      margin: 0 0 0 64px;
+    }
+    @media screen and (max-width: 1550px) {
+      margin: 0;
+    }
+  }
+  .recapPanier{
+    margin: 0 128px 0 0;
+    padding: 32px 16px;
+    background: $lightGrey;
+    h3{
+      font-size: 1.8rem;
+    }
+    p{
+      font-size: 1.1rem;
+    }
+    .sousTot{
+      padding: 32px 0 8px 0;
+    }
+    .livraison{
+      padding: 8px 0 16px 0;
+    }
+    .total{
+      padding: 24px 0;
+    }
+    .price{
+      font-size: 1rem;
+    }
+    .continue a{
+      padding: 16px 64px;
+      color: white;
+      background: $darkGreen;
+    }
+    @media screen and (max-width: 1700px) {
+      margin: 0 64px 0 0;
+    }
+    @media screen and (max-width: 1550px) {
+      margin: 32px auto 0 auto;
+    }
+  }
+
+  .button{
+    margin: 32px 0 0 128px;
+    a{
+      font-size: 1.2rem;
+      margin: 8px 0;
+      padding: 16px 16px;
+      width: 200px;
+      text-align: center;
+      border: 2px solid $darkGrey;
+    }
+    a:hover {
+      background: $darkGreen;
+      color: white;
+      border: 2px $darkGrey solid;
+      transition: .4s ease;
+    }
+    @media screen and (max-width: 1700px) {
+      margin: 32px 0 0 64px;
+    }
+    @media screen and (max-width: 1550px) {
+      margin: 32px auto 0 auto;
+    }
+  }
+}
+
+.adress_choice{
+  font-size: 1.5rem;
+  color: blue;
+  @media screen and (max-width: 800px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 1rem;
+  }
+  .address_button div{
+    margin: 32px auto;
+    @media screen and (max-width: 1024px) {
+      margin: 32px auto;
+    }
+    font-size: 1.2rem;
+    button{
+      font-size: 1.2rem;
+    }
+    .continue{
+      color: white;
+      padding: 16px 64px;
+      background: $darkGreen;
+    }
+    .add_address{
+      padding: 16px 64px;
+      @media screen and (max-width: 500px) {
+        padding: 16px 32px;
+      }
+      border: 2px solid $darkGreen;
+    }
+    .add_address:hover {
+      background: $darkGreen;
+      color: white;
+      border: 2px $darkGrey solid;
+      transition: .4s ease;
+    }
+  }
+  .resetMargin{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .adress_border{
+    font-size: 1.5rem;
+    @media screen and (max-width: 500px) {
+      font-size: 1rem;
+    }
+    margin: 0 128px;
+    @media screen and (max-width: 1024px) {
+      margin: 0 64px;
+    }
+    @media screen and (max-width: 700px) {
+      margin: 0 32px;
+    }
+    @media screen and (max-width: 500px) {
+      margin: 0 16px;
+    }
+    border: solid 1px $darkGrey;
+    color: $darkGreen;
+    .adress_title{
+      margin: 0 64px;
+      @media screen and (max-width: 1024px) {
+        margin: 0 32px;
+      }
+      @media screen and (max-width: 500px) {
+        margin: 0 16px;
+      }
+      padding: 32px 0;
+      border-bottom: solid 1px $darkGrey;
+    }
+    .adress_list{
+      margin: 0 128px;
+      @media screen and (max-width: 1024px) {
+        margin: 0 64px;
+      }
+      @media screen and (max-width: 500px) {
+        margin: 0 32px;
+      }
+      @media screen and (max-width: 400px) {
+        margin: 0 16px;
+      }
+      padding: 16px 0;
+      .adress_item{
+        padding: 32px 0;
+        .form-check{
+          margin: 32px;
+          cursor: pointer;
+        }
+        legend{
+          display: none;
+        }
+        input{
+          cursor: pointer;
+          display: block;
+          transform: scale(2);
+        }
+        label{
+          cursor: pointer;
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+}
+
+.paiementPayp{
+  .continue a{
+    padding: 16px 64px;
+    color: white;
+    background: $darkGreen;
+  }
+  .marginPaypal{
+    margin-top: 128px;
+  }
+}
+
+.listeCommande{
+  margin-top: 50px;
+  table{
+    border: solid 1px $darkGrey;
+    border-collapse:collapse;
+    th{
+      padding: 32px;
+      border-bottom: solid 1px $darkGrey;
+      border-right:1px solid $darkGrey;
+      border-left:1px solid $darkGrey;
+    }
+    td{
+      padding: 32px;
+      text-align: center;
+      border-right:1px solid $darkGrey;
+      border-left:1px solid $darkGrey;
+      border-bottom: solid 1px $darkGrey;
+    }
+  }
+
+}

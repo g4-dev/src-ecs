@@ -1,0 +1,50 @@
+{% extends '@fo/shopping/checkout/steps-layout.html.twig' %}
+
+{% block title %}Adresse{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumbs">
+    <div class="container">
+        <nav class="ecs-breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">Identification</li>
+            <li class="breadcrumb-item active" aria-current="page">Adresse</li>
+            <li class="breadcrumb-item">Livraison</li>
+            <li class="breadcrumb-item">Récapitulatif</li>
+            <li class="breadcrumb-item">Paiement</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock breadcrumb %}
+
+{% block main %}
+    <hr class="sep-header">
+    <h1 class="pop-sBold panier_title">Adresse de livraison</h1>
+
+    <section class="adress_choice">
+    {% if address_choice_form|default(false) %}
+        {{ form_start(address_choice_form, { 'attr': { 'id': 'addressForm', "class": "pop" }}) }}
+            <div class="adress_border">
+                <div class="adress_list">
+                        <div class="adress_item flexStart">
+                            {{ form_widget(address_choice_form.address)}}
+                            {{ form_label(address_choice_form.address)}}
+                        </div>
+                </div>
+            </div>
+            <div class="panier_space flexEnd address_button">
+                <div class="fullCenter button pop">
+                    <button type="submit" class="pop continue">{{ 'Continuer'|trans }}</button>
+                </div>
+            </div>
+        {{ form_errors(address_choice_form) }}
+        {{ form_end(address_choice_form) }}
+    {% endif %}
+        <div class="panier_space flexStart address_button">
+            <div class="fullCenter button pop">
+                <a class="continueWhite" href="{{ path('accountAddress') }}">+ Ajouter une adresse</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

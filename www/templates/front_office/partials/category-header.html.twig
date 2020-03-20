@@ -1,0 +1,11 @@
+<div class="green-top-page {{ bloc_class|default('') }}">
+    <h1 class="gel-bold">{{ name }}</h1>
+    <p class="gel">{{ description|striptags|slice(0, 200)|raw }}</p>
+</div>
+<div>
+    {% if image|default(false) %}
+        <img src="{{ vich_uploader_asset(image.obj, 'imageFile') }}" alt="{{ image.raw }}">
+    {% elseif with_default|default(false) %}
+        {% include '@fo/components/no-image.html.twig' %}
+    {% endif %}
+</div>

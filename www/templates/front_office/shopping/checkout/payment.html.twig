@@ -1,0 +1,36 @@
+{% extends '@fo/shopping/checkout/steps-layout.html.twig' %}
+{% block title %}Paiement{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumbs">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">Identification</li>
+            <li class="breadcrumb-item">Adresse</li>
+            <li class="breadcrumb-item">Livraison</li>
+            <li class="breadcrumb-item">Récapitulatif</li>
+            <li class="breadcrumb-item active" aria-current="page">Paiement</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock breadcrumb %}
+
+{% block main %}
+    <hr class="sep-header">
+    <h1 class="pop-sBold panier_title">Paiement</h1>
+
+    <section class="fullCenter paiementPayp">
+        <div class="pop marginPaypal continue">
+            <a href="{{ path('checkoutPaypal') }}">Payer avec paypal</a>
+        </div>
+    </section>
+
+<div class="row">
+
+    <div class="col-md mt-4 mt-md-0">
+    </div>
+</div>
+
+{% endblock %}

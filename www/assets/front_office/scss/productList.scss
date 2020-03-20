@@ -1,0 +1,158 @@
+// Ici ce composant peut être réutilisé dans plusieurs pages
+@import 'app';
+$widthProduct:330px;
+
+.top-category{
+  display: flex;
+
+  .green-top-page{
+    width:50%;
+  }
+}
+
+.title-all-products{
+  text-align: center;
+  font-size:$f40;
+  color: $darkGreen;
+  margin:50px 0;
+}
+
+.all-products{
+  flex-wrap: wrap;
+}
+
+.products-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap:wrap;
+  width: 100%;
+
+  &-top{
+    width: 60%;
+  }
+
+  .product-minia{
+    height:615px;
+    width: $widthProduct;
+
+    div:first-child{
+      width: 100%;
+      height:80%;
+      margin-bottom: 15px;
+      overflow: hidden;
+      position: relative;
+
+      img{
+        object-fit: cover;
+        width:100%;
+        height: 100%;
+        transition: all .5s linear;
+        transform: scale(1);
+      }
+
+
+      &:hover img{
+        transition: all .5s linear;
+        transform: scale(1.2);
+      }
+
+      .description{
+        transition: all .5s linear;
+        width:0;
+        height: 0;
+        background: rgba(0,0,0,.5);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        z-index:100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h2, p{
+          opacity: 0;
+          text-align: center;
+        }
+
+        h2{
+          color:$white;
+        }
+
+        p{
+          font-size: 15px;
+          padding:0 15px;
+        }
+
+      }
+
+      &:hover .description{
+        transition: all .2s linear;
+        width:100%;
+        height: 100%;
+
+        h2, p{
+          transition: opacity .5s .2s linear;
+          opacity: 1;
+        }
+      }
+
+    }
+
+    h2{
+      color:$darkGreen;
+      font-size: $f30;
+    }
+
+    p{
+      color:$lightGreen;
+      font-size: 25px;
+    }
+  }
+}
+
+@media screen and (max-width:1400px){
+  .top-category{
+    flex-direction: column;
+
+    .green-top-page{
+      width: 100% !important;
+      padding:70px 0 !important;
+      margin-bottom: 75px;
+
+      h1{
+        padding:0 30px !important;
+        border-bottom: none !important;
+      }
+
+      p{
+        padding:0 30px !important;
+      }
+    }
+  }
+  .products-list{
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    .product-minia{
+      width:40%;
+    }
+  }
+}
+
+@media screen and (max-width:769px){
+  .products-list{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .product-minia{
+      width:$widthProduct;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{% extends '@fo/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('shopping', null, 'front_office') }}
+{% endblock %}
+
+{% block title %}Confirmation de commande{% endblock %}
+
+{% block main %}
+
+<div class="center serge empty pop basket-empty fullCenter">
+
+    <p class="center">Merci pour votre commande, vous allez recevoir un email de confirmation.</p>
+
+    <a href="/" class="continueWhite pop">Continuer les achats</a>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('shopping', null, 'front_office') }}
+{% endblock %}

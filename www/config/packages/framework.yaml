@@ -1,17 +1,67 @@
 framework:
     secret: '%env(APP_SECRET)%'
-    #default_locale: en
-    #csrf_protection: true
+    csrf_protection: ~
+    fragments: { path: /_fragment }
     #http_method_override: true
 
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
     session:
+        # enables the support of sessions in the app
+        enabled: true
         handler_id: ~
-        cookie_secure: auto
-        cookie_samesite: lax
+        # improves the security of the cookies used for sessions
+        cookie_secure: 'auto'
+        cookie_lifetime: '%login_time%'
+
+        gc_maxlifetime: '%login_time%'
+
+    router:
+        strict_requirements: ~
+        utf8: true
 
     #esi: true
     #fragments: true
     php_errors:
         log: true
+
+    # no default entrypoints.json search
+    assets: ~
+
+    cache:
+        # Put the unique name of your app here: the prefix seed
+        # is used to compute stable namespaces for cache keys.
+        #prefix_seed: your_vendor_name/app_name
+
+        # The app cache caches to the filesystem by default.
+        # Other options include:
+
+        # Redis
+        #app: cache.adapter.redis
+        #default_redis_provider: redis://localhost
+
+        # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
+        #app: cache.adapter.apcu
+
+        # Namespaced pools use the above "app" backend by default
+        #pools:
+        #my.dedicated.cache: ~
+
+    default_locale: '%locale%'
+    translator:
+        default_path: '%kernel.project_dir%/translations'
+        fallbacks:
+            - '%locale%'
+
+    # google smtp url
+    mailer:
+        dsn: '%env(MAILER_DSN)%'
+
+    validation:
+        enabled: true
+        enable_annotations: true
+        email_validation_mode: loose
+
+sensio_framework_extra:
+    router:
+        annotations: false

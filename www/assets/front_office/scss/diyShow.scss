@@ -1,0 +1,384 @@
+@import 'app.scss';
+
+.retour_button{
+  margin-left: 64px;
+}
+@media screen and (max-width: 1400px) {
+  .retour_button{
+    margin-left: 32px;
+  }
+}
+.btn-back{
+  margin: 0 0 32px 64px;
+  //font-size: 1.5rem;
+
+  @media screen and (max-width: 1430px) {
+    margin-left: 32px;
+  }
+  @media screen and (max-width: 1250px) {
+    margin-left: 16px;
+  }
+}
+
+#recette_main{
+  @include centerAround;
+  @include alignInit;
+  color: $darkGreen;
+  .recette_img_container{
+    padding: 0 64px;
+
+    .center{
+      height:600px;
+      width: 450px;
+
+      img{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+
+
+  .textAndCarac{
+    @include centerBetween;
+  }
+
+  .title_mob{
+    display: none;
+  }
+
+  h2{
+    font-size: 3rem;
+    padding: 0 0 32px 0;
+  }
+
+  .description p{
+    font-size: 1.5rem;
+    line-height: 3.5rem;
+  }
+
+  .description{
+    max-width: 60%;
+  }
+
+  .caracteristique{
+    padding-right: 64px;
+    font-size: 1.5rem;
+    @include midWidth;
+    .ingredient{
+      padding: 64px 0;
+    }
+    .minute{
+      font-size: 3rem;
+    }
+    ul{
+      column-count: 2;
+    }
+    .difficulty_bar{
+      width: 90%;
+      height: 30px;
+      @include center;
+      div{
+        width: 25%;
+        height:100%;
+        border-top: solid 2px black;
+        border-bottom: solid 2px black;
+      }
+      &__firstDiv{
+        border-left: solid 2px black;
+        border-right: solid 2px black;
+        border-top-left-radius: 40px;
+        border-bottom-left-radius: 40px;
+      }
+      &__secondDiv{
+        border-right: solid 2px black;
+      }
+      &__lastDiv{
+        border-left: solid 2px black;
+        border-right: solid 2px black;
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 40px;
+      }
+    }
+  }
+
+  .deca{
+    padding: 16px 0 16px 32px;
+  }
+
+  @media screen and (max-width: 1720px) {
+    .description{
+      max-width: 65%;
+    }
+    .recette_img_container{
+      padding: 0 64px 0 64px;
+    }
+    .caracteristique{
+      padding-right: 64px;
+      max-width: 35%;
+    }
+  }
+
+  @media screen and (max-width: 1560px) {
+    .description p{
+      font-size: 1rem;
+    }
+    .description{
+      max-width: 60%;
+    }
+  }
+
+  @media screen and (max-width: 1430px) {
+
+    .recette_img_container{
+      padding: 0 64px 0 32px;
+    }
+    .caracteristique{
+      padding-right: 32px;
+      font-size: 1rem;
+      .minute{
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1250px) {
+    .description{
+      max-width: 65%;
+    }
+    .recette_img_container{
+      padding: 0 32px 0 16px;
+    }
+    .caracteristique{
+      padding-right: 32px;
+      max-width: 50%;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .recette_img_container{
+      @include fullCenter;
+      padding: 0 16px 64px 16px;
+    }
+    .recette_img_container img{
+      width: 100%;
+    }
+    .textAndCarac{
+      @include fullCenter;
+    }
+    .caracteristique{
+      max-width: 100%;
+      width: 100%;
+      @include fullCenter;
+      padding: 64px 0;
+      font-size: 1.5rem;
+      .minute{
+        font-size: 3rem;
+      }
+    }
+    .description{
+      max-width: 100%;
+    }
+    .description p{
+      padding: 0 64px;
+    }
+    .title_mob{
+      display: block;
+      width: 100%;
+    }
+    .title_desk{
+      display: none;
+    }
+    .deca{
+      padding: 16px 0;
+      text-align: center;
+    }
+    .ingredient p{
+      text-align: center;
+    }
+    .difficulty_barWidth{
+      text-align: center;
+      width: 50%;
+      .deca{
+        @include fullCenter;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .difficulty_barWidth{
+      width: 75%;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .description p{
+      padding: 0 32px;
+    }
+    .difficulty_barWidth{
+      width: 70%;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .description p{
+      font-size: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #recette_main{
+    @include fullCenter;
+  }
+}
+
+#recette{
+  padding: 32px 64px;
+  color: $dark;
+  h3{
+    font-size: 2.5rem;
+    padding: 0px 0px 32px 0px;
+  }
+
+  p{
+    font-size: 1.5rem;
+    line-height: 3.5rem;
+    padding-left: 32px;
+  }
+
+  .recette_container{
+    @include centerBetween;
+  }
+
+  .recette_container .recette_left{
+    width: 60%;
+  }
+  .recette_container .recette_right{
+    width: 40%;
+  }
+
+  @media screen and (max-width: 1560px) {
+    p{
+      font-size: 1rem;
+      padding-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+
+    .recette_container{
+      @include fullCenter;
+    }
+
+    .recette_container div{
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .recette_container p{
+      margin-bottom: 32px;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    padding: 32px 32px 32px 32px;
+    .recette_container p{
+      padding-left: 0;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .recette_container p{
+      font-size: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px){
+  #recette{
+    padding: 32px 64px 32px 64px;
+  }
+}
+
+@media screen and (max-width: 700px){
+  #recette{
+    padding: 32px;
+  }
+}
+
+.cont-item{
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 75px;
+  margin-bottom: 50px;
+}
+
+//#produit{
+//  $align: 80%;
+//
+//  margin-top: 2rem;
+//  article{
+//    img{
+//      width: $align;
+//    }
+//    h3{
+//      font-size: 2rem;
+//      text-align: left;
+//      width: $align;
+//      color: $darkGreen;
+//    }
+//  }
+//  .produit_space{
+//    width: 80%;
+//    @include center;
+//    .itemsList{
+//      @include center;
+//      article{
+//        padding: 32px 0;
+//      }
+//    }
+//  }
+//  p{
+//    color: $dark;
+//    font-size: 2.5rem;
+//    padding: 0 0 0 64px;
+//  }
+//  button{
+//    margin-top: 64px;
+//    padding: 16px 48px;
+//    font-size: 1.2rem;
+//    border: solid 4px $darkGreen;
+//  }
+//
+//  @media screen and (max-width: 1024px) {
+//    .produit_space{
+//      @include center;
+//      .itemsList{
+//        @include fullCenter;
+//      }
+//    }
+//  }
+//
+//  @media screen and (max-width: 700px) {
+//    $align: 60%;
+//    .produit_space{
+//      @include fullCenter;
+//      .itemsList{
+//        @include fullCenter;
+//      }
+//    }
+//    p{
+//      padding: 0 0 0 32px;
+//    }
+//    article{
+//      img{
+//        width: $align;
+//      }
+//      h3{
+//        width: $align;
+//      }
+//    }
+//  }
+//}

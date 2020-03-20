@@ -1,0 +1,38 @@
+easy_admin:
+    entities:
+        ProductCategory:
+            class: Admin\Entity\ProductCategory
+            label: 'Catégorie'
+            list:
+                title: 'Catégories'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - 'id'
+                    - { property: 'name', label: 'Label' }
+                    - { property: 'parent', label: 'Parent category' }
+                    - { property: 'items', label: 'Produits' }
+                    - { property: 'slug', template: '@admin/custom-fields/category-link.html.twig', label: 'links.category', route: 'productCategoryList' }
+
+            show:
+                fields:
+                    - 'id'
+                    - { property: 'name', label: 'Label', css_class: 'large' }
+                    - { property: 'parent', label: 'Parent category' }
+                    - 'items'
+                    - { property: 'slug', template: '@admin/custom-fields/category-link.html.twig', label: 'links.category', route: 'productCategoryList' }
+                    - { property: 'image', type: 'image', base_path: '%ecs.path.default_images%' }
+                    - { property: 'description', type: 'textarea' }
+
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-4' }
+                    - { property: 'name', label: 'Label', css_class: 'large', help: 'help.title.category' }
+                    - { property: 'parent', type: 'easyadmin_autocomplete', label: 'Parent category' , help: 'help.parent.category'}
+                    # if you want to add products when creating categories, add the 'by_reference' option
+                    - { property: 'items', label: 'items.category', type_options: { by_reference: false } }
+                    - { property: 'imageFile', label: 'Cover', type: 'vich_image', type_options: { required: false } }
+                    - { type: 'group' , css_class: 'col'}
+                    - { property: 'description', type: 'textarea' }

@@ -1,0 +1,48 @@
+{{ form_start(address_form, { 'attr': { 'id': 'address-form' }}) }}
+
+<div class="nameAndFirst">
+    <div class="form_item">
+        {{ form_label(address_form.lastName)}}
+        {{ form_widget(address_form.lastName)}}
+    </div>
+    <div class="form_item secondItem">
+        {{ form_label(address_form.name)}}
+        {{ form_widget(address_form.name)}}
+    </div>
+</div>
+
+<div class="form_item">
+    {{ form_label(address_form.address)}}
+    {{ form_widget(address_form.address)}}
+</div>
+
+<div class="form_item">
+    {{ form_label(address_form.addressComplement)}}
+    {{ form_widget(address_form.addressComplement)}}
+</div>
+
+<div class="form_item">
+    {{ form_label(address_form.city)}}
+    {{ form_widget(address_form.city)}}
+</div>
+
+<div class="form_item">
+    {{ form_label(address_form.postCode)}}
+    {{ form_widget(address_form.postCode)}}
+</div>
+
+<div class="form_item">
+    {{ form_label(address_form.country)}}
+    {{ form_widget(address_form.country)}}
+</div>
+
+<div class="form_item">
+    {{ form_label(address_form.phoneNumber)}}
+    {{ form_widget(address_form.phoneNumber)}}
+</div>
+<div class="panier_space flexStart add_adressUpdate">
+    <div class="fullCenter">
+        <button class="pop add_adress buttonSub" type="submit">+ Ajouter cette adresse</button>
+    </div>
+</div>
+{{ form_end(address_form) }}

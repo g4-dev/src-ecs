@@ -1,0 +1,34 @@
+{% extends '@fo/layout.html.twig' %}
+{% block title %}Tous les produits{% endblock title %}
+
+{% block links %}
+    {{ encore_entry_link_tags('productList', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+
+    <h2 class="title-all-products gel-bold">Tous les produits</h2>
+    <div class="line"></div>
+    <div class="products-list all-products">
+        {% for product in products %}
+            <a href="/product/{{ product.slug }}" class="product-minia">
+                <div>
+                    <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.name }}">
+                    <div class="description">
+                        <h2 class="gel-bold">{{ product.name }}</h2>
+                        <p class="pop">{{ product.description|slice(0, 50)}}...</p>
+                    </div>
+                </div>
+                <h2 class="gel-bold">{{ product.name }}</h2>
+                <p class="pop">{{ product.price }} €</p>
+            </a>
+        {% endfor %}
+    </div>
+
+    {{ paginate(products, 'productList', 6)|raw }}
+
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('productList', null, 'front_office') }}
+{% endblock %}

@@ -1,0 +1,41 @@
+{%- set currentRoute = app.request.attributes.get('_route') -%}
+{%- set currentRouteParams = app.request.attributes.get('_route_params') -%}
+{%- set currentPath = path(currentRoute, currentRouteParams ) -%}
+
+<!DOCTYPE html>
+<html lang="FR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  {% block links %} {% endblock %}
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="shortcut icon" href="{{ asset('static/favico.png') }}" type="image/x-icon">
+
+  <style>
+    {% block stylesheets %}{% endblock %}
+  </style>
+</head>
+<body>
+
+{% block body %}
+  {% include '@fo/partials/header.html.twig' %}
+
+  {% include '@fo/components/flash-messages.html.twig' %}
+
+  <main>
+    {% block main %}{% endblock %}
+  </main>
+
+  {% include '@fo/partials/footer.html.twig' %}
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}
+
+{# à garder peut servir
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hinclude/0.9.5/hinclude.min.js"></script>
+#}
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+Ici on utilise le coeur de l'api pour faire les appels correspondant à nos pages

@@ -1,0 +1,25 @@
+easy_admin:
+    entities:
+        Letter:
+            # TODO: traductions
+            class: Admin\Entity\Letter
+            controller: Admin\Controller\NewsLetterController
+            disabled_actions: ['delete','edit']
+            list:
+                title: 'Newsletter'
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: 'createdAt', label: 'Created at', format: 'j / M / Y' }
+                    - { property: admin, label: 'sender' }
+                actions: ['show']
+            show:
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: 'body', label: Contenu, type: html } #TODO preview
+                    - { property: 'createdAt', label: 'Created at', format: 'j / M / Y' }
+                    - { property: 'admin', label: 'sender' }
+            form:
+                fields:
+                    - { property: 'name', label: 'Titre' }
+                    - { property: 'body', type: 'text_editor', label: 'Contenu', type_options: { trim: true } }
+                    #- { property: admin, label: 'sender' }

@@ -1,0 +1,341 @@
+img[src] {
+  background: url("#fo/images/empty.png"), linear-gradient(46deg, $lightGrey, $white);
+  border: unset;
+}
+
+.headerDesk {
+  width: 100%;
+
+  .headerBackground {
+    background: $lightGrey;
+  }
+
+  .UpperHeader {
+    padding: 8px $basicPadding/2;
+
+    a {
+      padding: 0 $basicPadding/2;
+    }
+
+    svg {
+      padding: 0 $basicPadding/2;
+      width: 2rem;
+
+      path {
+        cursor: pointer;
+        fill: $dark;
+      }
+    }
+  }
+
+  nav {
+    font-size: 1.1rem;
+
+    h1 {
+      color: $darkGreen;
+      padding: 32px 0;
+      font-size: 3.5rem;
+      line-height: 3rem;
+    }
+
+    .LowerHeader {
+      padding: 0 $basicPadding;
+
+      svg {
+        width: 2rem;
+        padding-left: $basicPadding/2;
+
+        path {
+          fill: $dark;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .LowerHeaderRight, .linkNav {
+      margin-top: 64px;
+
+      a {
+        padding: 0 $basicPadding/2;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 5px;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 10%;
+          height: 2px;
+          width: 0;
+          background: $darkGreen;
+          transition: width .5s ease-in-out;
+        }
+
+        &:hover::after {
+          transition: width .5s ease-in-out;
+          width: 80%;
+        }
+      }
+    }
+
+    /* Desktop */
+    @media screen and (max-width: 1550px) {
+      .LowerHeaderLeft {
+        width: 20%;
+      }
+      .LowerHeaderRight {
+        max-width: 100%;
+        padding-left: 0;
+      }
+    }
+
+    @media screen and (max-width: 1070px) and (min-width: 1024px) {
+      .LowerHeaderRight {
+        font-size: 1rem !important;
+      }
+    }
+    /* Fin Desktop */
+  }
+}
+
+.headerMob {
+  display: none;
+
+  h1 {
+    padding: 16px 0;
+    color: $darkGreen;
+    font-size: 3rem;
+    line-height: 2.5rem;
+  }
+
+  svg {
+    z-index: 9999;
+    width: 14%;
+
+    path {
+      fill: $dark;
+    }
+  }
+
+  .overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    background-color: $lightGrey;
+    overflow-x: hidden;
+    transition: .5s;
+  }
+
+  .overlay-content {
+    position: relative;
+    width: 100%;
+    text-align: center;
+
+    hr {
+      background: $darkGreen;
+      width: 60%;
+      height: 2.5px;
+    }
+
+    .nav_green_color {
+      color: $darkGreen;
+    }
+  }
+
+  .overlay a {
+    //padding: 8px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: $darkGrey;
+    display: inline-block;
+    transition: .3s;
+    margin: 2vh 0;
+  }
+
+  @media screen and (max-height: 650px) {
+    .overlay-content {
+      hr {
+        height: 2px;
+      }
+    }
+    .overlay a {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media screen and (max-height: 500px) {
+    .overlay-content {
+      hr {
+        height: 2px;
+      }
+    }
+    .overlay a {
+      font-size: 1.2rem;
+      margin: 1.5vh 0;
+    }
+  }
+
+  @media screen and (max-height: 350px) {
+    .overlay a {
+      font-size: 1rem;
+      margin: 1vh 0;
+    }
+  }
+
+  .burger {
+    cursor: pointer;
+    z-index: 9999;
+
+    .change {
+      .bar1 {
+        transform: rotate(-45deg) translate(-7.5px, 8px)
+      }
+
+      .bar2 {
+        opacity: 0
+      }
+
+      .bar3 {
+        transform: rotate(45deg) translate(-7.5px, -8px)
+      }
+    }
+
+    .bar1, .bar2, .bar3 {
+      width: 35px;
+      height: 5px;
+      background: black;
+      margin: 6px 0;
+      transition: .4s;
+    }
+  }
+
+  .icoPlaceMobLeft, .icoPlaceMobRight {
+    @include center;
+  }
+
+  @media screen and (max-width: 700px) {
+    .icoPlaceMobLeft {
+      @include flexStart;
+    }
+    .icoPlaceMobRight {
+      @include flexEnd;
+    }
+    .icoPlaceMobLeft, .icoPlaceMobRight {
+      padding: 0 $basicPadding;
+    }
+    svg {
+      width: 24%;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    svg {
+      width: 40px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+}
+
+@media screen and (max-width: 1024px) {
+  .headerDesk {
+    display: none;
+  }
+  .headerMob {
+    display: flex;
+    position: sticky;
+    top: 0px;
+    background: white;
+  }
+}
+
+footer {
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  background: $lightGrey;
+  width: 100%;
+  margin-bottom: 0px;
+  @include centerAround;
+
+  ul {
+    list-style: none;
+    margin: 0;
+
+    li {
+      padding: 12px 0;
+    }
+  }
+
+  h1 {
+    color: $darkGreen;
+    padding: 48px 0;
+    font-size: 2.5rem;
+    margin: 0;
+    line-height: 2.5rem;
+  }
+
+  @media screen and (max-width: 1024px) {
+    ul {
+      li {
+        padding: 6px 0;
+      }
+    }
+    h1 {
+      padding: 32px 0;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    @include fullCenter;
+    div {
+      width: 100% !important;
+    }
+
+    .footer_logo {
+      order: -1;
+    }
+
+    ul {
+      text-align: center;
+      padding: 0;
+
+      li {
+        padding: 12px 0;
+      }
+    }
+
+    div:last-child {
+      padding-bottom: 32px;
+    }
+    font-size: 1.2rem;
+  }
+}
+
+.linkNav {
+  width: 70%;
+
+  > a {
+    padding: 0 18px;
+  }
+}
+
+.buttonLogin {
+  font-size: 1.2rem;
+}
+
+.alert-danger {
+  color: $danger;
+}
+
+.w-100 {
+  width: 100%;
+}

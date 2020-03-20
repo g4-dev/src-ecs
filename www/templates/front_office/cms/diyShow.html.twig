@@ -1,0 +1,86 @@
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('diyShow', null, 'front_office') }}
+{% endblock %}
+
+{% block title %}{{ diy.name }} - DIY{% endblock %}
+
+{% block main %}
+    <hr class="sep-header">
+    <a class="btn-back pop" href="{{ path('diyList') }}">Retour</a>
+    <article id="recette_main">
+        <div class="recette_img_container">
+            <h2 class="title_mob gel-bold">{{ diy.name }}</h2>
+            <div class="center">
+                <img src="{{ vich_uploader_asset(diy, 'imageFile') }}">
+            </div>
+        </div>
+        <div>
+            <h2 class="title_desk gel-bold">{{ diy.name }}</h2>
+            <div class="textAndCarac alignInit">
+                <div class="description pop">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, voluptatibus. Reprehenderit rem incidunt veniam, nulla dolores, laudantium optio voluptatum itaque, iste atque alias quidem consequatur earum nemo voluptas beatae ad.Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, voluptatibus. Reprehenderit rem incidunt veniam, nulla dolores, laudantium optio voluptatum itaque, iste atque alias quidem consequatur earum nemo voluptas beatae ad.</p>
+                </div>
+                <div class="midWidth caracteristique pop">
+                    <div>
+                        <p>Temps de préparation</p>
+                        <div class="deca">
+                            <h3 class="serge"><span class="serge-bold minute">{{ diy.time }}</span></h3>
+                        </div>
+                    </div>
+                    <div class="ingredient">
+                        <p>Ingrédients</p>
+                        <div class="deca">
+                            <ul>
+                                {% for ingredient in diy.ingredients %}
+                                    <li>{{ ingredient }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="difficulty_barWidth">
+                        <p>Difficulté</p>
+                        <div class="deca">
+                            <div class="difficulty_bar" id="difficultyBlock" data-difficulty="{{ diy.difficulty }}">
+                                <div class="difficulty_bar__firstDiv listDifficulty"></div>
+                                <div class="difficulty_bar__secondDiv listDifficulty"></div>
+                                <div class="difficulty_bar__thirdDiv listDifficulty"></div>
+                                <div class="difficulty_bar__lastDiv listDifficulty"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <article id="recette">
+        <h3 class="gel-bold">Recette</h3>
+        <div class="recette_container">
+            <div class="recette_left">
+                <p class="pop">{{ diy.body }}</p>
+            </div>
+            <div class="recette_right center">
+                <img src="{{ vich_uploader_asset(diy, 'imageFile') }}">
+            </div>
+        </div>
+    </article>
+    {#    <section id="produit">#}
+    <p class="gel-bold title-suggest">Nous proposons</p>
+    <div class="cont-item">
+
+        {% for d in lastDiys %}
+            <div>
+                <div class="cont-item-img">
+                    <a href="{{ path('diyShow', { slug: d.slug })  }}"><img src="{{ vich_uploader_asset(d, 'imageFile') }}"></a>
+                </div>
+                <p class="gel-bold">{{ d.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    {#    </section>#}
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('diyShow', null, 'front_office') }}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends '@fo/layout.html.twig' %}
+
+{% block links %}
+  {{ encore_entry_link_tags('accounting', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+  <hr class="sep-header">
+  <h1 class="pop-sBold panier_title">Inscription</h1>
+  <div>
+    {% include '@fo/forms/registration-form.html.twig' %}
+  </div>
+
+  <div class="app-call" data-method="initRegistrationForm">
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  {{ encore_entry_script_tags('accounting', null, 'front_office') }}
+{% endblock %}

@@ -1,0 +1,53 @@
+easy_admin:
+    entities:
+        Product:
+            class: Admin\Entity\Product
+            label: 'Product'
+            list:
+                title: 'Products'
+                fields:
+                    - id
+                    - { property: 'isActive', type: 'toggle', label: 'Active?' }
+                    - name
+                    - { property: 'price', format: '%.2f', css_class: text-right }
+                    - { property: 'updatedAt', label: 'updated At', format: 'j / M / Y' }
+                    - tags
+                    - { property: 'slug', template: '@admin/custom-fields/page-link.html.twig', label: 'links.product', route: 'productShow' }
+                filters: ['isActive', 'name', 'price']
+                sort: ['updatedAt', 'DESC']
+            show:
+                fields:
+                    - id
+                    - { property: 'name', css_class: 'large' }
+                    - description
+                    - { property: 'isActive', type: 'toggle', label: 'Published' }
+                    - createdAt
+                    - price
+                    - stock
+                    - { property: 'ean', type: 'string' }
+                    - { property: 'image', type: 'image', base_path: '%ecs.path.product_images%' }
+                    - features
+                    - category
+                    - tags
+                    - images
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-8', label: 'Basic information', icon: 'pencil' }
+                    - { property: 'name', css_class: 'large' }
+                    - { property: 'description', type: 'text' }
+                    - { property: 'category', type: 'easyadmin_autocomplete', type_options: { attr: { create: true } } }
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Product Details', icon: 'cube' }
+                    - { property: 'ean', help: 'ean.help_message', type_options: { required: false } }
+                    - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
+                    - { property: 'stock' }
+                    - { property: 'isActive' }
+                    - { property: 'createdAt', type_options: { required: false } }
+                    - { type: 'group', css_class: 'col-sm-8 new-row' }
+                    - { property: 'features', type_options: { required: false }  }
+                    - { type: 'group', css_class: 'col-sm-4' }
+                    - { property: 'tags', type_options: { required: false }  }
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Attachments', icon: 'paperclip' }
+                    - { property: 'imageFile', type: 'vich_image', label: 'Cover',  type_options: { required: false } }
+                    - { property: 'images', type: 'collection', type_options: { entry_type: 'Core\Form\ImageType' } }
+                    - { property: 'onHome', label: 'onHome', help: 'onHome.help' }
+

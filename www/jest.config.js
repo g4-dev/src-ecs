@@ -24,7 +24,7 @@ module.exports = (space) => {
     coverageDirectory: '<rootDir>',
     collectCoverageFrom: [
       '/**/*.{js,ts}',
-      '!src/entry.js',
+      '!/assets/**/app.js',
       '!**/node_modules/**'
     ]
   }

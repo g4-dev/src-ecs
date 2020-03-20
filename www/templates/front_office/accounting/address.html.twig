@@ -1,0 +1,26 @@
+{% extends 'front_office/layout.html.twig' %}
+
+{% block links %}
+    {{ encore_entry_link_tags('accounting', null, 'front_office') }}
+{% endblock %}
+
+{% block title %}Gestion Adresse{% endblock %}
+
+{% block main %}
+    <hr class="sep-header">
+    <h1 class="pop-sBold panier_title">Adresse</h1>
+
+    <section class="adressUpdate pop">
+        {% include '@fo/forms/address-form.html.twig' %}
+        <div class="add_adressUpdate">
+            <div class="fullCenter">
+                <a class="pop add_adress" href="{{ path('account') }}">{{ 'Revenir à mon compte'|trans }}</a>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('accounting', null, 'front_office') }}
+{% endblock %}

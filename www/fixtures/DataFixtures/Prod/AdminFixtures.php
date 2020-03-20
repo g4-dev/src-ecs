@@ -11,9 +11,9 @@ class AdminFixtures extends AbstractFixture
     {
         $service = $this->container->get('core.admin');
 
-        $admin = $service->create('admin@domain.tld', 's3cr3t')
-            ->setName('System Admin')
-        ;
+        $admin = $service->create('admin-ecs@yopmail.com', 'Azerty69')
+            ->setName('System Admin');
+        $admin->addRole('ROLE_SUPERADMIN');
 
         $service->save($admin);
     }

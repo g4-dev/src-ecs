@@ -1,0 +1,75 @@
+// Gelasio
+@font-face {
+  font-family: "Gelasio";
+  src: url("../../font/Gelasio/Gelasio-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Gelasio Bold";
+  src: url("../../font/Gelasio/Gelasio-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Gelasio SemiBold";
+  src: url("../../font/Gelasio/Gelasio-SemiBold.ttf");
+}
+
+.gel{
+  font-family: "Gelasio";
+}
+
+.gel-bold{
+  font-family: "Gelasio Bold";
+}
+
+.gel-sBold{
+  font-family: "Gelasio SemiBold";
+}
+
+
+// Poppins
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("../../font/Poppins/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Semi Bold";
+  src: url("../../font/Poppins/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("../../font/Poppins/Poppins-Bold.ttf");
+}
+
+.pop{
+  font-family: "Poppins Regular";
+}
+
+.pop-sBold{
+  font-family: "Poppins Semi Bold";
+}
+
+.pop-bold{
+  font-family: "Poppins Bold";
+}
+
+// Segoe UI
+@font-face {
+  font-family: "Segoe UI";
+  src: url("../../font/Segoe UI/Segoe-UI.ttf");
+}
+
+@font-face {
+  font-family: "Segoe UI Bold";
+  src: url("../../font/Segoe UI/Segoe-UI-Bold.ttf");
+}
+
+.serge{
+  font-family: "Segoe UI";
+}
+
+.serge-bold{
+  font-family: "Segoe UI Bold";
+}

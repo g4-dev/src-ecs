@@ -1,0 +1,60 @@
+{% extends '@fo/layout.html.twig' %}
+{% form_theme Pro_Devis 'bootstrap_4_layout.html.twig' %}
+{% block links %}
+    {{ encore_entry_link_tags('proServiceList', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+<hr class="sep-header">
+<h1 class="pop-sBold title">Demander un service</h1>
+<div class="devisForm pop">
+    {{ form_start(Pro_Devis) }}
+    <div class="form_item">
+        {{ form_label(Pro_Devis.name, 'Nom') }}
+        {{ form_widget(Pro_Devis.name) }}
+    </div>
+
+    <div class="form_item">
+        {{ form_label(Pro_Devis.firstName, 'Prénom') }}
+        {{ form_widget(Pro_Devis.firstName) }}
+    </div>
+
+    <div class="form_item">
+        {{ form_label(Pro_Devis.companyName, 'Société') }}
+        {{ form_widget(Pro_Devis.companyName) }}
+    </div>
+
+    <div class="form_item">
+        {{ form_label(Pro_Devis.address, 'Adresse de l\'entreprise') }}
+        {{ form_widget(Pro_Devis.address) }}
+    </div>
+
+    <div class="form_item">
+        {{ form_label(Pro_Devis.phoneNumber, 'Télephone de l\'entreprise') }}
+        {{ form_widget(Pro_Devis.phoneNumber) }}
+    </div>
+
+    <div class="form_item">
+        {{ form_label(Pro_Devis.email, 'Mail de l\'entreprise') }}
+        {{ form_widget(Pro_Devis.email) }}
+    </div>
+    <div class="formCheckbox">
+        <div class="serviceRadio">
+            {{ form_label(Pro_Devis.yellowTrashCan, 'Prestation Poubelle Jaune') }}
+            {{ form_widget(Pro_Devis.yellowTrashCan) }}
+        </div>
+        <div class="serviceRadio">
+            {{ form_label(Pro_Devis.blueTrashCan, 'Prestation Poubelle Bleu') }}
+            {{ form_widget(Pro_Devis.blueTrashCan) }}
+        </div>
+    </div>
+    <div class="center continueSubmit">
+        <button type="submit" class="continue pop">Envoyer la demande de devis</button>
+    </div>
+    {{ form_end(Pro_Devis) }}
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('proServiceList', null, 'front_office') }}
+{% endblock %}

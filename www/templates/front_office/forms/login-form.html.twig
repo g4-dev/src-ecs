@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+<div class="form_item">
+  {{ form_label(form._username, 'Email') }}
+  <div class="errorInput">
+    {{ form_widget(form._username) }}
+    {{ form_errors(form._username) }}
+  </div>
+</div>
+
+<div class="form_item">
+  {{ form_label(form._password, 'Mot de passe') }}
+  <div class="errorInput">
+    {{ form_widget(form._password) }}
+    {{ form_errors(form._password) }}
+  </div>
+</div>
+{% if error %}
+  <div class="form-group">
+    <div class="alert alert-danger text-center" role="alert">
+      Email ou mot de passe invalide.
+    </div>
+  </div>
+{% endif %}
+<div class="center continueSubmit">
+  <button type="submit" class="continue pop">Se connecter</button>
+</div>
+{{ form_end(form) }}

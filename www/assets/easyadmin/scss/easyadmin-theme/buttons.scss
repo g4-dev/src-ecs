@@ -1,0 +1,87 @@
+// Buttons
+// ----------------------------------------------------------------------------
+
+.btn {
+    // needed because $btn-box-shadow doesn't work
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: $white;
+    color: $red-backoffice;
+    border-radius: 0;
+    border: 2px solid $red-backoffice;
+    text-transform: uppercase;
+    max-height: 34px;
+    padding-top:4px;
+}
+.btn:hover{
+    color: #3D3D3D;
+    border-color: #3D3D3D;
+    background-color: $white;
+}
+.btn-group:hover, .btn-group:hover i{
+    color: #3D3D3D;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):focus, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled):active:focus {
+}
+
+.btn-secondary, .btn-secondary[disabled], .btn-secondary.disabled {
+}
+.btn-secondary:hover, .btn-secondary:not(:disabled):not(.disabled):focus, .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled):active:focus {
+    background-color: var(--white);
+    color: var(--color-text-dark);
+}
+
+.btn.btn-info, .btn-info, .btn-info:hover, .btn-info:not(:disabled):not(.disabled):focus, .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled):active:focus {
+    background-color: var(--color-info);
+    color: var(--white);
+}
+
+.btn.btn-success, .btn-success, .btn-success:hover, .btn-success:not(:disabled):not(.disabled):focus, .btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled):active:focus {
+    background-color: var(--color-success);
+    color: var(--white);
+}
+
+.btn.btn-danger, .btn-danger, .btn-danger:hover, .btn-danger:not(:disabled):not(.disabled):focus, .btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled):active:focus {
+    background-color: var(--color-danger);
+    color: var(--white);
+}
+
+.btn.btn-warning, .btn-warning, .btn-warning:hover, .btn-warning:not(:disabled):not(.disabled):focus, .btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled):active:focus {
+    background-color: var(--color-warning);
+    color: var(--white);
+}
+
+.btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active, .btn-link:active:focus {
+    box-shadow: none; // needed to make the button link look like a regular link
+    color: $red-backoffice;
+}
+
+.btn.disabled, .btn:disabled,
+.btn.disabled:hover, .btn:disabled:hover,
+.btn.disabled:focus, .btn:disabled:focus,
+.btn.disabled:active, .btn:disabled:active,
+.btn.disabled:active:focus, .btn:disabled:active:focus {
+    box-shadow: none;
+    cursor: not-allowed;
+}
+a.btn.disabled, fieldset:disabled a.btn {
+    // needed to display the 'not-allowed' cursor on disabled buttons
+    pointer-events: unset;
+}
+
+.btn > .btn-label {
+    margin: 0;
+    cursor: inherit;
+}
+.btn > i + .btn-label {
+    margin-left: 4px;
+}
+.btn > .btn-label + i {
+    margin-left: 4px;
+}
+
+.btn-group-sm > .btn, .btn-sm {
+    padding: 3px 7px;
+}

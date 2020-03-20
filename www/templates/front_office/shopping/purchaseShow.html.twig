@@ -1,0 +1,16 @@
+{% extends '@fo/layout.html.twig' %}
+{% block links %}
+    {{ encore_entry_link_tags('shopping', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+
+<header>
+    <h1>Commande # {{ purchase.id }}</h1>
+</header>
+{# TODO afficher plus de détails #}
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_script_tags('shopping', null, 'front_office') }}
+{% endblock %}

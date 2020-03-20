@@ -1,0 +1,17 @@
+{% for content in cmsPage.titleContents %}
+    <h2 class="gel-bold title-company"></h2>
+    <div class="article-company {{ loop.index % 2 != 1 ? 'article-company-2' : ''  }}">
+        {% if cmsPage.images[loop.index-1]|default(false) %}
+            <img class="cms-sub__img {{ loop.index % 2 != 1 ? 'order-2' : 'order-1'  }}" src="{{ vich_uploader_asset(cmsPage.images[loop.index-1], 'imageFile') }}">
+        {% endif %}
+        <div class="cont-txt-company {{ loop.index % 2 != 1 ? 'order-1' : 'order-2'  }}">
+            {% if content.name|default(false) %}
+                <h3 class="pop-bold">{{ content.name }}</h3>
+            {% endif %}
+
+            {% if content.body|default(false)  %}
+                <section class="pop">{{ content.body|raw }}</section>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

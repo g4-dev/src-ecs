@@ -44,11 +44,10 @@ abstract class FunctionalTestCase extends WebTestCase
     }
 
     /**
-     * TODO: For some reason KERNEL_CLASS from phpunit.xml.dist is ignored...
      * @return string
      */
     protected static function getKernelClass()
     {
-        return 'Core\Kernel';
+        return \Core\Kernel::class;
     }
 }

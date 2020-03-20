@@ -1,0 +1,525 @@
+@import '#core/ecsFormTheme';
+@import 'app.scss';
+
+.panier_title{
+  margin-left: 32px;
+  font-size: 2.5rem;
+  color: $darkGrey;
+  @media screen and (max-width: 500px) {
+    margin-left: 16px;
+  }
+}
+.panier_space {
+  width: 100%;
+  color: $darkGrey;
+  .path {
+    font-size: 1.5rem;
+    margin: 32px 0 32px 128px;
+
+    p {
+      padding: 0 16px;
+    }
+
+    @media screen and (max-width: 1700px) {
+      margin: 32px 0 32px 64px;
+    }
+    @media screen and (max-width: 850px) {
+      font-size: 1.2rem;
+      margin: 32px 0 32px 32px;
+    }
+    @media screen and (max-width: 630px) {
+      font-size: 1rem;
+      p {
+        padding: 0 8px;
+      }
+    }
+    @media screen and (max-width: 500px) {
+      font-size: 0.9rem;
+      margin: 32px 0 32px 16px;
+      p {
+        padding: 0 4px;
+      }
+    }
+    @media screen and (max-width: 430px) {
+      font-size: 0.8rem;
+    }
+    @media screen and (max-width: 350px) {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+.mon_panier{
+  .panier{
+    svg{
+      width: 32px;
+      path{
+        fill: $darkGrey;
+      }
+    }
+    @include centerBetween;
+    @media screen and (max-width: 1550px) {
+      @include fullCenter;
+    }
+  }
+  .total_mob{
+    display: none;
+    .price{
+      text-align: right;
+    }
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: 1024px) {
+    .total_mob{
+      display: table-row;
+    }
+    .total_pc{
+      display: none;
+    }
+  }
+  table{
+    margin: 0 0 0 128px;
+    border: solid 1px $darkGrey;
+    text-align: center;
+    thead{
+      border-bottom: solid 1px $darkGrey;
+      th{
+        padding: 16px;
+        @media screen and (max-width: 430px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    tbody{
+      .table_img{
+        padding: 32px 256px;
+        img {
+          max-width: 250px;
+        }
+        @media screen and (max-width: 1200px) {
+          padding: 32px 128px;
+        }
+        @media screen and (max-width: 850px) {
+          padding: 32px 64px;
+        }
+        @media screen and (max-width: 630px) {
+          padding: 16px 32px;
+          img {
+            max-width: 200px;
+          }
+        }
+        @media screen and (max-width: 510px) {
+          padding: 16px 16px;
+          img {
+            max-width: 150px;
+          }
+        }
+        @media screen and (max-width: 430px) {
+          padding: 16px 16px;
+          img {
+            max-width: 100px;
+          }
+        }
+      }
+      td{
+        vertical-align: middle;
+        padding: 16px;
+        @media screen and (max-width: 430px) {
+          padding: 16px 8px;
+        }
+        border: solid 1px $darkGrey;
+
+      }
+      font-size: 1.5rem;
+    }
+    @media screen and (max-width: 1700px) {
+      margin: 0 0 0 64px;
+    }
+    @media screen and (max-width: 1550px) {
+      margin: 0;
+    }
+  }
+  .recapPanier{
+    margin: 0 128px 0 0;
+    padding: 32px 16px;
+    background: $lightGrey;
+    h3{
+      font-size: 1.8rem;
+    }
+    p{
+      font-size: 1.1rem;
+    }
+    .sousTot{
+      padding: 32px 0 8px 0;
+    }
+    .livraison{
+      padding: 8px 0 16px 0;
+    }
+    .total{
+      padding: 16px 0;
+    }
+    .price{
+      font-size: 1rem;
+    }
+    .continue a{
+      padding: 16px 64px;
+      color: white;
+      background: $darkGreen;
+    }
+    @media screen and (max-width: 1700px) {
+      margin: 0 64px 0 0;
+    }
+    @media screen and (max-width: 1550px) {
+      margin: 32px auto 0 auto;
+    }
+  }
+
+  .button{
+    margin: 32px 0 0 128px;
+    a{
+      font-size: 1.2rem;
+      margin: 8px 0;
+      padding: 16px 16px;
+      width: 200px;
+      text-align: center;
+      border: 2px solid $darkGrey;
+    }
+    a:hover {
+      background: $darkGreen;
+      color: white;
+      border: 2px $darkGrey solid;
+      transition: .4s ease;
+    }
+    @media screen and (max-width: 1700px) {
+      margin: 32px 0 0 64px;
+    }
+    @media screen and (max-width: 1550px) {
+      margin: 32px auto 0 auto;
+    }
+  }
+}
+
+.adress_choice{
+  font-size: 1.5rem;
+  @media screen and (max-width: 800px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 1rem;
+  }
+  .address_button div{
+    margin: 32px 128px;
+    @media screen and (max-width: 1024px) {
+      margin: 32px auto;
+    }
+    font-size: 1.2rem;
+    .continue{
+      color: white;
+      padding: 16px 64px;
+      background: $darkGreen;
+    }
+    .add_address{
+      padding: 16px 64px;
+      @media screen and (max-width: 500px) {
+        padding: 16px 32px;
+      }
+      border: 2px solid $darkGreen;
+    }
+    .add_address:hover {
+      background: $darkGreen;
+      color: white;
+      border: 2px $darkGrey solid;
+      transition: .4s ease;
+    }
+  }
+  .resetMargin{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .adress_border{
+    font-size: 1.5rem;
+    @media screen and (max-width: 500px) {
+      font-size: 1rem;
+    }
+    margin: 0 128px;
+    @media screen and (max-width: 1024px) {
+      margin: 0 64px;
+    }
+    @media screen and (max-width: 700px) {
+      margin: 0 32px;
+    }
+    @media screen and (max-width: 500px) {
+      margin: 0 16px;
+    }
+    border: solid 1px $darkGrey;
+    color: $darkGreen;
+    .adress_title{
+      margin: 0 64px;
+      @media screen and (max-width: 1024px) {
+        margin: 0 32px;
+      }
+      @media screen and (max-width: 500px) {
+        margin: 0 16px;
+      }
+      padding: 32px 0;
+      border-bottom: solid 1px $darkGrey;
+    }
+    .adress_list{
+      margin: 0 128px;
+      @media screen and (max-width: 1024px) {
+        margin: 0 64px;
+      }
+      @media screen and (max-width: 500px) {
+        margin: 0 32px;
+      }
+      @media screen and (max-width: 400px) {
+        margin: 0 16px;
+      }
+      padding: 16px 0;
+      .adress_item{
+        padding: 32px 0;
+        input{
+          display: block;
+          transform: scale(2);
+          cursor: pointer;
+        }
+        label{
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+}
+.paiement{
+  color: $darkGreen;
+  .title_paiement{
+    margin-bottom: 32px;
+  }
+  font-size: 1.5rem;
+  @media screen and (max-width: 500px) {
+    font-size: 1rem;
+  }
+  padding: 0 128px;
+  @media screen and (max-width: 1024px) {
+    padding: 0 64px;
+  }
+  @media screen and (max-width: 700px) {
+    padding: 0 32px;
+  }
+  @media screen and (max-width: 500px) {
+    padding: 0 16px;
+  }
+  table{
+    border-collapse: initial;
+    padding: 16px 32px 0 32px;
+    border: solid 1px $darkGrey;
+    width: 100%;
+    thead{
+      th{
+        vertical-align: middle;
+        padding: 16px 0;
+        border-bottom: solid 1px $darkGrey;
+        width: 50%;
+      }
+      .leftTh{
+        text-align: left;
+      }
+
+    }
+    tbody{
+      tr{
+        td{
+          padding: 32px 0;
+          input{
+            transform: scale(2);
+            cursor: pointer;
+          }
+          label{
+            margin-left: 16px;
+          }
+        }
+        .rightTd{
+          text-align: center;
+        }
+
+      }
+    }
+  }
+  .compte_button div{
+    margin: 32px 0;
+    @media screen and (max-width: 1024px) {
+      margin: 32px auto;
+    }
+    font-size: 1.2rem;
+    .add_compte{
+      padding: 16px 64px;
+      @media screen and (max-width: 500px) {
+        padding: 16px 32px;
+      }
+      border: 2px solid $darkGreen;
+    }
+    .add_compte:hover {
+      background: $darkGreen;
+      color: white;
+      border: 2px $darkGrey solid;
+      transition: .4s ease;
+    }
+    .continue{
+      color: white;
+      padding: 16px 64px;
+      background: $darkGreen;
+    }
+  }
+}
+
+.adressUpdate{
+  font-size: 1rem;
+  padding: 0 128px;
+  @media screen and (max-width: 1024px) {
+    padding: 0 64px;
+  }
+  @media screen and (max-width: 700px) {
+    padding: 0 32px;
+  }
+  @media screen and (max-width: 500px) {
+    padding: 0 16px;
+  }
+  .add_adressUpdate div{
+    margin: 32px auto;
+    font-size: 1.2rem;
+    .add_compte{
+      padding: 16px 64px;
+      @media screen and (max-width: 500px) {
+        padding: 16px 32px;
+      }
+      border: 2px solid $darkGreen;
+    }
+    .add_compte:hover {
+      background: $darkGreen;
+      color: white;
+      border: 2px $darkGrey solid;
+      transition: .4s ease;
+    }
+    .continue{
+      color: white;
+      padding: 16px 64px;
+      background: $darkGreen;
+    }
+  }
+}
+
+.adressUpdate{
+  font-size: 1.5rem;
+  color: $darkGrey;
+  @media screen and (min-width: 1500px) {
+    .nameAndFirst{
+      @include centerBetween;
+      .form_item{
+        width: 50%;
+      }
+      .secondItem{
+        label{
+          min-width:25%
+        }
+      }
+    }
+  }
+  .form_item{
+    @include flexEnd;
+    padding: 16px 0;
+  }
+  label{
+    display: block;
+    min-width: 350px;
+    text-align: right;
+    margin-right: 32px;
+  }
+  input{
+    width: 100%;
+    height: 32px;
+  }
+  input::placeholder{
+    color: transparent;
+    padding-left: 16px;
+  }
+  @media screen and (max-width: 1024px) {
+    label{
+      text-align: left;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 1.25rem;
+    label{
+      min-width:250px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 1rem;
+    label{
+      min-width:200px;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    label{
+      display: none;
+    }
+    input::placeholder{
+      color: $darkGrey;
+      padding-left: 16px;
+    }
+  }
+  .add_adressUpdate div{
+    margin: 32px auto;
+    font-size: 1rem;
+    .add_adress{
+      padding: 16px 64px;
+      @media screen and (max-width: 500px) {
+        padding: 16px 32px;
+      }
+      border: 2px solid $darkGreen;
+    }
+    .add_adress:hover {
+      background: $darkGreen;
+      color: white;
+      border: 2px $darkGrey solid;
+      transition: .4s ease;
+    }
+
+  }
+}
+
+.confirm{
+  color: $darkGreen;
+  font-size: 2rem;
+  @include fullCenter;
+  .centerBox{
+    border: solid 1px $darkGrey;
+    padding: 80px 256px;
+    @media screen and (max-width: 1024px) {
+      padding: 64px 128px;
+    }
+    @media screen and (max-width: 700px) {
+      padding: 64px 48px;
+    }
+    @media screen and (max-width: 600px) {
+      padding: 64px 32px;
+      font-size: 1.5rem;
+    }
+    @media screen and (max-width: 400px) {
+      font-size: 1rem;
+    }
+    @include center;
+  }
+  .accueil_return div {
+    margin: 32px auto;
+    font-size: 1.5rem;
+    @media screen and (max-width: 600px) {
+      font-size: 1rem;
+    }
+    .continue{
+      color: white;
+      padding: 24px 64px;
+      background: $darkGreen;
+    }
+  }
+}

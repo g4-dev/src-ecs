@@ -4,38 +4,48 @@
 require 'yaml'
 
 current_dir      = File.dirname(File.expand_path(__FILE__))
-yml              = YAML.load_file("#{current_dir}/config.yaml")
-conf, vm         =  yml['conf'], yml['vm']
-# If you're on a new build of Windows 10 you can try to use NFS
-os               = "bento/debian-" + conf['os']
+
+if(!File.exist?("#{current_dir}/vm_config.yaml"))
+  puts "You need a file named vm_config.yaml, run cp vm_config.dist.yaml vm_config.yaml"
+  exit
+end
+
+yml              = YAML.load_file("#{current_dir}/vm_config.yaml")
+conf, vm, rsync_exclude         = yml['conf'], yml['vm'], yml['rsync_exclude']
+os               = conf['box'] ? conf['box'] : "loic-roux-404/deb-g4"
+
 # book repo
 playbook_name    = "playbook-#{conf['projectname']}"
-playbook         = "https://github.com/#{conf['org']}/#{playbook_name}.git" 
+playbook         = "https://github.com/#{conf['org']}/#{playbook_name}.git"
 
 ### work path variable to change in debug mode
 # Be aware of shared folders when deleting things
 debug            = conf['debug_playbook']
-folder           = debug ? '/vagrant' : '/tmp'
+folder           = debug ? '/data' : '/tmp'
+web_dir          = "/data/#{conf['projectname']}/#{conf['web_path']}"
+
+# provision status
+IS_PROVISIONNING = ARGV[1] == '--provision' 
+PROVISIONNED     = File.exist? File.dirname(__FILE__) + "/.vagrant/machines/default/virtualbox/action_provision"
+
 # nfs config
 conf['nfs'] = Vagrant::Util::Platform.darwin? || Vagrant::Util::Platform.linux?
-NFS = conf['nfs'] && ARGV[1] != '--provision' && (File.exist? File.dirname(__FILE__) + "/.vagrant/machines/default/virtualbox/action_provision")
-# ssl config
+NFS_ENABLED = !conf['nfs_force_disable'] && conf['nfs'] && !IS_PROVISIONNING  && PROVISIONNED
+
 hosts            = ""
 
 if !Vagrant.has_plugin?('vagrant-hostmanager')
   puts "The vagrant-hostmanager plugin is required. Please install it with \"vagrant plugin install vagrant-hostmanager\""
   exit
 end
+
 hosts << conf['servername'] << " "
-hosts << "api." << conf['servername'] << " "
 
-# Vagrantfile API/syntax version.
-VAGRANTFILE_API_VERSION = "2"
-Vagrant.require_version ">= 2.0.1"
+Vagrant.require_version ">= 2.2.2"
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+Vagrant.configure(2) do |config|
   config.vm.box = os
-  
+
   id_rsa_path        = File.join(Dir.home, ".ssh", "id_rsa")
   id_rsa_ssh_key     = File.read(id_rsa_path)
   id_rsa_ssh_key_pub = File.read(File.join(Dir.home, ".ssh", "id_rsa.pub"))
@@ -51,7 +61,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
   end
 
-  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+  config.vm.network "forwarded_port", guest: 82, host: 8082, auto_correct: true
+  config.vm.network "forwarded_port", guest: 3306, host: 3366, auto_correct: true
 
   config.vm.hostname = conf['servername']
   config.hostmanager.enabled = true
@@ -61,16 +73,29 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.aliases = hosts
   config.vm.network :private_network, ip: conf['private_ip']
 
-  if !debug
-    config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/vagrant", disabled: true
 
+  if conf['smb'] && NFS_ENABLED
+    puts 'Disable nfs or smb, two shared folder make an over use of CPU & RAM'
+    exit
+  end
+
+  if conf['smb'] && !debug & !NFS_ENABLED
+    config.vm.synced_folder ".", "/data/ecs", type: 'smb', smb_password: "vagrant", smb_username: "vagrant",
+    mount_options: ["username=vagrant","password=vagrant"]
+  end
+
+  if !debug
     $init = <<-SCRIPT
-    sudo apt -y install git
-    rm -rf /tmp/#{playbook_name} || true
-    git clone #{playbook} /tmp/#{playbook_name}
+    rm -rf #{folder}/#{playbook_name} || true
+    git clone #{playbook} /tmp/#{playbook_name} && cd /tmp/#{playbook_name} && git reset --hard origin/#{conf['playbook_version']}
     SCRIPT
-    
-    config.vm.provision "shell", inline: $init, privileged: false  
+
+    config.vm.provision "shell", inline: $init, privileged: false
+  end
+
+  if debug
+    config.vm.synced_folder "./#{playbook_name}/", "/data/#{playbook_name}/", type: "rsync"
   end
 
   ## Install and configure software
@@ -82,35 +107,38 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.extra_vars = conf
   end
 
+  if !NFS_ENABLED && !conf['smb']
+    config.vm.synced_folder "./", "/data/ecs", type: "rsync",
+        rsync__auto: true,
+        rsync__args: ["--archive", "--delete", "--no-owner", "--no-group","-q", "-W"],
+        rsync__exclude: rsync_exclude
+  end
 
-  if NFS
+  if NFS_ENABLED && Vagrant::Util::Platform.darwin? && !Vagrant.has_plugin?('vagrant-bindfs')
+     puts "please run : vagrant plugin install vagrant-bindfs"
+     exit
+  end
+
+  if NFS_ENABLED
     # NFS config / bind vagrant user to nfs mount
-    if Vagrant::Util::Platform.darwin? 
-      if Vagrant.has_plugin?('vagrant-bindfs')
-        puts "vagrant-bindfs missing, please install the plugin with this command:\nvagrant plugin install vagrant-bindfs"
-        exit
-      else
-        #config.nfs.map_uid = Process.uid
-        #config.nfs.map_gid = Process.gid
-        #config.bindfs.bind_folder "./www", "/data/ecs/www"
-        #config.vm.synced_folder "./www", "/data/ecs/www", type: "nfs", nfs_version: 3, 
-        #nfs_udp: true, mount_options: ['rw', 'fsc','all_squash','actimeo=2']
-        puts "nfs not working yet"
-      end
+    if Vagrant::Util::Platform.darwin?
+        config.vm.synced_folder "./", "/data/ecs", nfs: true, mount_options: ['rw','tcp','fsc','noatime','rsize=8192','wsize=8192','noacl','actimeo=2'],
+        linux__nfs_options: ['rw','no_subtree_check','all_squash','async']
+        config.bindfs.bind_folder web_dir, web_dir
     else
       # linux nfs 4 server
-      config.vm.synced_folder "./www", "/data/ecs/www", type: "nfs", nfs_version: 4, nfs_udp: false, mount_options: ['rw','noac','actimeo=2']
+      config.vm.synced_folder "./www", web_dir, nfs: true, nfs_version: 4, nfs_udp: false, mount_options: ['rw','noac','actimeo=2','nolock']
     end
-  else  
+  else
     # reload nfs / shared folder after provision
-    config.trigger.after [:provision] do |t|
-      t.name = "Reboot after provisioning"
+    config.trigger.after :provision do |t|
+      t.info = "Reboot after provisioning"
       t.run = { :inline => "vagrant reload" }
     end
   end
 
   # fix ssh common issues
   ssh_path = "/home/vagrant/.ssh"
-  config.vm.provision :shell, :inline => "echo '#{id_rsa_ssh_key }' > #{ssh_path}/id_rsa && chmod 600 #{ssh_path}/id_rsa"
-  config.vm.provision :shell, :inline => "echo '#{id_rsa_ssh_key_pub }' > #{ssh_path}/authorized_keys && chmod 600 #{ssh_path}/authorized_keys"
+  config.vm.provision :shell, :inline => "echo '#{id_rsa_ssh_key}' > #{ssh_path}/id_rsa && chmod 600 #{ssh_path}/id_rsa"
+  config.vm.provision :shell, :inline => "echo '#{id_rsa_ssh_key_pub}' > #{ssh_path}/authorized_keys && chmod 600 #{ssh_path}/authorized_keys"
 end

@@ -1,14 +1,9 @@
 imports:
     - { resource: parameters.yaml }
+    - { resource: variables.yaml }
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
-
-# Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-parameters:
-    locale: 'fr'
-
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -16,24 +11,17 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
         bind:
-            $emailFrom: '%env(MAILER_URL)%'
-            $emailName: 'Ecoservice'
+            $emailFrom: '%env(MAILER_USER)%'
+            $emailName: '%website_name%'
 
     Core\:
         resource: '../src/Core/*'
-        #exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude:  '../src/Core/{DependencyInjection,Entity,Tests,Migrations,Kernel.php}'
 
-    Fixtures\DataFixtures\:
-        resource: '../fixtures/DataFixtures'
-        tags: ['doctrine.fixture.orm']
-
-    Admin\Controller\:
-      resource: '../src/Admin/Controller'
-      tags: ['controller.service_arguments']
-
-    Portal\Controller\:
-        resource: '../src/Portal/Controller'
-        tags: ['controller.service_arguments']
+    core.event_sub:
+        class: Core\Event\UserAccountEventSubscriber
+        arguments:
+            - '$emailFrom'
 
     core.admin:
         class: Core\Service\AdminService
@@ -47,8 +35,61 @@ services:
         class: Core\Service\UserService
         public: true
 
+    core.helper.upload_namer:
+        class: 'Core\Helper\UploadNamer'
+        public: true
+
+    Fixtures\DataFixtures\:
+        resource: '../fixtures/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
+    Admin\Controller\:
+      resource: '../src/Admin/Controller'
+      tags: ['controller.service_arguments']
+
+    FrontOffice\Controller\:
+        resource: '../src/FrontOffice/Controller'
+        tags: ['controller.service_arguments']
+
     admin.security.login_form_guard:
         class: 'Admin\Security\LoginFormGuard'
 
-    portal.security.login_form_guard:
-        class: 'Portal\Security\LoginFormGuard'
+    front_office.security.login_form_guard:
+        class: 'FrontOffice\Security\LoginFormGuard'
+
+    Admin\Repository\:
+        resource: '../src/Admin/Repository/*'
+        tags: ['doctrine.repository_service']
+        public: true
+
+    FrontOffice\Repository\:
+        resource: '../src/FrontOffice/Repository/*'
+        tags: ['doctrine.repository_service']
+        public: true
+
+    Admin\Command\InitSettingsCommand:
+        arguments:
+            - '@doctrine'
+            - '%env(MAKE_PATH)%'
+        public: true
+
+    fo.select_address.form_type:
+        class: FrontOffice\Form\Shopping\SelectAddressType
+        autowire: true
+        tags: ['form.type']
+
+    fo.add_to_basket.form_type:
+        class: FrontOffice\Form\Shopping\AddToBasketType
+        autowire: true
+        tags: ['form.type']
+
+    FrontOffice\Twig\MenuExtension:
+        class: FrontOffice\Twig\MenuExtension
+        autowire: true
+        tags: ['twig.extension']
+
+    #ecs.validator.entity_not_exist:
+    #    class: 'Core\Validator\Constraints\EntityNotExistsValidator'
+    #    autowire: true
+    #    tags:
+    #        - { name: validator.constraint_validator, alias: entity_not_exist }

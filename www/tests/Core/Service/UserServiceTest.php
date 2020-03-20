@@ -15,6 +15,8 @@ class UserServiceTest extends ServiceTestCase
     const PASSWORD      = 's3cr3t';
     const NAME          = 'Test User';
     const FACEBOOK_ID   = 'abcdefgh12345678';
+    const LNAME         = 'bobby';
+    const FNAME         = 'popo';
 
     public function testFetchByIdFail()
     {
@@ -46,6 +48,8 @@ class UserServiceTest extends ServiceTestCase
         $this->assertEquals(self::EMAIL, $user->getUsername());
 
         $user->setName(self::NAME);
+        $user->setFirstName(self::FNAME);
+        $user->setLastName(self::LNAME);
         $service->save($user);
         $this->assertNotNull($user->getId());
         $id = $user->getId();
@@ -93,6 +97,8 @@ class UserServiceTest extends ServiceTestCase
             'name' => self::NAME,
             'email' => self::EMAIL,
             'password' => self::PASSWORD,
+            'firstName' => self::FNAME,
+            'lastName' => self::LNAME
         ]);
         $this->assertInstanceOf(User::class, $user);
         $this->assertEquals(self::NAME, $user->getName());
@@ -124,6 +130,8 @@ class UserServiceTest extends ServiceTestCase
 
         $service->update($user, [
             'name'         => 'xxx',
+            'firstName'    => 'chat',
+            'lastName'     => 'rale',
             'id'           => 123,
             'email'        => 'phishing@test.tld',
             'uniqueId'     => 'xyz123',

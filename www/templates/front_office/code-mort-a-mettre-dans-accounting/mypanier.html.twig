@@ -1,0 +1,53 @@
+<section class="fullCenter mon_panier">
+    <div class="panier_space panier">
+        <table class="pop">
+            <thead>
+                <th>Supp</th>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th class="total_pc">Total</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
+                                <path d="M2 5v10c0 0.55 0.45 1 1 1h9c0.55 0 1-0.45 1-1v-10h-11zM5 14h-1v-7h1v7zM7 14h-1v-7h1v7zM9 14h-1v-7h1v7zM11 14h-1v-7h1v7z"></path>
+                                <path d="M13.25 2h-3.25v-1.25c0-0.412-0.338-0.75-0.75-0.75h-3.5c-0.412 0-0.75 0.338-0.75 0.75v1.25h-3.25c-0.413 0-0.75 0.337-0.75 0.75v1.25h13v-1.25c0-0.413-0.338-0.75-0.75-0.75zM9 2h-3v-0.987h3v0.987z"></path>
+                            </svg>
+                        </a></td>
+                    <td class="table_img"><img src="{{ asset('images/produit.png') }}"></td>
+                    <td><p>1</p></td>
+                    <td class="total_pc"><p>22,99 €</p></td>
+                </tr>
+                <tr class="total_mob">
+                    <td><p>Total</p></td>
+                    <td colspan="2"><p class="price">22,99 €</p></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="recapPanier">
+            <h3 class="pop">Récapitulatif Panier</h3>
+            <div class="sousTot centerBetween">
+                <p class="pop">Sous-total</p>
+                <p class="serge price">22.99 €</p>
+            </div>
+            <div class="livraison centerBetween">
+                <p class="pop">Livraison</p>
+                <p class="serge price">1.99 €</p>
+            </div>
+            <hr>
+            <div class="total centerBetween">
+                <p class="serge-bold"><strong>Total</strong></p>
+                <p class="serge-bold price"><strong>24,98 €</strong></p>
+            </div>
+            <div class="center continue pop"><a href="#">Continuer</a></div>
+        </div>
+    </div>
+    <div class="panier_space flexStart">
+        <div class="fullCenter button pop">
+            <a href="#">Continuer Achat</a>
+            <a href="#">Vider le panier</a>
+        </div>
+    </div>
+</section>

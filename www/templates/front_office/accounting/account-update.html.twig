@@ -1,0 +1,30 @@
+{% extends 'front_office/layout.html.twig' %}
+{% block title %}Mon compte{% endblock %}
+
+{% block links %}
+  {{ encore_entry_link_tags('accounting', null, 'front_office') }}
+{% endblock %}
+
+{% block main %}
+  <hr class="sep-header">
+  <h1 class="pop-sBold panier_title">Editer mon compte</h1>
+
+  <section class="formTheme pop debugUpdate">
+    {% include 'front_office/forms/account-update-form.html.twig' %}
+  </section>
+  <div class="login_links text-center pop">
+    <div class="panier_space continueSubmit">
+      <div class="fullCenter">
+        <a class="continueWhite" href="{{ path('account') }}">Retour</a>
+      </div>
+    </div>
+  </div>
+  <div class="app-call" data-method="initAccountUpdateForm"></div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+  {{ encore_entry_script_tags('accounting', null, 'front_office') }}
+{% endblock %}

@@ -1,0 +1,26 @@
+# This file sets the configuration options related to the backend design.
+# If your backend is simple, you probably can rely on the default values of
+# the options and just define the value of the 'site_name' option.
+#
+# NOTE: this demo application splits the backend configuration into several
+# small files for educational purposes. In your application you can put the
+# entire backend configuration in just one file.
+#
+# The configuration options are explained in detail in the bundle documentation,
+# which is published at https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    site_name: 'Ecoservice'
+    design:
+        # TODO: create a css theme
+        #assets:
+            #css:
+                #- 'public/build/js/custom.css'
+        #templates:
+         #   edit: 'admin/custom_edit_form.html.twig'
+
+        #TODO : create a form design for Back Office
+        # you can also define an array of form themes to use all of them
+        #form_theme:
+        #    - 'admin/form/custom_layout.html.twig'
+        #    - 'form_div_layout.html.twig'
+        #    - '@EasyAdmin/form/bootstrap_4.html.twig'

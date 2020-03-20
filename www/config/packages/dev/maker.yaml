@@ -1,0 +1,5 @@
+# create this file if you need to configure anything
+# Don't touch this file / use make commands in makefile or with full qualified namespace
+maker:
+    # pour utiliser maker changer temporairement cette configuration avec l'espace voulu
+    root_namespace: 'Admin'
