@@ -27,9 +27,10 @@ web_dir          = "/data/#{conf['projectname']}/#{conf['web_path']}"
 # provision status
 IS_PROVISIONNING = ARGV[1] == '--provision' 
 PROVISIONNED     = File.exist? File.dirname(__FILE__) + "/.vagrant/machines/default/virtualbox/action_provision"
-
+# is os
+IS_UNIX          = Vagrant::Util::Platform.darwin? || Vagrant::Util::Platform.linux?
 # nfs config
-conf['nfs'] = Vagrant::Util::Platform.darwin? || Vagrant::Util::Platform.linux?
+conf['nfs'] = IS_UNIX
 NFS_ENABLED = !conf['nfs_force_disable'] && conf['nfs'] && !IS_PROVISIONNING  && PROVISIONNED
 
 hosts            = ""
@@ -136,6 +137,20 @@ Vagrant.configure(2) do |config|
       t.run = { :inline => "vagrant reload" }
     end
   end
+
+  #if conf['ssl']
+    #config.trigger.after :up do |t|
+      #cert = "#{conf['servername']}.combined.pem"
+      #cert_path = "/etc/ssl/#{conf['servername']}/#{cert}"
+      #t.run = { "scp -P 22 vagrant@#{conf['servername']}:#{cert_file} docs/" }
+
+      #if IS_UNIX
+          #t.run = { inline: => "sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain docs/#{cert}" }
+      #else
+        #t.run = { inline: => "certutil -enterprise -f -v -AddStore 'Root' 'certificates/ca/ca.crt'" }
+      #end
+    #end
+  #end
 
   # fix ssh common issues
   ssh_path = "/home/vagrant/.ssh"
