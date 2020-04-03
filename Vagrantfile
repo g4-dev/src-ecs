@@ -33,13 +33,11 @@ IS_UNIX          = Vagrant::Util::Platform.darwin? || Vagrant::Util::Platform.li
 conf['nfs'] = IS_UNIX
 NFS_ENABLED = !conf['nfs_force_disable'] && conf['nfs'] && !IS_PROVISIONNING  && PROVISIONNED
 
-hosts            = ""
-
 if !Vagrant.has_plugin?('vagrant-hostmanager')
-  puts "The vagrant-hostmanager plugin is required. Please install it with \"vagrant plugin install vagrant-hostmanager\""
-  exit
+  system("vagrant plugin install vagrant-hostmanager")
 end
 
+hosts            = ""
 hosts << conf['servername'] << " "
 
 Vagrant.require_version ">= 2.2.2"
@@ -116,8 +114,7 @@ Vagrant.configure(2) do |config|
   end
 
   if NFS_ENABLED && Vagrant::Util::Platform.darwin? && !Vagrant.has_plugin?('vagrant-bindfs')
-     puts "please run : vagrant plugin install vagrant-bindfs"
-     exit
+     system('vagrant plugin install vagrant-bindfs')
   end
 
   if NFS_ENABLED
