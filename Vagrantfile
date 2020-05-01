@@ -80,8 +80,8 @@ Vagrant.configure(2) do |config|
   end
 
   if conf['smb'] && !debug & !NFS_ENABLED
-    config.vm.synced_folder ".", "/data/ecs", type: 'smb', smb_password: "vagrant", smb_username: "vagrant",
-    mount_options: ["username=vagrant","password=vagrant"]
+    config.vm.synced_folder ".", "/data/ecs", type: 'smb',
+    mount_options: ["vers=2.0"]
   end
 
   if !debug
@@ -96,6 +96,15 @@ Vagrant.configure(2) do |config|
   if debug
     config.vm.synced_folder "./#{playbook_name}/", "/data/#{playbook_name}/", type: "rsync"
   end
+
+  # add your ssh keys to clone private repos
+  ssh_path = "/home/vagrant/.ssh"
+  config.vm.provision :shell,
+    privileged: false,
+    inline: "echo '#{id_rsa_ssh_key}' > #{ssh_path}/id_rsa && chmod 600 #{ssh_path}/id_rsa"
+  config.vm.provision :shell,
+    privileged: false,
+    inline: "echo '#{id_rsa_ssh_key_pub}' > #{ssh_path}/authorized_keys && chmod 600 #{ssh_path}/authorized_keys"
 
   ## Install and configure software
   config.vm.provision "ansible_local" do |ansible|
@@ -148,9 +157,4 @@ Vagrant.configure(2) do |config|
       #end
     #end
   #end
-
-  # fix ssh common issues
-  ssh_path = "/home/vagrant/.ssh"
-  config.vm.provision :shell, :inline => "echo '#{id_rsa_ssh_key}' > #{ssh_path}/id_rsa && chmod 600 #{ssh_path}/id_rsa"
-  config.vm.provision :shell, :inline => "echo '#{id_rsa_ssh_key_pub}' > #{ssh_path}/authorized_keys && chmod 600 #{ssh_path}/authorized_keys"
 end
